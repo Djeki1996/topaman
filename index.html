@@ -365,6 +365,19 @@ footer .ikat{margin-bottom:20px}
 .via svg{width:14px;height:14px}
 .hl .uava{width:26px;height:26px;border-radius:50%;background:var(--gold);color:#2B1D05;display:grid;place-items:center;font-weight:700;font-size:13px}
 .divider{height:1px;background:var(--line);margin-block:4px}
+
+/* launch promo + online */
+s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
+.freeTag{color:var(--green);font-weight:700}
+.pc2 .pp .freeTag{font-family:var(--display)}
+.promoBadge{display:inline-flex;align-items:center;gap:6px;background:var(--green);color:#fff;border-radius:99px;padding:4px 12px;font-size:13px;font-weight:700;align-self:flex-start}
+.online{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.28);border:1px solid rgba(255,255,255,.2);border-radius:99px;padding:5px 14px 5px 10px;font-size:13.5px;color:rgba(255,255,255,.9)}
+.online b{color:#fff;font-size:15px;font-variant-numeric:tabular-nums}
+.dot{width:10px;height:10px;border-radius:50%;background:#34D399;position:relative;flex-shrink:0}
+.dot::after{content:"";position:absolute;inset:0;border-radius:50%;background:#34D399;animation:ping 1.6s ease-out infinite}
+@media (max-width:760px){.greet{font-size:14px;text-align:center;justify-content:center}.greet::before,.greet::after{display:none}.portal .inner{padding-top:72px}}
+@keyframes ping{from{transform:scale(1);opacity:.8}to{transform:scale(2.6);opacity:0}}
+@media (prefers-reduced-motion:reduce){.dot::after{animation:none}}
 </style>
 </head>
 <body>
@@ -396,6 +409,7 @@ footer .ikat{margin-bottom:20px}
         <button class="btn" data-i="find"></button>
       </form>
       <div class="pop" id="pop"></div>
+      <div class="online" aria-live="off"><span class="dot"></span><b id="onl">0</b><span data-i="onlineNow"></span></div>
     </div></div>
     <div class="stats"><div><b class="num" id="stTotal">0</b><span data-i="stAds"></span></div><div><b class="num" id="stJobs">0</b><span data-i="stJobs"></span></div><div><b class="num" id="stCv">0</b><span data-i="stCv"></span></div><div><b>14</b><span data-i="stReg"></span></div></div>
     <div class="ikat" aria-hidden="true"></div>
@@ -403,7 +417,7 @@ footer .ikat{margin-bottom:20px}
 </section>
 
 <main class="wrap">
-  <div class="launch"><b data-i="launchT"></b><span data-i="launchS"></span><button class="btn gold" id="launchBtn" data-i="launchB"></button></div>
+  <div class="launch"><b data-i="launchT"></b><span id="launchS"></span><button class="btn gold" id="launchBtn" data-i="launchB"></button></div>
 
   <div class="tabs" role="group" aria-label="Раздел">
     <button class="tab" data-kind="all" aria-pressed="true" data-i="tAll"></button>
@@ -463,7 +477,7 @@ const TX={
 ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мои объявления',post:'Подать объявление',postShort:'Подать',home:'Главная',profile:'Профиль',
  heroTitle:['Весь <mark>базар</mark> — у вас в кармане','Ты ищи, а <mark>я найду</mark>','Продай ненужное, <mark>найди нужное!</mark>'],searchPh:'iPhone, сварщик, диван, квартира…',find:'Найти',allUz:'Весь Узбекистан',popular:'Часто ищут:',
  stAds:'объявлений',stJobs:'вакансий',stCv:'резюме',stReg:'регионов',
- launchT:'Запуск Topaman',launchS:'До 31 декабря подать объявление бесплатно, а первый ТОП — в подарок.',launchB:'Смотреть тарифы',
+ launchT:'Акция запуска',launchS:'Первые 3 месяца все платные услуги бесплатно: ТОП, VIP, «Срочно», вакансии и магазины. До {d}.',launchB:'Смотреть тарифы',free:'Бесплатно',freeUntil:'Бесплатно до {d}',promoBtnFree:'Поднять в ТОП бесплатно',upFree:'Объявление поднято в ТОП бесплатно',topFree:'ТОП включён бесплатно по акции запуска',onlineNow:'сейчас на сайте',
  regions:'Объявления по регионам',tAll:'Все',tSell:'Продажа вещей',tJob:'Вакансии',tCv:'Ищу работу',recent:'Вы недавно смотрели',
  lAll:'Свежие объявления',lSell:'Продажа вещей',lJob:'Вакансии',lCv:'Резюме: ищу работу',lFav:'Избранное',pcs:'шт.',
  sNew:'Сначала новые',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
@@ -497,7 +511,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
 uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlarim',post:'E’lon berish',postShort:'E’lon',home:'Bosh sahifa',profile:'Profil',
  heroTitle:['<mark>Butun bozor</mark> — cho‘ntagingizda','Sen izla — men <mark>topaman</mark>','Keraksizini sot, <mark>keraklisini top!</mark>'],searchPh:'iPhone, payvandchi, divan, kvartira…',find:'Topish',allUz:'Butun O‘zbekiston',popular:'Ko‘p qidiriladi:',
  stAds:'e’lon',stJobs:'vakansiya',stCv:'rezyume',stReg:'viloyat',
- launchT:'Topaman ishga tushdi',launchS:'31-dekabrgacha e’lon berish bepul, birinchi TOP esa sovg‘a.',launchB:'Tariflarni ko‘rish',
+ launchT:'Ishga tushirish aksiyasi',launchS:'Dastlabki 3 oy barcha pullik xizmatlar bepul: TOP, VIP, «Shoshilinch», vakansiyalar va do‘konlar. {d} gacha.',launchB:'Tariflarni ko‘rish',free:'Bepul',freeUntil:'{d} gacha bepul',promoBtnFree:'TOPga bepul ko‘tarish',upFree:'E’lon TOPga bepul ko‘tarildi',topFree:'TOP ishga tushirish aksiyasi bo‘yicha bepul yoqildi',onlineNow:'hozir saytda',
  regions:'Viloyatlar bo‘yicha e’lonlar',tAll:'Hammasi',tSell:'Narsalar savdosi',tJob:'Vakansiyalar',tCv:'Ish qidiraman',recent:'Siz yaqinda ko‘rgansiz',
  lAll:'Yangi e’lonlar',lSell:'Narsalar savdosi',lJob:'Vakansiyalar',lCv:'Rezyumelar: ish qidiraman',lFav:'Saralanganlar',pcs:'ta',
  sNew:'Avval yangilari',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
@@ -667,6 +681,7 @@ function applyI18n(){
   $$('[data-i]').forEach(e=>e.innerHTML=t(e.dataset.i));
   $$('[data-ip]').forEach(e=>e.placeholder=t(e.dataset.ip));
   setHeroTitle();
+  $('#launchS').textContent=tD('launchS');$('.launch').hidden=!promoOn();
   const hr=new Date().getHours();
   $('#greet').textContent='Assalomu alaykum! '+(hr<11?'Xayrli tong':hr<18?'Xayrli kun':'Xayrli kech');
   $$('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
@@ -751,14 +766,14 @@ function openAd(id){
           <button class="btn" id="showTel">${t('showTel')}</button>
           <button class="btn primary" id="chatBtn">${cLbl}</button>
         </div>
-        ${a.top?'':`<div class="promo"><span>${t('promoTxt')}</span><button class="btn gold" id="promoBtn">${t('promoBtn')}</button></div>`}
+        ${a.top||!a.mine?'':`<div class="promo"><span>${t('promoTxt')}</span><button class="btn gold" id="promoBtn">${promoOn()?t('promoBtnFree'):t('promoBtn')}</button></div>`}
         <div class="safe">${t('safe')}</div>
       </div>
     </div>
     <div class="chat" id="chat" hidden></div>`);
   $('#showTel').onclick=e=>{e.currentTarget.textContent=tel+' ('+t('test')+')'};
   $('#chatBtn').onclick=()=>user?openChatIn(a):openLogin(()=>{openAd(a.id);openChatIn(a)},'needChat');
-  const p=$('#promoBtn');if(p)p.onclick=()=>toast(t('paidNote'));
+  const p=$('#promoBtn');if(p)p.onclick=()=>{if(!promoOn())return toast(t('paidNote'));const m=userAds.find(x=>x.id==a.id);if(m){m.top='top';m.ts=Date.now();store.set('tp_ads',userAds)}toast(t('upFree'));closeModal()};
   if(chats[a.id])openChatIn(a,true);
 }
 function openChatIn(a,silent){
@@ -782,9 +797,28 @@ function openChats(){
   openModal(`<div class="cab"><h3 class="mh">${t('chats')}</h3>${ids.length?ids.map(id=>{const a=byId(id),last=chats[id][chats[id].length-1];return `<button class="cabrow" data-open="${id}" style="background:var(--surface);text-align:left">${thumb(a)}<div class="ci2"><b>${esc(a.seller)}</b><span>${esc(a.title)}</span><br><span>${esc(last.t)}</span></div></button>`}).join(''):`<p style="color:var(--ink3);margin:0">${t('noChats')}</p>`}</div>`);
 }
 
+/* ---------- launch promo: all paid services free for 3 months ----------
+   Set PROMO.start to the real launch day. After PROMO.months the normal prices apply automatically. */
+const PROMO={start:'2026-10-01',months:3};
+const promoEnd=(()=>{const d=new Date(PROMO.start+'T00:00:00');d.setMonth(d.getMonth()+PROMO.months);return d})();
+const promoOn=()=>Date.now()<promoEnd.getTime();
+const UZM=['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr'];
+const fmtDate=d=>lang==='uz'?`${d.getDate()}-${UZM[d.getMonth()]} ${d.getFullYear()}`:d.toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'}).replace(' г.','');
+const tD=k=>t(k).replace('{d}',fmtDate(promoEnd));
+/* price label: crossed-out price + "Бесплатно" while promo runs */
+const priceTag=(p,unit)=>!p?`<span class="freeTag">${t('free')}</span>`:promoOn()?`<s class="old num">${fmt(p)}</s><span class="freeTag">${t('free')}</span>`:`${fmt(p)} ${t('sum')}${unit||''}`;
+
+/* ---------- online counter ----------
+   DEMO: number is simulated (more people in the evening). In production show the real count
+   from Firebase presence, or hide the pill while real traffic is small. */
+function onlineBase(){const h=new Date().getHours();const curve=[.25,.15,.1,.08,.08,.12,.25,.45,.6,.7,.75,.8,.85,.8,.78,.8,.85,.9,.95,1,1,.9,.7,.45];return Math.round(1400*curve[h])}
+let onl=onlineBase();
+function tickOnline(){onl=Math.max(40,onl+Math.round((onlineBase()-onl)*.2+(Math.random()*24-12)));const e=$('#onl');if(e)e.textContent=fmt(onl)}
+tickOnline();setInterval(tickOnline,4000);
+
 /* ---------- post form ---------- */
 let draft={};
-function tariffCard(x,sel){const n=x[lang];return `<button type="button" class="tar" data-t="${x.id}" aria-pressed="${sel}"><b>${n[0]}</b><span>${n[1]}</span><strong>${x.p?fmt(x.p)+' '+t('sum'):(lang==='uz'?'Bepul':'Бесплатно')}</strong></button>`}
+function tariffCard(x,sel){const n=x[lang];return `<button type="button" class="tar" data-t="${x.id}" aria-pressed="${sel}"><b>${n[0]}</b><span>${n[1]}</span><strong>${priceTag(x.p)}</strong></button>`}
 function openForm(){
   draft={kind:'sell',tariff:'free',img:null};
   openModal(`<form class="form" id="adForm" novalidate>
@@ -823,7 +857,7 @@ function submitAd(e){
   if(k==='sell')ad.price=num('#fPrice');else{const a=num('#fS1'),b=num('#fS2');if(a)ad.salary=[a,Math.max(a,b)]}
   userAds.unshift(ad);store.set('tp_ads',userAds);
   state={...state,kind:'all',cat:null,q:'',onlyFav:false};$('#q').value='';syncTabs();closeModal();scrollTo({top:$('#grid').offsetTop-120});
-  toast(tr==='free'?t('published'):t('published')+'. '+t('paidNote'));
+  toast(tr==='free'?t('published'):t('published')+'. '+(promoOn()?t('topFree'):t('paidNote')));
 }
 
 /* ---------- auth ----------
@@ -896,7 +930,7 @@ function openCab(){
     <div class="divider"></div>
     <h3 class="mh" style="font-size:20px">${t('cabT')}</h3>
     <div class="kpis"><div class="kpi"><b class="num">${mine.length}</b><span>${t('kAds')}</span></div><div class="kpi"><b class="num">${views}</b><span>${t('kViews')}</span></div><div class="kpi"><b class="num">${msgs}</b><span>${t('kMsgs')}</span></div></div>
-    ${mine.length?mine.map(a=>`<div class="cabrow">${thumb(a)}<div class="ci2"><b>${esc(a.title)}</b><span>${priceHTML(a).replace(/<[^>]+>/g,' ')} · ${esc(cityName(a.city))} · ${ago(a.ts)}</span></div><div class="ca"><button class="btn" data-up="${a.id}">${t('up')} · ${fmt(PRICES.up.p)}</button><button class="btn ghost" data-del="${a.id}">${t('del')}</button></div></div>`).join(''):`<p style="color:var(--ink3);margin:0">${t('cabEmpty')}</p><div><button class="btn primary" id="cabPost">+ ${t('post')}</button></div>`}
+    ${mine.length?mine.map(a=>`<div class="cabrow">${thumb(a)}<div class="ci2"><b>${esc(a.title)}</b><span>${priceHTML(a).replace(/<[^>]+>/g,' ')} · ${esc(cityName(a.city))} · ${ago(a.ts)}</span></div><div class="ca"><button class="btn" data-up="${a.id}">${t('up')} · ${promoOn()?t('free'):fmt(PRICES.up.p)+' '+t('sum')}</button><button class="btn ghost" data-del="${a.id}">${t('del')}</button></div></div>`).join(''):`<p style="color:var(--ink3);margin:0">${t('cabEmpty')}</p><div><button class="btn primary" id="cabPost">+ ${t('post')}</button></div>`}
   </div>`);
   const cp=$('#cabPost');if(cp)cp.onclick=()=>requireLogin(openForm,'needPost');
   $('#logoutBtn').onclick=logout;
@@ -905,10 +939,10 @@ function openCab(){
 
 /* ---------- pricing ---------- */
 function openPricing(){
-  const pc=(x,unit)=>{const n=x[lang];return `<div class="pc2${x.rec?' hl2':''}">${x.rec?`<span class="rec">${t('rec')}</span>`:''}<span class="pn">${n[0]}</span><span class="pp num">${x.p?fmt(x.p):(lang==='uz'?'Bepul':'0')} <small>${x.p?t('sum'):''}${x.unit==='m'?' / '+t('perMonth'):''}</small></span><ul><li>${n[1]}</li></ul></div>`};
+  const pc=(x,unit)=>{const n=x[lang];return `<div class="pc2${x.rec?' hl2':''}">${x.rec?`<span class="rec">${t('rec')}</span>`:''}<span class="pn">${n[0]}</span><span class="pp num">${promoOn()||!x.p?priceTag(x.p):fmt(x.p)} <small>${x.p&&!promoOn()?t('sum'):''}${x.unit==='m'&&!promoOn()?' / '+t('perMonth'):''}</small></span><ul><li>${n[1]}</li></ul></div>`};
   const up={id:'up',ru:[PRICES.up.ru,lang==='uz'?'':'Объявление снова наверху ленты'],uz:[PRICES.up.uz,'E’lon yana lenta tepasida'],p:PRICES.up.p};
   openModal(`<div class="pricing">
-    <h3 class="mh">${t('prT')}</h3><p class="sub">${t('prSub')}</p>
+    <h3 class="mh">${t('prT')}</h3>${promoOn()?`<span class="promoBadge">${tD('freeUntil')}</span>`:''}<p class="sub">${t('prSub')}</p>
     <div class="pgrp"><h4>${t('gPriv')}</h4><div class="pcards">${[...PRICES.priv,up].map(x=>pc(x)).join('')}</div></div>
     <div class="pgrp"><h4>${t('gJob')}</h4><div class="pcards">${PRICES.job.map(x=>pc(x)).join('')}</div></div>
     <div class="pgrp"><h4>${t('gBiz')}</h4><div class="pcards">${PRICES.biz.map(x=>pc(x)).join('')}</div></div>
@@ -946,7 +980,7 @@ $('#grid').onkeydown=e=>{if(e.key==='Enter'&&e.target.classList.contains('card')
 $('#ov').onclick=e=>{
   if(e.target.id==='ov'||e.target.closest('.mclose')){closeModal();return}
   const o=e.target.closest('[data-open]');if(o){openAd(o.dataset.open);return}
-  const u=e.target.closest('[data-up]');if(u){toast(t('paidNote'));return}
+  const u=e.target.closest('[data-up]');if(u){if(!promoOn()){toast(t('paidNote'));return}const m=userAds.find(x=>x.id==u.dataset.up);if(m){m.top=m.top||'top';m.ts=Date.now();store.set('tp_ads',userAds)}toast(t('upFree'));openCab();return}
   const d=e.target.closest('[data-del]');if(d){userAds=userAds.filter(a=>a.id!=d.dataset.del);store.set('tp_ads',userAds);toast(t('removed'));openCab();return}
 };
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#ov').hidden)closeModal()});
