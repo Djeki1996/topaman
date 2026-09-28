@@ -6,36 +6,35 @@
 <title>Topaman.uz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700&family=Golos+Text:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@500;700;800&family=Golos+Text:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --bg:#F2F4F8; --surface:#FFFFFF; --surface2:#E8ECF3; --line:#D6DCE6;
-  --ink:#141A26; --ink2:#4B5568; --ink3:#7C8699;
-  --lapis:#1D4ED8; --lapis-ink:#FFFFFF; --lapis-soft:#E1E9FC;
-  --saffron:#F2A90F; --saffron-ink:#2A1C00;
-  --green:#0F8A5F; --green-soft:#DDF3EA;
-  --red:#D0342C;
-  --shadow:0 6px 24px rgba(20,26,38,.08);
-  --display:"Unbounded", "Arial Black", system-ui, sans-serif;
-  --body:"Golos Text", "Segoe UI", system-ui, sans-serif;
+  --bg:#F1F3F8; --surface:#FFFFFF; --surface2:#E9EDF4; --line:#D8DEE8;
+  --ink:#121826; --ink2:#465167; --ink3:#7B869A;
+  --lapis:#1C47C9; --lapis2:#0F2E8F; --lapis-ink:#FFFFFF; --lapis-soft:#E2E9FC;
+  --saffron:#F2A90F; --saffron-ink:#2A1C00; --saffron-soft:#FDF1D6;
+  --green:#0E8A5E; --green-soft:#DCF3E9; --red:#D23A2F; --red-soft:#FCE4E2;
+  --shadow:0 10px 30px rgba(18,24,38,.10);
+  --display:"Unbounded","Arial Black",system-ui,sans-serif;
+  --body:"Golos Text","Segoe UI",system-ui,sans-serif;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --bg:#0E131C; --surface:#161D29; --surface2:#1F2836; --line:#2B3547;
-    --ink:#EDF1F7; --ink2:#B2BCCD; --ink3:#8691A5;
-    --lapis:#5B8CFF; --lapis-ink:#0A1020; --lapis-soft:#1B2A4C;
-    --saffron:#F5B83A; --green:#3CC792; --green-soft:#133528; --red:#FF6B61;
-    --shadow:0 6px 24px rgba(0,0,0,.35);
+    --bg:#0D121B; --surface:#151C28; --surface2:#1E2735; --line:#2A3446;
+    --ink:#EDF1F7; --ink2:#B3BDCE; --ink3:#8792A6;
+    --lapis:#5B8CFF; --lapis2:#1A3A94; --lapis-ink:#0A1020; --lapis-soft:#1A2A4C;
+    --saffron:#F5B83A; --saffron-soft:#3A2C0C; --green:#3CC792; --green-soft:#12342A; --red:#FF6B61; --red-soft:#3D1715;
+    --shadow:0 10px 30px rgba(0,0,0,.4);
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --bg:#0E131C; --surface:#161D29; --surface2:#1F2836; --line:#2B3547;
-  --ink:#EDF1F7; --ink2:#B2BCCD; --ink3:#8691A5;
-  --lapis:#5B8CFF; --lapis-ink:#0A1020; --lapis-soft:#1B2A4C;
-  --saffron:#F5B83A; --green:#3CC792; --green-soft:#133528; --red:#FF6B61;
-  --shadow:0 6px 24px rgba(0,0,0,.35);
+  --bg:#0D121B; --surface:#151C28; --surface2:#1E2735; --line:#2A3446;
+  --ink:#EDF1F7; --ink2:#B3BDCE; --ink3:#8792A6;
+  --lapis:#5B8CFF; --lapis2:#1A3A94; --lapis-ink:#0A1020; --lapis-soft:#1A2A4C;
+  --saffron:#F5B83A; --saffron-soft:#3A2C0C; --green:#3CC792; --green-soft:#12342A; --red:#FF6B61; --red-soft:#3D1715;
+  --shadow:0 10px 30px rgba(0,0,0,.4);
 }
 *{box-sizing:border-box}
 [hidden]{display:none!important}
@@ -43,107 +42,177 @@ body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);margin:0}
 button,input,select,textarea{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--lapis);outline-offset:2px}
-.wrap{max-width:1180px;margin:0 auto;padding-inline:16px}
+.wrap{max-width:1200px;margin:0 auto;padding-inline:16px}
+.num{font-variant-numeric:tabular-nums}
 
 /* header */
-header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:20}
-.hrow{display:flex;align-items:center;gap:14px;padding-block:12px;flex-wrap:wrap}
-.logo{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:8px;text-decoration:none;color:var(--ink);background:none;border:0;padding:0}
-.logo i{width:30px;height:30px;border-radius:9px;background:var(--lapis);display:grid;place-items:center;font-style:normal;color:var(--lapis-ink);font-size:15px}
-.logo span{color:var(--lapis)}
-.search{flex:1 1 320px;display:flex;background:var(--surface2);border:1px solid var(--line);border-radius:12px;overflow:hidden;min-width:0}
-.search input{flex:1;border:0;background:transparent;padding:10px 14px;min-width:0}
-.search input:focus{outline:none}
-.search select{border:0;border-left:1px solid var(--line);background:transparent;padding:0 10px;max-width:140px}
-.hbtns{display:flex;gap:8px;align-items:center}
-.btn{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 14px;font-weight:600;display:inline-flex;gap:6px;align-items:center;white-space:nowrap}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:env(safe-area-inset-top,0px);z-index:30}
+.hrow{display:flex;align-items:center;gap:12px;padding-block:10px}
+.logo{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.03em;display:flex;align-items:center;gap:8px;color:var(--ink);background:none;border:0;padding:0;flex-shrink:0}
+.logo .mark{width:32px;height:32px;border-radius:10px;background:var(--lapis);display:grid;place-items:center}
+.logo .mark svg{width:20px;height:20px;color:var(--saffron)}
+.logo em{font-style:normal;color:var(--lapis)}
+.hnav{display:flex;gap:4px;margin-left:auto;align-items:center}
+.hl{border:0;background:none;padding:8px 10px;border-radius:10px;font-weight:600;color:var(--ink2);display:inline-flex;gap:6px;align-items:center;position:relative;white-space:nowrap}
+.hl:hover{background:var(--surface2);color:var(--ink)}
+.hl svg{width:19px;height:19px}
+.hl .cnt{position:absolute;top:2px;left:22px;background:var(--red);color:#fff;border-radius:99px;font-size:10px;padding:0 5px;line-height:16px}
+.lang{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.lang button{border:0;background:none;padding:6px 9px;font-size:12.5px;font-weight:700;color:var(--ink3)}
+.lang button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:11px;padding:9px 15px;font-weight:600;display:inline-flex;gap:6px;align-items:center;justify-content:center;white-space:nowrap}
 .btn:hover{border-color:var(--ink3)}
 .btn.primary{background:var(--lapis);border-color:var(--lapis);color:var(--lapis-ink)}
 .btn.primary:hover{filter:brightness(1.08)}
 .btn.gold{background:var(--saffron);border-color:var(--saffron);color:var(--saffron-ink)}
-.btn .cnt{background:var(--red);color:#fff;border-radius:99px;font-size:11px;padding:0 6px;line-height:17px}
-
-/* banner */
-.demo{background:var(--saffron);color:var(--saffron-ink);font-size:13px;text-align:center;padding:6px 16px;font-weight:500}
+.btn.ghost{background:transparent}
 
 /* hero */
-.hero{padding-block:26px 8px}
-.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(22px,3.4vw,34px);line-height:1.15;margin:0 0 6px;letter-spacing:-.02em;text-wrap:balance}
-.hero p{margin:0;color:var(--ink2)}
-.stats{display:flex;gap:22px;flex-wrap:wrap;margin-top:12px;font-size:13px;color:var(--ink3)}
-.stats b{color:var(--ink);font-variant-numeric:tabular-nums}
+.hero{background:var(--lapis2);color:#fff;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;opacity:.13;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='none' stroke='%23F2A90F' stroke-width='1.4'%3E%3Cpath d='M32 4l8 20 20 8-20 8-8 20-8-20-20-8 20-8z'/%3E%3Ccircle cx='32' cy='32' r='7'/%3E%3Cpath d='M0 0l12 12M64 0L52 12M0 64l12-12M64 64L52 52'/%3E%3C/g%3E%3C/svg%3E");background-size:64px 64px}
+.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(242,169,15,.35),transparent 65%)}
+.hin{position:relative;z-index:1;padding-block:34px 30px;display:flex;flex-direction:column;gap:16px}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(24px,4vw,40px);line-height:1.12;margin:0;letter-spacing:-.025em;text-wrap:balance;max-width:760px}
+.hero h1 mark{background:none;color:var(--saffron)}
+.bigsearch{display:flex;background:#fff;border-radius:14px;padding:6px;gap:6px;max-width:820px;box-shadow:0 12px 40px rgba(0,0,0,.25);flex-wrap:wrap}
+.bigsearch .sin{flex:1 1 260px;display:flex;align-items:center;gap:8px;padding-left:10px;min-width:0}
+.bigsearch .sin svg{width:20px;height:20px;color:#7B869A;flex-shrink:0}
+.bigsearch input{flex:1;border:0;background:transparent;padding:10px 4px;color:#121826;min-width:0;font-size:16px}
+.bigsearch input:focus{outline:none}
+.bigsearch select{border:0;border-left:1px solid #D8DEE8;background:transparent;padding:0 12px;color:#121826;min-height:44px}
+.bigsearch select option{color:#121826}
+.bigsearch .btn{padding:11px 22px;border-radius:10px;background:var(--saffron);border-color:var(--saffron);color:#2A1C00}
+.pop{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:13px;color:rgba(255,255,255,.75)}
+.pop button{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.18);color:#fff;border-radius:99px;padding:4px 11px;font-size:13px}
+.pop button:hover{background:rgba(255,255,255,.22)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,max-content));column-gap:28px;row-gap:10px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.75)}
+.stats b{display:block;font-family:var(--display);font-size:20px;color:#fff;font-weight:700}
 
-/* tabs */
-.tabs{display:flex;gap:6px;margin-top:20px;flex-wrap:wrap}
-.tab{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:8px 16px;font-weight:600;color:var(--ink2)}
+/* promo strip */
+.launch{display:flex;align-items:center;gap:14px;background:var(--saffron-soft);border:1px solid var(--saffron);border-radius:14px;padding:12px 16px;margin-top:18px;flex-wrap:wrap}
+.launch b{font-family:var(--display);font-size:14px}
+.launch span{color:var(--ink2);font-size:14px;flex:1 1 280px}
+
+/* tabs + cats */
+.tabs{display:flex;gap:6px;margin-top:22px;overflow-x:auto;padding-bottom:2px}
+.tab{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:8px 16px;font-weight:600;color:var(--ink2);white-space:nowrap}
 .tab[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:8px;margin-top:14px}
-.cat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px;display:flex;flex-direction:column;align-items:flex-start;gap:6px;text-align:left;font-size:13px;font-weight:500}
-.cat svg{width:22px;height:22px;color:var(--lapis)}
-.cat[aria-pressed="true"]{border-color:var(--lapis);background:var(--lapis-soft)}
-.cat small{color:var(--ink3);font-variant-numeric:tabular-nums}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(104px,1fr));gap:10px;margin-top:14px}
+.cat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 8px 10px;display:flex;flex-direction:column;align-items:center;gap:7px;font-size:12.5px;font-weight:600;text-align:center;line-height:1.25;transition:transform .15s}
+.cat:hover{transform:translateY(-2px)}
+.cat .ci{width:48px;height:48px;border-radius:14px;display:grid;place-items:center}
+.cat .ci svg{width:26px;height:26px}
+.cat small{color:var(--ink3);font-weight:500}
+.cat[aria-pressed="true"]{border-color:var(--lapis);box-shadow:0 0 0 2px var(--lapis) inset}
 
-/* toolbar */
-.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-block:22px 12px;flex-wrap:wrap}
-.toolbar h2{font-size:17px;margin:0}
-.toolbar h2 small{color:var(--ink3);font-weight:500;margin-left:6px}
-.toolbar select{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px}
+/* sections */
+.sec-h{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-block:26px 12px;flex-wrap:wrap}
+.sec-h h2{font-family:var(--display);font-size:18px;margin:0;font-weight:700;letter-spacing:-.01em}
+.sec-h h2 small{font-family:var(--body);color:var(--ink3);font-weight:500;font-size:14px;margin-left:8px}
+.sec-h select{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:8px 10px}
+.recent{display:flex;gap:10px;overflow-x:auto;padding-bottom:4px}
+.rc{flex:0 0 200px;display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:8px;text-align:left}
+.rc .thumb{width:48px;height:48px;border-radius:9px;flex-shrink:0;aspect-ratio:auto}
+.rc .thumb svg{width:60%;height:60%}
+.rc div{min-width:0}
+.rc b{display:block;font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rc span{font-size:12.5px;color:var(--ink3)}
 
 /* grid */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;padding-bottom:40px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;text-align:left;padding:0;position:relative;transition:transform .15s, box-shadow .15s}
-.card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-.card.top{border-color:var(--saffron)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:14px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;text-align:left;padding:0;position:relative;transition:transform .15s,box-shadow .15s;cursor:pointer}
+.card:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.card.vip{border:2px solid var(--saffron)}
 .thumb{aspect-ratio:4/3;width:100%;display:grid;place-items:center;position:relative;overflow:hidden}
 .thumb img{width:100%;height:100%;object-fit:cover}
-.thumb svg{width:46%;height:46%;opacity:.9}
-.badges{position:absolute;left:8px;top:8px;display:flex;gap:4px}
-.bdg{font-size:10.5px;font-weight:700;letter-spacing:.06em;padding:3px 7px;border-radius:6px;text-transform:uppercase}
-.bdg.top{background:var(--saffron);color:var(--saffron-ink)}
-.bdg.vip{background:#111;color:#F5C84C}
+.thumb svg{width:44%;height:44%}
+.thumb .pc{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;border-radius:6px;padding:2px 6px;display:flex;gap:4px;align-items:center}
+.badges{position:absolute;left:8px;top:8px;display:flex;gap:4px;flex-wrap:wrap;max-width:calc(100% - 52px)}
+.bdg{font-size:10.5px;font-weight:700;letter-spacing:.05em;padding:3px 7px;border-radius:6px;text-transform:uppercase}
+.bdg.top{background:var(--saffron);color:#2A1C00}
+.bdg.vip{background:#0B0F18;color:#F5C84C}
+.bdg.urg{background:var(--red);color:#fff}
 .bdg.job{background:var(--green);color:#fff}
 .bdg.cv{background:var(--lapis);color:var(--lapis-ink)}
-.fav{position:absolute;right:8px;top:8px;width:32px;height:32px;border-radius:50%;border:0;background:rgba(255,255,255,.9);display:grid;place-items:center;color:#555}
-.fav svg{width:17px;height:17px}
-.fav.on{color:var(--red)}
+.fav{position:absolute;right:8px;top:8px;width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.92);display:grid;place-items:center;color:#556}
+.fav svg{width:18px;height:18px}
+.fav.on{color:#D23A2F}
 .fav.on svg{fill:currentColor}
-.cbody{padding:12px 13px 13px;display:flex;flex-direction:column;gap:4px;flex:1}
-.ctitle{font-weight:600;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.cprice{font-weight:700;font-size:17px;font-variant-numeric:tabular-nums}
-.cprice.sal{color:var(--green)}
-.cmeta{font-size:12.5px;color:var(--ink3);margin-top:auto;padding-top:6px}
+.cbody{padding:12px 13px 13px;display:flex;flex-direction:column;gap:3px;flex:1}
+.cprice{font-weight:700;font-size:18px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+.cprice small{font-size:12px;color:var(--ink3);font-weight:500;margin-left:4px}
+.cprice.sal{color:var(--green);font-size:16px}
+.ctitle{line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;color:var(--ink)}
+.cmeta{font-size:12.5px;color:var(--ink3);margin-top:auto;padding-top:8px;display:flex;justify-content:space-between;gap:6px}
+.chip{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--ink2);background:var(--surface2);border-radius:6px;padding:2px 7px;align-self:flex-start;margin-top:2px}
 .empty{grid-column:1/-1;text-align:center;padding:50px 16px;color:var(--ink3)}
+.more{display:flex;justify-content:center;margin-block:22px 10px}
+
+/* how it works / for business */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:34px}
+.pane{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px;display:flex;flex-direction:column;gap:10px}
+.pane h3{font-family:var(--display);font-size:17px;margin:0}
+.pane p{margin:0;color:var(--ink2)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:4px}
+.step{background:var(--surface2);border-radius:12px;padding:12px;font-size:13.5px}
+.step b{display:block;font-family:var(--display);color:var(--lapis);font-size:18px}
+.pane.biz{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.pane.biz p{color:var(--bg);opacity:.75}
+footer{border-top:1px solid var(--line);margin-top:40px;padding-block:22px 90px;color:var(--ink3);font-size:13px}
+.fgrid{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* bottom nav (mobile) */
+.bnav{display:none}
+@media (max-width:760px){
+  .hnav .hl span.t,.hnav .hide-m{display:none}
+  .bnav{display:grid;grid-template-columns:repeat(5,1fr);position:fixed;left:0;right:0;bottom:0;z-index:40;background:var(--surface);border-top:1px solid var(--line);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px))}
+  .bnav button{border:0;background:none;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10.5px;color:var(--ink3);font-weight:600;position:relative}
+  .bnav button svg{width:22px;height:22px}
+  .bnav button.on{color:var(--lapis)}
+  .bnav .plus span.pi{width:42px;height:42px;border-radius:14px;background:var(--lapis);color:var(--lapis-ink);display:grid;place-items:center;margin-top:-18px;box-shadow:var(--shadow)}
+  .bnav .cnt{position:absolute;top:-2px;left:calc(50% + 4px);background:var(--red);color:#fff;border-radius:99px;font-size:10px;padding:0 5px;line-height:16px}
+  .duo,.steps{grid-template-columns:1fr}
+  .bigsearch select{border-left:0;border-top:1px solid #D8DEE8;flex:1 1 100%}
+  .bigsearch .btn{flex:1 1 100%}
+}
 
 /* modal */
-.ov{position:fixed;inset:0;background:rgba(8,12,20,.55);z-index:50;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 16px}
-.modal{background:var(--surface);border-radius:18px;width:100%;max-width:760px;box-shadow:var(--shadow);position:relative}
-.mclose{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--surface2);font-size:20px;line-height:1;z-index:2}
+.ov{position:fixed;inset:0;background:rgba(8,12,20,.6);z-index:60;display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 16px}
+.modal{background:var(--surface);border-radius:20px;width:100%;max-width:800px;box-shadow:var(--shadow);position:relative}
+.modal.wide{max-width:1000px}
+.mclose{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--surface2);font-size:20px;line-height:1;z-index:3}
 .dv{display:grid;grid-template-columns:1.1fr 1fr}
-.dv .thumb{aspect-ratio:auto;min-height:280px;border-radius:18px 0 0 18px}
-.dinfo{padding:22px;display:flex;flex-direction:column;gap:10px}
+.dv .thumb{aspect-ratio:auto;min-height:320px;border-radius:20px 0 0 20px}
+.dinfo{padding:22px;display:flex;flex-direction:column;gap:11px}
 .dinfo h3{margin:0;font-size:20px;line-height:1.25;padding-right:34px}
-.dprice{font-family:var(--display);font-size:24px;font-weight:700}
+.dprice{font-family:var(--display);font-size:25px;font-weight:700}
+.dprice small{font-family:var(--body);font-size:14px;color:var(--ink3);font-weight:500;margin-left:6px}
 .dprice.sal{color:var(--green)}
-.facts{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-size:13.5px;margin:0}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13.5px;margin:0}
 .facts dt{color:var(--ink3)}
 .facts dd{margin:0}
 .desc{color:var(--ink2);white-space:pre-line;font-size:14px}
 .seller{display:flex;align-items:center;gap:10px;padding:10px;border:1px solid var(--line);border-radius:12px}
-.ava{width:40px;height:40px;border-radius:50%;background:var(--lapis-soft);color:var(--lapis);display:grid;place-items:center;font-weight:700}
+.ava{width:42px;height:42px;border-radius:50%;background:var(--lapis-soft);color:var(--lapis);display:grid;place-items:center;font-weight:700;flex-shrink:0}
 .seller small{color:var(--ink3);display:block}
+.stars{color:var(--saffron);letter-spacing:1px}
+.ver{color:var(--green);font-size:12px;font-weight:600;display:inline-flex;gap:3px;align-items:center}
 .actions{display:flex;gap:8px;flex-wrap:wrap}
-.actions .btn{flex:1;justify-content:center}
-.promo{background:var(--surface2);border-radius:12px;padding:12px;font-size:13px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.actions .btn{flex:1}
+.promo{background:var(--saffron-soft);border-radius:12px;padding:12px;font-size:13px;display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.safe{font-size:12.5px;color:var(--ink3);border-top:1px dashed var(--line);padding-top:10px}
 .chat{border-top:1px solid var(--line);padding:16px 22px 20px;display:flex;flex-direction:column;gap:8px}
-.msgs{display:flex;flex-direction:column;gap:6px;max-height:200px;overflow-y:auto}
+.msgs{display:flex;flex-direction:column;gap:6px;max-height:240px;overflow-y:auto}
 .msg{max-width:80%;padding:7px 11px;border-radius:12px;font-size:14px;background:var(--surface2);align-self:flex-start}
 .msg.me{background:var(--lapis);color:var(--lapis-ink);align-self:flex-end}
 .chatrow{display:flex;gap:8px}
 .chatrow input{flex:1;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 12px;min-width:0}
+.qr{display:flex;gap:6px;flex-wrap:wrap}
+.qr button{border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:4px 10px;font-size:13px}
 
 /* form */
 .form{padding:24px;display:flex;flex-direction:column;gap:14px}
-.form h3{font-family:var(--display);margin:0;font-size:20px}
+.form h3,.mh{font-family:var(--display);margin:0;font-size:20px}
 .seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .seg button{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 6px;font-weight:600;font-size:13.5px}
 .seg button[aria-pressed="true"]{border-color:var(--lapis);background:var(--lapis-soft);color:var(--lapis)}
@@ -151,165 +220,350 @@ header{background:var(--surface);border-bottom:1px solid var(--line);position:st
 label.fl{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:var(--ink2)}
 label.fl input,label.fl select,label.fl textarea{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;font-weight:400;color:var(--ink)}
 label.fl textarea{min-height:90px;resize:vertical}
-.tariffs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.tar{border:1.5px solid var(--line);border-radius:12px;padding:12px;text-align:left;background:var(--surface);display:flex;flex-direction:column;gap:3px}
+.tariffs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.tar{border:1.5px solid var(--line);border-radius:12px;padding:11px;text-align:left;background:var(--surface);display:flex;flex-direction:column;gap:2px}
 .tar b{font-size:14px}
-.tar span{font-size:12px;color:var(--ink3)}
-.tar strong{font-variant-numeric:tabular-nums}
+.tar span{font-size:12px;color:var(--ink3);line-height:1.35}
+.tar strong{font-variant-numeric:tabular-nums;margin-top:4px}
 .tar[aria-pressed="true"]{border-color:var(--lapis);background:var(--lapis-soft)}
 .err{color:var(--red);font-size:13px;min-height:1em}
-.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:10px;z-index:80;font-weight:500;max-width:calc(100% - 32px)}
-footer{border-top:1px solid var(--line);padding-block:20px;color:var(--ink3);font-size:13px}
+
+/* pricing */
+.pricing{padding:26px;display:flex;flex-direction:column;gap:18px}
+.pricing .sub{color:var(--ink2);margin:0}
+.pgrp h4{margin:0 0 10px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
+.pcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+.pc2{border:1px solid var(--line);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px;background:var(--surface)}
+.pc2.hl2{border:2px solid var(--lapis)}
+.pc2 .pn{font-weight:700}
+.pc2 .pp{font-family:var(--display);font-size:20px;font-weight:700}
+.pc2 .pp small{font-family:var(--body);font-size:12.5px;color:var(--ink3);font-weight:500}
+.pc2 ul{margin:0;padding-left:18px;color:var(--ink2);font-size:13px}
+.pc2 .rec{align-self:flex-start;font-size:11px;font-weight:700;background:var(--lapis);color:var(--lapis-ink);border-radius:6px;padding:2px 7px;text-transform:uppercase;letter-spacing:.05em}
+
+/* cabinet */
+.cab{padding:24px;display:flex;flex-direction:column;gap:14px}
+.cabrow{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:14px;padding:10px}
+.cabrow .thumb{width:72px;height:56px;border-radius:10px;flex-shrink:0;aspect-ratio:auto}
+.cabrow .thumb svg{width:50%;height:50%}
+.cabrow .ci2{flex:1;min-width:0}
+.cabrow .ci2 b{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cabrow .ci2 span{font-size:12.5px;color:var(--ink3)}
+.cabrow .ca{display:flex;gap:6px;flex-wrap:wrap}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.kpi{background:var(--surface2);border-radius:12px;padding:12px}
+.kpi b{display:block;font-family:var(--display);font-size:20px}
+.kpi span{font-size:12.5px;color:var(--ink3)}
+
+.toast{position:fixed;left:50%;bottom:calc(84px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:10px;z-index:90;font-weight:500;max-width:calc(100% - 32px);text-align:center}
 
 @media (max-width:640px){
   .dv{grid-template-columns:1fr}
-  .dv .thumb{border-radius:18px 18px 0 0;min-height:220px}
-  .f2,.tariffs{grid-template-columns:1fr}
-  .hbtns .lbl{display:none}
-  .search select{max-width:110px}
+  .dv .thumb{border-radius:20px 20px 0 0;min-height:220px}
+  .f2,.kpis{grid-template-columns:1fr}
+  .tariffs{grid-template-columns:1fr 1fr}
+  .cabrow{flex-wrap:wrap}
 }
-@media (prefers-reduced-motion:reduce){.card{transition:none}.card:hover{transform:none}}
+@media (prefers-reduced-motion:reduce){.card,.cat{transition:none}.card:hover,.cat:hover{transform:none}}
 </style>
 </head>
 <body>
 
-<div class="demo">Демо-версия: все объявления, имена и телефоны тестовые</div>
 <header>
   <div class="wrap hrow">
-    <button class="logo" id="home" aria-label="На главную"><i>T</i>Topaman<span>.uz</span></button>
-    <div class="search">
-      <input id="q" type="search" placeholder="Что ищете? Например: iPhone, сварщик, диван">
-      <select id="city" aria-label="Город"></select>
-    </div>
-    <div class="hbtns">
-      <button class="btn" id="favBtn" aria-pressed="false">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
-        <span class="lbl">Избранное</span><span class="cnt" id="favCnt" hidden>0</span>
-      </button>
-      <button class="btn primary" id="postBtn">+ <span class="lbl">Подать объявление</span></button>
-    </div>
+    <button class="logo" id="home" aria-label="Topaman.uz"><span class="mark"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="6"/><path d="M15 15l5 5"/></svg></span><span>Topaman<em>.uz</em></span></button>
+    <nav class="hnav">
+      <div class="lang" role="group" aria-label="Til / Язык"><button data-lang="ru" aria-pressed="true">RU</button><button data-lang="uz" aria-pressed="false">UZ</button></div>
+      <button class="hl hide-m" id="hPrice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span class="t" data-i="tariffs"></span></button>
+      <button class="hl hide-m" id="hChats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span class="t" data-i="chats"></span><span class="cnt" id="chatCnt" hidden></span></button>
+      <button class="hl hide-m" id="hFav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg><span class="t" data-i="fav"></span><span class="cnt" id="favCnt" hidden></span></button>
+      <button class="hl hide-m" id="hCab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="t" data-i="myads"></span></button>
+      <button class="btn primary hide-m" id="postBtn">+ <span data-i="post"></span></button>
+    </nav>
   </div>
 </header>
 
+<section class="hero">
+  <div class="wrap hin">
+    <h1 id="heroTitle"></h1>
+    <form class="bigsearch" id="searchForm" role="search">
+      <div class="sin"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M16 16l5 5"/></svg><input id="q" type="search" data-ip="searchPh" autocomplete="off"></div>
+      <select id="city" aria-label="Город"></select>
+      <button class="btn" data-i="find"></button>
+    </form>
+    <div class="pop" id="pop"></div>
+    <div class="stats"><div><b class="num" id="stTotal">0</b><span data-i="stAds"></span></div><div><b class="num" id="stJobs">0</b><span data-i="stJobs"></span></div><div><b class="num" id="stCv">0</b><span data-i="stCv"></span></div><div><b>14</b><span data-i="stReg"></span></div></div>
+  </div>
+</section>
+
 <main class="wrap">
-  <section class="hero">
-    <h1>Найди вещь, работу или работника рядом с домом</h1>
-    <p>Бесплатные объявления по всему Узбекистану. Продавайте ненужное, публикуйте вакансии и резюме.</p>
-    <div class="stats"><span><b id="stTotal">0</b> объявлений</span><span><b id="stJobs">0</b> вакансий</span><span><b id="stCv">0</b> резюме</span><span><b>14</b> регионов</span></div>
-  </section>
+  <div class="launch"><b data-i="launchT"></b><span data-i="launchS"></span><button class="btn gold" id="launchBtn" data-i="launchB"></button></div>
 
   <div class="tabs" role="group" aria-label="Раздел">
-    <button class="tab" data-kind="all" aria-pressed="true">Все</button>
-    <button class="tab" data-kind="sell" aria-pressed="false">Продажа вещей</button>
-    <button class="tab" data-kind="job" aria-pressed="false">Вакансии</button>
-    <button class="tab" data-kind="cv" aria-pressed="false">Ищу работу</button>
+    <button class="tab" data-kind="all" aria-pressed="true" data-i="tAll"></button>
+    <button class="tab" data-kind="sell" aria-pressed="false" data-i="tSell"></button>
+    <button class="tab" data-kind="job" aria-pressed="false" data-i="tJob"></button>
+    <button class="tab" data-kind="cv" aria-pressed="false" data-i="tCv"></button>
   </div>
   <div class="cats" id="cats"></div>
 
-  <div class="toolbar">
-    <h2 id="listTitle">Все объявления<small id="count"></small></h2>
-    <select id="sort" aria-label="Сортировка">
-      <option value="new">Сначала новые</option>
-      <option value="cheap">Сначала дешевле</option>
-      <option value="exp">Сначала дороже</option>
-    </select>
+  <div id="recentWrap" hidden>
+    <div class="sec-h"><h2 data-i="recent"></h2></div>
+    <div class="recent" id="recent"></div>
+  </div>
+
+  <div class="sec-h">
+    <h2 id="listTitle"></h2>
+    <select id="sort" aria-label="Сортировка"></select>
   </div>
   <div class="grid" id="grid"></div>
+
+  <div class="duo">
+    <div class="pane">
+      <h3 data-i="howT"></h3>
+      <div class="steps">
+        <div class="step"><b>1</b><span data-i="how1"></span></div>
+        <div class="step"><b>2</b><span data-i="how2"></span></div>
+        <div class="step"><b>3</b><span data-i="how3"></span></div>
+      </div>
+    </div>
+    <div class="pane biz">
+      <h3 data-i="bizT"></h3>
+      <p data-i="bizS"></p>
+      <div><button class="btn gold" id="bizBtn" data-i="bizB"></button></div>
+    </div>
+  </div>
 </main>
 
-<footer><div class="wrap">Topaman.uz · демо-макет площадки объявлений · оплата ТОП/VIP через Payme и Click (в демо не подключена)</div></footer>
+<footer><div class="wrap fgrid"><span>© 2026 Topaman.uz · <span data-i="foot"></span></span><span data-i="demo"></span></div></footer>
+
+<nav class="bnav" aria-label="Меню">
+  <button id="bHome" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v10h-6v-6H9v6H3z"/></svg><span data-i="home"></span></button>
+  <button id="bFav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg><span data-i="fav"></span><span class="cnt" id="favCnt2" hidden></span></button>
+  <button id="bPost" class="plus"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14"/></svg></span><span data-i="postShort"></span></button>
+  <button id="bChats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span data-i="chats"></span><span class="cnt" id="chatCnt2" hidden></span></button>
+  <button id="bCab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span data-i="profile"></span></button>
+</nav>
 
 <div class="ov" id="ov" hidden><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
 <div class="toast" id="toast" hidden></div>
 
 <script>
+/* ---------- i18n ---------- */
+const TX={
+ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мои объявления',post:'Подать объявление',postShort:'Подать',home:'Главная',profile:'Профиль',
+ heroTitle:'Найди <mark>вещь, работу</mark> или работника рядом с домом',searchPh:'iPhone, сварщик, диван, квартира…',find:'Найти',allUz:'Весь Узбекистан',popular:'Часто ищут:',
+ stAds:'объявлений',stJobs:'вакансий',stCv:'резюме',stReg:'регионов',
+ launchT:'Запуск Topaman',launchS:'До 31 декабря подать объявление бесплатно, а первый ТОП — в подарок.',launchB:'Смотреть тарифы',
+ tAll:'Все',tSell:'Продажа вещей',tJob:'Вакансии',tCv:'Ищу работу',recent:'Вы недавно смотрели',
+ lAll:'Свежие объявления',lSell:'Продажа вещей',lJob:'Вакансии',lCv:'Резюме: ищу работу',lFav:'Избранное',pcs:'шт.',
+ sNew:'Сначала новые',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
+ howT:'Как это работает',how1:'Сфотографируйте вещь или опишите вакансию',how2:'Опубликуйте за 1 минуту, бесплатно',how3:'Покупатели и кандидаты напишут в чат',
+ bizT:'Для магазинов и работодателей',bizS:'Страница магазина с логотипом, пакеты вакансий, доступ к базе резюме и статистика просмотров.',bizB:'Тарифы для бизнеса',
+ foot:'площадка объявлений Узбекистана',demo:'Демо-версия: все объявления и телефоны тестовые',
+ sum:'сум',nego:'Договорная',salNego:'По договорённости',justNow:'только что',minAgo:'мин назад',hAgo:'ч назад',yest:'вчера',dAgo:'дн назад',
+ views:'просмотров',city:'Город',section:'Раздел',published:'Опубликовано',
+ seller:'Продавец',employer:'Работодатель',applicant:'Соискатель',onSince:'на Topaman с 2025 года',verified:'Проверен',
+ showTel:'Показать телефон',test:'тест',write:'Написать продавцу',apply:'Откликнуться',invite:'Пригласить на работу',
+ promoTxt:'Больше звонков: <b>ТОП на 7 дней</b> даёт примерно в 5 раз больше просмотров.',promoBtn:'Поднять за 25 000 сум',
+ safe:'Не переводите предоплату незнакомым людям. Встречайтесь в людных местах и проверяйте товар до оплаты.',
+ chatWith:'Чат',msgPh:'Сообщение…',send:'Отправить',autoHi:'Здравствуйте! Да, объявление актуально.',autoRe:'Хорошо, давайте созвонимся. (автоответ демо)',
+ q1:'Ещё актуально?',q2:'Какая последняя цена?',q3:'Где можно посмотреть?',q4:'Когда можно выйти на работу?',
+ newAd:'Новое объявление',kSell:'Продаю вещь',kJob:'Ищу работника',kCv:'Ищу работу',fTitle:'Заголовок',fCat:'Категория',fPrice:'Цена, сум',fS1:'Зарплата от, сум',fS2:'до, сум',
+ fDesc:'Описание',fDescPh:'Состояние, размеры, условия работы…',fName:'Ваше имя',fPhoto:'Фото',promoH:'Продвижение',publish:'Опубликовать',
+ errTitle:'Заголовок слишком короткий: напишите хотя бы 5 символов.',errName:'Укажите имя, чтобы вам могли ответить.',
+ published:'Объявление опубликовано',paidNote:'В рабочей версии здесь будет оплата через Payme или Click',
+ noFav:'Вы ещё ничего не добавили в избранное.',notFound:'Ничего не найдено. Попробуйте другой запрос или город.',showMore:'Показать ещё',
+ noChats:'Пока нет переписок. Откройте объявление и нажмите «Написать».',
+ cabT:'Мои объявления',cabEmpty:'У вас пока нет объявлений. Подайте первое — это бесплатно.',kAds:'активных',kViews:'просмотров',kMsgs:'сообщений',up:'Поднять',del:'Снять',
+ removed:'Объявление снято',
+ prT:'Тарифы Topaman',prSub:'Базовое объявление всегда бесплатно. Платить нужно только за продвижение и за бизнес-функции.',
+ gPriv:'Частным лицам',gJob:'Работодателям',gBiz:'Магазинам и компаниям',rec:'Популярно',perMonth:'в месяц',
+ choose:'Выбрать'},
+uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlarim',post:'E’lon berish',postShort:'E’lon',home:'Bosh sahifa',profile:'Profil',
+ heroTitle:'<mark>Narsa, ish</mark> yoki ishchini uyingiz yonidan toping',searchPh:'iPhone, payvandchi, divan, kvartira…',find:'Topish',allUz:'Butun O‘zbekiston',popular:'Ko‘p qidiriladi:',
+ stAds:'e’lon',stJobs:'vakansiya',stCv:'rezyume',stReg:'viloyat',
+ launchT:'Topaman ishga tushdi',launchS:'31-dekabrgacha e’lon berish bepul, birinchi TOP esa sovg‘a.',launchB:'Tariflarni ko‘rish',
+ tAll:'Hammasi',tSell:'Narsalar savdosi',tJob:'Vakansiyalar',tCv:'Ish qidiraman',recent:'Siz yaqinda ko‘rgansiz',
+ lAll:'Yangi e’lonlar',lSell:'Narsalar savdosi',lJob:'Vakansiyalar',lCv:'Rezyumelar: ish qidiraman',lFav:'Saralanganlar',pcs:'ta',
+ sNew:'Avval yangilari',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
+ howT:'Qanday ishlaydi',how1:'Narsani suratga oling yoki vakansiyani yozing',how2:'1 daqiqada bepul joylang',how3:'Xaridorlar va nomzodlar chatga yozadi',
+ bizT:'Do‘konlar va ish beruvchilar uchun',bizS:'Logotipli do‘kon sahifasi, vakansiya paketlari, rezyume bazasi va ko‘rishlar statistikasi.',bizB:'Biznes tariflari',
+ foot:'O‘zbekiston e’lonlar maydoni',demo:'Demo versiya: barcha e’lonlar va telefonlar sinov uchun',
+ sum:'so‘m',nego:'Kelishiladi',salNego:'Kelishiladi',justNow:'hozirgina',minAgo:'daqiqa oldin',hAgo:'soat oldin',yest:'kecha',dAgo:'kun oldin',
+ views:'ko‘rish',city:'Shahar',section:'Bo‘lim',published:'Joylandi',
+ seller:'Sotuvchi',employer:'Ish beruvchi',applicant:'Nomzod',onSince:'2025-yildan Topaman’da',verified:'Tasdiqlangan',
+ showTel:'Telefonni ko‘rsatish',test:'sinov',write:'Sotuvchiga yozish',apply:'Javob berish',invite:'Ishga taklif qilish',
+ promoTxt:'Ko‘proq qo‘ng‘iroq: <b>7 kunlik TOP</b> taxminan 5 barobar ko‘p ko‘rish beradi.',promoBtn:'25 000 so‘mga ko‘tarish',
+ safe:'Notanish odamlarga oldindan pul o‘tkazmang. Gavjum joyda uchrashing va to‘lovdan oldin tovarni tekshiring.',
+ chatWith:'Chat',msgPh:'Xabar…',send:'Yuborish',autoHi:'Assalomu alaykum! Ha, e’lon dolzarb.',autoRe:'Yaxshi, qo‘ng‘iroqlashamiz. (demo avtojavob)',
+ q1:'Hali dolzarbmi?',q2:'Oxirgi narxi qancha?',q3:'Qayerda ko‘rsa bo‘ladi?',q4:'Qachon ishga chiqsa bo‘ladi?',
+ newAd:'Yangi e’lon',kSell:'Narsa sotaman',kJob:'Ishchi qidiraman',kCv:'Ish qidiraman',fTitle:'Sarlavha',fCat:'Toifa',fPrice:'Narx, so‘m',fS1:'Maosh, dan',fS2:'gacha',
+ fDesc:'Tavsif',fDescPh:'Holati, o‘lchami, ish sharoitlari…',fName:'Ismingiz',fPhoto:'Surat',promoH:'Reklama',publish:'Joylash',
+ errTitle:'Sarlavha juda qisqa: kamida 5 ta belgi yozing.',errName:'Sizga javob berishlari uchun ismingizni yozing.',
+ published:'E’lon joylandi',paidNote:'Ishchi versiyada bu yerda Payme yoki Click orqali to‘lov bo‘ladi',
+ noFav:'Hali hech narsa saralanmagan.',notFound:'Hech narsa topilmadi. Boshqa so‘z yoki shaharni sinab ko‘ring.',showMore:'Yana ko‘rsatish',
+ noChats:'Hozircha yozishmalar yo‘q. E’lonni oching va «Yozish»ni bosing.',
+ cabT:'Mening e’lonlarim',cabEmpty:'Sizda hali e’lon yo‘q. Birinchisini joylang, bu bepul.',kAds:'faol',kViews:'ko‘rish',kMsgs:'xabar',up:'Ko‘tarish',del:'Olib tashlash',
+ removed:'E’lon olib tashlandi',
+ prT:'Topaman tariflari',prSub:'Oddiy e’lon doim bepul. Faqat reklama va biznes funksiyalari uchun to‘lanadi.',
+ gPriv:'Jismoniy shaxslar',gJob:'Ish beruvchilar',gBiz:'Do‘kon va kompaniyalar',rec:'Ommabop',perMonth:'oyiga',
+ choose:'Tanlash'}
+};
+let lang='ru';try{lang=localStorage.getItem('tp_lang')||'ru'}catch(e){}
+const t=k=>TX[lang][k]??TX.ru[k]??k;
+
+/* ---------- data ---------- */
 const ICONS={
-  phone:'<path d="M7 2h10a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2zm4 17h2"/>',
-  car:'<path d="M3 13l2-6h14l2 6v5h-3v-2H6v2H3zM3 13h18M7 16h.01M17 16h.01"/>',
+  phone:'<rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18.5h2"/>',
+  car:'<path d="M3 13l2-6h14l2 6v5h-3v-2H6v2H3zM3 13h18"/><circle cx="7" cy="15.5" r=".8"/><circle cx="17" cy="15.5" r=".8"/>',
   home:'<path d="M3 11l9-7 9 7v10h-6v-6H9v6H3z"/>',
   sofa:'<path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3M2 12a2 2 0 0 1 4 0v2h12v-2a2 2 0 0 1 4 0v6H2zM5 18v2M19 18v2"/>',
   shirt:'<path d="M8 3l-5 3 2 4 3-1v12h8V9l3 1 2-4-5-3a4 4 0 0 1-8 0z"/>',
-  baby:'<circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0M10 8h.01M14 8h.01"/>',
+  baby:'<circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/>',
   tool:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>',
   brief:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>',
   user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
-  paw:'<circle cx="7" cy="9" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="17" cy="9" r="2"/><path d="M8 17a4 4 0 0 1 8 0 2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z"/>'
+  paw:'<circle cx="7" cy="9" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="17" cy="9" r="2"/><path d="M8 17a4 4 0 0 1 8 0 2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z"/>',
+  wrench:'<path d="M4 20l7-7M14 4l6 6-3 3-6-6zM9 9l-2 2"/>'
 };
-const svg=(k,cls='')=>`<svg class="${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>`;
-
+const svg=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>`;
 const CATS=[
-  {id:'elec',name:'Электроника',icon:'phone',kind:'sell',hue:218},
-  {id:'auto',name:'Транспорт',icon:'car',kind:'sell',hue:4},
-  {id:'real',name:'Недвижимость',icon:'home',kind:'sell',hue:152},
-  {id:'house',name:'Дом и сад',icon:'sofa',kind:'sell',hue:30},
-  {id:'fashion',name:'Одежда',icon:'shirt',kind:'sell',hue:320},
-  {id:'kids',name:'Детский мир',icon:'baby',kind:'sell',hue:48},
-  {id:'animals',name:'Животные',icon:'paw',kind:'sell',hue:95},
-  {id:'build',name:'Стройка и ремонт',icon:'tool',kind:'sell',hue:260},
-  {id:'job',name:'Вакансии',icon:'brief',kind:'job',hue:160},
-  {id:'cv',name:'Резюме',icon:'user',kind:'cv',hue:228}
+  {id:'elec',ru:'Электроника',uz:'Elektronika',icon:'phone',kind:'sell',hue:218},
+  {id:'auto',ru:'Транспорт',uz:'Transport',icon:'car',kind:'sell',hue:4},
+  {id:'real',ru:'Недвижимость',uz:'Ko‘chmas mulk',icon:'home',kind:'sell',hue:152},
+  {id:'house',ru:'Дом и сад',uz:'Uy va bog‘',icon:'sofa',kind:'sell',hue:28},
+  {id:'fashion',ru:'Одежда',uz:'Kiyim-kechak',icon:'shirt',kind:'sell',hue:322},
+  {id:'kids',ru:'Детский мир',uz:'Bolalar dunyosi',icon:'baby',kind:'sell',hue:46},
+  {id:'animals',ru:'Животные',uz:'Hayvonlar',icon:'paw',kind:'sell',hue:95},
+  {id:'build',ru:'Стройка и ремонт',uz:'Qurilish va ta’mir',icon:'tool',kind:'sell',hue:262},
+  {id:'serv',ru:'Услуги',uz:'Xizmatlar',icon:'wrench',kind:'sell',hue:190},
+  {id:'job',ru:'Вакансии',uz:'Vakansiyalar',icon:'brief',kind:'job',hue:160},
+  {id:'cv',ru:'Резюме',uz:'Rezyume',icon:'user',kind:'cv',hue:228}
 ];
-const CITIES=['Ташкент','Самарканд','Бухара','Андижан','Наманган','Фергана','Карши','Нукус','Навои','Джизак','Термез','Ургенч','Гулистан','Коканд'];
+const CITIES=[['Ташкент','Toshkent'],['Самарканд','Samarqand'],['Бухара','Buxoro'],['Андижан','Andijon'],['Наманган','Namangan'],['Фергана','Farg‘ona'],['Карши','Qarshi'],['Нукус','Nukus'],['Навои','Navoiy'],['Джизак','Jizzax'],['Термез','Termiz'],['Ургенч','Urganch'],['Гулистан','Guliston'],['Коканд','Qo‘qon']];
+const cityName=c=>{const x=CITIES.find(p=>p[0]===c);return x?(lang==='uz'?x[1]:x[0]):c};
+const POP={ru:['iPhone','Cobalt','квартира','курьер','диван','сварщик'],uz:['iPhone','Cobalt','kvartira','kuryer','divan','payvandchi']};
 
-const H=3600e3, D=24*H, now=Date.now();
+/* pricing (single source of truth) */
+const PRICES={
+ priv:[
+  {id:'free',ru:['Обычное','30 дней в ленте'],uz:['Oddiy','30 kun lentada'],p:0},
+  {id:'urg',ru:['Срочно','Красная метка 3 дня'],uz:['Shoshilinch','Qizil belgi 3 kun'],p:15000},
+  {id:'top',ru:['ТОП','Выше всех 7 дней'],uz:['TOP','7 kun eng yuqorida'],p:25000,rec:1},
+  {id:'vip',ru:['VIP','ТОП + золотая рамка 14 дней'],uz:['VIP','TOP + oltin ramka 14 kun'],p:49000}
+ ],
+ up:{ru:'Поднять в ленте (1 раз)',uz:'Lentada ko‘tarish (1 marta)',p:9000},
+ job:[
+  {ru:['1 вакансия','30 дней, первая бесплатно'],uz:['1 ta vakansiya','30 kun, birinchisi bepul'],p:39000,unit:''},
+  {ru:['Пакет 5 вакансий','на 60 дней'],uz:['5 ta vakansiya paketi','60 kunga'],p:149000,unit:'',rec:1},
+  {ru:['База резюме','контакты кандидатов'],uz:['Rezyume bazasi','nomzodlar kontaktlari'],p:99000,unit:'m'}
+ ],
+ biz:[
+  {ru:['Магазин Старт','до 50 объявлений, страница с логотипом'],uz:['Do‘kon Start','50 tagacha e’lon, logotipli sahifa'],p:149000,unit:'m'},
+  {ru:['Магазин Про','до 300 объявлений, 10 поднятий в неделю, статистика'],uz:['Do‘kon Pro','300 tagacha e’lon, haftasiga 10 ko‘tarish, statistika'],p:349000,unit:'m',rec:1},
+  {ru:['Баннер на главной','7 дней, 1 место'],uz:['Bosh sahifada banner','7 kun, 1 joy'],p:500000,unit:''}
+ ]
+};
+
+const H=3600e3,D=24*H,now=Date.now();
 const SEED=[
- {id:1,kind:'sell',cat:'elec',title:'iPhone 13, 128 ГБ, синий, батарея 89%',price:4800000,city:'Ташкент',ago:2*H,top:'vip',seller:'Азиз',desc:'Телефон в хорошем состоянии, без царапин. Коробка и чек есть. Возможен обмен на Samsung с доплатой.',facts:{Состояние:'Б/у',Память:'128 ГБ'}},
- {id:2,kind:'job',cat:'job',title:'Монтажник вентиляции и кондиционеров',salary:[7000000,9000000],city:'Ташкент',ago:3*H,top:'top',seller:'ООО «ВентМастер» (тест)',desc:'Монтаж воздуховодов, изоляция, установка VRF-систем.\nТребования: опыт от 1 года, умение читать чертежи.\nГрафик 6/1, спецодежда и инструмент от компании.',facts:{График:'6/1, 8:00–18:00',Опыт:'от 1 года',Занятость:'Полная'}},
- {id:3,kind:'sell',cat:'auto',title:'Chevrolet Cobalt 2021, 4 позиция, белый',price:142000000,city:'Самарканд',ago:5*H,top:'top',seller:'Шерзод',desc:'Пробег 38 000 км, один хозяин, не бит, не крашен. Метан/бензин.',facts:{Год:'2021',Пробег:'38 000 км',Коробка:'Автомат'}},
- {id:4,kind:'cv',cat:'cv',title:'Водитель категории B, C — ищу работу',salary:[5000000,6000000],city:'Андижан',ago:6*H,seller:'Бахтиёр, 34 года',desc:'Стаж вождения 12 лет, без аварий. Работал в доставке и на грузовой Isuzu. Готов к командировкам.',facts:{Опыт:'12 лет',Права:'B, C',Возраст:'34'}},
- {id:5,kind:'sell',cat:'real',title:'2-комн. квартира, 58 м², Юнусабад, ремонт',price:780000000,city:'Ташкент',ago:9*H,seller:'Малика',desc:'5 этаж из 9, кирпичный дом. Евроремонт, остаётся мебель и техника. Рядом метро и школа.',facts:{Площадь:'58 м²',Этаж:'5 / 9',Комнат:'2'}},
- {id:6,kind:'job',cat:'job',title:'Продавец-консультант в магазин одежды',salary:[3500000,4500000],city:'Бухара',ago:11*H,seller:'Магазин «Libos» (тест)',desc:'Консультирование покупателей, выкладка товара, работа с кассой. Обучение с первого дня.',facts:{График:'2/2',Опыт:'не нужен',Занятость:'Полная'}},
- {id:7,kind:'sell',cat:'house',title:'Диван угловой, раскладной, серый велюр',price:3200000,city:'Фергана',ago:14*H,seller:'Нигора',desc:'Покупали год назад, переезжаем. Размер 260×160 см. Самовывоз.',facts:{Состояние:'Б/у',Размер:'260×160 см'}},
- {id:8,kind:'cv',cat:'cv',title:'Бухгалтер, опыт 6 лет, 1С и Didox',salary:[6000000,8000000],city:'Ташкент',ago:18*H,top:'top',seller:'Дилноза, 29 лет',desc:'Ведение учёта в ООО, сдача отчётов в налоговую, зарплата и кадры. Могу работать удалённо на полставки.',facts:{Опыт:'6 лет',Образование:'Высшее',Формат:'Офис / удалённо'}},
- {id:9,kind:'sell',cat:'elec',title:'Ноутбук Lenovo IdeaPad, i5, 16 ГБ, SSD 512',price:5600000,city:'Наманган',ago:22*H,seller:'Отабек',desc:'Для учёбы и работы. Заряд держит 5 часов. Зарядка в комплекте.',facts:{Состояние:'Б/у',ОЗУ:'16 ГБ'}},
- {id:10,kind:'job',cat:'job',title:'Курьер на своём авто, оплата каждый день',salary:[4000000,7000000],city:'Самарканд',ago:1*D,seller:'Служба доставки «Tez» (тест)',desc:'Доставка заказов по городу. Топливо компенсируется. Выплаты ежедневно на карту Uzcard/Humo.',facts:{График:'Свободный',Опыт:'не нужен',Занятость:'Подработка'}},
- {id:11,kind:'sell',cat:'kids',title:'Детская коляска 2 в 1, как новая',price:1900000,city:'Карши',ago:1.2*D,seller:'Гульнора',desc:'Люлька и прогулочный блок, дождевик, сумка. Пользовались 4 месяца.',facts:{Состояние:'Отличное'}},
- {id:12,kind:'sell',cat:'build',title:'Сплит-система 12 000 BTU, инвертор, с установкой',price:4300000,city:'Ташкент',ago:1.4*D,top:'vip',seller:'AirService (тест)',desc:'Новый кондиционер, гарантия 3 года. Установка за 1 день, трасса до 3 м бесплатно.',facts:{Состояние:'Новое',Мощность:'12 000 BTU'}},
- {id:13,kind:'cv',cat:'cv',title:'Сварщик-аргонщик, 3 разряд',salary:[7000000,10000000],city:'Навои',ago:1.6*D,seller:'Фаррух, 41 год',desc:'Аргон, полуавтомат, электросварка. Металлоконструкции, трубопроводы. Есть свой инструмент.',facts:{Опыт:'15 лет',Разряд:'3'}},
- {id:14,kind:'sell',cat:'fashion',title:'Национальный атласный халат, ручная работа',price:650000,city:'Фергана',ago:2*D,seller:'Мадина',desc:'Маргиланский атлас, размер 48. Подойдёт на свадьбу и праздник.',facts:{Состояние:'Новое',Размер:'48'}},
- {id:15,kind:'job',cat:'job',title:'Повар горячего цеха в ресторан',salary:[8000000,11000000],city:'Ташкент',ago:2.2*D,top:'top',seller:'Ресторан «Chinor» (тест)',desc:'Национальная и европейская кухня. Питание и развозка после смены. Официальное оформление.',facts:{График:'5/2',Опыт:'от 2 лет',Занятость:'Полная'}},
- {id:16,kind:'sell',cat:'animals',title:'Котята британские, 2 месяца, приучены к лотку',price:900000,city:'Ургенч',ago:2.5*D,seller:'Камола',desc:'Два мальчика и девочка. Едят сухой корм, привиты по возрасту.',facts:{Возраст:'2 месяца'}},
- {id:17,kind:'sell',cat:'auto',title:'Damas 2019, грузовой, газ-бензин',price:68000000,city:'Джизак',ago:3*D,seller:'Рустам',desc:'Ходовая сделана, новые шины. Документы в порядке.',facts:{Год:'2019',Пробег:'96 000 км',Коробка:'Механика'}},
- {id:18,kind:'cv',cat:'cv',title:'Студентка ищет подработку: репетитор английского',salary:[1500000,3000000],city:'Самарканд',ago:3.4*D,seller:'Севара, 21 год',desc:'IELTS 7.5. Занятия с детьми и взрослыми, онлайн или у вас дома.',facts:{Опыт:'2 года',Формат:'Онлайн / на дому'}},
- {id:19,kind:'sell',cat:'build',title:'Профнастил С-8, 0.45 мм, остатки 40 листов',price:5200000,city:'Андижан',ago:4*D,seller:'Жасур',desc:'Остались после стройки, цвет RAL 3005. Отдам всё вместе дешевле.',facts:{Количество:'40 листов'}},
- {id:20,kind:'job',cat:'job',title:'Оператор call-центра, можно без опыта',salary:[3000000,4000000],city:'Термез',ago:4.5*D,seller:'Компания «Aloqa+» (тест)',desc:'Приём входящих звонков, узбекский и русский язык. Обучение оплачивается.',facts:{График:'5/2',Опыт:'не нужен',Занятость:'Полная'}},
- {id:21,kind:'sell',cat:'elec',title:'Телевизор Samsung 55" 4K Smart TV',price:5900000,city:'Нукус',ago:5*D,seller:'Алишер',desc:'Работает отлично, пульт и крепление на стену в комплекте.',facts:{Состояние:'Б/у',Диагональ:'55"'}},
- {id:22,kind:'sell',cat:'house',title:'Казан чугунный 22 л с печкой',price:750000,city:'Коканд',ago:6*D,seller:'Ибрагим',desc:'Для плова на большую компанию. Печка с трубой.',facts:{Объём:'22 л'}}
+ {id:1,kind:'sell',cat:'elec',title:'iPhone 13, 128 ГБ, синий, батарея 89%',price:4800000,city:'Ташкент',ago:2*H,top:'vip',seller:'Азиз',rate:4.9,ver:1,views:412,photos:6,desc:'Телефон в хорошем состоянии, без царапин. Коробка и чек есть. Возможен обмен на Samsung с доплатой.',facts:{Состояние:'Б/у',Память:'128 ГБ'}},
+ {id:2,kind:'job',cat:'job',title:'Монтажник вентиляции и кондиционеров',salary:[7000000,9000000],city:'Ташкент',ago:3*H,top:'top',seller:'ООО «ВентМастер» (тест)',rate:4.7,ver:1,views:268,desc:'Монтаж воздуховодов, изоляция, установка VRF-систем.\nТребования: опыт от 1 года, умение читать чертежи.\nГрафик 6/1, спецодежда и инструмент от компании.',facts:{График:'6/1, 8:00–18:00',Опыт:'от 1 года',Занятость:'Полная'}},
+ {id:3,kind:'sell',cat:'auto',title:'Chevrolet Cobalt 2021, 4 позиция, белый',price:142000000,usd:11200,city:'Самарканд',ago:5*H,top:'top',seller:'Шерзод',rate:4.8,views:935,photos:12,desc:'Пробег 38 000 км, один хозяин, не бит, не крашен. Метан/бензин.',facts:{Год:'2021',Пробег:'38 000 км',Коробка:'Автомат'}},
+ {id:4,kind:'cv',cat:'cv',title:'Водитель категории B, C — ищу работу',salary:[5000000,6000000],city:'Андижан',ago:6*H,urg:1,seller:'Бахтиёр, 34 года',rate:5,views:88,desc:'Стаж вождения 12 лет, без аварий. Работал в доставке и на грузовой Isuzu. Готов к командировкам.',facts:{Опыт:'12 лет',Права:'B, C',Возраст:'34'}},
+ {id:5,kind:'sell',cat:'real',title:'2-комн. квартира, 58 м², Юнусабад, ремонт',price:780000000,usd:61500,city:'Ташкент',ago:9*H,seller:'Малика',rate:4.6,ver:1,views:1204,photos:15,desc:'5 этаж из 9, кирпичный дом. Евроремонт, остаётся мебель и техника. Рядом метро и школа.',facts:{Площадь:'58 м²',Этаж:'5 / 9',Комнат:'2'}},
+ {id:6,kind:'job',cat:'job',title:'Продавец-консультант в магазин одежды',salary:[3500000,4500000],city:'Бухара',ago:11*H,seller:'Магазин «Libos» (тест)',rate:4.5,views:156,desc:'Консультирование покупателей, выкладка товара, работа с кассой. Обучение с первого дня.',facts:{График:'2/2',Опыт:'не нужен',Занятость:'Полная'}},
+ {id:7,kind:'sell',cat:'house',title:'Диван угловой, раскладной, серый велюр',price:3200000,city:'Фергана',ago:14*H,urg:1,seller:'Нигора',rate:4.9,views:203,photos:5,desc:'Покупали год назад, переезжаем. Размер 260×160 см. Самовывоз.',facts:{Состояние:'Б/у',Размер:'260×160 см'}},
+ {id:8,kind:'cv',cat:'cv',title:'Бухгалтер, опыт 6 лет, 1С и Didox',salary:[6000000,8000000],city:'Ташкент',ago:18*H,top:'top',seller:'Дилноза, 29 лет',rate:5,ver:1,views:174,desc:'Ведение учёта в ООО, сдача отчётов в налоговую, зарплата и кадры. Могу работать удалённо на полставки.',facts:{Опыт:'6 лет',Образование:'Высшее',Формат:'Офис / удалённо'}},
+ {id:9,kind:'sell',cat:'elec',title:'Ноутбук Lenovo IdeaPad, i5, 16 ГБ, SSD 512',price:5600000,city:'Наманган',ago:22*H,seller:'Отабек',rate:4.4,views:321,photos:4,desc:'Для учёбы и работы. Заряд держит 5 часов. Зарядка в комплекте.',facts:{Состояние:'Б/у',ОЗУ:'16 ГБ'}},
+ {id:10,kind:'job',cat:'job',title:'Курьер на своём авто, оплата каждый день',salary:[4000000,7000000],city:'Самарканд',ago:1*D,seller:'Служба доставки «Tez» (тест)',rate:4.2,views:640,desc:'Доставка заказов по городу. Топливо компенсируется. Выплаты ежедневно на карту Uzcard/Humo.',facts:{График:'Свободный',Опыт:'не нужен',Занятость:'Подработка'}},
+ {id:11,kind:'sell',cat:'kids',title:'Детская коляска 2 в 1, как новая',price:1900000,city:'Карши',ago:1.2*D,seller:'Гульнора',rate:4.8,views:97,photos:7,desc:'Люлька и прогулочный блок, дождевик, сумка. Пользовались 4 месяца.',facts:{Состояние:'Отличное'}},
+ {id:12,kind:'sell',cat:'build',title:'Сплит-система 12 000 BTU, инвертор, с установкой',price:4300000,city:'Ташкент',ago:1.4*D,top:'vip',seller:'AirService (тест)',rate:4.9,ver:1,views:512,photos:3,desc:'Новый кондиционер, гарантия 3 года. Установка за 1 день, трасса до 3 м бесплатно.',facts:{Состояние:'Новое',Мощность:'12 000 BTU'}},
+ {id:13,kind:'cv',cat:'cv',title:'Сварщик-аргонщик, 3 разряд',salary:[7000000,10000000],city:'Навои',ago:1.6*D,seller:'Фаррух, 41 год',rate:4.9,views:143,desc:'Аргон, полуавтомат, электросварка. Металлоконструкции, трубопроводы. Есть свой инструмент.',facts:{Опыт:'15 лет',Разряд:'3'}},
+ {id:14,kind:'sell',cat:'fashion',title:'Национальный атласный халат, ручная работа',price:650000,city:'Фергана',ago:2*D,seller:'Мадина',rate:5,views:76,photos:4,desc:'Маргиланский атлас, размер 48. Подойдёт на свадьбу и праздник.',facts:{Состояние:'Новое',Размер:'48'}},
+ {id:15,kind:'job',cat:'job',title:'Повар горячего цеха в ресторан',salary:[8000000,11000000],city:'Ташкент',ago:2.2*D,top:'top',seller:'Ресторан «Chinor» (тест)',rate:4.6,ver:1,views:389,desc:'Национальная и европейская кухня. Питание и развозка после смены. Официальное оформление.',facts:{График:'5/2',Опыт:'от 2 лет',Занятость:'Полная'}},
+ {id:16,kind:'sell',cat:'animals',title:'Котята британские, 2 месяца, приучены к лотку',price:900000,city:'Ургенч',ago:2.5*D,seller:'Камола',rate:4.7,views:230,photos:8,desc:'Два мальчика и девочка. Едят сухой корм, привиты по возрасту.',facts:{Возраст:'2 месяца'}},
+ {id:17,kind:'sell',cat:'auto',title:'Damas 2019, грузовой, газ-бензин',price:68000000,usd:5350,city:'Джизак',ago:3*D,seller:'Рустам',rate:4.3,views:458,photos:9,desc:'Ходовая сделана, новые шины. Документы в порядке.',facts:{Год:'2019',Пробег:'96 000 км',Коробка:'Механика'}},
+ {id:18,kind:'cv',cat:'cv',title:'Репетитор английского, IELTS 7.5',salary:[1500000,3000000],city:'Самарканд',ago:3.4*D,seller:'Севара, 21 год',rate:5,views:66,desc:'Занятия с детьми и взрослыми, онлайн или у вас дома.',facts:{Опыт:'2 года',Формат:'Онлайн / на дому'}},
+ {id:19,kind:'sell',cat:'build',title:'Профнастил С-8, 0.45 мм, остатки 40 листов',price:5200000,city:'Андижан',ago:4*D,seller:'Жасур',rate:4.5,views:59,photos:2,desc:'Остались после стройки, цвет RAL 3005. Отдам всё вместе дешевле.',facts:{Количество:'40 листов'}},
+ {id:20,kind:'job',cat:'job',title:'Оператор call-центра, можно без опыта',salary:[3000000,4000000],city:'Термез',ago:4.5*D,seller:'Компания «Aloqa+» (тест)',rate:4.1,views:201,desc:'Приём входящих звонков, узбекский и русский язык. Обучение оплачивается.',facts:{График:'5/2',Опыт:'не нужен',Занятость:'Полная'}},
+ {id:21,kind:'sell',cat:'elec',title:'Телевизор Samsung 55" 4K Smart TV',price:5900000,city:'Нукус',ago:5*D,seller:'Алишер',rate:4.6,views:187,photos:5,desc:'Работает отлично, пульт и крепление на стену в комплекте.',facts:{Состояние:'Б/у',Диагональ:'55"'}},
+ {id:22,kind:'sell',cat:'house',title:'Казан чугунный 22 л с печкой',price:750000,city:'Коканд',ago:6*D,seller:'Ибрагим',rate:4.8,views:122,photos:3,desc:'Для плова на большую компанию. Печка с трубой.',facts:{Объём:'22 л'}},
+ {id:23,kind:'sell',cat:'serv',title:'Ремонт квартир под ключ, бригада 5 человек',price:0,city:'Ташкент',ago:7*D,seller:'Мастер Улугбек',rate:4.9,ver:1,views:340,photos:10,desc:'Штукатурка, плитка, гипсокартон, электрика. Смета бесплатно, гарантия на работы 1 год.',facts:{Опыт:'10 лет'}},
+ {id:24,kind:'sell',cat:'serv',title:'Чистка кондиционеров и заправка фреоном',price:150000,city:'Самарканд',ago:8*D,seller:'Салим',rate:4.7,views:95,photos:2,desc:'Выезд по городу бесплатно. Цена за чистку одного блока.',facts:{Выезд:'Бесплатно'}}
 ];
 
-const $=s=>document.querySelector(s);
+/* ---------- state ---------- */
+const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-
 let userAds=store.get('tp_ads',[]);
 let favs=new Set(store.get('tp_favs',[]));
-let state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false};
+let recent=store.get('tp_recent',[]);
+let chats=store.get('tp_chats',{});
+let state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12};
 
 const all=()=>[...userAds,...SEED.map(a=>({...a,ts:now-a.ago}))];
+const byId=id=>all().find(x=>x.id==id);
 const catOf=id=>CATS.find(c=>c.id===id);
-const fmt=n=>n.toLocaleString('ru-RU').replace(/,/g,' ');
-const priceText=a=>a.kind==='sell'?(a.price?fmt(a.price)+' сум':'Договорная'):(a.salary?`${fmt(a.salary[0])} – ${fmt(a.salary[1])} сум`:'По договорённости');
+const cname=c=>c[lang];
+const fmt=n=>Math.round(n).toLocaleString('ru-RU').replace(/[ ,]/g,' ');
+function priceHTML(a){
+  if(a.kind==='sell') return a.price?`${fmt(a.price)} ${t('sum')}${a.usd?`<small>≈ ${fmt(a.usd)} $</small>`:''}`:t('nego');
+  return a.salary?`${fmt(a.salary[0])} – ${fmt(a.salary[1])} ${t('sum')}`:t('salNego');
+}
 const priceVal=a=>a.kind==='sell'?(a.price||0):(a.salary?a.salary[0]:0);
-function ago(ts){const m=Math.round((Date.now()-ts)/6e4);if(m<60)return m<=1?'только что':m+' мин назад';const h=Math.round(m/60);if(h<24)return h+' ч назад';const d=Math.round(h/24);return d===1?'вчера':d+' дн назад'}
-function thumb(a,big){
+function ago(ts){const m=Math.round((Date.now()-ts)/6e4);if(m<2)return t('justNow');if(m<60)return m+' '+t('minAgo');const h=Math.round(m/60);if(h<24)return h+' '+t('hAgo');const d=Math.round(h/24);return d===1?t('yest'):d+' '+t('dAgo')}
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+function thumb(a){
   const c=catOf(a.cat);
   const inner=a.img?`<img src="${a.img}" alt="">`:svg(c.icon);
-  const bg=`linear-gradient(135deg,hsl(${c.hue} 70% 88%),hsl(${(c.hue+30)%360} 60% 76%))`;
-  return `<div class="thumb" style="background:${bg};color:hsl(${c.hue} 55% 30%)">${inner}</div>`;
+  const bg=`linear-gradient(140deg,hsl(${c.hue} 75% 90%),hsl(${(c.hue+35)%360} 62% 74%))`;
+  const pc=a.photos?`<span class="pc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/></svg>${a.photos}</span>`:'';
+  return `<div class="thumb" style="background:${bg};color:hsl(${c.hue} 55% 28%)">${inner}${pc}</div>`;
 }
-function badges(a){
+function badges(a,stat){
   let b='';
   if(a.top==='vip')b+='<span class="bdg vip">VIP</span>';
-  if(a.top==='top')b+='<span class="bdg top">ТОП</span>';
-  if(a.kind==='job')b+='<span class="bdg job">Вакансия</span>';
-  if(a.kind==='cv')b+='<span class="bdg cv">Резюме</span>';
-  return `<div class="badges">${b}</div>`;
+  if(a.top==='top')b+=`<span class="bdg top">${lang==='uz'?'TOP':'ТОП'}</span>`;
+  if(a.urg)b+=`<span class="bdg urg">${lang==='uz'?'Shoshilinch':'Срочно'}</span>`;
+  if(a.kind==='job')b+=`<span class="bdg job">${lang==='uz'?'Vakansiya':'Вакансия'}</span>`;
+  if(a.kind==='cv')b+=`<span class="bdg cv">${lang==='uz'?'Rezyume':'Резюме'}</span>`;
+  return `<div class="badges"${stat?' style="position:static"':''}>${b}</div>`;
 }
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const heart='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>';
 
+/* ---------- render ---------- */
+function applyI18n(){
+  document.documentElement.lang=lang;
+  $$('[data-i]').forEach(e=>e.innerHTML=t(e.dataset.i));
+  $$('[data-ip]').forEach(e=>e.placeholder=t(e.dataset.ip));
+  $('#heroTitle').innerHTML=t('heroTitle');
+  $$('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
+  const cv=$('#city').value;
+  $('#city').innerHTML=`<option value="">${t('allUz')}</option>`+CITIES.map(c=>`<option value="${c[0]}">${lang==='uz'?c[1]:c[0]}</option>`).join('');
+  $('#city').value=cv;
+  const sv=state.sort;
+  $('#sort').innerHTML=['new','cheap','exp','pop'].map(k=>`<option value="${k}">${t({new:'sNew',cheap:'sCheap',exp:'sExp',pop:'sPop'}[k])}</option>`).join('');
+  $('#sort').value=sv;
+  $('#pop').innerHTML=`<span>${t('popular')}</span>`+POP[lang].map(p=>`<button type="button" data-pop="${p}">${p}</button>`).join('');
+}
 function renderCats(){
   const list=all();
   const cats=CATS.filter(c=>state.kind==='all'||c.kind===state.kind);
-  $('#cats').innerHTML=cats.map(c=>`<button class="cat" data-cat="${c.id}" aria-pressed="${state.cat===c.id}">${svg(c.icon)}<span>${c.name}</span><small>${list.filter(a=>a.cat===c.id).length}</small></button>`).join('');
+  $('#cats').innerHTML=cats.map(c=>`<button class="cat" data-cat="${c.id}" aria-pressed="${state.cat===c.id}"><span class="ci" style="background:hsl(${c.hue} 80% 92%);color:hsl(${c.hue} 60% 32%)">${svg(c.icon)}</span><span>${cname(c)}</span><small class="num">${list.filter(a=>a.cat===c.id).length}</small></button>`).join('');
+}
+function card(a){
+  return `<div class="card${a.top==='vip'?' vip':''}" data-id="${a.id}" role="button" tabindex="0">
+    ${thumb(a)}${badges(a)}
+    <button class="fav${favs.has(a.id)?' on':''}" data-fav="${a.id}" aria-label="${t('fav')}">${heart}</button>
+    <div class="cbody">
+      <div class="cprice${a.kind!=='sell'?' sal':''}">${priceHTML(a)}</div>
+      <div class="ctitle">${esc(a.title)}</div>
+      ${a.ver?`<span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg>${t('verified')}</span>`:''}
+      <div class="cmeta"><span>${esc(cityName(a.city))} · ${ago(a.ts)}</span><span class="num"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> ${a.views||0}</span></div>
+    </div>
+  </div>`;
 }
 function render(){
   const list=all();
@@ -317,101 +571,102 @@ function render(){
   $('#stJobs').textContent=list.filter(a=>a.kind==='job').length;
   $('#stCv').textContent=list.filter(a=>a.kind==='cv').length;
   const q=state.q.trim().toLowerCase();
-  let r=list.filter(a=>(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(a.id))&&(!q||(a.title+' '+a.desc+' '+catOf(a.cat).name).toLowerCase().includes(q)));
+  let r=list.filter(a=>(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(a.id))&&(!q||(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz).toLowerCase().includes(q)));
   const rank=a=>a.top==='vip'?2:a.top==='top'?1:0;
-  r.sort((x,y)=>state.sort==='cheap'?priceVal(x)-priceVal(y):state.sort==='exp'?priceVal(y)-priceVal(x):(rank(y)-rank(x))||(y.ts-x.ts));
-  const titles={all:'Все объявления',sell:'Продажа вещей',job:'Вакансии',cv:'Резюме: ищу работу'};
-  $('#listTitle').firstChild.textContent=state.onlyFav?'Избранное':state.cat?catOf(state.cat).name:titles[state.kind];
-  $('#count').textContent=r.length+' шт.';
-  $('#grid').innerHTML=r.length?r.map(a=>`
-    <div class="card${a.top?' top':''}" data-id="${a.id}" role="button" tabindex="0">
-      ${thumb(a)}${badges(a)}
-      <button class="fav${favs.has(a.id)?' on':''}" data-fav="${a.id}" aria-label="В избранное"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg></button>
-      <div class="cbody">
-        <div class="ctitle">${esc(a.title)}</div>
-        <div class="cprice${a.kind!=='sell'?' sal':''}">${priceText(a)}</div>
-        <div class="cmeta">${esc(a.city)} · ${ago(a.ts)}</div>
-      </div>
-    </div>`).join(''):`<div class="empty">${state.onlyFav?'Вы ещё ничего не добавили в избранное.':'Ничего не найдено. Попробуйте другой запрос или город.'}</div>`;
-  const n=favs.size;$('#favCnt').hidden=!n;$('#favCnt').textContent=n;
+  r.sort((x,y)=>state.sort==='cheap'?priceVal(x)-priceVal(y):state.sort==='exp'?priceVal(y)-priceVal(x):state.sort==='pop'?(y.views||0)-(x.views||0):(rank(y)-rank(x))||(y.ts-x.ts));
+  const titles={all:'lAll',sell:'lSell',job:'lJob',cv:'lCv'};
+  const title=state.onlyFav?t('lFav'):state.cat?cname(catOf(state.cat)):t(titles[state.kind]);
+  $('#listTitle').innerHTML=`${esc(title)}<small class="num">${r.length} ${t('pcs')}</small>`;
+  const shown=r.slice(0,state.limit);
+  $('#grid').innerHTML=r.length?shown.map(card).join('')+(r.length>state.limit?`<div class="more" style="grid-column:1/-1"><button class="btn" id="moreBtn">${t('showMore')} (${r.length-state.limit})</button></div>`:''):`<div class="empty">${state.onlyFav?t('noFav'):t('notFound')}</div>`;
+  const n=favs.size;[$('#favCnt'),$('#favCnt2')].forEach(e=>{e.hidden=!n;e.textContent=n});
+  const cn=Object.keys(chats).length;[$('#chatCnt'),$('#chatCnt2')].forEach(e=>{e.hidden=!cn;e.textContent=cn});
+  const rec=recent.map(byId).filter(Boolean);
+  $('#recentWrap').hidden=!rec.length||state.onlyFav;
+  $('#recent').innerHTML=rec.map(a=>`<button class="rc" data-id="${a.id}">${thumb(a)}<div><b>${esc(a.title)}</b><span>${a.kind==='sell'&&a.price?fmt(a.price)+' '+t('sum'):cityName(a.city)}</span></div></button>`).join('');
+  $('#bHome').classList.toggle('on',!state.onlyFav);$('#bFav').classList.toggle('on',state.onlyFav);
   renderCats();
 }
 
-function toast(t){const e=$('#toast');e.textContent=t;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,2600)}
-function openModal(html){$('#modal').innerHTML='<button class="mclose" aria-label="Закрыть">×</button>'+html;$('#ov').hidden=false;document.body.style.overflow='hidden'}
-function closeModal(){$('#ov').hidden=true;document.body.style.overflow=''}
+/* ---------- modal helpers ---------- */
+function toast(s){const e=$('#toast');e.textContent=s;e.hidden=false;clearTimeout(toast.t);toast.t=setTimeout(()=>e.hidden=true,2800)}
+function openModal(html,wide){const m=$('#modal');m.className='modal'+(wide?' wide':'');m.innerHTML='<button class="mclose" aria-label="×">×</button>'+html;$('#ov').hidden=false;$('#ov').scrollTop=0;document.body.style.overflow='hidden'}
+function closeModal(){$('#ov').hidden=true;document.body.style.overflow='';render()}
 
+/* ---------- ad detail ---------- */
 function openAd(id){
-  const a=all().find(x=>x.id==id);if(!a)return;
+  const a=byId(id);if(!a)return;
+  recent=[a.id,...recent.filter(x=>x!=a.id)].slice(0,8);store.set('tp_recent',recent);
   const facts=Object.entries(a.facts||{}).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
-  const who=a.kind==='job'?'Работодатель':a.kind==='cv'?'Соискатель':'Продавец';
-  const tel='+998 90 000-'+String(a.id).padStart(2,'0')+'-'+String((a.id*37)%100).padStart(2,'0');
-  const contactLbl=a.kind==='job'?'Откликнуться':a.kind==='cv'?'Пригласить на работу':'Написать продавцу';
+  const who=a.kind==='job'?t('employer'):a.kind==='cv'?t('applicant'):t('seller');
+  const tel='+998 90 000-'+String(a.id%100).padStart(2,'0')+'-'+String((a.id*37)%100).padStart(2,'0');
+  const cLbl=a.kind==='job'?t('apply'):a.kind==='cv'?t('invite'):t('write');
+  const rate=a.rate||5;
   openModal(`
     <div class="dv">
-      ${thumb(a,true)}
+      ${thumb(a)}
       <div class="dinfo">
-        <div>${badges(a).replace('class="badges"','class="badges" style="position:static;margin-bottom:6px"')}</div>
+        ${badges(a,true)}
         <h3>${esc(a.title)}</h3>
-        <div class="dprice${a.kind!=='sell'?' sal':''}">${priceText(a)}</div>
-        <dl class="facts"><dt>Город</dt><dd>${esc(a.city)}</dd><dt>Раздел</dt><dd>${catOf(a.cat).name}</dd>${facts}<dt>Опубликовано</dt><dd>${ago(a.ts)}</dd></dl>
-        <div class="desc">${esc(a.desc||'')}</div>
-        <div class="seller"><div class="ava">${esc(a.seller[0])}</div><div><b>${esc(a.seller)}</b><small>${who} · на Topaman с 2025 года</small></div></div>
+        <div class="dprice${a.kind!=='sell'?' sal':''}">${priceHTML(a)}</div>
+        <dl class="facts"><dt>${t('city')}</dt><dd>${esc(cityName(a.city))}</dd><dt>${t('section')}</dt><dd>${cname(catOf(a.cat))}</dd>${facts}<dt>${t('published')}</dt><dd>${ago(a.ts)} · ${a.views||0} ${t('views')}</dd></dl>
+        <div class="desc">${esc(a.desc)}</div>
+        <div class="seller"><div class="ava">${esc(a.seller[0])}</div><div><b>${esc(a.seller)}</b> ${a.ver?`<span class="ver">✓ ${t('verified')}</span>`:''}<small><span class="stars">${'★'.repeat(Math.round(rate))}</span> ${rate.toFixed(1)} · ${who} · ${t('onSince')}</small></div></div>
         <div class="actions">
-          <button class="btn" id="showTel">Показать телефон</button>
-          <button class="btn primary" id="chatBtn">${contactLbl}</button>
+          <button class="btn" id="showTel">${t('showTel')}</button>
+          <button class="btn primary" id="chatBtn">${cLbl}</button>
         </div>
-        ${a.top?'':`<div class="promo"><span>Хотите больше просмотров? <b>ТОП на 7 дней</b> — в 5 раз больше звонков.</span><button class="btn gold" id="promoBtn">Поднять за 25 000 сум</button></div>`}
+        ${a.top?'':`<div class="promo"><span>${t('promoTxt')}</span><button class="btn gold" id="promoBtn">${t('promoBtn')}</button></div>`}
+        <div class="safe">${t('safe')}</div>
       </div>
     </div>
-    <div class="chat" id="chat" hidden>
-      <b>Чат с: ${esc(a.seller)}</b>
-      <div class="msgs" id="msgs"><div class="msg">Здравствуйте! Объявление ещё актуально, пишите.</div></div>
-      <form class="chatrow" id="chatForm"><input id="chatIn" placeholder="Сообщение…" autocomplete="off"><button class="btn primary">Отправить</button></form>
-    </div>`);
-  $('#showTel').onclick=e=>{e.target.textContent=tel+' (тест)'};
-  $('#chatBtn').onclick=()=>{$('#chat').hidden=false;$('#chatIn').focus()};
-  $('#chatForm').onsubmit=e=>{e.preventDefault();const v=$('#chatIn').value.trim();if(!v)return;
-    $('#msgs').insertAdjacentHTML('beforeend',`<div class="msg me">${esc(v)}</div>`);$('#chatIn').value='';
-    setTimeout(()=>{$('#msgs')&&$('#msgs').insertAdjacentHTML('beforeend','<div class="msg">Хорошо, давайте созвонимся. (автоответ демо)</div>');const m=$('#msgs');if(m)m.scrollTop=m.scrollHeight},900)};
-  const p=$('#promoBtn');if(p)p.onclick=()=>toast('В рабочей версии здесь откроется оплата Payme / Click');
+    <div class="chat" id="chat" hidden></div>`);
+  $('#showTel').onclick=e=>{e.currentTarget.textContent=tel+' ('+t('test')+')'};
+  $('#chatBtn').onclick=()=>openChatIn(a);
+  const p=$('#promoBtn');if(p)p.onclick=()=>toast(t('paidNote'));
+  if(chats[a.id])openChatIn(a,true);
+}
+function openChatIn(a,silent){
+  if(!chats[a.id]){chats[a.id]=[{me:0,t:t('autoHi')}];store.set('tp_chats',chats)}
+  const box=$('#chat');box.hidden=false;
+  const qs=a.kind==='sell'?['q1','q2','q3']:['q1','q4'];
+  box.innerHTML=`<b>${t('chatWith')}: ${esc(a.seller)}</b>
+    <div class="msgs" id="msgs">${chats[a.id].map(m=>`<div class="msg${m.me?' me':''}">${esc(m.t)}</div>`).join('')}</div>
+    <div class="qr">${qs.map(k=>`<button type="button" data-qr="${esc(t(k))}">${t(k)}</button>`).join('')}</div>
+    <form class="chatrow" id="chatForm"><input id="chatIn" placeholder="${t('msgPh')}" autocomplete="off"><button class="btn primary">${t('send')}</button></form>`;
+  const msgs=$('#msgs');msgs.scrollTop=msgs.scrollHeight;
+  const send=v=>{v=v.trim();if(!v)return;chats[a.id].push({me:1,t:v});store.set('tp_chats',chats);
+    msgs.insertAdjacentHTML('beforeend',`<div class="msg me">${esc(v)}</div>`);msgs.scrollTop=msgs.scrollHeight;
+    setTimeout(()=>{chats[a.id].push({me:0,t:t('autoRe')});store.set('tp_chats',chats);const m=$('#msgs');if(m){m.insertAdjacentHTML('beforeend',`<div class="msg">${esc(t('autoRe'))}</div>`);m.scrollTop=m.scrollHeight}},900)};
+  box.querySelector('.qr').onclick=e=>{const b=e.target.closest('[data-qr]');if(b)send(b.dataset.qr)};
+  $('#chatForm').onsubmit=e=>{e.preventDefault();send($('#chatIn').value);$('#chatIn').value=''};
+  if(!silent)$('#chatIn').focus();
+}
+function openChats(){
+  const ids=Object.keys(chats).filter(id=>byId(id));
+  openModal(`<div class="cab"><h3 class="mh">${t('chats')}</h3>${ids.length?ids.map(id=>{const a=byId(id),last=chats[id][chats[id].length-1];return `<button class="cabrow" data-open="${id}" style="background:var(--surface);text-align:left">${thumb(a)}<div class="ci2"><b>${esc(a.seller)}</b><span>${esc(a.title)}</span><br><span>${esc(last.t)}</span></div></button>`}).join(''):`<p style="color:var(--ink3);margin:0">${t('noChats')}</p>`}</div>`);
 }
 
-let draft={kind:'sell',tariff:'free',img:null};
+/* ---------- post form ---------- */
+let draft={};
+function tariffCard(x,sel){const n=x[lang];return `<button type="button" class="tar" data-t="${x.id}" aria-pressed="${sel}"><b>${n[0]}</b><span>${n[1]}</span><strong>${x.p?fmt(x.p)+' '+t('sum'):(lang==='uz'?'Bepul':'Бесплатно')}</strong></button>`}
 function openForm(){
   draft={kind:'sell',tariff:'free',img:null};
   openModal(`<form class="form" id="adForm" novalidate>
-    <h3>Новое объявление</h3>
-    <div class="seg" role="group" aria-label="Тип">
-      <button type="button" data-k="sell" aria-pressed="true">Продаю вещь</button>
-      <button type="button" data-k="job" aria-pressed="false">Ищу работника</button>
-      <button type="button" data-k="cv" aria-pressed="false">Ищу работу</button>
-    </div>
-    <label class="fl">Заголовок<input id="fTitle" maxlength="80" placeholder="Например: Холодильник Artel, 2 года"></label>
-    <div class="f2">
-      <label class="fl" id="catWrap">Категория<select id="fCat"></select></label>
-      <label class="fl">Город<select id="fCity">${CITIES.map(c=>`<option>${c}</option>`).join('')}</select></label>
-    </div>
+    <h3>${t('newAd')}</h3>
+    <div class="seg" role="group"><button type="button" data-k="sell" aria-pressed="true">${t('kSell')}</button><button type="button" data-k="job" aria-pressed="false">${t('kJob')}</button><button type="button" data-k="cv" aria-pressed="false">${t('kCv')}</button></div>
+    <label class="fl">${t('fTitle')}<input id="fTitle" maxlength="80"></label>
+    <div class="f2"><label class="fl" id="catWrap">${t('fCat')}<select id="fCat"></select></label><label class="fl">${t('city')}<select id="fCity">${CITIES.map(c=>`<option value="${c[0]}">${lang==='uz'?c[1]:c[0]}</option>`).join('')}</select></label></div>
     <div class="f2" id="priceRow"></div>
-    <label class="fl">Описание<textarea id="fDesc" placeholder="Состояние, размеры, условия работы…"></textarea></label>
-    <div class="f2">
-      <label class="fl">Ваше имя<input id="fName" placeholder="Имя"></label>
-      <label class="fl">Фото<input id="fImg" type="file" accept="image/*"></label>
-    </div>
-    <div>
-      <div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px">Продвижение</div>
-      <div class="tariffs">
-        <button type="button" class="tar" data-t="free" aria-pressed="true"><b>Обычное</b><span>30 дней в ленте</span><strong>Бесплатно</strong></button>
-        <button type="button" class="tar" data-t="top" aria-pressed="false"><b>ТОП</b><span>Выше всех 7 дней</span><strong>25 000 сум</strong></button>
-        <button type="button" class="tar" data-t="vip" aria-pressed="false"><b>VIP</b><span>ТОП + золотая рамка 14 дней</span><strong>49 000 сум</strong></button>
-      </div>
-    </div>
+    <label class="fl">${t('fDesc')}<textarea id="fDesc" placeholder="${t('fDescPh')}"></textarea></label>
+    <div class="f2"><label class="fl">${t('fName')}<input id="fName"></label><label class="fl">${t('fPhoto')}<input id="fImg" type="file" accept="image/*"></label></div>
+    <div><div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px">${t('promoH')}</div><div class="tariffs">${PRICES.priv.map((x,i)=>tariffCard(x,i===0)).join('')}</div></div>
     <div class="err" id="fErr"></div>
-    <button class="btn primary" style="justify-content:center;padding:12px">Опубликовать</button>
+    <button class="btn primary" style="padding:12px">${t('publish')}</button>
   </form>`);
   syncForm();
-  document.querySelectorAll('.seg button').forEach(b=>b.onclick=()=>{draft.kind=b.dataset.k;document.querySelectorAll('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));syncForm()});
-  document.querySelectorAll('.tar').forEach(b=>b.onclick=()=>{draft.tariff=b.dataset.t;document.querySelectorAll('.tar').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+  $$('.seg button').forEach(b=>b.onclick=()=>{draft.kind=b.dataset.k;$$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));syncForm()});
+  $$('.tar').forEach(b=>b.onclick=()=>{draft.tariff=b.dataset.t;$$('.tar').forEach(x=>x.setAttribute('aria-pressed',x===b))});
   $('#fImg').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>shrink(r.result);r.readAsDataURL(f)};
   $('#adForm').onsubmit=submitAd;
 }
@@ -419,46 +674,83 @@ function shrink(src){const im=new Image();im.onload=()=>{const s=Math.min(1,640/
 function syncForm(){
   const k=draft.kind;
   $('#catWrap').hidden=k!=='sell';
-  $('#fCat').innerHTML=CATS.filter(c=>c.kind==='sell').map(c=>`<option value="${c.id}">${c.name}</option>`).join('');
-  $('#priceRow').innerHTML=k==='sell'
-    ?`<label class="fl">Цена, сум<input id="fPrice" inputmode="numeric" placeholder="1 500 000"></label><span></span>`
-    :`<label class="fl">Зарплата от, сум<input id="fS1" inputmode="numeric" placeholder="4 000 000"></label><label class="fl">до, сум<input id="fS2" inputmode="numeric" placeholder="6 000 000"></label>`;
-  $('#fTitle').placeholder=k==='sell'?'Например: Холодильник Artel, 2 года':k==='job'?'Например: Требуется электрик':'Например: Ищу работу водителем';
+  $('#fCat').innerHTML=CATS.filter(c=>c.kind==='sell').map(c=>`<option value="${c.id}">${cname(c)}</option>`).join('');
+  $('#priceRow').innerHTML=k==='sell'?`<label class="fl">${t('fPrice')}<input id="fPrice" inputmode="numeric" placeholder="1 500 000"></label><span></span>`:`<label class="fl">${t('fS1')}<input id="fS1" inputmode="numeric" placeholder="4 000 000"></label><label class="fl">${t('fS2')}<input id="fS2" inputmode="numeric" placeholder="6 000 000"></label>`;
 }
 const num=id=>{const e=$(id);return e?parseInt(e.value.replace(/\D/g,''))||0:0};
 function submitAd(e){
   e.preventDefault();
-  const title=$('#fTitle').value.trim(), name=$('#fName').value.trim();
-  if(title.length<5){$('#fErr').textContent='Заголовок слишком короткий: напишите хотя бы 5 символов.';return}
-  if(!name){$('#fErr').textContent='Укажите имя, чтобы покупатели знали, к кому обращаться.';return}
-  const k=draft.kind;
-  const ad={id:Date.now(),kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),img:draft.img,top:draft.tariff==='free'?null:draft.tariff,facts:{},mine:true};
+  const title=$('#fTitle').value.trim(),name=$('#fName').value.trim();
+  if(title.length<5){$('#fErr').textContent=t('errTitle');return}
+  if(!name){$('#fErr').textContent=t('errName');return}
+  const k=draft.kind,tr=draft.tariff;
+  const ad={id:Date.now(),kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),img:draft.img,top:(tr==='top'||tr==='vip')?tr:null,urg:tr==='urg'?1:0,views:0,photos:draft.img?1:0,facts:{},mine:1};
   if(k==='sell')ad.price=num('#fPrice');else{const a=num('#fS1'),b=num('#fS2');if(a)ad.salary=[a,Math.max(a,b)]}
   userAds.unshift(ad);store.set('tp_ads',userAds);
-  closeModal();state={...state,kind:'all',cat:null,q:'',onlyFav:false};$('#q').value='';syncTabs();render();
-  toast(ad.top?'Опубликовано. В рабочей версии сначала будет оплата '+(ad.top==='vip'?'49 000':'25 000')+' сум':'Объявление опубликовано');
+  state={...state,kind:'all',cat:null,q:'',onlyFav:false};$('#q').value='';syncTabs();closeModal();scrollTo({top:$('#grid').offsetTop-120});
+  toast(tr==='free'?t('published'):t('published')+'. '+t('paidNote'));
 }
 
-function syncTabs(){document.querySelectorAll('.tab').forEach(t=>t.setAttribute('aria-pressed',t.dataset.kind===state.kind&&!state.onlyFav));$('#favBtn').setAttribute('aria-pressed',state.onlyFav)}
+/* ---------- cabinet ---------- */
+function openCab(){
+  const mine=userAds;
+  const views=mine.reduce((s,a)=>s+(a.views||0),0);
+  const msgs=Object.keys(chats).length;
+  openModal(`<div class="cab"><h3 class="mh">${t('cabT')}</h3>
+    <div class="kpis"><div class="kpi"><b class="num">${mine.length}</b><span>${t('kAds')}</span></div><div class="kpi"><b class="num">${views}</b><span>${t('kViews')}</span></div><div class="kpi"><b class="num">${msgs}</b><span>${t('kMsgs')}</span></div></div>
+    ${mine.length?mine.map(a=>`<div class="cabrow">${thumb(a)}<div class="ci2"><b>${esc(a.title)}</b><span>${priceHTML(a).replace(/<[^>]+>/g,' ')} · ${esc(cityName(a.city))} · ${ago(a.ts)}</span></div><div class="ca"><button class="btn" data-up="${a.id}">${t('up')} · ${fmt(PRICES.up.p)}</button><button class="btn ghost" data-del="${a.id}">${t('del')}</button></div></div>`).join(''):`<p style="color:var(--ink3);margin:0">${t('cabEmpty')}</p><div><button class="btn primary" id="cabPost">+ ${t('post')}</button></div>`}
+  </div>`);
+  const cp=$('#cabPost');if(cp)cp.onclick=openForm;
+}
 
-$('#city').innerHTML='<option value="">Весь Узбекистан</option>'+CITIES.map(c=>`<option>${c}</option>`).join('');
-document.querySelectorAll('.tab').forEach(t=>t.onclick=()=>{state.kind=t.dataset.kind;state.cat=null;state.onlyFav=false;syncTabs();render()});
-$('#cats').onclick=e=>{const b=e.target.closest('.cat');if(!b)return;state.cat=state.cat===b.dataset.cat?null:b.dataset.cat;render()};
-$('#q').oninput=e=>{state.q=e.target.value;render()};
+/* ---------- pricing ---------- */
+function openPricing(){
+  const pc=(x,unit)=>{const n=x[lang];return `<div class="pc2${x.rec?' hl2':''}">${x.rec?`<span class="rec">${t('rec')}</span>`:''}<span class="pn">${n[0]}</span><span class="pp num">${x.p?fmt(x.p):(lang==='uz'?'Bepul':'0')} <small>${x.p?t('sum'):''}${x.unit==='m'?' / '+t('perMonth'):''}</small></span><ul><li>${n[1]}</li></ul></div>`};
+  const up={id:'up',ru:[PRICES.up.ru,lang==='uz'?'':'Объявление снова наверху ленты'],uz:[PRICES.up.uz,'E’lon yana lenta tepasida'],p:PRICES.up.p};
+  openModal(`<div class="pricing">
+    <h3 class="mh">${t('prT')}</h3><p class="sub">${t('prSub')}</p>
+    <div class="pgrp"><h4>${t('gPriv')}</h4><div class="pcards">${[...PRICES.priv,up].map(x=>pc(x)).join('')}</div></div>
+    <div class="pgrp"><h4>${t('gJob')}</h4><div class="pcards">${PRICES.job.map(x=>pc(x)).join('')}</div></div>
+    <div class="pgrp"><h4>${t('gBiz')}</h4><div class="pcards">${PRICES.biz.map(x=>pc(x)).join('')}</div></div>
+    <p class="sub" style="font-size:13px">${t('paidNote')}.</p>
+  </div>`,true);
+}
+
+/* ---------- events ---------- */
+function syncTabs(){$$('.tab').forEach(x=>x.setAttribute('aria-pressed',x.dataset.kind===state.kind&&!state.onlyFav))}
+function goHome(){state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12};$('#q').value='';$('#city').value='';$('#sort').value='new';syncTabs();render();scrollTo(0,0)}
+function toggleFav(){state.onlyFav=!state.onlyFav;state.limit=12;syncTabs();render();scrollTo({top:$('#grid').offsetTop-160})}
+
+$$('.lang button').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;try{localStorage.setItem('tp_lang',lang)}catch(e){}applyI18n();render()});
+$$('.tab').forEach(x=>x.onclick=()=>{state.kind=x.dataset.kind;state.cat=null;state.onlyFav=false;state.limit=12;syncTabs();render()});
+$('#cats').onclick=e=>{const b=e.target.closest('.cat');if(!b)return;state.cat=state.cat===b.dataset.cat?null:b.dataset.cat;state.limit=12;render()};
+$('#q').oninput=e=>{state.q=e.target.value;state.limit=12;render()};
+$('#searchForm').onsubmit=e=>{e.preventDefault();scrollTo({top:$('#grid').offsetTop-160,behavior:'smooth'})};
+$('#pop').onclick=e=>{const b=e.target.closest('[data-pop]');if(!b)return;$('#q').value=b.dataset.pop;state.q=b.dataset.pop;state.kind='all';state.cat=null;syncTabs();render();scrollTo({top:$('#grid').offsetTop-160,behavior:'smooth'})};
 $('#city').onchange=e=>{state.city=e.target.value;render()};
 $('#sort').onchange=e=>{state.sort=e.target.value;render()};
-$('#favBtn').onclick=()=>{state.onlyFav=!state.onlyFav;syncTabs();render()};
-$('#postBtn').onclick=openForm;
-$('#home').onclick=()=>{state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false};$('#q').value='';$('#city').value='';$('#sort').value='new';syncTabs();render();scrollTo(0,0)};
+$('#hFav').onclick=toggleFav;$('#bFav').onclick=toggleFav;
+$('#postBtn').onclick=openForm;$('#bPost').onclick=openForm;
+$('#hChats').onclick=openChats;$('#bChats').onclick=openChats;
+$('#hCab').onclick=openCab;$('#bCab').onclick=openCab;
+$('#hPrice').onclick=openPricing;$('#launchBtn').onclick=openPricing;$('#bizBtn').onclick=openPricing;
+$('#home').onclick=goHome;$('#bHome').onclick=goHome;
+$('#recent').onclick=e=>{const b=e.target.closest('.rc');if(b)openAd(b.dataset.id)};
 $('#grid').onclick=e=>{
+  if(e.target.closest('#moreBtn')){state.limit+=12;render();return}
   const f=e.target.closest('[data-fav]');
   if(f){e.stopPropagation();const id=+f.dataset.fav;favs.has(id)?favs.delete(id):favs.add(id);store.set('tp_favs',[...favs]);render();return}
   const c=e.target.closest('.card');if(c)openAd(c.dataset.id);
 };
 $('#grid').onkeydown=e=>{if(e.key==='Enter'&&e.target.classList.contains('card'))openAd(e.target.dataset.id)};
-$('#ov').onclick=e=>{if(e.target.id==='ov'||e.target.closest('.mclose'))closeModal()};
+$('#ov').onclick=e=>{
+  if(e.target.id==='ov'||e.target.closest('.mclose')){closeModal();return}
+  const o=e.target.closest('[data-open]');if(o){openAd(o.dataset.open);return}
+  const u=e.target.closest('[data-up]');if(u){toast(t('paidNote'));return}
+  const d=e.target.closest('[data-del]');if(d){userAds=userAds.filter(a=>a.id!=d.dataset.del);store.set('tp_ads',userAds);toast(t('removed'));openCab();return}
+};
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#ov').hidden)closeModal()});
-render();
+applyI18n();render();
 </script>
 </body>
 </html>
