@@ -553,10 +553,10 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .tbtn[aria-pressed="true"]{background:var(--tq);border-color:var(--tq);color:#fff}
 .tbtn[aria-pressed="true"] svg{color:#fff}
 .tools select{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:10px;padding:8px 10px;font:inherit;font-size:14px}
-.mapwrap{position:relative;margin-bottom:16px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
+.mapwrap{position:relative;isolation:isolate;z-index:0;margin-bottom:16px;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow)}
 #bigMap{height:420px;background:var(--surface2)}
 .mapnote{position:absolute;left:50%;top:12px;transform:translateX(-50%);z-index:500;background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13.5px;box-shadow:var(--shadow);max-width:90%;text-align:center}
-.minimap{height:190px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface2)}
+.minimap{position:relative;isolation:isolate;z-index:0;height:190px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:var(--surface2)}
 .leaflet-container{font:inherit}
 .pin{background:none;border:0}
 .pin span{display:inline-block;transform:translate(-50%,-100%);background:var(--tq-deep);color:#fff;font-weight:700;font-size:12.5px;line-height:1;padding:6px 8px;border-radius:9px;border:1.5px solid var(--gold);white-space:nowrap;box-shadow:0 3px 8px rgba(0,0,0,.35);position:relative;cursor:pointer}
