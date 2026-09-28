@@ -571,6 +571,8 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .dmap{margin-top:14px;display:flex;flex-direction:column;gap:8px}
 .dmap .row{display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:14px}
 .dmap a.btn{text-decoration:none;padding:7px 12px;font-size:13.5px}
+.routes{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink2)}
+.dmap a.btn.ya{background:#FC3F1D;border-color:#FC3F1D;color:#fff}
 :root[data-theme="dark"] .leaflet-tile{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .leaflet-tile{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}}
 @media (max-width:760px){
@@ -1121,6 +1123,13 @@ function similar(a,n=6){
     if(state.me)sc-=Math.min(25,distOf(b)/4);
     return [sc,b]}).filter(x=>x[1].cat===a.cat).sort((x,y)=>y[0]-x[0]).slice(0,n).map(x=>x[1]);
 }
+/* route buttons: Yandex (most used in Uzbekistan) and Google; start = the viewer's place when known */
+function routeLinks(a){
+  const to=locOf(a).map(v=>v.toFixed(4)),fr=state.me?state.me.map(v=>v.toFixed(4)):null;
+  const y=`https://yandex.uz/maps/?rtext=${fr?fr.join(','):''}~${to.join(',')}&rtt=auto`;
+  const g=`https://www.google.com/maps/dir/?api=1${fr?'&origin='+fr.join(','):''}&destination=${to.join(',')}&travelmode=driving`;
+  return `<a class="btn ya" target="_blank" rel="noopener" href="${y}">${lang==='uz'?'Yandex':'Яндекс'}</a><a class="btn" target="_blank" rel="noopener" href="${g}">Google</a>`;
+}
 function simHTML(a){
   const list=similar(a);if(!list.length)return '';
   return `<div class="simwrap"><h4>${t('similar')}</h4><div class="sim">${list.map(b=>`<button class="sc" data-id="${b.id}">${thumb(b)}<span class="sp${b.kind!=='sell'?' sal':''}">${b.kind==='sell'?(b.price?fmt(b.price)+' '+t('sum'):t('nego')):shortPrice(b)}</span><b>${esc(b.title)}</b><small>${state.me?fmtDist(distOf(b))+' · ':''}${esc(cityName(b.city))}</small></button>`).join('')}</div></div>`;
@@ -1149,7 +1158,7 @@ function openAd(id){
         </div>
         ${a.top||!a.mine?'':`<div class="promo"><span>${t('promoTxt')}</span><button class="btn gold" id="promoBtn">${isFree('top')?t('promoBtnFree'):t('promoBtn').replace('25 000',fmt(PRICES.priv[2].p))}</button></div>`}
         <div class="dmap"><div class="row"><b>${t('approx')}</b>${state.me?`<span class="dist">${fmtDist(distOf(a))} ${t('fromYou')}</span>`:''}</div><div class="minimap" id="adMap"></div>
-          <div class="row"><span style="color:var(--ink3);font-size:13px">${esc(cityName(a.city))}</span><a class="btn" target="_blank" rel="noopener" href="https://www.google.com/maps/dir/?api=1&destination=${locOf(a).map(v=>v.toFixed(3)).join(',')}">${t('route')}</a></div></div>
+          <div class="row"><span style="color:var(--ink3);font-size:13px">${esc(cityName(a.city))}</span><span class="routes"><span>${t('route')}:</span>${routeLinks(a)}</span></div></div>
         <div class="safe">${t('safe')}</div>
         ${a.mine?'':`<button class="repbtn" id="repBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>${t('report')}</button>`}
       </div>
