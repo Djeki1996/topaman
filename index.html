@@ -580,6 +580,20 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
   #radius[hidden]+#sort{grid-column:1/-1}
   #bigMap{height:330px}
 }
+/* similar ads */
+.simwrap{border-top:1px solid var(--line);margin:4px 14px 0;padding:16px 0 14px}
+.simwrap h4{font-family:var(--display);font-size:19px;margin:0 0 12px}
+.sim{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.sc{display:flex;flex-direction:column;gap:3px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:8px;color:var(--ink);cursor:pointer;min-width:0;font:inherit}
+.sc:hover{border-color:var(--tq)}
+.sc .thumb{width:100%;aspect-ratio:4/3;border-radius:10px;margin-bottom:4px;-webkit-mask:none;mask:none}
+.sc .thumb svg{width:42%;height:42%}
+.sc .thumb .pc,.sc .thumb .badges{display:none}
+.sc .sp{font-weight:700;font-size:14.5px}
+.sc .sp.sal{color:var(--green)}
+.sc b{font-size:13px;font-weight:500;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.sc small{font-size:12px;color:var(--ink3)}
+@media (max-width:760px){.sim{grid-template-columns:repeat(2,1fr)}.simwrap{margin:4px 10px 0}}
 @keyframes sheet{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.modal{animation:none!important}}
 </style>
@@ -698,7 +712,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  launchT:'Акция запуска',launchS:'Первые 3 месяца бесплатно: вакансии, поднятие 1 раз в день и каждый месяц 1 VIP, 3 ТОП и 3 «Срочно». До {d}.',launchB:'Смотреть тарифы',free:'Бесплатно',freeUntil:'Бесплатно до {d}',promoBtnFree:'Поднять в ТОП бесплатно',upFree:'Объявление поднято в ТОП бесплатно',topFree:'ТОП включён бесплатно по акции запуска',onlineNow:'сейчас на сайте',
  regions:'Объявления по регионам',tAll:'Все',tSell:'Продажа вещей',tJob:'Вакансии',tCv:'Ищу работу',recent:'Вы недавно смотрели',
  lAll:'Свежие объявления',lSell:'Продажа вещей',lJob:'Вакансии',lCv:'Резюме: ищу работу',lFav:'Избранное',pcs:'шт.',
- sNew:'Сначала новые',sNear:'Ближе ко мне',nearMe:'Рядом со мной',anyDist:'Любое расстояние',km:'км',m:'м',mapBtn:'Карта',listBtn:'Скрыть карту',geoAsk:'Определяем ваше место…',geoFail:'Не удалось определить место — считаем от центра: {c}. Разрешите геолокацию в браузере.',fromYou:'от вас',place:'Где находится',myPlace:'Моё место',placeHint:'Передвиньте метку на карте. Другим показываем только район (~300 м), не точный адрес.',route:'Маршрут',approx:'Примерное место',mapNone:'В этом радиусе объявлений нет — увеличьте радиус',mln:'млн',ths:'тыс',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
+ sNew:'Сначала новые',similar:'Похожие объявления',sNear:'Ближе ко мне',nearMe:'Рядом со мной',anyDist:'Любое расстояние',km:'км',m:'м',mapBtn:'Карта',listBtn:'Скрыть карту',geoAsk:'Определяем ваше место…',geoFail:'Не удалось определить место — считаем от центра: {c}. Разрешите геолокацию в браузере.',fromYou:'от вас',place:'Где находится',myPlace:'Моё место',placeHint:'Передвиньте метку на карте. Другим показываем только район (~300 м), не точный адрес.',route:'Маршрут',approx:'Примерное место',mapNone:'В этом радиусе объявлений нет — увеличьте радиус',mln:'млн',ths:'тыс',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
  howT:'Как это работает',how1:'Сфотографируйте вещь или опишите вакансию',how2:'Опубликуйте за 1 минуту, бесплатно',how3:'Покупатели и кандидаты напишут в чат',
  bizT:'Для магазинов и работодателей',bizS:'Страница магазина с логотипом, пакеты вакансий, доступ к базе резюме и статистика просмотров.',bizB:'Тарифы для бизнеса',
  foot:'площадка объявлений Узбекистана',demo:'Демо-версия: все объявления и телефоны тестовые',
@@ -756,7 +770,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  launchT:'Ishga tushirish aksiyasi',launchS:'Dastlabki 3 oy bepul: vakansiyalar, kuniga 1 marta ko‘tarish va har oy 1 VIP, 3 TOP va 3 «Shoshilinch». {d} gacha.',launchB:'Tariflarni ko‘rish',free:'Bepul',freeUntil:'{d} gacha bepul',promoBtnFree:'TOPga bepul ko‘tarish',upFree:'E’lon TOPga bepul ko‘tarildi',topFree:'TOP ishga tushirish aksiyasi bo‘yicha bepul yoqildi',onlineNow:'hozir saytda',
  regions:'Viloyatlar bo‘yicha e’lonlar',tAll:'Hammasi',tSell:'Narsalar savdosi',tJob:'Vakansiyalar',tCv:'Ish qidiraman',recent:'Siz yaqinda ko‘rgansiz',
  lAll:'Yangi e’lonlar',lSell:'Narsalar savdosi',lJob:'Vakansiyalar',lCv:'Rezyumelar: ish qidiraman',lFav:'Saralanganlar',pcs:'ta',
- sNew:'Avval yangilari',sNear:'Menga yaqinroq',nearMe:'Yonimda',anyDist:'Istalgan masofa',km:'km',m:'m',mapBtn:'Xarita',listBtn:'Xaritani yopish',geoAsk:'Joylashuvingiz aniqlanmoqda…',geoFail:'Joyni aniqlab bo‘lmadi — markazdan hisoblaymiz: {c}. Brauzerda geolokatsiyaga ruxsat bering.',fromYou:'sizdan',place:'Qayerda joylashgan',myPlace:'Mening joyim',placeHint:'Belgini xaritada suring. Boshqalarga faqat hudud (~300 m) ko‘rsatiladi, aniq manzil emas.',route:'Yo‘nalish',approx:'Taxminiy joy',mapNone:'Bu radiusda e’lon yo‘q — radiusni kattalashtiring',mln:'mln',ths:'ming',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
+ sNew:'Avval yangilari',similar:'O‘xshash e’lonlar',sNear:'Menga yaqinroq',nearMe:'Yonimda',anyDist:'Istalgan masofa',km:'km',m:'m',mapBtn:'Xarita',listBtn:'Xaritani yopish',geoAsk:'Joylashuvingiz aniqlanmoqda…',geoFail:'Joyni aniqlab bo‘lmadi — markazdan hisoblaymiz: {c}. Brauzerda geolokatsiyaga ruxsat bering.',fromYou:'sizdan',place:'Qayerda joylashgan',myPlace:'Mening joyim',placeHint:'Belgini xaritada suring. Boshqalarga faqat hudud (~300 m) ko‘rsatiladi, aniq manzil emas.',route:'Yo‘nalish',approx:'Taxminiy joy',mapNone:'Bu radiusda e’lon yo‘q — radiusni kattalashtiring',mln:'mln',ths:'ming',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
  howT:'Qanday ishlaydi',how1:'Narsani suratga oling yoki vakansiyani yozing',how2:'1 daqiqada bepul joylang',how3:'Xaridorlar va nomzodlar chatga yozadi',
  bizT:'Do‘konlar va ish beruvchilar uchun',bizS:'Logotipli do‘kon sahifasi, vakansiya paketlari, rezyume bazasi va ko‘rishlar statistikasi.',bizB:'Biznes tariflari',
  foot:'O‘zbekiston e’lonlar maydoni',demo:'Demo versiya: barcha e’lonlar va telefonlar sinov uchun',
@@ -1096,6 +1110,21 @@ function closeModal(fromPop){
   if(!fromPop){try{if(history.state&&history.state.tpModal)history.replaceState({tpModal:0},'')}catch(e){}}$('#ov').hidden=true;document.body.style.overflow='';render()}
 
 /* ---------- ad detail ---------- */
+/* similar ads: same category first, then same city / nearby, close price, shared title words */
+function similar(a,n=6){
+  const words=new Set(norm(a.title).split(/[^a-zа-я0-9']+/).filter(w=>w.length>3));
+  const pa=priceVal(a);
+  return all().filter(b=>b.id!=a.id).map(b=>{
+    let sc=(b.cat===a.cat?100:0)+(b.kind===a.kind?20:0)+(b.city===a.city?30:0);
+    norm(b.title).split(/[^a-zа-я0-9']+/).forEach(w=>{if(words.has(w))sc+=12});
+    const pb=priceVal(b);if(pa&&pb)sc-=Math.min(40,Math.abs(Math.log(pb/pa))*15);
+    if(state.me)sc-=Math.min(25,distOf(b)/4);
+    return [sc,b]}).filter(x=>x[1].cat===a.cat).sort((x,y)=>y[0]-x[0]).slice(0,n).map(x=>x[1]);
+}
+function simHTML(a){
+  const list=similar(a);if(!list.length)return '';
+  return `<div class="simwrap"><h4>${t('similar')}</h4><div class="sim">${list.map(b=>`<button class="sc" data-id="${b.id}">${thumb(b)}<span class="sp${b.kind!=='sell'?' sal':''}">${b.kind==='sell'?(b.price?fmt(b.price)+' '+t('sum'):t('nego')):shortPrice(b)}</span><b>${esc(b.title)}</b><small>${state.me?fmtDist(distOf(b))+' · ':''}${esc(cityName(b.city))}</small></button>`).join('')}</div></div>`;
+}
 function openAd(id){
   const a=byId(id);if(!a)return;
   recent=[a.id,...recent.filter(x=>x!=a.id)].slice(0,8);store.set('tp_recent',recent);
@@ -1125,7 +1154,9 @@ function openAd(id){
         ${a.mine?'':`<button class="repbtn" id="repBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>${t('report')}</button>`}
       </div>
     </div>
-    <div class="chat" id="chat" hidden></div>`);
+    <div class="chat" id="chat" hidden></div>
+    ${simHTML(a)}`);
+  $$('#modal .sc').forEach(b=>b.onclick=()=>{openAd(b.dataset.id);$('#ov').scrollTop=0});
   /* 1st tap reveals the number, the button turns into a call link (tel:) that opens the phone dialer */
   needLeaflet().then(()=>{const el=$('#adMap');if(!el)return;const p=locOf(a).map(v=>+v.toFixed(3));const m=baseMap(el,p,14);
     L.circle(p,{radius:300,color:'#12808A',weight:2,fillOpacity:.15}).addTo(m);
