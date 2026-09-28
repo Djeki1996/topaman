@@ -428,7 +428,7 @@ footer .ikat{margin-bottom:20px}
 /* ---------- i18n ---------- */
 const TX={
 ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мои объявления',post:'Подать объявление',postShort:'Подать',home:'Главная',profile:'Профиль',
- heroTitle:'Весь <mark>базар</mark> — у вас в кармане',searchPh:'iPhone, сварщик, диван, квартира…',find:'Найти',allUz:'Весь Узбекистан',popular:'Часто ищут:',
+ heroTitle:['Весь <mark>базар</mark> — у вас в кармане','Ищешь? <mark>Topaman</mark> найдёт!','Продай ненужное — <mark>найди нужное</mark>'],searchPh:'iPhone, сварщик, диван, квартира…',find:'Найти',allUz:'Весь Узбекистан',popular:'Часто ищут:',
  stAds:'объявлений',stJobs:'вакансий',stCv:'резюме',stReg:'регионов',
  launchT:'Запуск Topaman',launchS:'До 31 декабря подать объявление бесплатно, а первый ТОП — в подарок.',launchB:'Смотреть тарифы',
  regions:'Объявления по регионам',tAll:'Все',tSell:'Продажа вещей',tJob:'Вакансии',tCv:'Ищу работу',recent:'Вы недавно смотрели',
@@ -457,7 +457,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  gPriv:'Частным лицам',gJob:'Работодателям',gBiz:'Магазинам и компаниям',rec:'Популярно',perMonth:'в месяц',
  choose:'Выбрать'},
 uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlarim',post:'E’lon berish',postShort:'E’lon',home:'Bosh sahifa',profile:'Profil',
- heroTitle:'<mark>Butun bozor</mark> — cho‘ntagingizda',searchPh:'iPhone, payvandchi, divan, kvartira…',find:'Topish',allUz:'Butun O‘zbekiston',popular:'Ko‘p qidiriladi:',
+ heroTitle:['<mark>Butun bozor</mark> — cho‘ntagingizda','Nima kerak bo‘lsa — <mark>Topaman!</mark>','Keraksizini sot, <mark>keraklisini top!</mark>'],searchPh:'iPhone, payvandchi, divan, kvartira…',find:'Topish',allUz:'Butun O‘zbekiston',popular:'Ko‘p qidiriladi:',
  stAds:'e’lon',stJobs:'vakansiya',stCv:'rezyume',stReg:'viloyat',
  launchT:'Topaman ishga tushdi',launchS:'31-dekabrgacha e’lon berish bepul, birinchi TOP esa sovg‘a.',launchB:'Tariflarni ko‘rish',
  regions:'Viloyatlar bo‘yicha e’lonlar',tAll:'Hammasi',tSell:'Narsalar savdosi',tJob:'Vakansiyalar',tCv:'Ish qidiraman',recent:'Siz yaqinda ko‘rgansiz',
@@ -623,7 +623,7 @@ function applyI18n(){
   document.documentElement.lang=lang;
   $$('[data-i]').forEach(e=>e.innerHTML=t(e.dataset.i));
   $$('[data-ip]').forEach(e=>e.placeholder=t(e.dataset.ip));
-  $('#heroTitle').innerHTML=t('heroTitle');
+  setHeroTitle();
   const hr=new Date().getHours();
   $('#greet').textContent='Assalomu alaykum! '+(hr<11?'Xayrli tong':hr<18?'Xayrli kun':'Xayrli kech');
   $$('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
@@ -635,6 +635,9 @@ function applyI18n(){
   $('#sort').value=sv;
   $('#pop').innerHTML=`<span>${t('popular')}</span>`+POP[lang].map(p=>`<button type="button" data-pop="${p}">${p}</button>`).join('');
 }
+/* hero slogan rotates every 4 hours through 3 variants */
+function setHeroTitle(){const v=t('heroTitle');$('#heroTitle').innerHTML=v[Math.floor(Date.now()/(4*3600e3))%v.length]}
+setInterval(setHeroTitle,10*60e3);
 function renderCats(){
   const list=all();
   const cats=CATS.filter(c=>state.kind==='all'||c.kind===state.kind);
