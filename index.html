@@ -509,6 +509,13 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .payline .pm-logo{font-size:18px}.payline .ck-logo{font-size:15px;padding:5px 10px}
 .payscreen{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 0;text-align:center}
 .payscreen .paym{width:160px;cursor:default}
+/* tariff limits, statuses, "soon" */
+.leftn{display:block;font-size:11px;font-weight:600;color:var(--tq)}
+.dinfo .leftn{font-size:13px}
+.stat{display:block;font-size:12px;color:var(--tq);font-weight:600;margin-top:2px}
+.stat.bad{color:var(--red)}
+.pc2.soon{opacity:.62}
+.soonTag{align-self:flex-start;font-size:11px;font-weight:700;background:var(--ink3);color:var(--surface);border-radius:6px;padding:2px 7px;text-transform:uppercase;letter-spacing:.05em}
 @keyframes sheet{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.modal{animation:none!important}}
 </style>
@@ -611,7 +618,7 @@ const TX={
 ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мои объявления',post:'Подать объявление',postShort:'Подать',home:'Главная',profile:'Профиль',
  heroTitle:['Весь <mark>базар</mark> — у вас в кармане','Ты ищи, а <mark>я найду</mark>','Продай ненужное, <mark>найди нужное!</mark>'],searchPh:'iPhone, сварщик, диван, квартира…',find:'Найти',allUz:'Весь Узбекистан',popular:'Часто ищут:',
  stAds:'объявлений',stJobs:'вакансий',stCv:'резюме',stReg:'регионов',
- launchT:'Акция запуска',launchS:'Первые 3 месяца все платные услуги бесплатно: ТОП, VIP, «Срочно», вакансии и магазины. До {d}.',launchB:'Смотреть тарифы',free:'Бесплатно',freeUntil:'Бесплатно до {d}',promoBtnFree:'Поднять в ТОП бесплатно',upFree:'Объявление поднято в ТОП бесплатно',topFree:'ТОП включён бесплатно по акции запуска',onlineNow:'сейчас на сайте',
+ launchT:'Акция запуска',launchS:'Первые 3 месяца бесплатно: вакансии, поднятие 1 раз в день и каждый месяц 1 VIP, 3 ТОП и 3 «Срочно». До {d}.',launchB:'Смотреть тарифы',free:'Бесплатно',freeUntil:'Бесплатно до {d}',promoBtnFree:'Поднять в ТОП бесплатно',upFree:'Объявление поднято в ТОП бесплатно',topFree:'ТОП включён бесплатно по акции запуска',onlineNow:'сейчас на сайте',
  regions:'Объявления по регионам',tAll:'Все',tSell:'Продажа вещей',tJob:'Вакансии',tCv:'Ищу работу',recent:'Вы недавно смотрели',
  lAll:'Свежие объявления',lSell:'Продажа вещей',lJob:'Вакансии',lCv:'Резюме: ищу работу',lFav:'Избранное',pcs:'шт.',
  sNew:'Сначала новые',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
@@ -627,7 +634,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  chatWith:'Чат',msgPh:'Сообщение…',send:'Отправить',autoHi:'Здравствуйте! Да, объявление актуально.',autoRe:'Хорошо, давайте созвонимся. (автоответ демо)',
  q1:'Ещё актуально?',q2:'Какая последняя цена?',q3:'Где можно посмотреть?',q4:'Когда можно выйти на работу?',
  newAd:'Новое объявление',kSell:'Продаю вещь',kJob:'Ищу работника',kCv:'Ищу работу',fTitle:'Заголовок',fCat:'Категория',fPrice:'Цена, сум',fS1:'Зарплата от, сум',fS2:'до, сум',
- fDesc:'Описание',fDescPh:'Состояние, размеры, условия работы…',fName:'Ваше имя',payWith:'Способ оплаты',toPay:'К оплате',freePromo:'бесплатно по акции запуска',goPay:'Переход к оплате',demoPay:'Демо: оплата пока имитируется, настоящую подключим после договора с Payme и Click',paidOk:'Оплата прошла',payAccept:'Принимаем оплату',call:'Позвонить',fPhone:'Телефон для связи',errPhone:'Укажите правильный номер телефона, например +998 90 123 45 67. Без номера объявление не публикуется.',editAd:'Изменить объявление',edit:'Изменить',savedAd:'Изменения сохранены и проверены',addPhoto:'Добавить фото',fPhoto:'Фото',promoH:'Продвижение',publish:'Опубликовать',
+ fDesc:'Описание',fDescPh:'Состояние, размеры, условия работы…',fName:'Ваше имя',leftN:'осталось {n} из {m}',soon:'Скоро',promoLimits:'В акцию бесплатно каждый месяц: 1 VIP, 3 ТОП, 3 «Срочно», поднятие 1 раз в день, вакансии без ограничений.',tLeft:'{t} ещё {n} дн.',activeLeft:'Активно ещё {n} дн.',expiredT:'Срок 30 дней истёк, объявление скрыто',renew:'Продлить бесплатно',renewed:'Объявление продлено на 30 дней',upOnce:'Бесплатно поднимать можно 1 раз в день',upped:'Объявление поднято наверх ленты',jobFee:'Вакансия (вторая и далее в месяц)',tariffL:'Продвижение',payWith:'Способ оплаты',toPay:'К оплате',freePromo:'бесплатно по акции запуска',goPay:'Переход к оплате',demoPay:'Демо: оплата пока имитируется, настоящую подключим после договора с Payme и Click',paidOk:'Оплата прошла',payAccept:'Принимаем оплату',call:'Позвонить',fPhone:'Телефон для связи',errPhone:'Укажите правильный номер телефона, например +998 90 123 45 67. Без номера объявление не публикуется.',editAd:'Изменить объявление',edit:'Изменить',savedAd:'Изменения сохранены и проверены',addPhoto:'Добавить фото',fPhoto:'Фото',promoH:'Продвижение',publish:'Опубликовать',
  errTitle:'Заголовок слишком короткий: напишите хотя бы 5 символов.',errName:'Укажите имя, чтобы вам могли ответить.',
  published:'Объявление опубликовано',paidNote:'В рабочей версии здесь будет оплата через Payme или Click',
  noFav:'Вы ещё ничего не добавили в избранное.',notFound:'Ничего не найдено. Попробуйте другой запрос или город.',showMore:'Показать ещё',
@@ -658,7 +665,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
 uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlarim',post:'E’lon berish',postShort:'E’lon',home:'Bosh sahifa',profile:'Profil',
  heroTitle:['<mark>Butun bozor</mark> — cho‘ntagingizda','Sen izla — men <mark>topaman</mark>','Keraksizini sot, <mark>keraklisini top!</mark>'],searchPh:'iPhone, payvandchi, divan, kvartira…',find:'Topish',allUz:'Butun O‘zbekiston',popular:'Ko‘p qidiriladi:',
  stAds:'e’lon',stJobs:'vakansiya',stCv:'rezyume',stReg:'viloyat',
- launchT:'Ishga tushirish aksiyasi',launchS:'Dastlabki 3 oy barcha pullik xizmatlar bepul: TOP, VIP, «Shoshilinch», vakansiyalar va do‘konlar. {d} gacha.',launchB:'Tariflarni ko‘rish',free:'Bepul',freeUntil:'{d} gacha bepul',promoBtnFree:'TOPga bepul ko‘tarish',upFree:'E’lon TOPga bepul ko‘tarildi',topFree:'TOP ishga tushirish aksiyasi bo‘yicha bepul yoqildi',onlineNow:'hozir saytda',
+ launchT:'Ishga tushirish aksiyasi',launchS:'Dastlabki 3 oy bepul: vakansiyalar, kuniga 1 marta ko‘tarish va har oy 1 VIP, 3 TOP va 3 «Shoshilinch». {d} gacha.',launchB:'Tariflarni ko‘rish',free:'Bepul',freeUntil:'{d} gacha bepul',promoBtnFree:'TOPga bepul ko‘tarish',upFree:'E’lon TOPga bepul ko‘tarildi',topFree:'TOP ishga tushirish aksiyasi bo‘yicha bepul yoqildi',onlineNow:'hozir saytda',
  regions:'Viloyatlar bo‘yicha e’lonlar',tAll:'Hammasi',tSell:'Narsalar savdosi',tJob:'Vakansiyalar',tCv:'Ish qidiraman',recent:'Siz yaqinda ko‘rgansiz',
  lAll:'Yangi e’lonlar',lSell:'Narsalar savdosi',lJob:'Vakansiyalar',lCv:'Rezyumelar: ish qidiraman',lFav:'Saralanganlar',pcs:'ta',
  sNew:'Avval yangilari',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
@@ -674,7 +681,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  chatWith:'Chat',msgPh:'Xabar…',send:'Yuborish',autoHi:'Assalomu alaykum! Ha, e’lon dolzarb.',autoRe:'Yaxshi, qo‘ng‘iroqlashamiz. (demo avtojavob)',
  q1:'Hali dolzarbmi?',q2:'Oxirgi narxi qancha?',q3:'Qayerda ko‘rsa bo‘ladi?',q4:'Qachon ishga chiqsa bo‘ladi?',
  newAd:'Yangi e’lon',kSell:'Narsa sotaman',kJob:'Ishchi qidiraman',kCv:'Ish qidiraman',fTitle:'Sarlavha',fCat:'Toifa',fPrice:'Narx, so‘m',fS1:'Maosh, dan',fS2:'gacha',
- fDesc:'Tavsif',fDescPh:'Holati, o‘lchami, ish sharoitlari…',fName:'Ismingiz',payWith:'To‘lov usuli',toPay:'To‘lanadi',freePromo:'ishga tushirish aksiyasi bo‘yicha bepul',goPay:'To‘lovga o‘tilmoqda',demoPay:'Demo: to‘lov hozircha taqlid qilinadi, haqiqiysini Payme va Click bilan shartnomadan keyin ulaymiz',paidOk:'To‘lov o‘tdi',payAccept:'To‘lov qabul qilamiz',call:'Qo‘ng‘iroq qilish',fPhone:'Aloqa telefoni',errPhone:'To‘g‘ri telefon raqamini kiriting, masalan +998 90 123 45 67. Raqamsiz e’lon joylanmaydi.',editAd:'E’lonni tahrirlash',edit:'Tahrirlash',savedAd:'O‘zgarishlar saqlandi va tekshirildi',addPhoto:'Surat qo‘shish',fPhoto:'Surat',promoH:'Reklama',publish:'Joylash',
+ fDesc:'Tavsif',fDescPh:'Holati, o‘lchami, ish sharoitlari…',fName:'Ismingiz',leftN:'{m} tadan {n} ta qoldi',soon:'Tez orada',promoLimits:'Aksiyada har oy bepul: 1 VIP, 3 TOP, 3 «Shoshilinch», kuniga 1 marta ko‘tarish, vakansiyalar cheklovsiz.',tLeft:'{t} yana {n} kun',activeLeft:'Yana {n} kun faol',expiredT:'30 kunlik muddat tugadi, e’lon yashirildi',renew:'Bepul uzaytirish',renewed:'E’lon 30 kunga uzaytirildi',upOnce:'Bepul ko‘tarish kuniga 1 marta',upped:'E’lon lenta tepasiga ko‘tarildi',jobFee:'Vakansiya (oyiga ikkinchi va keyingilari)',tariffL:'Reklama',payWith:'To‘lov usuli',toPay:'To‘lanadi',freePromo:'ishga tushirish aksiyasi bo‘yicha bepul',goPay:'To‘lovga o‘tilmoqda',demoPay:'Demo: to‘lov hozircha taqlid qilinadi, haqiqiysini Payme va Click bilan shartnomadan keyin ulaymiz',paidOk:'To‘lov o‘tdi',payAccept:'To‘lov qabul qilamiz',call:'Qo‘ng‘iroq qilish',fPhone:'Aloqa telefoni',errPhone:'To‘g‘ri telefon raqamini kiriting, masalan +998 90 123 45 67. Raqamsiz e’lon joylanmaydi.',editAd:'E’lonni tahrirlash',edit:'Tahrirlash',savedAd:'O‘zgarishlar saqlandi va tekshirildi',addPhoto:'Surat qo‘shish',fPhoto:'Surat',promoH:'Reklama',publish:'Joylash',
  errTitle:'Sarlavha juda qisqa: kamida 5 ta belgi yozing.',errName:'Sizga javob berishlari uchun ismingizni yozing.',
  published:'E’lon joylandi',paidNote:'Ishchi versiyada bu yerda Payme yoki Click orqali to‘lov bo‘ladi',
  noFav:'Hali hech narsa saralanmagan.',notFound:'Hech narsa topilmadi. Boshqa so‘z yoki shaharni sinab ko‘ring.',showMore:'Yana ko‘rsatish',
@@ -744,22 +751,26 @@ const POP={ru:['iPhone','Cobalt','квартира','ляган','сюзане',
 const PRICES={
  priv:[
   {id:'free',ru:['Обычное','30 дней в ленте'],uz:['Oddiy','30 kun lentada'],p:0},
-  {id:'urg',ru:['Срочно','Красная метка 3 дня'],uz:['Shoshilinch','Qizil belgi 3 kun'],p:15000},
-  {id:'top',ru:['ТОП','Выше всех 7 дней'],uz:['TOP','7 kun eng yuqorida'],p:25000,rec:1},
-  {id:'vip',ru:['VIP','ТОП + золотая рамка 14 дней'],uz:['VIP','TOP + oltin ramka 14 kun'],p:49000}
+  {id:'urg',ru:['Срочно','Красная метка 3 дня'],uz:['Shoshilinch','Qizil belgi 3 kun'],p:9000},
+  {id:'top',ru:['ТОП','Выше обычных 7 дней'],uz:['TOP','7 kun oddiylardan yuqorida'],p:19000,rec:1},
+  {id:'vip',ru:['VIP','Выше всех + золотая рамка 14 дней'],uz:['VIP','Eng yuqorida + oltin ramka 14 kun'],p:39000}
  ],
- up:{ru:'Поднять в ленте (1 раз)',uz:'Lentada ko‘tarish (1 marta)',p:9000},
+ up:{ru:'Поднять в ленте (1 раз)',uz:'Lentada ko‘tarish (1 marta)',p:5000},
  job:[
-  {ru:['1 вакансия','30 дней, первая бесплатно'],uz:['1 ta vakansiya','30 kun, birinchisi bepul'],p:39000,unit:''},
-  {ru:['Пакет 5 вакансий','на 60 дней'],uz:['5 ta vakansiya paketi','60 kunga'],p:149000,unit:'',rec:1},
-  {ru:['База резюме','контакты кандидатов'],uz:['Rezyume bazasi','nomzodlar kontaktlari'],p:99000,unit:'m'}
+  {ru:['1 вакансия','30 дней, первая в месяц бесплатно'],uz:['1 ta vakansiya','30 kun, oyiga birinchisi bepul'],p:29000,unit:''},
+  {ru:['Пакет 5 вакансий','на 60 дней'],uz:['5 ta vakansiya paketi','60 kunga'],p:119000,unit:'',soon:1},
+  {ru:['База резюме','контакты кандидатов'],uz:['Rezyume bazasi','nomzodlar kontaktlari'],p:79000,unit:'m',soon:1}
  ],
  biz:[
-  {ru:['Магазин Старт','до 50 объявлений, страница с логотипом'],uz:['Do‘kon Start','50 tagacha e’lon, logotipli sahifa'],p:149000,unit:'m'},
-  {ru:['Магазин Про','до 300 объявлений, 10 поднятий в неделю, статистика'],uz:['Do‘kon Pro','300 tagacha e’lon, haftasiga 10 ko‘tarish, statistika'],p:349000,unit:'m',rec:1},
-  {ru:['Баннер на главной','7 дней, 1 место'],uz:['Bosh sahifada banner','7 kun, 1 joy'],p:500000,unit:''}
+  {ru:['Магазин Старт','до 50 объявлений, страница с логотипом'],uz:['Do‘kon Start','50 tagacha e’lon, logotipli sahifa'],p:99000,unit:'m',soon:1},
+  {ru:['Магазин Про','до 300 объявлений, 10 поднятий в неделю, статистика'],uz:['Do‘kon Pro','300 tagacha e’lon, haftasiga 10 ko‘tarish, statistika'],p:249000,unit:'m',soon:1},
+  {ru:['Баннер на главной','7 дней, 1 место'],uz:['Bosh sahifada banner','7 kun, 1 joy'],p:390000,unit:'',soon:1}
  ]
 };
+/* how long paid options last, ad lifetime, and free uses per 30 days during the launch promo */
+const DAY=864e5, DUR={urg:3,top:7,vip:14}, LIFE=30, LIMITS={vip:1,top:3,urg:3};
+const daysLeft=until=>Math.max(1,Math.ceil((until-Date.now())/DAY));
+
 
 const H=3600e3,D=24*H,now=Date.now();
 const SEED=[
@@ -805,7 +816,10 @@ let recent=store.get('tp_recent',[]);
 let chats=store.get('tp_chats',{});
 let state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12};
 
-const all=()=>[...userAds,...SEED.map(a=>({...a,ts:now-a.ago}))].filter(a=>!isHidden(a));
+/* own ads: paid options end after their days, the ad itself is hidden after 30 days until renewed */
+function live(a){const n=Date.now(),b={...a};if(b.topUntil&&b.topUntil<n)b.top=null;if(b.urgUntil&&b.urgUntil<n)b.urg=0;return b}
+const expired=a=>!!a.mine&&(a.created||a.ts)+LIFE*DAY<Date.now();
+const all=()=>[...userAds.filter(a=>!expired(a)).map(live),...SEED.map(a=>({...a,ts:now-a.ago}))].filter(a=>!isHidden(a));
 const byId=id=>all().find(x=>x.id==id);
 const catOf=id=>CATS.find(c=>c.id===id);
 const cname=c=>c[lang];
@@ -883,6 +897,11 @@ function render(){
   let r=list.filter(a=>state.onlyFav?favs.has(a.id):(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(a.id))&&(!q||norm(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz+' '+cityName(a.city)).includes(q)));
   const rank=a=>a.top==='vip'?2:a.top==='top'?1:0;
   r.sort((x,y)=>state.sort==='cheap'?(priceVal(x)||1e15)-(priceVal(y)||1e15):state.sort==='exp'?priceVal(y)-priceVal(x):state.sort==='pop'?(y.views||0)-(x.views||0):(rank(y)-rank(x))||(y.ts-x.ts));
+  if(state.sort==='new'){
+    const rot=(arr,n)=>{if(arr.length<=n)return arr;const off=Math.floor(Date.now()/6e4)%arr.length;return [...arr.slice(off),...arr.slice(0,off)].slice(0,n)};
+    const shown=[...rot(r.filter(a=>a.top==='vip'),4),...rot(r.filter(a=>a.top==='top'),6)],set=new Set(shown);
+    r=[...shown,...r.filter(a=>!set.has(a)).sort((x,y)=>y.ts-x.ts)];
+  }
   const titles={all:'lAll',sell:'lSell',job:'lJob',cv:'lCv'};
   const title=state.onlyFav?t('lFav'):state.cat?cname(catOf(state.cat)):t(titles[state.kind]);
   $('#listTitle').innerHTML=`${esc(title)}<small class="num">${r.length} ${t('pcs')}</small>`;
@@ -920,7 +939,7 @@ function openAd(id){
     <div class="dv">
       ${thumb(a)}
       <div class="dinfo">
-        ${badges(a,true)}
+        ${badges(a,true)}${a.mine&&a.top&&a.topUntil?`<span class="leftn">${t('tLeft').replace('{t}',a.top==='vip'?'VIP':(lang==='uz'?'TOP':'ТОП')).replace('{n}',daysLeft(a.topUntil))}</span>`:''}
         <h3>${esc(a.title)}</h3>
         <div class="dprice${a.kind!=='sell'?' sal':''}">${priceHTML(a)}</div>
         <dl class="facts"><dt>${t('city')}</dt><dd>${esc(cityName(a.city))}</dd><dt>${t('section')}</dt><dd>${cname(catOf(a.cat))}</dd>${facts}<dt>${t('published')}</dt><dd>${ago(a.ts)} · ${a.views||0} ${t('views')}</dd></dl>
@@ -930,7 +949,7 @@ function openAd(id){
           <button class="btn" id="showTel">${t('showTel')}</button>
           <button class="btn primary" id="chatBtn">${cLbl}</button>
         </div>
-        ${a.top||!a.mine?'':`<div class="promo"><span>${t('promoTxt')}</span><button class="btn gold" id="promoBtn">${promoOn()?t('promoBtnFree'):t('promoBtn')}</button></div>`}
+        ${a.top||!a.mine?'':`<div class="promo"><span>${t('promoTxt')}</span><button class="btn gold" id="promoBtn">${isFree('top')?t('promoBtnFree'):t('promoBtn').replace('25 000',fmt(PRICES.priv[2].p))}</button></div>`}
         <div class="safe">${t('safe')}</div>
         ${a.mine?'':`<button class="repbtn" id="repBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>${t('report')}</button>`}
       </div>
@@ -942,7 +961,7 @@ function openAd(id){
     link.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span><small>${t('call')}</small>${esc(num)}${a.phone?'':' ('+t('test')+')'}</span>`;
     b.replaceWith(link)};
   $('#chatBtn').onclick=()=>a.mine?openForm(userAds.find(x=>x.id==a.id)):user?openChatIn(a):openLogin(()=>{openAd(a.id);openChatIn(a)},'needChat');
-  const p=$('#promoBtn');if(p)p.onclick=()=>{if(!promoOn())return toast(t('paidNote'));const m=userAds.find(x=>x.id==a.id);if(m){m.top='top';m.ts=Date.now();store.set('tp_ads',userAds)}toast(t('upFree'));closeModal()};
+  const p=$('#promoBtn');if(p)p.onclick=()=>{if(!isFree('top'))return toast(t('paidNote'));const m=userAds.find(x=>x.id==a.id);if(m){m.top='top';m.topUntil=Date.now()+DUR.top*DAY;m.ts=Date.now();addUse('top');store.set('tp_ads',userAds)}toast(t('upFree'));closeModal()};
   const rb=$('#repBtn');if(rb)rb.onclick=()=>openReport(a);
   if(chats[a.id])openChatIn(a,true);
 }
@@ -1001,18 +1020,29 @@ tickOnline();setInterval(tickOnline,4000);
 let draft={};
 const PAYME_LOGO='<span class="pm-logo">pay<i>me</i></span>';
 const CLICK_LOGO='<span class="ck-logo"><svg viewBox="0 0 24 24" fill="#fff"><path d="M5 3l14 8-6 1.5 3.5 7-2.5 1.2-3.5-7L6 18z"/></svg>click</span>';
+/* free uses during the launch promo, counted over the last 30 days */
+let uses=store.get('tp_uses',[]);
+const usesLeft=k=>(LIMITS[k]||0)-uses.filter(u=>u.k===k&&u.at>Date.now()-30*DAY).length;
+const isFree=k=>{const x=PRICES.priv.find(p=>p.id===k);return !x||!x.p||(promoOn()&&usesLeft(k)>0)};
+function addUse(k){uses.push({k,at:Date.now()});store.set('tp_uses',uses)}
+/* 2nd and later vacancy in 30 days is paid after the promo */
+const jobFeeDue=(kind,editId)=>kind==='job'&&!editId&&!promoOn()&&userAds.filter(a=>a.kind==='job'&&(a.created||a.ts)>Date.now()-30*DAY).length>=1?PRICES.job[0].p:0;
 /* payment block under the tariffs: shown only for paid options */
 function updatePay(){
   const box=$('#payBox');if(!box)return;
-  const x=PRICES.priv.find(p=>p.id===draft.tariff);
-  if(!x||!x.p){box.hidden=true;return}
+  const x=PRICES.priv.find(p=>p.id===draft.tariff), jf=jobFeeDue(draft.kind,draft.editId);
+  if((!x||!x.p)&&!jf){box.hidden=true;return}
   draft.pay=draft.pay||'payme';box.hidden=false;
+  const lines=[];
+  if(x&&x.p)lines.push(`<div class="paysum"><span>${t('tariffL')}: ${x[lang][0]}</span>${isFree(x.id)?`<span><s class="old num">${fmt(x.p)} ${t('sum')}</s> <span class="freeTag">0 ${t('sum')} — ${t('freePromo')}</span></span>`:`<b>${fmt(x.p)} ${t('sum')}</b>`}</div>`);
+  if(jf)lines.push(`<div class="paysum"><span>${t('jobFee')}</span><b>${fmt(jf)} ${t('sum')}</b></div>`);
+  const total=(x&&x.p&&!isFree(x.id)?x.p:0)+jf;
   box.innerHTML=`<span class="ph">${t('payWith')}</span>
     <div class="payrow"><button type="button" class="paym" data-pay="payme" aria-pressed="${draft.pay==='payme'}" aria-label="Payme">${PAYME_LOGO}</button><button type="button" class="paym" data-pay="click" aria-pressed="${draft.pay==='click'}" aria-label="Click">${CLICK_LOGO}</button></div>
-    <div class="paysum"><span>${t('toPay')}:</span>${promoOn()?`<span><s class="old num">${fmt(x.p)} ${t('sum')}</s> <span class="freeTag">0 ${t('sum')} — ${t('freePromo')}</span></span>`:`<b>${fmt(x.p)} ${t('sum')}</b>`}</div>`;
+    ${lines.join('')}<div class="paysum" style="border-top:1px dashed var(--line);padding-top:6px"><span><b>${t('toPay')}</b></span><b>${fmt(total)} ${t('sum')}</b></div>`;
   box.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>{draft.pay=b.dataset.pay;updatePay()});
 }
-function tariffCard(x,sel){const n=x[lang];return `<button type="button" class="tar" data-t="${x.id}" aria-pressed="${sel}"><b>${n[0]}</b><span>${n[1]}</span><strong>${priceTag(x.p)}</strong></button>`}
+function tariffCard(x,sel){const n=x[lang];return `<button type="button" class="tar" data-t="${x.id}" aria-pressed="${sel}"><b>${n[0]}</b><span>${n[1]}</span><strong>${!x.p?`<span class="freeTag">${t('free')}</span>`:isFree(x.id)?`<s class="old num">${fmt(x.p)}</s><span class="freeTag">${t('free')}</span><small class="leftn">${t('leftN').replace('{n}',usesLeft(x.id)).replace('{m}',LIMITS[x.id])}</small>`:`${fmt(x.p)} ${t('sum')}`}</strong></button>`}
 function openForm(edit){
   edit=edit&&edit.id?edit:null;
   draft={kind:edit?edit.kind:'sell',tariff:edit?(edit.top||(edit.urg?'urg':'free')):'free',img:edit?edit.img||null:null,editId:edit?edit.id:null};
@@ -1053,6 +1083,7 @@ function syncForm(){
   const k=draft.kind;
   $('#catWrap').hidden=k!=='sell';
   $('#fCat').innerHTML=CATS.filter(c=>c.kind==='sell').map(c=>`<option value="${c.id}">${cname(c)}</option>`).join('');
+  setTimeout(updatePay);
   $('#priceRow').innerHTML=k==='sell'?`<label class="fl">${t('fPrice')}<input id="fPrice" inputmode="numeric" placeholder="1 500 000"></label><span></span>`:`<label class="fl">${t('fS1')}<input id="fS1" inputmode="numeric" placeholder="4 000 000"></label><label class="fl">${t('fS2')}<input id="fS2" inputmode="numeric" placeholder="6 000 000"></label>`;
 }
 const num=id=>{const e=$(id);return e?parseInt(e.value.replace(/\D/g,''))||0:0};
@@ -1091,7 +1122,9 @@ function submitAd(e){
   $('#fPhone').value=phone;
   if(user&&!user.phone){user.phone=phone;store.set('tp_user',user)}
   const k=draft.kind,tr=draft.tariff;
-  const ad={id:draft.editId||Date.now(),kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),img:draft.img,top:(tr==='top'||tr==='vip')?tr:null,urg:tr==='urg'?1:0,views:0,photos:draft.img?1:0,facts:{},mine:1,phone};
+  const ad={id:draft.editId||Date.now(),kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),img:draft.img,top:(tr==='top'||tr==='vip')?tr:null,urg:tr==='urg'?1:0,views:0,photos:draft.img?1:0,facts:{},mine:1,phone,created:Date.now()};
+  if(ad.top)ad.topUntil=Date.now()+DUR[ad.top]*DAY;
+  if(ad.urg)ad.urgUntil=Date.now()+DUR.urg*DAY;
   if(k==='sell')ad.price=num('#fPrice');else{const a=num('#fS1'),b=num('#fS2');if(a)ad.salary=[a,Math.max(a,b)]}
   const box=$('#modBox'),btn=$('#pubBtn');
   $('#fErr').textContent='';btn.disabled=true;draft.busy=true;box.hidden=false;box.className='modbox run';
@@ -1101,19 +1134,24 @@ function submitAd(e){
     const bad=moderate(ad,draft.img?draft.imgStats:null);
     if(bad.length){box.className='modbox bad';box.innerHTML=`<b>${t('rejected')}</b><ul>${bad.map(k=>`<li>${t(k)}</li>`).join('')}</ul><span style="color:var(--ink2)">${t('fixHint')}</span>`;return}
     const tp=PRICES.priv.find(p=>p.id===tr);
-    if(tp&&tp.p&&!promoOn()&&!draft.paid&&!(draft.editId&&(userAds.find(x=>x.id===draft.editId)||{}).top===tr)){
+    const old=draft.editId?live(userAds.find(x=>x.id===draft.editId)||{}):{};
+    const sameTariff=!!draft.editId&&((tr==='urg'&&old.urg)||(tr!=='urg'&&tr!=='free'&&old.top===tr));
+    const tariffDue=tp&&tp.p&&!sameTariff&&!isFree(tr)?tp.p:0, due=tariffDue+jobFeeDue(k,draft.editId);
+    const usedFree=tp&&tp.p&&!sameTariff&&isFree(tr);
+    if(due>0&&!draft.paid){
       box.className='modbox run';
-      box.innerHTML=`<div class="payscreen"><span class="paym">${draft.pay==='click'?CLICK_LOGO:PAYME_LOGO}</span><b>${t('goPay')}: ${fmt(tp.p)} ${t('sum')}…</b><span style="font-size:12.5px;color:var(--ink3)">${t('demoPay')}</span></div>`;
+      box.innerHTML=`<div class="payscreen"><span class="paym">${draft.pay==='click'?CLICK_LOGO:PAYME_LOGO}</span><b>${t('goPay')}: ${fmt(due)} ${t('sum')}…</b><span style="font-size:12.5px;color:var(--ink3)">${t('demoPay')}</span></div>`;
       btn.disabled=true;draft.busy=true;
       setTimeout(()=>{draft.paid=true;draft.busy=false;btn.disabled=false;toast(t('paidOk'));$('#adForm').requestSubmit()},1800);
       return;
     }
-    if(draft.editId){const i=userAds.findIndex(x=>x.id===draft.editId);if(i>-1){const o=userAds[i];ad.views=o.views;ad.ts=o.ts;if(!draft.img)ad.img=o.img;userAds[i]=ad}}
+    if(draft.editId){const i=userAds.findIndex(x=>x.id===draft.editId);if(i>-1){const o=userAds[i];ad.views=o.views;ad.ts=o.ts;ad.created=o.created||o.ts;ad.lastUp=o.lastUp;if(!draft.img)ad.img=o.img;if(sameTariff){ad.topUntil=o.topUntil;ad.urgUntil=o.urgUntil}userAds[i]=ad}}
     else userAds.unshift(ad);
+    if(usedFree)addUse(tr);
     store.set('tp_ads',userAds);
     if(draft.editId){closeModal();toast('✓ '+t('savedAd'));return}
     state={...state,kind:'all',cat:null,q:'',onlyFav:false};$('#q').value='';syncTabs();closeModal();scrollTo({top:$('#grid').offsetTop-120});
-    toast('✓ '+t('approved')+(tr==='free'?'':'. '+(promoOn()?t('topFree'):draft.paid?t('paidOk'):t('paidNote'))));
+    toast('✓ '+t('approved')+(tr==='free'?'':'. '+(usedFree?t('topFree'):draft.paid?t('paidOk'):'')));
   },1400);
 }
 
@@ -1187,19 +1225,29 @@ function openCab(){
     <div class="divider"></div>
     <h3 class="mh" style="font-size:20px">${t('cabT')}</h3>
     <div class="kpis"><div class="kpi"><b class="num">${mine.length}</b><span>${t('kAds')}</span></div><div class="kpi"><b class="num">${views}</b><span>${t('kViews')}</span></div><div class="kpi"><b class="num">${msgs}</b><span>${t('kMsgs')}</span></div></div>
-    ${mine.length?mine.map(a=>`<div class="cabrow"><button class="cabopen" data-open="${a.id}">${thumb(a)}<div class="ci2"><b>${esc(a.title)}</b><span>${priceHTML(a).replace(/<[^>]+>/g,' ')} · ${esc(cityName(a.city))} · ${ago(a.ts)}</span></div></button><div class="ca"><button class="btn" data-edit="${a.id}">${t('edit')}</button><button class="btn" data-up="${a.id}">${t('up')} · ${promoOn()?t('free'):fmt(PRICES.up.p)+' '+t('sum')}</button><button class="btn ghost" data-del="${a.id}">${t('del')}</button></div></div>`).join(''):`<p style="color:var(--ink3);margin:0">${t('cabEmpty')}</p><div><button class="btn primary" id="cabPost">+ ${t('post')}</button></div>`}
+    ${mine.length?mine.map(a=>`<div class="cabrow"><button class="cabopen" data-open="${a.id}">${thumb(a)}<div class="ci2"><b>${esc(a.title)}</b><span>${priceHTML(a).replace(/<[^>]+>/g,' ')} · ${esc(cityName(a.city))} · ${ago(a.ts)}</span>${cabStatus(a)}</div></button><div class="ca"><button class="btn" data-edit="${a.id}">${t('edit')}</button>${expired(a)?`<button class="btn primary" data-renew="${a.id}">${t('renew')}</button>`:`<button class="btn" data-up="${a.id}">${t('up')} · ${upFree(a)?t('free'):fmt(PRICES.up.p)+' '+t('sum')}</button>`}<button class="btn ghost" data-del="${a.id}">${t('del')}</button></div></div>`).join(''):`<p style="color:var(--ink3);margin:0">${t('cabEmpty')}</p><div><button class="btn primary" id="cabPost">+ ${t('post')}</button></div>`}
   </div>`);
   const cp=$('#cabPost');if(cp)cp.onclick=()=>requireLogin(openForm,'needPost');
   $('#logoutBtn').onclick=logout;
   $('#pSave').onclick=()=>{const n=$('#pNameIn').value.trim();if(n)user.name=n;user.phone=$('#pPhoneIn').value.trim();store.set('tp_user',user);updateAuthUI();toast(t('saved'));openCab()};
 }
 
+const upFree=a=>promoOn()&&(!a.lastUp||a.lastUp<Date.now()-DAY);
+function cabStatus(a){
+  if(expired(a))return `<span class="stat bad">${t('expiredT')}</span>`;
+  const b=live(a),out=[];
+  if(b.top)out.push(t('tLeft').replace('{t}',b.top==='vip'?'VIP':(lang==='uz'?'TOP':'ТОП')).replace('{n}',daysLeft(b.topUntil||Date.now())));
+  if(b.urg)out.push(t('tLeft').replace('{t}',lang==='uz'?'Shoshilinch':'Срочно').replace('{n}',daysLeft(b.urgUntil||Date.now())));
+  out.push(t('activeLeft').replace('{n}',daysLeft((a.created||a.ts)+LIFE*DAY)));
+  return `<span class="stat">${out.join(' · ')}</span>`;
+}
+
 /* ---------- pricing ---------- */
 function openPricing(){
-  const pc=(x,unit)=>{const n=x[lang];return `<div class="pc2${x.rec?' hl2':''}">${x.rec?`<span class="rec">${t('rec')}</span>`:''}<span class="pn">${n[0]}</span><span class="pp num">${promoOn()||!x.p?priceTag(x.p):fmt(x.p)} <small>${x.p&&!promoOn()?t('sum'):''}${x.unit==='m'&&!promoOn()?' / '+t('perMonth'):''}</small></span><ul><li>${n[1]}</li></ul></div>`};
+  const pc=(x,unit)=>{const n=x[lang],norm=x.soon||!promoOn();return `<div class="pc2${x.rec&&!x.soon?' hl2':''}${x.soon?' soon':''}">${x.soon?`<span class="soonTag">${t('soon')}</span>`:x.rec?`<span class="rec">${t('rec')}</span>`:''}<span class="pn">${n[0]}</span><span class="pp num">${!x.p?priceTag(0):norm?fmt(x.p):priceTag(x.p)} <small>${x.p&&norm?t('sum'):''}${x.unit==='m'&&norm?' / '+t('perMonth'):''}</small></span><ul><li>${n[1]}</li></ul></div>`};
   const up={id:'up',ru:[PRICES.up.ru,lang==='uz'?'':'Объявление снова наверху ленты'],uz:[PRICES.up.uz,'E’lon yana lenta tepasida'],p:PRICES.up.p};
   openModal(`<div class="pricing">
-    <h3 class="mh">${t('prT')}</h3>${promoOn()?`<span class="promoBadge">${tD('freeUntil')}</span>`:''}<p class="sub">${t('prSub')}</p>
+    <h3 class="mh">${t('prT')}</h3>${promoOn()?`<span class="promoBadge">${tD('freeUntil')}</span>`:''}<p class="sub">${t('prSub')}</p>${promoOn()?`<p class="sub" style="font-size:13.5px">${t('promoLimits')}</p>`:''}
     <div class="pgrp"><h4>${t('gPriv')}</h4><div class="pcards">${[...PRICES.priv,up].map(x=>pc(x)).join('')}</div></div>
     <div class="pgrp"><h4>${t('gJob')}</h4><div class="pcards">${PRICES.job.map(x=>pc(x)).join('')}</div></div>
     <div class="pgrp"><h4>${t('gBiz')}</h4><div class="pcards">${PRICES.biz.map(x=>pc(x)).join('')}</div></div>
@@ -1239,7 +1287,8 @@ $('#ov').onclick=e=>{
   if(e.target.id==='ov'||e.target.closest('.mclose')){closeModal();return}
   const ed=e.target.closest('[data-edit]');if(ed){openForm(userAds.find(x=>x.id==ed.dataset.edit));return}
   const o=e.target.closest('[data-open]');if(o){openAd(o.dataset.open);return}
-  const u=e.target.closest('[data-up]');if(u){if(!promoOn()){toast(t('paidNote'));return}const m=userAds.find(x=>x.id==u.dataset.up);if(m){m.top=m.top||'top';m.ts=Date.now();store.set('tp_ads',userAds)}toast(t('upFree'));openCab();return}
+  const rn=e.target.closest('[data-renew]');if(rn){const m=userAds.find(x=>x.id==rn.dataset.renew);if(m){m.created=Date.now();m.ts=Date.now();store.set('tp_ads',userAds)}toast(t('renewed'));openCab();return}
+  const u=e.target.closest('[data-up]');if(u){const m=userAds.find(x=>x.id==u.dataset.up);if(!m)return;if(!upFree(m)){toast(promoOn()?t('upOnce'):t('paidNote'));return}m.ts=Date.now();m.lastUp=Date.now();store.set('tp_ads',userAds);toast(t('upped'));openCab();return}
   const d=e.target.closest('[data-del]');if(d){userAds=userAds.filter(a=>a.id!=d.dataset.del);store.set('tp_ads',userAds);toast(t('removed'));openCab();return}
 };
 window.addEventListener('popstate',()=>{if(!$('#ov').hidden)closeModal(true)});
