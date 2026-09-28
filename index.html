@@ -400,6 +400,81 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .rules h4{margin:0;font-family:var(--display);font-size:18px;color:var(--tq)}
 .rules ul{margin:0;padding-left:20px;color:var(--ink2);display:flex;flex-direction:column;gap:4px}
 .rules .rbox{background:var(--surface2);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+
+/* ===== phone layout (main use case) ===== */
+@media (max-width:760px){
+  .hero{padding-block:10px 2px}
+  .portal .inner{padding:58px 12px 18px;gap:11px}
+  .hero h1{font-size:25px;line-height:1.15}
+  .greet{font-size:13px}
+  .bigsearch{padding:5px;gap:5px}
+  .bigsearch .sin{flex:1 1 100%}
+  .bigsearch input{padding:9px 4px}
+  .bigsearch select{flex:1 1 0;min-width:0;min-height:42px;border-left:0;border-top:0;background:#F5EFE4;border-radius:10px;padding:0 8px}
+  .bigsearch .btn{flex:0 0 auto;padding:10px 20px}
+  .pop{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;width:100%;padding-bottom:2px;scrollbar-width:none}
+  .pop::-webkit-scrollbar,.cats::-webkit-scrollbar{display:none}
+  .pop span,.pop button{flex-shrink:0}
+  .online{font-size:12.5px;padding:4px 12px 4px 9px}
+  .stats{grid-template-columns:repeat(4,1fr);margin-inline:8px}
+  .stats div{padding:7px 2px}
+  .stats div:nth-child(3){border-left:1px solid var(--line)}
+  .stats div:nth-child(n+3){border-top:0}
+  .stats b{font-size:18px}
+  .stats span{font-size:10.5px}
+  .launch{padding:10px 12px;gap:8px;margin-top:14px;border-left-width:5px}
+  .launch b{font-size:15px}
+  .launch span{font-size:12.5px;flex-basis:100%}
+  .launch .btn{padding:7px 12px;font-size:13px}
+  .tabs{margin-top:16px}
+  .tab{padding:7px 13px;font-size:14px}
+  .cats{display:flex;overflow-x:auto;gap:8px;margin-inline:-16px;padding:0 16px 6px;scroll-snap-type:x proximity;scrollbar-width:none}
+  .cat{flex:0 0 72px;scroll-snap-align:start;font-size:11.5px}
+  .cat .ci{width:62px;height:74px;padding-top:12px}
+  .cat .ci svg{width:32px;height:32px}
+  .sec-h{margin-block:22px 10px}
+  .sec-h h2{font-size:20px}
+  .grid{grid-template-columns:1fr 1fr;gap:10px}
+  .card{border-radius:14px}
+  .card .thumb{margin:5px 5px 0;width:calc(100% - 10px)}
+  .badges{left:9px;top:28px;max-width:calc(100% - 48px);gap:3px}
+  .bdg{font-size:9px;padding:2px 5px}
+  .fav{right:8px;top:24px;width:30px;height:30px}
+  .fav svg{width:16px;height:16px}
+  .thumb .pc{right:8px;bottom:6px;font-size:10px}
+  .cbody{padding:8px 10px 10px;gap:2px}
+  .cprice{font-size:15px}
+  .cprice small{display:block;margin:0;font-size:11px}
+  .cprice.sal{font-size:13px}
+  .ctitle{font-size:13.5px}
+  .chip{font-size:10.5px;padding:1px 6px}
+  .cmeta{font-size:11px;flex-direction:column;gap:0;padding-top:6px}
+  .regions{grid-template-columns:1fr 1fr}
+  .reg{padding:9px 10px;font-size:14px}
+  .duo{margin-top:28px}
+  .pane{padding:18px}
+  /* windows slide up from the bottom like an app */
+  .ov{padding:40px 0 0;align-items:flex-start}
+  .modal,.modal.narrow,.modal.wide{max-width:100%;margin-top:auto;border-radius:22px 22px 0 0;animation:sheet .25s ease-out;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .mclose{position:sticky;top:10px;float:right;margin:10px 10px -46px 0}
+  .dv > .thumb{min-height:230px;margin:10px}
+  .dinfo{padding:4px 16px 0}
+  .dinfo h3{font-size:19px}
+  .dprice{font-size:24px}
+  .actions{position:sticky;bottom:0;z-index:2;background:var(--surface);padding-block:10px;margin-inline:-16px;padding-inline:16px;border-top:1px solid var(--line)}
+  .actions .btn{padding:12px}
+  .form,.cab,.pricing,.rules{padding:20px 16px 24px}
+  .seg button{font-size:12.5px;padding:10px 4px}
+}
+/* photo picker */
+.upl{display:flex;align-items:center;justify-content:center;gap:8px;min-height:92px;border:2px dashed var(--line);border-radius:12px;color:var(--tq);font-weight:600;cursor:pointer;background:var(--surface) center/cover no-repeat}
+.upl:hover{border-color:var(--tq)}
+.upl svg{width:26px;height:26px}
+.upl.has{border-style:solid;border-color:var(--tq)}
+.upl.has>svg,.upl.has>span{display:none}
+@media (max-width:760px){.cat{flex:0 0 86px}.cat span:not(.ci){overflow-wrap:anywhere}}
+@keyframes sheet{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
+@media (prefers-reduced-motion:reduce){.modal{animation:none!important}}
 </style>
 </head>
 <body>
@@ -516,7 +591,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  chatWith:'Чат',msgPh:'Сообщение…',send:'Отправить',autoHi:'Здравствуйте! Да, объявление актуально.',autoRe:'Хорошо, давайте созвонимся. (автоответ демо)',
  q1:'Ещё актуально?',q2:'Какая последняя цена?',q3:'Где можно посмотреть?',q4:'Когда можно выйти на работу?',
  newAd:'Новое объявление',kSell:'Продаю вещь',kJob:'Ищу работника',kCv:'Ищу работу',fTitle:'Заголовок',fCat:'Категория',fPrice:'Цена, сум',fS1:'Зарплата от, сум',fS2:'до, сум',
- fDesc:'Описание',fDescPh:'Состояние, размеры, условия работы…',fName:'Ваше имя',fPhoto:'Фото',promoH:'Продвижение',publish:'Опубликовать',
+ fDesc:'Описание',fDescPh:'Состояние, размеры, условия работы…',fName:'Ваше имя',addPhoto:'Добавить фото',fPhoto:'Фото',promoH:'Продвижение',publish:'Опубликовать',
  errTitle:'Заголовок слишком короткий: напишите хотя бы 5 символов.',errName:'Укажите имя, чтобы вам могли ответить.',
  published:'Объявление опубликовано',paidNote:'В рабочей версии здесь будет оплата через Payme или Click',
  noFav:'Вы ещё ничего не добавили в избранное.',notFound:'Ничего не найдено. Попробуйте другой запрос или город.',showMore:'Показать ещё',
@@ -563,7 +638,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  chatWith:'Chat',msgPh:'Xabar…',send:'Yuborish',autoHi:'Assalomu alaykum! Ha, e’lon dolzarb.',autoRe:'Yaxshi, qo‘ng‘iroqlashamiz. (demo avtojavob)',
  q1:'Hali dolzarbmi?',q2:'Oxirgi narxi qancha?',q3:'Qayerda ko‘rsa bo‘ladi?',q4:'Qachon ishga chiqsa bo‘ladi?',
  newAd:'Yangi e’lon',kSell:'Narsa sotaman',kJob:'Ishchi qidiraman',kCv:'Ish qidiraman',fTitle:'Sarlavha',fCat:'Toifa',fPrice:'Narx, so‘m',fS1:'Maosh, dan',fS2:'gacha',
- fDesc:'Tavsif',fDescPh:'Holati, o‘lchami, ish sharoitlari…',fName:'Ismingiz',fPhoto:'Surat',promoH:'Reklama',publish:'Joylash',
+ fDesc:'Tavsif',fDescPh:'Holati, o‘lchami, ish sharoitlari…',fName:'Ismingiz',addPhoto:'Surat qo‘shish',fPhoto:'Surat',promoH:'Reklama',publish:'Joylash',
  errTitle:'Sarlavha juda qisqa: kamida 5 ta belgi yozing.',errName:'Sizga javob berishlari uchun ismingizni yozing.',
  published:'E’lon joylandi',paidNote:'Ishchi versiyada bu yerda Payme yoki Click orqali to‘lov bo‘ladi',
  noFav:'Hali hech narsa saralanmagan.',notFound:'Hech narsa topilmadi. Boshqa so‘z yoki shaharni sinab ko‘ring.',showMore:'Yana ko‘rsatish',
@@ -770,7 +845,7 @@ function render(){
   const q=state.q.trim().toLowerCase();
   let r=list.filter(a=>(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(a.id))&&(!q||(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz).toLowerCase().includes(q)));
   const rank=a=>a.top==='vip'?2:a.top==='top'?1:0;
-  r.sort((x,y)=>state.sort==='cheap'?priceVal(x)-priceVal(y):state.sort==='exp'?priceVal(y)-priceVal(x):state.sort==='pop'?(y.views||0)-(x.views||0):(rank(y)-rank(x))||(y.ts-x.ts));
+  r.sort((x,y)=>state.sort==='cheap'?(priceVal(x)||1e15)-(priceVal(y)||1e15):state.sort==='exp'?priceVal(y)-priceVal(x):state.sort==='pop'?(y.views||0)-(x.views||0):(rank(y)-rank(x))||(y.ts-x.ts));
   const titles={all:'lAll',sell:'lSell',job:'lJob',cv:'lCv'};
   const title=state.onlyFav?t('lFav'):state.cat?cname(catOf(state.cat)):t(titles[state.kind]);
   $('#listTitle').innerHTML=`${esc(title)}<small class="num">${r.length} ${t('pcs')}</small>`;
@@ -890,7 +965,7 @@ function openForm(){
     <div class="f2"><label class="fl" id="catWrap">${t('fCat')}<select id="fCat"></select></label><label class="fl">${t('city')}<select id="fCity">${CITIES.map(c=>`<option value="${c[0]}">${lang==='uz'?c[1]:c[0]}</option>`).join('')}</select></label></div>
     <div class="f2" id="priceRow"></div>
     <label class="fl">${t('fDesc')}<textarea id="fDesc" placeholder="${t('fDescPh')}"></textarea></label>
-    <div class="f2"><label class="fl">${t('fName')}<input id="fName" value="${esc(user?user.name:'')}"></label><label class="fl">${t('fPhoto')}<input id="fImg" type="file" accept="image/*"></label></div>
+    <div class="f2"><label class="fl">${t('fName')}<input id="fName" value="${esc(user?user.name:'')}"></label><label class="fl">${t('fPhoto')}<span class="upl" id="upl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>${t('addPhoto')}</span><input id="fImg" type="file" accept="image/*" hidden></span></label></div>
     <div><div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px">${t('promoH')}</div><div class="tariffs">${PRICES.priv.map((x,i)=>tariffCard(x,i===0)).join('')}</div></div>
     <div class="err" id="fErr"></div>
     <div id="modBox" hidden></div>
@@ -905,7 +980,7 @@ function openForm(){
   $('#adForm').onsubmit=submitAd;
   $('#agreeRules').onclick=()=>{const r=$('#formRules');r.hidden=!r.hidden;if(!r.hidden)r.innerHTML=t('rulesHTML')};
 }
-function shrink(src){const im=new Image();im.onload=()=>{const s=Math.min(1,640/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;const g=c.getContext('2d');g.drawImage(im,0,0,c.width,c.height);let sum=0;try{const d=g.getImageData(0,0,c.width,c.height).data;for(let i=0;i<d.length;i+=16)sum+=(d[i]*.3+d[i+1]*.59+d[i+2]*.11);draft.imgStats={w:im.width,h:im.height,bright:sum/(d.length/16)}}catch(e){draft.imgStats=null}draft.img=c.toDataURL('image/jpeg',.75)};im.src=src}
+function shrink(src){const im=new Image();im.onload=()=>{const s=Math.min(1,640/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;const g=c.getContext('2d');g.drawImage(im,0,0,c.width,c.height);let sum=0;try{const d=g.getImageData(0,0,c.width,c.height).data;for(let i=0;i<d.length;i+=16)sum+=(d[i]*.3+d[i+1]*.59+d[i+2]*.11);draft.imgStats={w:im.width,h:im.height,bright:sum/(d.length/16)}}catch(e){draft.imgStats=null}draft.img=c.toDataURL('image/jpeg',.75);const u=document.getElementById('upl');if(u){u.style.backgroundImage=`url(${draft.img})`;u.classList.add('has')}};im.src=src}
 function syncForm(){
   const k=draft.kind;
   $('#catWrap').hidden=k!=='sell';
