@@ -378,6 +378,28 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 @media (max-width:760px){.greet{font-size:14px;text-align:center;justify-content:center}.greet::before,.greet::after{display:none}.portal .inner{padding-top:72px}}
 @keyframes ping{from{transform:scale(1);opacity:.8}to{transform:scale(2.6);opacity:0}}
 @media (prefers-reduced-motion:reduce){.dot::after{animation:none}}
+
+/* auto-moderation, complaints, rules */
+.modbox{border-radius:12px;padding:12px 14px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.modbox.run{background:var(--surface2)}
+.modbox.ok{background:var(--green-soft,#DCF3E9);color:var(--green)}
+.modbox.bad{background:var(--terra-soft);color:var(--red)}
+.modbox ul{margin:0;padding-left:18px;color:var(--ink)}
+.modbox .chk{display:flex;gap:14px;flex-wrap:wrap;color:var(--ink2);font-size:13px}
+.modbox .chk span::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin-right:6px;animation:blink 1s infinite}
+@keyframes blink{50%{opacity:.25}}
+.form .agree{font-size:12.5px;color:var(--ink3);margin:0}
+.linkbtn{border:0;background:none;padding:0;color:var(--tq);text-decoration:underline;font:inherit;cursor:pointer}
+.repbtn{align-self:flex-start;border:0;background:none;padding:0;color:var(--ink3);font-size:13px;display:inline-flex;gap:6px;align-items:center}
+.repbtn:hover{color:var(--red)}
+.repbtn svg{width:15px;height:15px}
+.reasons{display:flex;flex-direction:column;gap:8px}
+.reasons button{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:11px 14px;font-weight:500}
+.reasons button:hover{border-color:var(--red)}
+.rules{padding:26px;display:flex;flex-direction:column;gap:14px}
+.rules h4{margin:0;font-family:var(--display);font-size:18px;color:var(--tq)}
+.rules ul{margin:0;padding-left:20px;color:var(--ink2);display:flex;flex-direction:column;gap:4px}
+.rules .rbox{background:var(--surface2);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
 </style>
 </head>
 <body>
@@ -458,7 +480,7 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
   </div>
 </main>
 
-<footer><div class="ikat" aria-hidden="true"></div><div class="wrap fgrid"><span>© 2026 Topaman.uz · <span data-i="foot"></span></span><span data-i="demo"></span></div></footer>
+<footer><div class="ikat" aria-hidden="true"></div><div class="wrap fgrid"><span>© 2026 Topaman.uz · <span data-i="foot"></span> · <button class="linkbtn" id="footRules" data-i="rules"></button></span><span data-i="demo"></span></div></footer>
 
 <nav class="bnav" aria-label="Меню">
   <button id="bHome" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v10h-6v-6H9v6H3z"/></svg><span data-i="home"></span></button>
@@ -503,6 +525,19 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  prT:'Тарифы Topaman',prSub:'Базовое объявление всегда бесплатно. Платить нужно только за продвижение и за бизнес-функции.',
  gPriv:'Частным лицам',gJob:'Работодателям',gBiz:'Магазинам и компаниям',rec:'Популярно',perMonth:'в месяц',
  choose:'Выбрать',
+ checking:'Автопроверка объявления…',chkText:'текст',chkPhoto:'фото',chkPrice:'цена',approved:'Проверено автоматически и опубликовано',rejected:'Объявление не опубликовано. Причина:',fixHint:'Исправьте и нажмите «Опубликовать» ещё раз.',
+ mWeapon:'оружие и боеприпасы продавать запрещено',mDrugs:'запрещённые вещества',mFake:'поддельные документы',mGamble:'азартные игры и ставки',mAdult:'услуги для взрослых',
+ mScam:'похоже на мошенничество: нельзя требовать предоплату на карту',mRude:'мат и оскорбления',mPrice:'слишком низкая цена для такого товара, похоже на обман',
+ mDark:'фото слишком тёмное, сфотографируйте при хорошем свете',mSmall:'фото слишком маленькое',mLink:'ссылки и контакты в заголовке запрещены, телефон покажет кнопка «Показать телефон»',
+ report:'Пожаловаться',repT:'Пожаловаться на объявление',repR:['Мошенничество','Запрещённый товар','Неприличное фото или текст','Неверная цена или категория','Другое'],
+ repDone:'Спасибо! Жалоба принята. После 3 жалоб объявление скрывается автоматически.',repAlready:'Вы уже пожаловались на это объявление',
+ rules:'Правила',agree:'Публикуя объявление, вы соглашаетесь с',agreeLink:'правилами сайта',
+ rulesT:'Правила Topaman',
+ rulesHTML:`<div class="rbox"><h4>Как проходит проверка</h4><p style="margin:0">Каждое объявление проверяется автоматически за несколько секунд. Если всё в порядке, оно сразу появляется на сайте. Если есть нарушение, объявление не публикуется, и мы показываем причину.</p></div>
+ <h4>Запрещено</h4><ul><li>оружие, боеприпасы, взрывчатка</li><li>наркотики и запрещённые вещества</li><li>поддельные документы, дипломы, права</li><li>азартные игры, ставки, казино</li><li>услуги для взрослых и неприличные фото</li><li>мат, оскорбления, дискриминация</li><li>требование предоплаты на карту</li></ul>
+ <h4>Фото</h4><ul><li>только настоящие фото товара, без чужих картинок</li><li>хороший свет, без сильного размытия</li><li>без номеров телефонов и ссылок на фото</li></ul>
+ <h4>Объявление</h4><ul><li>один товар — одно объявление</li><li>реальная цена в сумах, без «цена 1 сум»</li><li>правильная категория и город</li><li>контакты не пишите в заголовке</li></ul>
+ <div class="rbox"><h4>Жалобы</h4><p style="margin:0">На любое объявление можно пожаловаться. После 3 жалоб от разных людей оно скрывается автоматически. За повторные нарушения аккаунт блокируется.</p></div>`,
  login:'Войти',loginT:'Вход в Topaman',loginS:'Один аккаунт для объявлений, чатов и избранного',gBtn:'Войти через Google',tgBtn:'Войти через Telegram',
  or:'или',terms:'Входя, вы соглашаетесь с правилами сайта',demoNote:'Демо-режим: вход пока имитируется. Настоящий подключим через Firebase (Google) и Telegram-бота.',
  chooseAcc:'Выберите аккаунт Google',otherAcc:'Использовать другой аккаунт',tgAsk:'Topaman.uz просит войти через ваш аккаунт Telegram. Имя и фото профиля будут видны на сайте.',
@@ -537,6 +572,19 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  prT:'Topaman tariflari',prSub:'Oddiy e’lon doim bepul. Faqat reklama va biznes funksiyalari uchun to‘lanadi.',
  gPriv:'Jismoniy shaxslar',gJob:'Ish beruvchilar',gBiz:'Do‘kon va kompaniyalar',rec:'Ommabop',perMonth:'oyiga',
  choose:'Tanlash',
+ checking:'E’lon avtomatik tekshirilmoqda…',chkText:'matn',chkPhoto:'surat',chkPrice:'narx',approved:'Avtomatik tekshirildi va joylandi',rejected:'E’lon joylanmadi. Sabab:',fixHint:'Tuzating va «Joylash»ni yana bosing.',
+ mWeapon:'qurol va o‘q-dorilarni sotish taqiqlangan',mDrugs:'taqiqlangan moddalar',mFake:'soxta hujjatlar',mGamble:'qimor va stavkalar',mAdult:'kattalar uchun xizmatlar',
+ mScam:'firibgarlikka o‘xshaydi: kartaga oldindan to‘lov talab qilish mumkin emas',mRude:'so‘kinish va haqorat',mPrice:'bunday tovar uchun narx juda past, aldovga o‘xshaydi',
+ mDark:'surat juda qorong‘i, yorug‘ joyda suratga oling',mSmall:'surat juda kichik',mLink:'sarlavhada havola va kontaktlar taqiqlangan, telefonni «Telefonni ko‘rsatish» tugmasi ko‘rsatadi',
+ report:'Shikoyat qilish',repT:'E’lon ustidan shikoyat',repR:['Firibgarlik','Taqiqlangan tovar','Odobsiz surat yoki matn','Noto‘g‘ri narx yoki toifa','Boshqa'],
+ repDone:'Rahmat! Shikoyat qabul qilindi. 3 ta shikoyatdan keyin e’lon avtomatik yashiriladi.',repAlready:'Siz bu e’lon ustidan allaqachon shikoyat qilgansiz',
+ rules:'Qoidalar',agree:'E’lon joylash orqali siz',agreeLink:'sayt qoidalariga rozilik bildirasiz',
+ rulesT:'Topaman qoidalari',
+ rulesHTML:`<div class="rbox"><h4>Tekshiruv qanday o‘tadi</h4><p style="margin:0">Har bir e’lon bir necha soniyada avtomatik tekshiriladi. Hammasi joyida bo‘lsa, darhol saytda paydo bo‘ladi. Qoidabuzarlik bo‘lsa, e’lon joylanmaydi va sababi ko‘rsatiladi.</p></div>
+ <h4>Taqiqlanadi</h4><ul><li>qurol, o‘q-dorilar, portlovchi moddalar</li><li>giyohvand va taqiqlangan moddalar</li><li>soxta hujjatlar, diplomlar, guvohnomalar</li><li>qimor, stavkalar, kazino</li><li>kattalar uchun xizmatlar va odobsiz suratlar</li><li>so‘kinish, haqorat, kamsitish</li><li>kartaga oldindan to‘lov talab qilish</li></ul>
+ <h4>Suratlar</h4><ul><li>faqat tovarning haqiqiy surati</li><li>yaxshi yorug‘lik, xira bo‘lmasin</li><li>suratda telefon raqami va havolalar bo‘lmasin</li></ul>
+ <h4>E’lon</h4><ul><li>bitta tovar — bitta e’lon</li><li>so‘mda haqiqiy narx</li><li>to‘g‘ri toifa va shahar</li><li>kontaktlarni sarlavhaga yozmang</li></ul>
+ <div class="rbox"><h4>Shikoyatlar</h4><p style="margin:0">Har qanday e’lon ustidan shikoyat qilish mumkin. Turli odamlardan 3 ta shikoyatdan keyin u avtomatik yashiriladi. Takroriy qoidabuzarlik uchun akkaunt bloklanadi.</p></div>`,
  login:'Kirish',loginT:'Topaman’ga kirish',loginS:'E’lonlar, chatlar va saralanganlar uchun bitta akkaunt',gBtn:'Google orqali kirish',tgBtn:'Telegram orqali kirish',
  or:'yoki',terms:'Kirish orqali sayt qoidalariga rozilik bildirasiz',demoNote:'Demo rejim: kirish hozircha taqlid qilinadi. Haqiqiysini Firebase (Google) va Telegram-bot orqali ulaymiz.',
  chooseAcc:'Google akkauntini tanlang',otherAcc:'Boshqa akkauntdan foydalanish',tgAsk:'Topaman.uz Telegram akkauntingiz orqali kirishni so‘rayapti. Ism va profil surati saytda ko‘rinadi.',
@@ -645,7 +693,7 @@ let recent=store.get('tp_recent',[]);
 let chats=store.get('tp_chats',{});
 let state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12};
 
-const all=()=>[...userAds,...SEED.map(a=>({...a,ts:now-a.ago}))];
+const all=()=>[...userAds,...SEED.map(a=>({...a,ts:now-a.ago}))].filter(a=>!isHidden(a));
 const byId=id=>all().find(x=>x.id==id);
 const catOf=id=>CATS.find(c=>c.id===id);
 const cname=c=>c[lang];
@@ -768,14 +816,27 @@ function openAd(id){
         </div>
         ${a.top||!a.mine?'':`<div class="promo"><span>${t('promoTxt')}</span><button class="btn gold" id="promoBtn">${promoOn()?t('promoBtnFree'):t('promoBtn')}</button></div>`}
         <div class="safe">${t('safe')}</div>
+        ${a.mine?'':`<button class="repbtn" id="repBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 21V4M5 4h11l-2 4 2 4H5"/></svg>${t('report')}</button>`}
       </div>
     </div>
     <div class="chat" id="chat" hidden></div>`);
   $('#showTel').onclick=e=>{e.currentTarget.textContent=tel+' ('+t('test')+')'};
   $('#chatBtn').onclick=()=>user?openChatIn(a):openLogin(()=>{openAd(a.id);openChatIn(a)},'needChat');
   const p=$('#promoBtn');if(p)p.onclick=()=>{if(!promoOn())return toast(t('paidNote'));const m=userAds.find(x=>x.id==a.id);if(m){m.top='top';m.ts=Date.now();store.set('tp_ads',userAds)}toast(t('upFree'));closeModal()};
+  const rb=$('#repBtn');if(rb)rb.onclick=()=>openReport(a);
   if(chats[a.id])openChatIn(a,true);
 }
+/* complaints: 3 reports from different people hide the ad automatically */
+var reports=store.get('tp_reports',{}), myReports=new Set(store.get('tp_myreports',[]));
+var HIDE_AT=3;
+function isHidden(a){return !!reports&&(reports[a.id]||0)>=HIDE_AT}
+function openReport(a){
+  if(myReports.has(a.id))return toast(t('repAlready'));
+  openModal(`<div class="cab"><h3 class="mh">${t('repT')}</h3><p style="margin:0;color:var(--ink2)">${esc(a.title)}</p><div class="reasons">${t('repR').map((r,i)=>`<button data-rr="${i}">${r}</button>`).join('')}</div></div>`);
+  $('#modal').classList.add('narrow');
+  $('.reasons').onclick=e=>{if(!e.target.closest('[data-rr]'))return;reports[a.id]=(reports[a.id]||0)+1;myReports.add(a.id);store.set('tp_reports',reports);store.set('tp_myreports',[...myReports]);closeModal();toast(t('repDone'))};
+}
+function openRules(){openModal(`<div class="rules"><h3 class="mh">${t('rulesT')}</h3>${t('rulesHTML')}</div>`)}
 function openChatIn(a,silent){
   if(!chats[a.id]){chats[a.id]=[{me:0,t:t('autoHi')}];store.set('tp_chats',chats)}
   const box=$('#chat');box.hidden=false;
@@ -831,15 +892,19 @@ function openForm(){
     <div class="f2"><label class="fl">${t('fName')}<input id="fName" value="${esc(user?user.name:'')}"></label><label class="fl">${t('fPhoto')}<input id="fImg" type="file" accept="image/*"></label></div>
     <div><div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px">${t('promoH')}</div><div class="tariffs">${PRICES.priv.map((x,i)=>tariffCard(x,i===0)).join('')}</div></div>
     <div class="err" id="fErr"></div>
-    <button class="btn primary" style="padding:12px">${t('publish')}</button>
+    <div id="modBox" hidden></div>
+    <p class="agree">${t('agree')} <button type="button" class="linkbtn" id="agreeRules">${t('agreeLink')}</button>.</p>
+    <div class="rules" id="formRules" hidden style="padding:0"></div>
+    <button class="btn primary" id="pubBtn" style="padding:12px">${t('publish')}</button>
   </form>`);
   syncForm();
   $$('.seg button').forEach(b=>b.onclick=()=>{draft.kind=b.dataset.k;$$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));syncForm()});
   $$('.tar').forEach(b=>b.onclick=()=>{draft.tariff=b.dataset.t;$$('.tar').forEach(x=>x.setAttribute('aria-pressed',x===b))});
   $('#fImg').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>shrink(r.result);r.readAsDataURL(f)};
   $('#adForm').onsubmit=submitAd;
+  $('#agreeRules').onclick=()=>{const r=$('#formRules');r.hidden=!r.hidden;if(!r.hidden)r.innerHTML=t('rulesHTML')};
 }
-function shrink(src){const im=new Image();im.onload=()=>{const s=Math.min(1,640/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;c.getContext('2d').drawImage(im,0,0,c.width,c.height);draft.img=c.toDataURL('image/jpeg',.75)};im.src=src}
+function shrink(src){const im=new Image();im.onload=()=>{const s=Math.min(1,640/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;const g=c.getContext('2d');g.drawImage(im,0,0,c.width,c.height);let sum=0;try{const d=g.getImageData(0,0,c.width,c.height).data;for(let i=0;i<d.length;i+=16)sum+=(d[i]*.3+d[i+1]*.59+d[i+2]*.11);draft.imgStats={w:im.width,h:im.height,bright:sum/(d.length/16)}}catch(e){draft.imgStats=null}draft.img=c.toDataURL('image/jpeg',.75)};im.src=src}
 function syncForm(){
   const k=draft.kind;
   $('#catWrap').hidden=k!=='sell';
@@ -847,6 +912,28 @@ function syncForm(){
   $('#priceRow').innerHTML=k==='sell'?`<label class="fl">${t('fPrice')}<input id="fPrice" inputmode="numeric" placeholder="1 500 000"></label><span></span>`:`<label class="fl">${t('fS1')}<input id="fS1" inputmode="numeric" placeholder="4 000 000"></label><label class="fl">${t('fS2')}<input id="fS2" inputmode="numeric" placeholder="6 000 000"></label>`;
 }
 const num=id=>{const e=$(id);return e?parseInt(e.value.replace(/\D/g,''))||0:0};
+/* ---------- auto-moderation ----------
+   Every ad is checked automatically; clean ads publish instantly, violations are rejected with a reason.
+   DEMO: rules below (words, price sanity, photo brightness/size).
+   Production: same flow, plus an AI check of text and photos (e.g. Claude with vision) on the server
+   before the ad is saved; nobody has to approve ads by hand. */
+const MOD_RULES=[
+  [/(оружи|пистолет|патрон|травмат|автомат калашникова|qurol|to.?pponcha|o.?q-dori)/i,'mWeapon'],
+  [/(наркот|травк|спайс|марихуан|гашиш|закладк|giyohvand|nasha)/i,'mDrugs'],
+  [/(поддельн|фальшив|купить диплом|продам паспорт|права без экзамен|soxta|qalbaki)/i,'mFake'],
+  [/(казино|ставки на спорт|букмекер|kazino|stavka)/i,'mGamble'],
+  [/(эскорт|интим|секс|18\+|intim|jinsiy)/i,'mAdult'],
+  [/(предоплат|переведите|перевод на карту|oldindan to.?lov|kartaga o.?tkaz)/i,'mScam'],
+  [/(бля|хуй|хуё|пизд|сука|мудак|ебан|jalab|dalbayob)/i,'mRude']
+];
+function moderate(ad,stats){
+  const txt=ad.title+' '+ad.desc, r=[];
+  MOD_RULES.forEach(([re,k])=>{if(re.test(txt))r.push(k)});
+  if(/(https?:\/\/|t\.me\/|@[a-z0-9_]{4,}|\+?998[\s-]?\d{2})/i.test(ad.title))r.push('mLink');
+  if(ad.kind==='sell'&&ad.price>0&&ad.price<500000&&/(iphone|айфон|samsung|macbook|playstation|cobalt|кобальт|квартир|kvartira)/i.test(txt))r.push('mPrice');
+  if(stats){if(stats.bright<35)r.push('mDark');if(Math.min(stats.w,stats.h)<150)r.push('mSmall')}
+  return [...new Set(r)];
+}
 function submitAd(e){
   e.preventDefault();
   const title=$('#fTitle').value.trim(),name=$('#fName').value.trim();
@@ -855,9 +942,17 @@ function submitAd(e){
   const k=draft.kind,tr=draft.tariff;
   const ad={id:Date.now(),kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),img:draft.img,top:(tr==='top'||tr==='vip')?tr:null,urg:tr==='urg'?1:0,views:0,photos:draft.img?1:0,facts:{},mine:1};
   if(k==='sell')ad.price=num('#fPrice');else{const a=num('#fS1'),b=num('#fS2');if(a)ad.salary=[a,Math.max(a,b)]}
-  userAds.unshift(ad);store.set('tp_ads',userAds);
-  state={...state,kind:'all',cat:null,q:'',onlyFav:false};$('#q').value='';syncTabs();closeModal();scrollTo({top:$('#grid').offsetTop-120});
-  toast(tr==='free'?t('published'):t('published')+'. '+(promoOn()?t('topFree'):t('paidNote')));
+  const box=$('#modBox'),btn=$('#pubBtn');
+  $('#fErr').textContent='';btn.disabled=true;box.hidden=false;box.className='modbox run';
+  box.innerHTML=`<b>${t('checking')}</b><div class="chk"><span>${t('chkText')}</span><span>${t('chkPhoto')}</span><span>${t('chkPrice')}</span></div>`;
+  setTimeout(()=>{
+    btn.disabled=false;
+    const bad=moderate(ad,draft.img?draft.imgStats:null);
+    if(bad.length){box.className='modbox bad';box.innerHTML=`<b>${t('rejected')}</b><ul>${bad.map(k=>`<li>${t(k)}</li>`).join('')}</ul><span style="color:var(--ink2)">${t('fixHint')}</span>`;return}
+    userAds.unshift(ad);store.set('tp_ads',userAds);
+    state={...state,kind:'all',cat:null,q:'',onlyFav:false};$('#q').value='';syncTabs();closeModal();scrollTo({top:$('#grid').offsetTop-120});
+    toast('✓ '+t('approved')+(tr==='free'?'':'. '+(promoOn()?t('topFree'):t('paidNote'))));
+  },1400);
 }
 
 /* ---------- auth ----------
@@ -967,6 +1062,7 @@ $('#hFav').onclick=toggleFav;$('#bFav').onclick=toggleFav;
 const postGated=()=>requireLogin(openForm,'needPost');$('#postBtn').onclick=postGated;$('#bPost').onclick=postGated;
 $('#hChats').onclick=openChats;$('#bChats').onclick=openChats;
 $('#hCab').onclick=openCab;$('#bCab').onclick=openCab;
+$('#footRules').onclick=()=>openRules();
 $('#hPrice').onclick=openPricing;$('#launchBtn').onclick=openPricing;$('#bizBtn').onclick=openPricing;
 $('#home').onclick=goHome;$('#bHome').onclick=goHome;
 $('#recent').onclick=e=>{const b=e.target.closest('.rc');if(b)openAd(b.dataset.id)};
