@@ -579,7 +579,7 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
   .sec-h .tools{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
   .tbtn{justify-content:center;font-size:14px;padding:10px 8px;min-width:0}
   .tools select{width:100%;min-width:0;font-size:14px;padding:10px 8px}
-  #radius[hidden]+#sort{grid-column:1/-1}
+  #radius:not([hidden])+#sort{grid-column:1/-1}
   #bigMap{height:330px}
 }
 /* similar ads */
@@ -596,6 +596,33 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .sc b{font-size:13px;font-weight:500;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .sc small{font-size:12px;color:var(--ink3)}
 @media (max-width:760px){.sim{grid-template-columns:repeat(2,1fr)}.simwrap{margin:4px 10px 0}}
+/* delivery */
+.deliv{margin-top:14px;border:1.5px solid var(--tq);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px;background:var(--tq-soft)}
+.deliv .dh{display:flex;align-items:center;gap:10px}
+.deliv .dh svg{width:30px;height:30px;color:var(--tq);flex-shrink:0}
+.deliv .dh div{flex:1;min-width:0;display:flex;flex-direction:column}
+.deliv .dh small{color:var(--ink2);font-size:12.5px}
+.deliv .dp{font-weight:700;white-space:nowrap}
+.deliv .far{color:var(--ink2);font-size:13px}
+.deliv .btn{padding:11px}
+.chip.dl{background:var(--tq-soft);color:var(--tq)}
+.chk{display:flex;gap:9px;align-items:center;font-size:14px;cursor:pointer}
+.chk input{width:19px;height:19px;accent-color:var(--tq)}
+.ordsum{border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:6px;background:var(--surface)}
+.ordsum > div:first-child{display:flex;flex-direction:column}
+.ordsum > div:first-child span{font-size:12.5px;color:var(--ink3)}
+.ordsum .r{display:flex;justify-content:space-between;gap:10px;font-size:14px}
+.ordsum .r span{color:var(--ink2)}
+.ordsum .r.tot{border-top:1px dashed var(--line);padding-top:6px;font-size:15.5px}
+.ordst{margin:6px 0 0;padding:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+.ordst li{position:relative;padding-left:30px;color:var(--ink3)}
+.ordst li::before{content:"";position:absolute;left:0;top:1px;width:20px;height:20px;border-radius:50%;border:2px solid var(--line)}
+.ordst li.ok{color:var(--ink)}
+.ordst li.ok::before{background:var(--green);border-color:var(--green)}
+.ordst li.now{color:var(--ink);font-weight:600}
+.ordst li.now::before{border-color:var(--tq);border-top-color:transparent;animation:spin 1s linear infinite}
+.ordst small{display:block;font-weight:400;color:var(--ink2)}
+@keyframes spin{to{transform:rotate(360deg)}}
 @keyframes sheet{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.modal{animation:none!important}}
 </style>
@@ -659,6 +686,7 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
     <div class="tools">
       <button class="tbtn" id="nearBtn" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span data-i="nearMe"></span></button>
       <button class="tbtn" id="mapBtn" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg><span id="mapLbl"></span></button>
+      <button class="tbtn" id="delBtn" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h11v10H2zM13 9h4l4 4v3h-8z"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><span data-i="withDeliv"></span></button>
       <select id="radius" aria-label="km" hidden></select>
       <select id="sort" aria-label="Сортировка"></select>
     </div>
@@ -714,7 +742,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  launchT:'Акция запуска',launchS:'Первые 3 месяца бесплатно: вакансии, поднятие 1 раз в день и каждый месяц 1 VIP, 3 ТОП и 3 «Срочно». До {d}.',launchB:'Смотреть тарифы',free:'Бесплатно',freeUntil:'Бесплатно до {d}',promoBtnFree:'Поднять в ТОП бесплатно',upFree:'Объявление поднято в ТОП бесплатно',topFree:'ТОП включён бесплатно по акции запуска',onlineNow:'сейчас на сайте',
  regions:'Объявления по регионам',tAll:'Все',tSell:'Продажа вещей',tJob:'Вакансии',tCv:'Ищу работу',recent:'Вы недавно смотрели',
  lAll:'Свежие объявления',lSell:'Продажа вещей',lJob:'Вакансии',lCv:'Резюме: ищу работу',lFav:'Избранное',pcs:'шт.',
- sNew:'Сначала новые',similar:'Похожие объявления',sNear:'Ближе ко мне',nearMe:'Рядом со мной',anyDist:'Любое расстояние',km:'км',m:'м',mapBtn:'Карта',listBtn:'Скрыть карту',geoAsk:'Определяем ваше место…',geoFail:'Не удалось определить место — считаем от центра: {c}. Разрешите геолокацию в браузере.',fromYou:'от вас',place:'Где находится',myPlace:'Моё место',placeHint:'Передвиньте метку на карте. Другим показываем только район (~300 м), не точный адрес.',route:'Маршрут',approx:'Примерное место',mapNone:'В этом радиусе объявлений нет — увеличьте радиус',mln:'млн',ths:'тыс',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
+ sNew:'Сначала новые',withDeliv:'С доставкой',delivT:'Доставка курьером',delivS:'Яндекс Доставка · по городу, 1–2 часа',delivFrom:'от',buyDel:'Купить с доставкой',delivFar:'Продавец в другом городе — доставку между городами уточните у продавца.',ordT:'Заказ с доставкой',ordItem:'Товар',ordDel:'Доставка',ordTotal:'Итого',ordAddr:'Куда доставить',ordAddrPh:'Улица, дом, подъезд, квартира',ordPay:'Оплата',payCash:'Наличными курьеру',payCard:'Картой: Payme / Click',ordBtn:'Заказать курьера',ordErr:'Укажите адрес (минимум 5 символов) и телефон.',st1:'Заказ создан',st2:'Ищем курьера…',st3:'Курьер найден',st4:'Едет к продавцу за товаром',ordDemo:'Демо: курьер не вызывается. После подключения Яндекс Доставки заказ будет уходить курьеру автоматически.',fDeliv:'Могу отправить с курьером (Яндекс Доставка)',needOrder:'Войдите, чтобы заказать доставку',similar:'Похожие объявления',sNear:'Ближе ко мне',nearMe:'Рядом со мной',anyDist:'Любое расстояние',km:'км',m:'м',mapBtn:'Карта',listBtn:'Скрыть карту',geoAsk:'Определяем ваше место…',geoFail:'Не удалось определить место — считаем от центра: {c}. Разрешите геолокацию в браузере.',fromYou:'от вас',place:'Где находится',myPlace:'Моё место',placeHint:'Передвиньте метку на карте. Другим показываем только район (~300 м), не точный адрес.',route:'Маршрут',approx:'Примерное место',mapNone:'В этом радиусе объявлений нет — увеличьте радиус',mln:'млн',ths:'тыс',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
  howT:'Как это работает',how1:'Сфотографируйте вещь или опишите вакансию',how2:'Опубликуйте за 1 минуту, бесплатно',how3:'Покупатели и кандидаты напишут в чат',
  bizT:'Для магазинов и работодателей',bizS:'Страница магазина с логотипом, пакеты вакансий, доступ к базе резюме и статистика просмотров.',bizB:'Тарифы для бизнеса',
  foot:'площадка объявлений Узбекистана',demo:'Демо-версия: все объявления и телефоны тестовые',
@@ -772,7 +800,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  launchT:'Ishga tushirish aksiyasi',launchS:'Dastlabki 3 oy bepul: vakansiyalar, kuniga 1 marta ko‘tarish va har oy 1 VIP, 3 TOP va 3 «Shoshilinch». {d} gacha.',launchB:'Tariflarni ko‘rish',free:'Bepul',freeUntil:'{d} gacha bepul',promoBtnFree:'TOPga bepul ko‘tarish',upFree:'E’lon TOPga bepul ko‘tarildi',topFree:'TOP ishga tushirish aksiyasi bo‘yicha bepul yoqildi',onlineNow:'hozir saytda',
  regions:'Viloyatlar bo‘yicha e’lonlar',tAll:'Hammasi',tSell:'Narsalar savdosi',tJob:'Vakansiyalar',tCv:'Ish qidiraman',recent:'Siz yaqinda ko‘rgansiz',
  lAll:'Yangi e’lonlar',lSell:'Narsalar savdosi',lJob:'Vakansiyalar',lCv:'Rezyumelar: ish qidiraman',lFav:'Saralanganlar',pcs:'ta',
- sNew:'Avval yangilari',similar:'O‘xshash e’lonlar',sNear:'Menga yaqinroq',nearMe:'Yonimda',anyDist:'Istalgan masofa',km:'km',m:'m',mapBtn:'Xarita',listBtn:'Xaritani yopish',geoAsk:'Joylashuvingiz aniqlanmoqda…',geoFail:'Joyni aniqlab bo‘lmadi — markazdan hisoblaymiz: {c}. Brauzerda geolokatsiyaga ruxsat bering.',fromYou:'sizdan',place:'Qayerda joylashgan',myPlace:'Mening joyim',placeHint:'Belgini xaritada suring. Boshqalarga faqat hudud (~300 m) ko‘rsatiladi, aniq manzil emas.',route:'Yo‘nalish',approx:'Taxminiy joy',mapNone:'Bu radiusda e’lon yo‘q — radiusni kattalashtiring',mln:'mln',ths:'ming',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
+ sNew:'Avval yangilari',withDeliv:'Yetkazib berish bilan',delivT:'Kuryer orqali yetkazish',delivS:'Yandex Yetkazib berish · shahar ichida, 1–2 soat',delivFrom:'dan',buyDel:'Yetkazib berish bilan olish',delivFar:'Sotuvchi boshqa shaharda — shaharlararo yetkazishni sotuvchi bilan kelishing.',ordT:'Yetkazib berish buyurtmasi',ordItem:'Tovar',ordDel:'Yetkazish',ordTotal:'Jami',ordAddr:'Qayerga yetkazish',ordAddrPh:'Ko‘cha, uy, podyezd, xonadon',ordPay:'To‘lov',payCash:'Kuryerga naqd',payCard:'Karta: Payme / Click',ordBtn:'Kuryer chaqirish',ordErr:'Manzil (kamida 5 belgi) va telefonni kiriting.',st1:'Buyurtma yaratildi',st2:'Kuryer qidirilmoqda…',st3:'Kuryer topildi',st4:'Tovarni olish uchun sotuvchiga ketmoqda',ordDemo:'Demo: kuryer chaqirilmaydi. Yandex Yetkazib berish ulangandan keyin buyurtma kuryerga avtomatik yuboriladi.',fDeliv:'Kuryer orqali yubora olaman (Yandex Yetkazib berish)',needOrder:'Yetkazib berish buyurtmasi uchun kiring',similar:'O‘xshash e’lonlar',sNear:'Menga yaqinroq',nearMe:'Yonimda',anyDist:'Istalgan masofa',km:'km',m:'m',mapBtn:'Xarita',listBtn:'Xaritani yopish',geoAsk:'Joylashuvingiz aniqlanmoqda…',geoFail:'Joyni aniqlab bo‘lmadi — markazdan hisoblaymiz: {c}. Brauzerda geolokatsiyaga ruxsat bering.',fromYou:'sizdan',place:'Qayerda joylashgan',myPlace:'Mening joyim',placeHint:'Belgini xaritada suring. Boshqalarga faqat hudud (~300 m) ko‘rsatiladi, aniq manzil emas.',route:'Yo‘nalish',approx:'Taxminiy joy',mapNone:'Bu radiusda e’lon yo‘q — radiusni kattalashtiring',mln:'mln',ths:'ming',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
  howT:'Qanday ishlaydi',how1:'Narsani suratga oling yoki vakansiyani yozing',how2:'1 daqiqada bepul joylang',how3:'Xaridorlar va nomzodlar chatga yozadi',
  bizT:'Do‘konlar va ish beruvchilar uchun',bizS:'Logotipli do‘kon sahifasi, vakansiya paketlari, rezyume bazasi va ko‘rishlar statistikasi.',bizB:'Biznes tariflari',
  foot:'O‘zbekiston e’lonlar maydoni',demo:'Demo versiya: barcha e’lonlar va telefonlar sinov uchun',
@@ -929,7 +957,7 @@ let userAds=store.get('tp_ads',[]);
 let favs=new Set(store.get('tp_favs',[]));
 let recent=store.get('tp_recent',[]);
 let chats=store.get('tp_chats',{});
-let state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12,me:null,near:false,radius:10,map:false};
+let state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12,me:null,near:false,radius:10,map:false,deliv:false};
 
 /* own ads: paid options end after their days, the ad itself is hidden after 30 days until renewed */
 function live(a){const n=Date.now(),b={...a};if(b.topUntil&&b.topUntil<n)b.top=null;if(b.urgUntil&&b.urgUntil<n)b.urg=0;return b}
@@ -999,7 +1027,7 @@ function card(a){
     <div class="cbody">
       <div class="cprice${a.kind!=='sell'?' sal':''}">${priceHTML(a)}</div>
       <div class="ctitle">${esc(a.title)}</div>
-      ${a.ver?`<span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg>${t('verified')}</span>`:''}
+      ${hasDeliv(a)?`<span class="chip dl" title="${t('withDeliv')}">🚚 ${t('ordDel')}</span>`:''}${a.ver?`<span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg>${t('verified')}</span>`:''}
       <div class="cmeta"><span>${state.me?`<b class="dist">${fmtDist(distOf(a))}</b> · `:''}${esc(cityName(a.city))} · ${ago(a.ts)}</span><span class="num"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> ${a.views||0}</span></div>
     </div>
   </div>`;
@@ -1034,6 +1062,7 @@ function syncTools(){
   $('#radius').innerHTML=RADII.map(k=>`<option value="${k}">${k?(lang==='uz'?k+' km gacha':'до '+k+' км'):t('anyDist')}</option>`).join('');
   $('#radius').value=String(state.radius);
   $('#mapBtn').setAttribute('aria-pressed',!!state.map);
+  $('#delBtn').setAttribute('aria-pressed',!!state.deliv);
   $('#mapLbl').textContent=state.map?t('listBtn'):t('mapBtn');
   $('#mapWrap').hidden=!state.map;
 }
@@ -1078,7 +1107,7 @@ function render(){
   $('#stJobs').textContent=list.filter(a=>a.kind==='job').length;
   $('#stCv').textContent=list.filter(a=>a.kind==='cv').length;
   const q=norm(state.q);
-  let r=list.filter(a=>state.onlyFav?favs.has(a.id):(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(a.id))&&(!(state.near&&state.radius&&state.me)||distOf(a)<=state.radius)&&(!q||norm(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz+' '+cityName(a.city)).includes(q)));
+  let r=list.filter(a=>state.onlyFav?favs.has(a.id):(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(a.id))&&(!(state.near&&state.radius&&state.me)||distOf(a)<=state.radius)&&(!state.deliv||hasDeliv(a))&&(!q||norm(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz+' '+cityName(a.city)).includes(q)));
   const rank=a=>a.top==='vip'?2:a.top==='top'?1:0;
   r.sort((x,y)=>state.sort==='near'&&state.me?distOf(x)-distOf(y):state.sort==='cheap'?(priceVal(x)||1e15)-(priceVal(y)||1e15):state.sort==='exp'?priceVal(y)-priceVal(x):state.sort==='pop'?(y.views||0)-(x.views||0):(rank(y)-rank(x))||(y.ts-x.ts));
   if(state.sort==='new'){
@@ -1130,6 +1159,57 @@ function routeLinks(a){
   const g=`https://www.google.com/maps/dir/?api=1${fr?'&origin='+fr.join(','):''}&destination=${to.join(',')}&travelmode=driving`;
   return `<a class="btn ya" target="_blank" rel="noopener" href="${y}">${lang==='uz'?'Yandex':'Яндекс'}</a><a class="btn" target="_blank" rel="noopener" href="${g}">Google</a>`;
 }
+/* ---------- courier delivery (Yandex Delivery) ----------
+   DEMO: price is an estimate by distance, the courier is simulated.
+   Production: the server calls the Yandex Delivery API (business contract + API key kept on the server),
+   gets the real price, creates the order and sends status updates to buyer and seller. */
+const DELIV_CATS=['elec','house','fashion','kids','build','craft'];
+const BULKY=/диван|шкаф|кроват|стол|холодил|стиральн|профнастил|цемент|кирпич|плита|divan|shkaf|stol/i;
+function hasDeliv(a){return a.kind==='sell'&&DELIV_CATS.includes(a.cat)&&(a.mine?!!a.deliv:a.id%4!==0)}
+function delivKm(a){return state.me?distKm(state.me,locOf(a)):null}
+function delivPrice(a,km){if(km==null)km=5;const base=BULKY.test(a.title)?30000:12000,per=BULKY.test(a.title)?3500:2000;return Math.ceil((base+per*Math.max(1,km))/1000)*1000}
+function delivBox(a){
+  if(!hasDeliv(a))return '';
+  const km=delivKm(a),far=km!=null&&km>40;
+  return `<div class="deliv"><div class="dh"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 6h11v10H2zM13 9h4l4 4v3h-8z"/><circle cx="6" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg><div><b>${t('delivT')}</b><small>${t('delivS')}</small></div>
+    <span class="dp">${far?'—':(km==null?t('delivFrom')+' ':'≈ ')+fmt(delivPrice(a,km))+' '+t('sum')}</span></div>
+    ${far?`<small class="far">${t('delivFar')}</small>`:`<button class="btn primary" id="buyDel">${t('buyDel')}</button>`}</div>`;
+}
+function openDelivery(a){
+  if(!user){openLogin(()=>openDelivery(a),'needOrder');return}
+  const to=state.me||cityLL(a.city);let dest=to.slice();
+  const price=()=>delivPrice(a,distKm(dest,locOf(a)));
+  openModal(`<form class="form" id="ordForm" novalidate>
+    <h3>${t('ordT')}</h3>
+    <div class="ordsum"><div><b>${esc(a.title)}</b></div><div class="r"><span>${t('ordItem')}</span><b>${a.price?fmt(a.price)+' '+t('sum'):t('nego')}</b></div>
+      <div class="r"><span>${t('ordDel')}</span><b id="oDel"></b></div><div class="r tot"><span>${t('ordTotal')}</span><b id="oTot"></b></div></div>
+    <label class="fl">${t('ordAddr')}<input id="oAddr" placeholder="${t('ordAddrPh')}"></label>
+    <div class="minimap" id="ordMap"></div>
+    <label class="fl">${t('fPhone')} *<input id="oPhone" type="tel" inputmode="tel" placeholder="+998 90 123 45 67" value="${esc((user&&user.phone)||'')}"></label>
+    <div><div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px">${t('ordPay')}</div>
+      <div class="seg" id="oPay"><button type="button" data-p="cash" aria-pressed="true">${t('payCash')}</button><button type="button" data-p="card" aria-pressed="false">${t('payCard')}</button></div></div>
+    <div class="err" id="oErr"></div>
+    <button class="btn primary" style="padding:12px">${t('ordBtn')}</button>
+    <p class="agree">${t('ordDemo')}</p>
+  </form>`);
+  const upd=()=>{const d=price();$('#oDel').textContent=fmt(d)+' '+t('sum');$('#oTot').textContent=a.price?fmt(a.price+d)+' '+t('sum'):fmt(d)+' '+t('sum')+' + '+t('nego').toLowerCase()};upd();
+  let pay='cash';$$('#oPay button').forEach(b=>b.onclick=()=>{pay=b.dataset.p;$$('#oPay button').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+  needLeaflet().then(()=>{const el=$('#ordMap');if(!el)return;const m=baseMap(el,dest,14);
+    const mk=L.marker(dest,{draggable:true,icon:L.divIcon({className:'pin',html:'<span>📍</span>',iconSize:[0,0]})}).addTo(m);
+    const set=p=>{dest=[p.lat,p.lng];mk.setLatLng(p);upd()};mk.on('dragend',()=>set(mk.getLatLng()));m.on('click',e=>set(e.latlng));
+    setTimeout(()=>m.invalidateSize(),250)}).catch(()=>{});
+  $('#ordForm').onsubmit=e=>{e.preventDefault();
+    const addr=$('#oAddr').value.trim(),ph=normPhone($('#oPhone').value);
+    if(addr.length<5||!ph){$('#oErr').textContent=t('ordErr');return}
+    if(!user.phone){user.phone=ph;store.set('tp_user',user)}
+    const o={id:Date.now(),ad:a.id,title:a.title,addr,dest,phone:ph,pay,deliv:price(),at:Date.now()};
+    const q=store.get('tp_orders',[]);q.push(o);store.set('tp_orders',q);
+    const step=(n)=>[t('st1'),t('st2'),t('st3'),t('st4')].map((x,i)=>`<li class="${i<n?'ok':i===n?'now':''}">${x}${i===2&&n>2?` <small>Азамат · Damas · ★ 4.9 (демо)</small>`:''}</li>`).join('');
+    openModal(`<div class="cab"><h3 class="mh">${t('ordT')}</h3><b>${esc(a.title)}</b><span style="color:var(--ink2)">${esc(addr)} · ${t('ordDel')}: ${fmt(o.deliv)} ${t('sum')}</span><ol class="ordst" id="ordSt">${step(1)}</ol><p class="agree">${t('ordDemo')}</p></div>`);
+    $('#modal').classList.add('narrow');
+    setTimeout(()=>{const e=$('#ordSt');if(e)e.innerHTML=step(3)},2200);
+  };
+}
 function simHTML(a){
   const list=similar(a);if(!list.length)return '';
   return `<div class="simwrap"><h4>${t('similar')}</h4><div class="sim">${list.map(b=>`<button class="sc" data-id="${b.id}">${thumb(b)}<span class="sp${b.kind!=='sell'?' sal':''}">${b.kind==='sell'?(b.price?fmt(b.price)+' '+t('sum'):t('nego')):shortPrice(b)}</span><b>${esc(b.title)}</b><small>${state.me?fmtDist(distOf(b))+' · ':''}${esc(cityName(b.city))}</small></button>`).join('')}</div></div>`;
@@ -1157,6 +1237,7 @@ function openAd(id){
           <button class="btn primary" id="chatBtn">${cLbl}</button>
         </div>
         ${a.top||!a.mine?'':`<div class="promo"><span>${t('promoTxt')}</span><button class="btn gold" id="promoBtn">${isFree('top')?t('promoBtnFree'):t('promoBtn').replace('25 000',fmt(PRICES.priv[2].p))}</button></div>`}
+        ${delivBox(a)}
         <div class="dmap"><div class="row"><b>${t('approx')}</b>${state.me?`<span class="dist">${fmtDist(distOf(a))} ${t('fromYou')}</span>`:''}</div><div class="minimap" id="adMap"></div>
           <div class="row"><span style="color:var(--ink3);font-size:13px">${esc(cityName(a.city))}</span><span class="routes"><span>${t('route')}:</span>${routeLinks(a)}</span></div></div>
         <div class="safe">${t('safe')}</div>
@@ -1171,6 +1252,7 @@ function openAd(id){
     L.circle(p,{radius:300,color:'#12808A',weight:2,fillOpacity:.15}).addTo(m);
     if(state.me)L.marker(state.me,{icon:L.divIcon({className:'',html:'<div class="medot"></div>',iconSize:[18,18],iconAnchor:[9,9]}),interactive:false}).addTo(m);
     setTimeout(()=>m.invalidateSize(),250)}).catch(()=>{});
+  if($('#buyDel'))$('#buyDel').onclick=()=>openDelivery(a);
   $('#showTel').onclick=e=>{const num=a.phone||tel;const b=e.currentTarget;const link=document.createElement('a');
     link.className='btn call';link.id='showTel';link.href='tel:+'+num.replace(/\D/g,'');
     link.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span><small>${t('call')}</small>${esc(num)}${a.phone?'':' ('+t('test')+')'}</span>`;
@@ -1267,6 +1349,7 @@ function openForm(edit){
     <label class="fl">${t('fTitle')}<input id="fTitle" maxlength="80"></label>
     <div class="f2"><label class="fl" id="catWrap">${t('fCat')}<select id="fCat"></select></label><label class="fl">${t('city')}<select id="fCity">${CITIES.map(c=>`<option value="${c[0]}">${lang==='uz'?c[1]:c[0]}</option>`).join('')}</select></label></div>
     <div class="f2" id="priceRow"></div>
+    <label class="chk" id="delivRow"><input type="checkbox" id="fDeliv"> <span>🚚 ${t('fDeliv')}</span></label>
     <label class="fl">${t('fDesc')}<textarea id="fDesc" placeholder="${t('fDescPh')}"></textarea></label>
     <div class="f2"><label class="fl">${t('fName')}<input id="fName" value="${esc(user?user.name:'')}"></label><label class="fl">${t('fPhoto')}<span class="upl" id="upl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>${t('addPhoto')}</span><input id="fImg" type="file" accept="image/*" hidden></span></label></div>
     <div class="placebox"><div class="row"><span>${t('place')}</span><button type="button" class="tbtn" id="myPlace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7"/></svg>${t('myPlace')}</button></div><div class="minimap" id="formMap"></div><small>${t('placeHint')}</small></div>
@@ -1282,7 +1365,7 @@ function openForm(edit){
   syncForm();
   $$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===draft.kind));
   if(edit){
-    $('#fTitle').value=edit.title;$('#fDesc').value=edit.desc||'';$('#fName').value=edit.seller;$('#fCity').value=edit.city;
+    $('#fTitle').value=edit.title;$('#fDesc').value=edit.desc||'';$('#fName').value=edit.seller;$('#fCity').value=edit.city;$('#fDeliv').checked=!!edit.deliv;
     if(edit.kind==='sell'){$('#fCat').value=edit.cat;$('#fPrice').value=edit.price||''}
     else if(edit.salary){$('#fS1').value=edit.salary[0];$('#fS2').value=edit.salary[1]}
     if(edit.img){const u=$('#upl');u.style.backgroundImage=`url(${edit.img})`;u.classList.add('has')}
@@ -1313,6 +1396,7 @@ function shrink(src){const im=new Image();im.onload=()=>{const s=Math.min(1,640/
 function syncForm(){
   const k=draft.kind;
   $('#catWrap').hidden=k!=='sell';
+  if($('#delivRow'))$('#delivRow').hidden=k!=='sell';
   $('#fCat').innerHTML=CATS.filter(c=>c.kind==='sell').map(c=>`<option value="${c.id}">${cname(c)}</option>`).join('');
   setTimeout(updatePay);
   $('#priceRow').innerHTML=k==='sell'?`<label class="fl">${t('fPrice')}<input id="fPrice" inputmode="numeric" placeholder="1 500 000"></label><span></span>`:`<label class="fl">${t('fS1')}<input id="fS1" inputmode="numeric" placeholder="4 000 000"></label><label class="fl">${t('fS2')}<input id="fS2" inputmode="numeric" placeholder="6 000 000"></label>`;
@@ -1353,7 +1437,7 @@ function submitAd(e){
   $('#fPhone').value=phone;
   if(user&&!user.phone){user.phone=phone;store.set('tp_user',user)}
   const k=draft.kind,tr=draft.tariff;
-  const ad={id:draft.editId||Date.now(),kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),img:draft.img,top:(tr==='top'||tr==='vip')?tr:null,urg:tr==='urg'?1:0,views:0,photos:draft.img?1:0,facts:{},mine:1,phone,created:Date.now(),loc:draft.loc||cityLL($('#fCity').value)};
+  const ad={id:draft.editId||Date.now(),kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),img:draft.img,top:(tr==='top'||tr==='vip')?tr:null,urg:tr==='urg'?1:0,views:0,photos:draft.img?1:0,facts:{},mine:1,phone,created:Date.now(),deliv:k==='sell'&&$('#fDeliv').checked?1:0,loc:draft.loc||cityLL($('#fCity').value)};
   if(ad.top)ad.topUntil=Date.now()+DUR[ad.top]*DAY;
   if(ad.urg)ad.urgUntil=Date.now()+DUR.urg*DAY;
   if(k==='sell')ad.price=num('#fPrice');else{const a=num('#fS1'),b=num('#fS2');if(a)ad.salary=[a,Math.max(a,b)]}
@@ -1535,6 +1619,7 @@ $('#nearBtn').onclick=()=>{if(state.near){state.near=false;if(state.sort==='near
   locate(()=>{state.near=true;state.sort='near';$('#sort').value='near';state.limit=12;render()})};
 /* link …/#map opens the map straight away */
 if(location.hash==='#map'){state.map=true;setTimeout(()=>{render();$('#mapWrap').scrollIntoView({block:'start'});scrollBy(0,-130)},400)}
+$('#delBtn').onclick=()=>{state.deliv=!state.deliv;state.limit=12;render()};
 $('#radius').onchange=e=>{state.radius=+e.target.value;state.limit=12;render()};
 $('#mapBtn').onclick=()=>{state.map=!state.map;if(state.map&&!state.me&&navigator.geolocation){locate(render)}else render();if(state.map)setTimeout(()=>$('#mapWrap').scrollIntoView({behavior:'smooth',block:'start'}),60)};
 $('#hFav').onclick=toggleFav;$('#bFav').onclick=toggleFav;
