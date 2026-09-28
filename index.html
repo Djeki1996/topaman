@@ -317,6 +317,21 @@ footer::before{display:none}
 footer .ikat{margin-bottom:20px}
 .launch{border-left:8px solid var(--terra)}
 @media (max-width:760px){.lagan{width:120px;height:120px;opacity:.25;bottom:-30px}.lagan.l{left:-30px}.lagan.r{right:-30px}.stats + .ikat{margin-inline:8px}}
+
+/* Uzbek duotone icons */
+.uzi{fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.uzi .d{fill:currentColor;fill-opacity:.2}
+.uzi .a{fill:var(--gold);stroke:#8A5A12;stroke-width:1.2}
+.uzi .as{stroke:var(--gold);stroke-width:2.4}
+.uzi .k{fill:currentColor}
+.cat .ci{position:relative;width:78px;height:92px;padding-top:14px;box-shadow:inset 0 -6px 0 var(--gold);background-blend-mode:multiply}
+.cat .ci::before{content:"";position:absolute;inset:0;background:var(--girih-soft) center/26px 26px;opacity:.9}
+.cat .ci::after{content:"";position:absolute;left:10px;right:10px;top:16px;bottom:14px;border:1.5px solid rgba(214,161,58,.75);border-bottom:0;border-radius:40px 40px 0 0}
+.cat .ci svg{width:40px;height:40px;position:relative;z-index:1}
+.cat[aria-pressed="true"] .ci{box-shadow:inset 0 -6px 0 var(--terra);filter:none}
+.thumb svg.uzi{width:46%;height:46%}
+.rc .thumb svg.uzi{width:70%;height:70%}
+.cabrow .thumb svg.uzi{width:66%;height:66%}
 </style>
 </head>
 <body>
@@ -476,20 +491,20 @@ const t=k=>TX[lang][k]??TX.ru[k]??k;
 
 /* ---------- data ---------- */
 const ICONS={
-  phone:'<rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M11 18.5h2"/>',
-  car:'<path d="M3 13l2-6h14l2 6v5h-3v-2H6v2H3zM3 13h18"/><circle cx="7" cy="15.5" r=".8"/><circle cx="17" cy="15.5" r=".8"/>',
-  home:'<path d="M3 11l9-7 9 7v10h-6v-6H9v6H3z"/>',
-  sofa:'<path d="M4 11V8a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3M2 12a2 2 0 0 1 4 0v2h12v-2a2 2 0 0 1 4 0v6H2zM5 18v2M19 18v2"/>',
-  shirt:'<path d="M8 3l-5 3 2 4 3-1v12h8V9l3 1 2-4-5-3a4 4 0 0 1-8 0z"/>',
-  baby:'<circle cx="12" cy="8" r="4"/><path d="M5 21a7 7 0 0 1 14 0"/>',
-  tool:'<path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z"/>',
-  brief:'<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>',
-  user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
-  paw:'<circle cx="7" cy="9" r="2"/><circle cx="12" cy="6" r="2"/><circle cx="17" cy="9" r="2"/><path d="M8 17a4 4 0 0 1 8 0 2 2 0 0 1-2 2h-4a2 2 0 0 1-2-2z"/>',
-  pot:'<path d="M9 3h6M10 3v3C7 7 5 10 5 13c0 4 3 8 7 8s7-4 7-8c0-3-2-6-5-7V3"/><path d="M6.5 11h11M6 15h12"/>',
-  wrench:'<path d="M4 20l7-7M14 4l6 6-3 3-6-6zM9 9l-2 2"/>'
+  phone:'<rect class="d" x="14" y="4" width="20" height="40" rx="4"/><rect x="17.5" y="9" width="13" height="25" rx="1.5"/><path class="a" d="M24 15.5l2 4 4 2-4 2-2 4-2-4-4-2 4-2z"/><path d="M22 39h4"/>',
+  car:'<path class="d" d="M4 33V22l6-10h22l9 10h3v11z"/><path d="M12 12v10M22 12v10M32 12l7 10M4 22h36"/><circle class="a" cx="13" cy="34" r="4.5"/><circle class="a" cx="35" cy="34" r="4.5"/>',
+  home:'<path class="d" d="M6 42V22h36v20z"/><path d="M12 22a12 12 0 0 1 24 0"/><path d="M24 10V6"/><circle class="a" cx="24" cy="5" r="2.2"/><path class="a" d="M19 42v-8a5 5 0 0 1 10 0v8z"/><path d="M3 42h42M11 28h4M33 28h4"/>',
+  sofa:'<path class="d" d="M7 21h34c0 12-7 19-17 19S7 33 7 21z"/><path d="M4 21h40"/><path d="M12 17c0-4 5-7 12-7s12 3 12 7"/><rect class="a" x="21" y="6" width="6" height="4" rx="1"/><path d="M14 39l-3 5M34 39l3 5"/><path class="as" d="M13 28h22"/>',
+  shirt:'<path class="d" d="M17 5L7 11l2 31h30l2-31-10-6-7 8z"/><path d="M17 5l7 37M31 5l-7 37"/><path class="as" d="M11 19h7M30 19h7M10.5 27h8M29.5 27h8M10 35h9M29 35h9"/>',
+  baby:'<path class="d" d="M9 27h30l-3 9H12z"/><path d="M9 27a15 15 0 0 1 30 0"/><path d="M24 12v15"/><path d="M5 42c7-5 31-5 38 0"/><circle class="a" cx="24" cy="11" r="2.6"/><path class="as" d="M15 31h18"/>',
+  paw:'<path class="d" d="M17 20c0-4 3-7 7-7s7 3 7 7v10c0 6-3 11-7 11s-7-5-7-11z"/><path d="M17 18c-6-7-14-1-10 6 3 4 9 2 7-2"/><path d="M31 18c6-7 14-1 10 6-3 4-9 2-7-2"/><circle class="a" cx="20.5" cy="25" r="1.6"/><circle class="a" cx="27.5" cy="25" r="1.6"/><path d="M22 35h4"/>',
+  tool:'<path class="d" d="M4 31h19v11H4zM23 31h19v11H23z"/><path d="M4 36.5h38M13.5 31v5.5M32.5 31v5.5M9 36.5V42M28 36.5V42"/><path d="M27 21L40 8l4 4-13 13z"/><path class="a" d="M21 25l5-5 5 5-5 5z"/>',
+  wrench:'<path class="d" d="M31 5a9 9 0 0 0-9 12L6 33l9 9 16-16a9 9 0 0 0 12-9l-6 6-6-2-2-6z"/><circle class="a" cx="11.5" cy="37.5" r="2.4"/>',
+  pot:'<path class="d" d="M18 7h12l-2 6c7 3 10 9 10 15 0 8-6 14-14 14S10 36 10 28c0-6 3-12 10-15z"/><path d="M38 19c5 0 6 5 3 8-2 2-5 3-7 3"/><path class="a" d="M24 20l3 5 5 2.5-5 2.5-3 5-3-5-5-2.5 5-2.5z"/><path class="as" d="M16 13h16"/>',
+  brief:'<rect class="d" x="5" y="14" width="38" height="27" rx="4"/><path d="M17 14v-4a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v4M5 26h38"/><path class="a" d="M24 21l3.5 5-3.5 5-3.5-5z"/>',
+  user:'<path class="k" d="M15 17l2-9h14l2 9z"/><path class="as" d="M19 12.5l2.5 2 2.5-2 2.5 2 2.5-2"/><circle cx="24" cy="23" r="6"/><path class="d" d="M10 44c0-8 6-13 14-13s14 5 14 13z"/><path class="a" d="M24 34l2 3-2 3-2-3z"/>'
 };
-const svg=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">${ICONS[k]}</svg>`;
+const svg=k=>`<svg class="uzi" viewBox="0 0 48 48" aria-hidden="true">${ICONS[k]}</svg>`;
 const CATS=[
   {id:'elec',ru:'Электроника',uz:'Elektronika',icon:'phone',kind:'sell',hue:222},
   {id:'auto',ru:'Транспорт',uz:'Transport',icon:'car',kind:'sell',hue:12},
@@ -555,6 +570,8 @@ const SEED=[
  {id:22,kind:'sell',cat:'house',title:'Казан чугунный 22 л с печкой',price:750000,city:'Коканд',ago:6*D,seller:'Ибрагим',rate:4.8,views:122,photos:3,desc:'Для плова на большую компанию. Печка с трубой.',facts:{Объём:'22 л'}},
  {id:23,kind:'sell',cat:'serv',title:'Ремонт квартир под ключ, бригада 5 человек',price:0,city:'Ташкент',ago:7*D,seller:'Мастер Улугбек',rate:4.9,ver:1,views:340,photos:10,desc:'Штукатурка, плитка, гипсокартон, электрика. Смета бесплатно, гарантия на работы 1 год.',facts:{Опыт:'10 лет'}},
  {id:24,kind:'sell',cat:'serv',title:'Чистка кондиционеров и заправка фреоном',price:150000,city:'Самарканд',ago:8*D,seller:'Салим',rate:4.7,views:95,photos:2,desc:'Выезд по городу бесплатно. Цена за чистку одного блока.',facts:{Выезд:'Бесплатно'}},
+ {id:30,kind:'sell',cat:'fashion',title:'Кроссовки Nike Air Max, 42 размер, оригинал',price:950000,city:'Ташкент',ago:7*H,seller:'Жахонгир',rate:4.7,views:173,photos:5,desc:'Носил 2 месяца, состояние отличное. Коробка есть.',facts:{Состояние:'Б/у',Размер:'42'}},
+ {id:31,kind:'sell',cat:'fashion',title:'Женское платье из адраса, размер 44–46',price:420000,city:'Самарканд',ago:1.8*D,seller:'Шахноза',rate:4.9,views:88,photos:4,desc:'Современный крой из маргиланского адраса. Надевала один раз на свадьбу.',facts:{Состояние:'Как новое',Размер:'44–46'}},
  {id:25,kind:'sell',cat:'craft',title:'Риштанский ляган ручной росписи, 42 см',price:850000,city:'Фергана',ago:3*H,seller:'Уста Алишер (тест)',rate:5,ver:1,views:311,photos:6,desc:'Керамика из Риштана, роспись «ишкор» бирюзовой глазурью. Подходит для плова и как украшение на стену.',facts:{Диаметр:'42 см',Работа:'Ручная'}},
  {id:26,kind:'sell',cat:'craft',title:'Сюзане ручной вышивки, 2 × 1,5 м',price:3500000,city:'Бухара',ago:10*H,top:'vip',seller:'Мастерская «Nur» (тест)',rate:4.9,ver:1,views:486,photos:9,desc:'Шёлковые нитки на хлопке, вышивка «бухорий» за 4 месяца. Для приданого или интерьера.',facts:{Размер:'2 × 1,5 м',Работа:'Ручная'}},
  {id:27,kind:'sell',cat:'craft',title:'Чустская тюбетейка (дўппи), чёрная с белым узором',price:180000,city:'Наманган',ago:1.1*D,seller:'Дильфуза',rate:4.8,views:142,photos:3,desc:'Классический чустский дўппи с узором «қалампир». Размеры от 54 до 60.',facts:{Размер:'54–60'}},
