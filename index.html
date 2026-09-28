@@ -760,7 +760,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  supTopic:'Тема',supTopics:['Вопрос по объявлению','Ошибка на сайте','Оплата и тарифы','Жалоба на пользователя','Предложение','Другое'],
  supMsg:'Сообщение',supMsgPh:'Опишите вопрос. Если это про объявление, напишите его название.',supContact:'Как с вами связаться',supSend:'Отправить в поддержку',
  supErr:'Напишите сообщение хотя бы из 10 символов и укажите телефон или Telegram.',supDone:'Сообщение отправлено в поддержку',
- supDemo:'Демо: сообщения пока не доставляются. После подключения сервера они будут приходить в Telegram-бот @Topaman_skd_bot.',
+ supDemo:'Сообщение сразу придёт в поддержку Topaman. Мы ответим по телефону или в Telegram, который вы указали.',supFail:'Не удалось отправить. Проверьте интернет или напишите нам в Telegram.',supSending:'Отправляем…',
  login:'Войти',loginT:'Вход в Topaman',loginS:'Один аккаунт для объявлений, чатов и избранного',gBtn:'Войти через Google',tgBtn:'Войти через Telegram',
  or:'или',terms:'Входя, вы соглашаетесь с правилами сайта',demoNote:'Демо-режим: вход пока имитируется. Настоящий подключим через Firebase (Google) и Telegram-бота.',
  chooseAcc:'Выберите аккаунт Google',otherAcc:'Использовать другой аккаунт',tgAsk:'Topaman.uz просит войти через ваш аккаунт Telegram. Имя и фото профиля будут видны на сайте.',
@@ -818,7 +818,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  supTopic:'Mavzu',supTopics:['E’lon bo‘yicha savol','Saytdagi xato','To‘lov va tariflar','Foydalanuvchi ustidan shikoyat','Taklif','Boshqa'],
  supMsg:'Xabar',supMsgPh:'Savolingizni yozing. E’lon haqida bo‘lsa, uning nomini yozing.',supContact:'Siz bilan qanday bog‘lanamiz',supSend:'Yordamga yuborish',
  supErr:'Kamida 10 belgidan iborat xabar yozing va telefon yoki Telegramni ko‘rsating.',supDone:'Xabar yordam xizmatiga yuborildi',
- supDemo:'Demo: xabarlar hozircha yetkazilmaydi. Server ulangandan keyin ular @Topaman_skd_bot Telegram-botiga keladi.',
+ supDemo:'Xabar darhol Topaman yordam xizmatiga keladi. Ko‘rsatgan telefon yoki Telegramingiz orqali javob beramiz.',supFail:'Yuborib bo‘lmadi. Internetni tekshiring yoki bizga Telegramda yozing.',supSending:'Yuborilmoqda…',
  login:'Kirish',loginT:'Topaman’ga kirish',loginS:'E’lonlar, chatlar va saralanganlar uchun bitta akkaunt',gBtn:'Google orqali kirish',tgBtn:'Telegram orqali kirish',
  or:'yoki',terms:'Kirish orqali sayt qoidalariga rozilik bildirasiz',demoNote:'Demo rejim: kirish hozircha taqlid qilinadi. Haqiqiysini Firebase (Google) va Telegram-bot orqali ulaymiz.',
  chooseAcc:'Google akkauntini tanlang',otherAcc:'Boshqa akkauntdan foydalanish',tgAsk:'Topaman.uz Telegram akkauntingiz orqali kirishni so‘rayapti. Ism va profil surati saytda ko‘rinadi.',
@@ -1479,6 +1479,7 @@ function cabStatus(a){
    FAQ + a support message form. Production: the form posts to a small server function that forwards
    the text to the support Telegram bot (bot token stays on the server, never in this page). */
 const SUPPORT_BOT='Topaman_skd_bot';
+const SUPPORT_URL='https://topaman-bot.topaman-bot.workers.dev/support';   /* Cloudflare Worker -> owner's Telegram */
 function openHelp(){
   const contact=user?(user.phone||user.tg||user.email||''):'';
   openModal(`<div class="cab help">
@@ -1492,6 +1493,7 @@ function openHelp(){
       <label class="fl">${t('supTopic')}<select id="supTopic">${t('supTopics').map(x=>`<option>${x}</option>`).join('')}</select></label>
       <label class="fl">${t('supMsg')}<textarea id="supMsg" placeholder="${t('supMsgPh')}"></textarea></label>
       <label class="fl">${t('supContact')}<input id="supContact" placeholder="+998 90 123 45 67 / @telegram" value="${esc(contact)}"></label>
+      <input id="supHp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
       <div class="err" id="supErr"></div>
       <button class="btn primary" style="padding:12px">${t('supSend')}</button>
       <p class="agree">${t('supDemo')}</p>
@@ -1500,8 +1502,11 @@ function openHelp(){
   $('#supForm').onsubmit=e=>{e.preventDefault();
     const msg=$('#supMsg').value.trim(),c=$('#supContact').value.trim();
     if(msg.length<10||c.length<5){$('#supErr').textContent=t('supErr');return}
-    const q=store.get('tp_support',[]);q.push({topic:$('#supTopic').value,msg,contact:c,at:Date.now(),page:location.href});store.set('tp_support',q);
-    closeModal();toast('✓ '+t('supDone'));
+    const d={topic:$('#supTopic').value,msg,contact:c,page:location.href.slice(0,200),hp:$('#supHp').value};
+    const btn=$('#supForm button.primary');btn.disabled=true;btn.textContent=t('supSending');
+    fetch(SUPPORT_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)})
+      .then(r=>r.json()).then(j=>{if(!j.ok)throw 0;closeModal();toast('✓ '+t('supDone'))})
+      .catch(()=>{btn.disabled=false;btn.textContent=t('supSend');$('#supErr').textContent=t('supFail')});
   };
 }
 
