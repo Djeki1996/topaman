@@ -1592,7 +1592,9 @@ function showInstall(){
   $('#instBar').hidden=false;
 }
 if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)&&!/claude|anthropic/.test(location.hostname)){
-  navigator.serviceWorker.register('sw.js').catch(()=>{});
+  navigator.serviceWorker.register('sw.js',{updateViaCache:'none'}).then(r=>r.update()).catch(()=>{});
+  /* a new version took over: reload once so the fresh page is shown */
+  let swReloaded=false;navigator.serviceWorker.addEventListener('controllerchange',()=>{if(!swReloaded&&navigator.serviceWorker.controller){swReloaded=true;location.reload()}});
 }
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;showInstall()});
 window.addEventListener('appinstalled',()=>{$('#instBar').hidden=true;toast(t('instDone'))});
