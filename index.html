@@ -473,6 +473,19 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .upl.has{border-style:solid;border-color:var(--tq)}
 .upl.has>svg,.upl.has>span{display:none}
 @media (max-width:760px){.cat{flex:0 0 86px}.cat span:not(.ci){overflow-wrap:anywhere}}
+/* cabinet rows + stats (phone friendly) */
+.cabopen{display:flex;gap:12px;align-items:center;flex:1 1 220px;min-width:0;border:0;background:none;padding:0;text-align:left;color:inherit;cursor:pointer}
+.cabopen:hover b{color:var(--tq)}
+.kpis,.modal .kpis{grid-template-columns:repeat(3,1fr)}
+@media (max-width:760px){
+  .kpi{padding:10px}
+  .kpi b{font-size:20px}
+  .kpi span{font-size:11.5px}
+  .cabrow .ca{flex:1 1 100%}
+  .cabrow .ca .btn{flex:1;padding:9px 6px;font-size:13px}
+  .cat{flex:0 0 92px;font-size:11px}
+  .cat span:not(.ci){overflow-wrap:normal}
+}
 @keyframes sheet{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.modal{animation:none!important}}
 </style>
@@ -591,7 +604,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  chatWith:'Чат',msgPh:'Сообщение…',send:'Отправить',autoHi:'Здравствуйте! Да, объявление актуально.',autoRe:'Хорошо, давайте созвонимся. (автоответ демо)',
  q1:'Ещё актуально?',q2:'Какая последняя цена?',q3:'Где можно посмотреть?',q4:'Когда можно выйти на работу?',
  newAd:'Новое объявление',kSell:'Продаю вещь',kJob:'Ищу работника',kCv:'Ищу работу',fTitle:'Заголовок',fCat:'Категория',fPrice:'Цена, сум',fS1:'Зарплата от, сум',fS2:'до, сум',
- fDesc:'Описание',fDescPh:'Состояние, размеры, условия работы…',fName:'Ваше имя',addPhoto:'Добавить фото',fPhoto:'Фото',promoH:'Продвижение',publish:'Опубликовать',
+ fDesc:'Описание',fDescPh:'Состояние, размеры, условия работы…',fName:'Ваше имя',fPhone:'Телефон для связи',errPhone:'Укажите правильный номер телефона, например +998 90 123 45 67. Без номера объявление не публикуется.',editAd:'Изменить объявление',edit:'Изменить',savedAd:'Изменения сохранены и проверены',addPhoto:'Добавить фото',fPhoto:'Фото',promoH:'Продвижение',publish:'Опубликовать',
  errTitle:'Заголовок слишком короткий: напишите хотя бы 5 символов.',errName:'Укажите имя, чтобы вам могли ответить.',
  published:'Объявление опубликовано',paidNote:'В рабочей версии здесь будет оплата через Payme или Click',
  noFav:'Вы ещё ничего не добавили в избранное.',notFound:'Ничего не найдено. Попробуйте другой запрос или город.',showMore:'Показать ещё',
@@ -638,7 +651,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  chatWith:'Chat',msgPh:'Xabar…',send:'Yuborish',autoHi:'Assalomu alaykum! Ha, e’lon dolzarb.',autoRe:'Yaxshi, qo‘ng‘iroqlashamiz. (demo avtojavob)',
  q1:'Hali dolzarbmi?',q2:'Oxirgi narxi qancha?',q3:'Qayerda ko‘rsa bo‘ladi?',q4:'Qachon ishga chiqsa bo‘ladi?',
  newAd:'Yangi e’lon',kSell:'Narsa sotaman',kJob:'Ishchi qidiraman',kCv:'Ish qidiraman',fTitle:'Sarlavha',fCat:'Toifa',fPrice:'Narx, so‘m',fS1:'Maosh, dan',fS2:'gacha',
- fDesc:'Tavsif',fDescPh:'Holati, o‘lchami, ish sharoitlari…',fName:'Ismingiz',addPhoto:'Surat qo‘shish',fPhoto:'Surat',promoH:'Reklama',publish:'Joylash',
+ fDesc:'Tavsif',fDescPh:'Holati, o‘lchami, ish sharoitlari…',fName:'Ismingiz',fPhone:'Aloqa telefoni',errPhone:'To‘g‘ri telefon raqamini kiriting, masalan +998 90 123 45 67. Raqamsiz e’lon joylanmaydi.',editAd:'E’lonni tahrirlash',edit:'Tahrirlash',savedAd:'O‘zgarishlar saqlandi va tekshirildi',addPhoto:'Surat qo‘shish',fPhoto:'Surat',promoH:'Reklama',publish:'Joylash',
  errTitle:'Sarlavha juda qisqa: kamida 5 ta belgi yozing.',errName:'Sizga javob berishlari uchun ismingizni yozing.',
  published:'E’lon joylandi',paidNote:'Ishchi versiyada bu yerda Payme yoki Click orqali to‘lov bo‘ladi',
  noFav:'Hali hech narsa saralanmagan.',notFound:'Hech narsa topilmadi. Boshqa so‘z yoki shaharni sinab ko‘ring.',showMore:'Yana ko‘rsatish',
@@ -844,7 +857,7 @@ function render(){
   $('#stJobs').textContent=list.filter(a=>a.kind==='job').length;
   $('#stCv').textContent=list.filter(a=>a.kind==='cv').length;
   const q=norm(state.q);
-  let r=list.filter(a=>(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(a.id))&&(!q||norm(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz+' '+cityName(a.city)).includes(q)));
+  let r=list.filter(a=>state.onlyFav?favs.has(a.id):(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(a.id))&&(!q||norm(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz+' '+cityName(a.city)).includes(q)));
   const rank=a=>a.top==='vip'?2:a.top==='top'?1:0;
   r.sort((x,y)=>state.sort==='cheap'?(priceVal(x)||1e15)-(priceVal(y)||1e15):state.sort==='exp'?priceVal(y)-priceVal(x):state.sort==='pop'?(y.views||0)-(x.views||0):(rank(y)-rank(x))||(y.ts-x.ts));
   const titles={all:'lAll',sell:'lSell',job:'lJob',cv:'lCv'};
@@ -878,7 +891,7 @@ function openAd(id){
   const facts=Object.entries(a.facts||{}).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
   const who=a.kind==='job'?t('employer'):a.kind==='cv'?t('applicant'):t('seller');
   const tel='+998 90 000-'+String(a.id%100).padStart(2,'0')+'-'+String((a.id*37)%100).padStart(2,'0');
-  const cLbl=a.kind==='job'?t('apply'):a.kind==='cv'?t('invite'):t('write');
+  const cLbl=a.mine?t('edit'):a.kind==='job'?t('apply'):a.kind==='cv'?t('invite'):t('write');
   const rate=a.rate||5;
   openModal(`
     <div class="dv">
@@ -900,8 +913,8 @@ function openAd(id){
       </div>
     </div>
     <div class="chat" id="chat" hidden></div>`);
-  $('#showTel').onclick=e=>{e.currentTarget.textContent=tel+' ('+t('test')+')'};
-  $('#chatBtn').onclick=()=>user?openChatIn(a):openLogin(()=>{openAd(a.id);openChatIn(a)},'needChat');
+  $('#showTel').onclick=e=>{e.currentTarget.textContent=a.phone?a.phone:tel+' ('+t('test')+')'};
+  $('#chatBtn').onclick=()=>a.mine?openForm(userAds.find(x=>x.id==a.id)):user?openChatIn(a):openLogin(()=>{openAd(a.id);openChatIn(a)},'needChat');
   const p=$('#promoBtn');if(p)p.onclick=()=>{if(!promoOn())return toast(t('paidNote'));const m=userAds.find(x=>x.id==a.id);if(m){m.top='top';m.ts=Date.now();store.set('tp_ads',userAds)}toast(t('upFree'));closeModal()};
   const rb=$('#repBtn');if(rb)rb.onclick=()=>openReport(a);
   if(chats[a.id])openChatIn(a,true);
@@ -960,24 +973,33 @@ tickOnline();setInterval(tickOnline,4000);
 /* ---------- post form ---------- */
 let draft={};
 function tariffCard(x,sel){const n=x[lang];return `<button type="button" class="tar" data-t="${x.id}" aria-pressed="${sel}"><b>${n[0]}</b><span>${n[1]}</span><strong>${priceTag(x.p)}</strong></button>`}
-function openForm(){
-  draft={kind:'sell',tariff:'free',img:null};
+function openForm(edit){
+  edit=edit&&edit.id?edit:null;
+  draft={kind:edit?edit.kind:'sell',tariff:edit?(edit.top||(edit.urg?'urg':'free')):'free',img:edit?edit.img||null:null,editId:edit?edit.id:null};
   openModal(`<form class="form" id="adForm" novalidate>
-    <h3>${t('newAd')}</h3>
+    <h3>${edit?t('editAd'):t('newAd')}</h3>
     <div class="seg" role="group"><button type="button" data-k="sell" aria-pressed="true">${t('kSell')}</button><button type="button" data-k="job" aria-pressed="false">${t('kJob')}</button><button type="button" data-k="cv" aria-pressed="false">${t('kCv')}</button></div>
     <label class="fl">${t('fTitle')}<input id="fTitle" maxlength="80"></label>
     <div class="f2"><label class="fl" id="catWrap">${t('fCat')}<select id="fCat"></select></label><label class="fl">${t('city')}<select id="fCity">${CITIES.map(c=>`<option value="${c[0]}">${lang==='uz'?c[1]:c[0]}</option>`).join('')}</select></label></div>
     <div class="f2" id="priceRow"></div>
     <label class="fl">${t('fDesc')}<textarea id="fDesc" placeholder="${t('fDescPh')}"></textarea></label>
     <div class="f2"><label class="fl">${t('fName')}<input id="fName" value="${esc(user?user.name:'')}"></label><label class="fl">${t('fPhoto')}<span class="upl" id="upl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>${t('addPhoto')}</span><input id="fImg" type="file" accept="image/*" hidden></span></label></div>
-    <div><div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px">${t('promoH')}</div><div class="tariffs">${PRICES.priv.map((x,i)=>tariffCard(x,i===0)).join('')}</div></div>
+    <label class="fl">${t('fPhone')} *<input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" value="${esc(edit?edit.phone||'':(user&&user.phone)||'')}"></label>
+    <div><div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px">${t('promoH')}</div><div class="tariffs">${PRICES.priv.map(x=>tariffCard(x,x.id===draft.tariff)).join('')}</div></div>
     <div class="err" id="fErr"></div>
     <div id="modBox" hidden></div>
     <p class="agree">${t('agree')} <button type="button" class="linkbtn" id="agreeRules">${t('agreeLink')}</button>.</p>
     <div class="rules" id="formRules" hidden style="padding:0"></div>
-    <button class="btn primary" id="pubBtn" style="padding:12px">${t('publish')}</button>
+    <button class="btn primary" id="pubBtn" style="padding:12px">${edit?t('save'):t('publish')}</button>
   </form>`);
   syncForm();
+  $$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===draft.kind));
+  if(edit){
+    $('#fTitle').value=edit.title;$('#fDesc').value=edit.desc||'';$('#fName').value=edit.seller;$('#fCity').value=edit.city;
+    if(edit.kind==='sell'){$('#fCat').value=edit.cat;$('#fPrice').value=edit.price||''}
+    else if(edit.salary){$('#fS1').value=edit.salary[0];$('#fS2').value=edit.salary[1]}
+    if(edit.img){const u=$('#upl');u.style.backgroundImage=`url(${edit.img})`;u.classList.add('has')}
+  }
   $$('.seg button').forEach(b=>b.onclick=()=>{draft.kind=b.dataset.k;$$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));syncForm()});
   $$('.tar').forEach(b=>b.onclick=()=>{draft.tariff=b.dataset.t;$$('.tar').forEach(x=>x.setAttribute('aria-pressed',x===b))});
   $('#fImg').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>shrink(r.result);r.readAsDataURL(f)};
@@ -1014,14 +1036,20 @@ function moderate(ad,stats){
   if(stats){if(stats.bright<35)r.push('mDark');if(Math.min(stats.w,stats.h)<150)r.push('mSmall')}
   return [...new Set(r)];
 }
+/* Uzbek phone: 9 digits or 998 + 9 digits -> "+998 90 123 45 67"; anything else is rejected */
+function normPhone(v){let d=String(v||'').replace(/\D/g,'');if(d.length===9)d='998'+d;if(!/^998\d{9}$/.test(d))return null;return `+998 ${d.slice(3,5)} ${d.slice(5,8)} ${d.slice(8,10)} ${d.slice(10,12)}`}
 function submitAd(e){
   e.preventDefault();
   if(draft.busy)return;
   const title=$('#fTitle').value.trim(),name=$('#fName').value.trim();
   if(title.length<5){$('#fErr').textContent=t('errTitle');return}
   if(!name){$('#fErr').textContent=t('errName');return}
+  const phone=normPhone($('#fPhone').value);
+  if(!phone){$('#fErr').textContent=t('errPhone');$('#fPhone').focus();return}
+  $('#fPhone').value=phone;
+  if(user&&!user.phone){user.phone=phone;store.set('tp_user',user)}
   const k=draft.kind,tr=draft.tariff;
-  const ad={id:Date.now(),kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),img:draft.img,top:(tr==='top'||tr==='vip')?tr:null,urg:tr==='urg'?1:0,views:0,photos:draft.img?1:0,facts:{},mine:1};
+  const ad={id:draft.editId||Date.now(),kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),img:draft.img,top:(tr==='top'||tr==='vip')?tr:null,urg:tr==='urg'?1:0,views:0,photos:draft.img?1:0,facts:{},mine:1,phone};
   if(k==='sell')ad.price=num('#fPrice');else{const a=num('#fS1'),b=num('#fS2');if(a)ad.salary=[a,Math.max(a,b)]}
   const box=$('#modBox'),btn=$('#pubBtn');
   $('#fErr').textContent='';btn.disabled=true;draft.busy=true;box.hidden=false;box.className='modbox run';
@@ -1030,7 +1058,10 @@ function submitAd(e){
     btn.disabled=false;draft.busy=false;
     const bad=moderate(ad,draft.img?draft.imgStats:null);
     if(bad.length){box.className='modbox bad';box.innerHTML=`<b>${t('rejected')}</b><ul>${bad.map(k=>`<li>${t(k)}</li>`).join('')}</ul><span style="color:var(--ink2)">${t('fixHint')}</span>`;return}
-    userAds.unshift(ad);store.set('tp_ads',userAds);
+    if(draft.editId){const i=userAds.findIndex(x=>x.id===draft.editId);if(i>-1){const o=userAds[i];ad.views=o.views;ad.ts=o.ts;if(!draft.img)ad.img=o.img;userAds[i]=ad}}
+    else userAds.unshift(ad);
+    store.set('tp_ads',userAds);
+    if(draft.editId){closeModal();toast('✓ '+t('savedAd'));return}
     state={...state,kind:'all',cat:null,q:'',onlyFav:false};$('#q').value='';syncTabs();closeModal();scrollTo({top:$('#grid').offsetTop-120});
     toast('✓ '+t('approved')+(tr==='free'?'':'. '+(promoOn()?t('topFree'):t('paidNote'))));
   },1400);
@@ -1106,7 +1137,7 @@ function openCab(){
     <div class="divider"></div>
     <h3 class="mh" style="font-size:20px">${t('cabT')}</h3>
     <div class="kpis"><div class="kpi"><b class="num">${mine.length}</b><span>${t('kAds')}</span></div><div class="kpi"><b class="num">${views}</b><span>${t('kViews')}</span></div><div class="kpi"><b class="num">${msgs}</b><span>${t('kMsgs')}</span></div></div>
-    ${mine.length?mine.map(a=>`<div class="cabrow">${thumb(a)}<div class="ci2"><b>${esc(a.title)}</b><span>${priceHTML(a).replace(/<[^>]+>/g,' ')} · ${esc(cityName(a.city))} · ${ago(a.ts)}</span></div><div class="ca"><button class="btn" data-up="${a.id}">${t('up')} · ${promoOn()?t('free'):fmt(PRICES.up.p)+' '+t('sum')}</button><button class="btn ghost" data-del="${a.id}">${t('del')}</button></div></div>`).join(''):`<p style="color:var(--ink3);margin:0">${t('cabEmpty')}</p><div><button class="btn primary" id="cabPost">+ ${t('post')}</button></div>`}
+    ${mine.length?mine.map(a=>`<div class="cabrow"><button class="cabopen" data-open="${a.id}">${thumb(a)}<div class="ci2"><b>${esc(a.title)}</b><span>${priceHTML(a).replace(/<[^>]+>/g,' ')} · ${esc(cityName(a.city))} · ${ago(a.ts)}</span></div></button><div class="ca"><button class="btn" data-edit="${a.id}">${t('edit')}</button><button class="btn" data-up="${a.id}">${t('up')} · ${promoOn()?t('free'):fmt(PRICES.up.p)+' '+t('sum')}</button><button class="btn ghost" data-del="${a.id}">${t('del')}</button></div></div>`).join(''):`<p style="color:var(--ink3);margin:0">${t('cabEmpty')}</p><div><button class="btn primary" id="cabPost">+ ${t('post')}</button></div>`}
   </div>`);
   const cp=$('#cabPost');if(cp)cp.onclick=()=>requireLogin(openForm,'needPost');
   $('#logoutBtn').onclick=logout;
@@ -1129,7 +1160,7 @@ function openPricing(){
 /* ---------- events ---------- */
 function syncTabs(){$$('.tab').forEach(x=>x.setAttribute('aria-pressed',x.dataset.kind===state.kind&&!state.onlyFav))}
 function goHome(){state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12};$('#q').value='';$('#city').value='';$('#sort').value='new';syncTabs();render();scrollTo(0,0)}
-function toggleFav(){state.onlyFav=!state.onlyFav;state.limit=12;syncTabs();render();scrollTo({top:$('#grid').offsetTop-160})}
+function toggleFav(){state.onlyFav=!state.onlyFav;state.cat=null;state.kind='all';state.limit=12;syncTabs();render();scrollTo({top:$('#grid').offsetTop-160})}
 
 $$('.lang button').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;try{localStorage.setItem('tp_lang',lang)}catch(e){}applyI18n();updateAuthUI();render()});
 $$('.tab').forEach(x=>x.onclick=()=>{state.kind=x.dataset.kind;state.cat=null;state.onlyFav=false;state.limit=12;syncTabs();render()});
@@ -1156,6 +1187,7 @@ $('#grid').onclick=e=>{
 $('#grid').onkeydown=e=>{if(e.key==='Enter'&&e.target.classList.contains('card'))openAd(e.target.dataset.id)};
 $('#ov').onclick=e=>{
   if(e.target.id==='ov'||e.target.closest('.mclose')){closeModal();return}
+  const ed=e.target.closest('[data-edit]');if(ed){openForm(userAds.find(x=>x.id==ed.dataset.edit));return}
   const o=e.target.closest('[data-open]');if(o){openAd(o.dataset.open);return}
   const u=e.target.closest('[data-up]');if(u){if(!promoOn()){toast(t('paidNote'));return}const m=userAds.find(x=>x.id==u.dataset.up);if(m){m.top=m.top||'top';m.ts=Date.now();store.set('tp_ads',userAds)}toast(t('upFree'));openCab();return}
   const d=e.target.closest('[data-del]');if(d){userAds=userAds.filter(a=>a.id!=d.dataset.del);store.set('tp_ads',userAds);toast(t('removed'));openCab();return}
