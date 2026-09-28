@@ -215,7 +215,7 @@ footer::before{content:"";display:block;height:12px;background:var(--girih) cent
 .modal.wide{max-width:1000px}
 .mclose{position:absolute;right:12px;top:12px;width:36px;height:36px;border-radius:50%;border:0;background:var(--surface2);font-size:20px;line-height:1;z-index:3}
 .dv{display:grid;grid-template-columns:1.05fr 1fr}
-.dv > .thumb{aspect-ratio:auto;min-height:340px;margin:14px;width:auto;-webkit-mask:var(--arch) center/100% 100%;mask:var(--arch) center/100% 100%}
+.dv > .thumb{aspect-ratio:4/5;min-height:0;align-self:start;position:sticky;top:14px;margin:14px;width:auto;-webkit-mask:var(--arch) center/100% 100%;mask:var(--arch) center/100% 100%}
 .dinfo{padding:22px 22px 22px 8px;display:flex;flex-direction:column;gap:11px}
 .dinfo .badges{position:static}
 .dinfo h3{margin:0;font-size:21px;line-height:1.25;padding-right:34px}
@@ -294,7 +294,7 @@ label.fl textarea{min-height:90px;resize:vertical}
 
 @media (max-width:640px){
   .dv{grid-template-columns:1fr}
-  .dv > .thumb{min-height:240px}
+  .dv > .thumb{aspect-ratio:auto;min-height:240px;position:static}
   .dinfo{padding:4px 18px 20px}
   .f2,.kpis{grid-template-columns:1fr}
   .tariffs{grid-template-columns:1fr 1fr}
