@@ -1,6 +1,6 @@
 /* Topaman service worker: pages are always fetched fresh when online (no stale versions),
    the last copy is used only when there is no internet. */
-const CACHE = 'topaman-v1';
+const CACHE = 'topaman-v2';
 const CORE = ['./', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(CACHE).then(c => c.addAll(CORE))); self.skipWaiting(); });
 self.addEventListener('activate', e => {
