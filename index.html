@@ -491,6 +491,24 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .btn.call svg{width:20px;height:20px;flex-shrink:0}
 .btn.call span{display:flex;flex-direction:column;align-items:flex-start;font-variant-numeric:tabular-nums}
 .btn.call small{font-size:11px;font-weight:500;opacity:.85}
+/* payment methods (wordmarks in brand colours; swap for the official logo files from the Payme/Click merchant kits at launch) */
+.paybox{display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:12px;padding:12px;background:var(--surface2)}
+.paybox .ph{font-size:13px;font-weight:600;color:var(--ink2)}
+.payrow{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.paym{display:flex;align-items:center;justify-content:center;height:52px;border:2px solid var(--line);border-radius:12px;background:#fff;cursor:pointer}
+.paym[aria-pressed="true"]{border-color:var(--tq);box-shadow:0 0 0 3px var(--tq-soft)}
+.pm-logo{font:800 23px/1 "Golos Text",Arial,sans-serif;letter-spacing:-.5px;color:#0F2A38}
+.pm-logo i{font-style:normal;color:#00BFC4}
+.ck-logo{display:inline-flex;align-items:center;gap:6px;background:#0C8CE9;color:#fff;border-radius:9px;padding:6px 12px;font:800 18px/1 "Golos Text",Arial,sans-serif}
+.ck-logo svg{width:14px;height:14px}
+.paysum{font-size:14px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.paysum b{font-variant-numeric:tabular-nums}
+.paysum .freeTag{font-size:13px}
+.payline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--ink3)}
+.payline .paym{height:40px;padding:0 12px;cursor:default;border-width:1px}
+.payline .pm-logo{font-size:18px}.payline .ck-logo{font-size:15px;padding:5px 10px}
+.payscreen{display:flex;flex-direction:column;align-items:center;gap:10px;padding:10px 0;text-align:center}
+.payscreen .paym{width:160px;cursor:default}
 @keyframes sheet{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.modal{animation:none!important}}
 </style>
@@ -609,7 +627,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  chatWith:'Чат',msgPh:'Сообщение…',send:'Отправить',autoHi:'Здравствуйте! Да, объявление актуально.',autoRe:'Хорошо, давайте созвонимся. (автоответ демо)',
  q1:'Ещё актуально?',q2:'Какая последняя цена?',q3:'Где можно посмотреть?',q4:'Когда можно выйти на работу?',
  newAd:'Новое объявление',kSell:'Продаю вещь',kJob:'Ищу работника',kCv:'Ищу работу',fTitle:'Заголовок',fCat:'Категория',fPrice:'Цена, сум',fS1:'Зарплата от, сум',fS2:'до, сум',
- fDesc:'Описание',fDescPh:'Состояние, размеры, условия работы…',fName:'Ваше имя',call:'Позвонить',fPhone:'Телефон для связи',errPhone:'Укажите правильный номер телефона, например +998 90 123 45 67. Без номера объявление не публикуется.',editAd:'Изменить объявление',edit:'Изменить',savedAd:'Изменения сохранены и проверены',addPhoto:'Добавить фото',fPhoto:'Фото',promoH:'Продвижение',publish:'Опубликовать',
+ fDesc:'Описание',fDescPh:'Состояние, размеры, условия работы…',fName:'Ваше имя',payWith:'Способ оплаты',toPay:'К оплате',freePromo:'бесплатно по акции запуска',goPay:'Переход к оплате',demoPay:'Демо: оплата пока имитируется, настоящую подключим после договора с Payme и Click',paidOk:'Оплата прошла',payAccept:'Принимаем оплату',call:'Позвонить',fPhone:'Телефон для связи',errPhone:'Укажите правильный номер телефона, например +998 90 123 45 67. Без номера объявление не публикуется.',editAd:'Изменить объявление',edit:'Изменить',savedAd:'Изменения сохранены и проверены',addPhoto:'Добавить фото',fPhoto:'Фото',promoH:'Продвижение',publish:'Опубликовать',
  errTitle:'Заголовок слишком короткий: напишите хотя бы 5 символов.',errName:'Укажите имя, чтобы вам могли ответить.',
  published:'Объявление опубликовано',paidNote:'В рабочей версии здесь будет оплата через Payme или Click',
  noFav:'Вы ещё ничего не добавили в избранное.',notFound:'Ничего не найдено. Попробуйте другой запрос или город.',showMore:'Показать ещё',
@@ -656,7 +674,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  chatWith:'Chat',msgPh:'Xabar…',send:'Yuborish',autoHi:'Assalomu alaykum! Ha, e’lon dolzarb.',autoRe:'Yaxshi, qo‘ng‘iroqlashamiz. (demo avtojavob)',
  q1:'Hali dolzarbmi?',q2:'Oxirgi narxi qancha?',q3:'Qayerda ko‘rsa bo‘ladi?',q4:'Qachon ishga chiqsa bo‘ladi?',
  newAd:'Yangi e’lon',kSell:'Narsa sotaman',kJob:'Ishchi qidiraman',kCv:'Ish qidiraman',fTitle:'Sarlavha',fCat:'Toifa',fPrice:'Narx, so‘m',fS1:'Maosh, dan',fS2:'gacha',
- fDesc:'Tavsif',fDescPh:'Holati, o‘lchami, ish sharoitlari…',fName:'Ismingiz',call:'Qo‘ng‘iroq qilish',fPhone:'Aloqa telefoni',errPhone:'To‘g‘ri telefon raqamini kiriting, masalan +998 90 123 45 67. Raqamsiz e’lon joylanmaydi.',editAd:'E’lonni tahrirlash',edit:'Tahrirlash',savedAd:'O‘zgarishlar saqlandi va tekshirildi',addPhoto:'Surat qo‘shish',fPhoto:'Surat',promoH:'Reklama',publish:'Joylash',
+ fDesc:'Tavsif',fDescPh:'Holati, o‘lchami, ish sharoitlari…',fName:'Ismingiz',payWith:'To‘lov usuli',toPay:'To‘lanadi',freePromo:'ishga tushirish aksiyasi bo‘yicha bepul',goPay:'To‘lovga o‘tilmoqda',demoPay:'Demo: to‘lov hozircha taqlid qilinadi, haqiqiysini Payme va Click bilan shartnomadan keyin ulaymiz',paidOk:'To‘lov o‘tdi',payAccept:'To‘lov qabul qilamiz',call:'Qo‘ng‘iroq qilish',fPhone:'Aloqa telefoni',errPhone:'To‘g‘ri telefon raqamini kiriting, masalan +998 90 123 45 67. Raqamsiz e’lon joylanmaydi.',editAd:'E’lonni tahrirlash',edit:'Tahrirlash',savedAd:'O‘zgarishlar saqlandi va tekshirildi',addPhoto:'Surat qo‘shish',fPhoto:'Surat',promoH:'Reklama',publish:'Joylash',
  errTitle:'Sarlavha juda qisqa: kamida 5 ta belgi yozing.',errName:'Sizga javob berishlari uchun ismingizni yozing.',
  published:'E’lon joylandi',paidNote:'Ishchi versiyada bu yerda Payme yoki Click orqali to‘lov bo‘ladi',
  noFav:'Hali hech narsa saralanmagan.',notFound:'Hech narsa topilmadi. Boshqa so‘z yoki shaharni sinab ko‘ring.',showMore:'Yana ko‘rsatish',
@@ -981,6 +999,19 @@ tickOnline();setInterval(tickOnline,4000);
 
 /* ---------- post form ---------- */
 let draft={};
+const PAYME_LOGO='<span class="pm-logo">pay<i>me</i></span>';
+const CLICK_LOGO='<span class="ck-logo"><svg viewBox="0 0 24 24" fill="#fff"><path d="M5 3l14 8-6 1.5 3.5 7-2.5 1.2-3.5-7L6 18z"/></svg>click</span>';
+/* payment block under the tariffs: shown only for paid options */
+function updatePay(){
+  const box=$('#payBox');if(!box)return;
+  const x=PRICES.priv.find(p=>p.id===draft.tariff);
+  if(!x||!x.p){box.hidden=true;return}
+  draft.pay=draft.pay||'payme';box.hidden=false;
+  box.innerHTML=`<span class="ph">${t('payWith')}</span>
+    <div class="payrow"><button type="button" class="paym" data-pay="payme" aria-pressed="${draft.pay==='payme'}" aria-label="Payme">${PAYME_LOGO}</button><button type="button" class="paym" data-pay="click" aria-pressed="${draft.pay==='click'}" aria-label="Click">${CLICK_LOGO}</button></div>
+    <div class="paysum"><span>${t('toPay')}:</span>${promoOn()?`<span><s class="old num">${fmt(x.p)} ${t('sum')}</s> <span class="freeTag">0 ${t('sum')} — ${t('freePromo')}</span></span>`:`<b>${fmt(x.p)} ${t('sum')}</b>`}</div>`;
+  box.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>{draft.pay=b.dataset.pay;updatePay()});
+}
 function tariffCard(x,sel){const n=x[lang];return `<button type="button" class="tar" data-t="${x.id}" aria-pressed="${sel}"><b>${n[0]}</b><span>${n[1]}</span><strong>${priceTag(x.p)}</strong></button>`}
 function openForm(edit){
   edit=edit&&edit.id?edit:null;
@@ -995,6 +1026,7 @@ function openForm(edit){
     <div class="f2"><label class="fl">${t('fName')}<input id="fName" value="${esc(user?user.name:'')}"></label><label class="fl">${t('fPhoto')}<span class="upl" id="upl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>${t('addPhoto')}</span><input id="fImg" type="file" accept="image/*" hidden></span></label></div>
     <label class="fl">${t('fPhone')} *<input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" value="${esc(edit?edit.phone||'':(user&&user.phone)||'')}"></label>
     <div><div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px">${t('promoH')}</div><div class="tariffs">${PRICES.priv.map(x=>tariffCard(x,x.id===draft.tariff)).join('')}</div></div>
+    <div class="paybox" id="payBox" hidden></div>
     <div class="err" id="fErr"></div>
     <div id="modBox" hidden></div>
     <p class="agree">${t('agree')} <button type="button" class="linkbtn" id="agreeRules">${t('agreeLink')}</button>.</p>
@@ -1010,7 +1042,8 @@ function openForm(edit){
     if(edit.img){const u=$('#upl');u.style.backgroundImage=`url(${edit.img})`;u.classList.add('has')}
   }
   $$('.seg button').forEach(b=>b.onclick=()=>{draft.kind=b.dataset.k;$$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));syncForm()});
-  $$('.tar').forEach(b=>b.onclick=()=>{draft.tariff=b.dataset.t;$$('.tar').forEach(x=>x.setAttribute('aria-pressed',x===b))});
+  $$('.tar').forEach(b=>b.onclick=()=>{draft.tariff=b.dataset.t;$$('.tar').forEach(x=>x.setAttribute('aria-pressed',x===b));updatePay()});
+  updatePay();
   $('#fImg').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>shrink(r.result);r.readAsDataURL(f)};
   $('#adForm').onsubmit=submitAd;
   $('#agreeRules').onclick=()=>{const r=$('#formRules');r.hidden=!r.hidden;if(!r.hidden)r.innerHTML=t('rulesHTML')};
@@ -1067,12 +1100,20 @@ function submitAd(e){
     btn.disabled=false;draft.busy=false;
     const bad=moderate(ad,draft.img?draft.imgStats:null);
     if(bad.length){box.className='modbox bad';box.innerHTML=`<b>${t('rejected')}</b><ul>${bad.map(k=>`<li>${t(k)}</li>`).join('')}</ul><span style="color:var(--ink2)">${t('fixHint')}</span>`;return}
+    const tp=PRICES.priv.find(p=>p.id===tr);
+    if(tp&&tp.p&&!promoOn()&&!draft.paid&&!(draft.editId&&(userAds.find(x=>x.id===draft.editId)||{}).top===tr)){
+      box.className='modbox run';
+      box.innerHTML=`<div class="payscreen"><span class="paym">${draft.pay==='click'?CLICK_LOGO:PAYME_LOGO}</span><b>${t('goPay')}: ${fmt(tp.p)} ${t('sum')}…</b><span style="font-size:12.5px;color:var(--ink3)">${t('demoPay')}</span></div>`;
+      btn.disabled=true;draft.busy=true;
+      setTimeout(()=>{draft.paid=true;draft.busy=false;btn.disabled=false;toast(t('paidOk'));$('#adForm').requestSubmit()},1800);
+      return;
+    }
     if(draft.editId){const i=userAds.findIndex(x=>x.id===draft.editId);if(i>-1){const o=userAds[i];ad.views=o.views;ad.ts=o.ts;if(!draft.img)ad.img=o.img;userAds[i]=ad}}
     else userAds.unshift(ad);
     store.set('tp_ads',userAds);
     if(draft.editId){closeModal();toast('✓ '+t('savedAd'));return}
     state={...state,kind:'all',cat:null,q:'',onlyFav:false};$('#q').value='';syncTabs();closeModal();scrollTo({top:$('#grid').offsetTop-120});
-    toast('✓ '+t('approved')+(tr==='free'?'':'. '+(promoOn()?t('topFree'):t('paidNote'))));
+    toast('✓ '+t('approved')+(tr==='free'?'':'. '+(promoOn()?t('topFree'):draft.paid?t('paidOk'):t('paidNote'))));
   },1400);
 }
 
@@ -1162,7 +1203,7 @@ function openPricing(){
     <div class="pgrp"><h4>${t('gPriv')}</h4><div class="pcards">${[...PRICES.priv,up].map(x=>pc(x)).join('')}</div></div>
     <div class="pgrp"><h4>${t('gJob')}</h4><div class="pcards">${PRICES.job.map(x=>pc(x)).join('')}</div></div>
     <div class="pgrp"><h4>${t('gBiz')}</h4><div class="pcards">${PRICES.biz.map(x=>pc(x)).join('')}</div></div>
-    <p class="sub" style="font-size:13px">${t('paidNote')}.</p>
+    <div class="payline">${t('payAccept')}: <span class="paym">${PAYME_LOGO}</span><span class="paym">${CLICK_LOGO}</span></div>
   </div>`,true);
 }
 
