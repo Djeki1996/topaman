@@ -574,9 +574,10 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 :root[data-theme="dark"] .leaflet-tile{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .leaflet-tile{filter:invert(1) hue-rotate(180deg) brightness(.85) contrast(.9)}}
 @media (max-width:760px){
-  .sec-h .tools{width:100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
-  .sec-h .tools::-webkit-scrollbar{display:none}
-  .tbtn,.tools select{font-size:13.5px;padding:8px 10px;flex-shrink:0}
+  .sec-h .tools{width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .tbtn{justify-content:center;font-size:14px;padding:10px 8px;min-width:0}
+  .tools select{width:100%;min-width:0;font-size:14px;padding:10px 8px}
+  #radius[hidden]+#sort{grid-column:1/-1}
   #bigMap{height:330px}
 }
 @keyframes sheet{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
