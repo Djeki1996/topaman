@@ -535,6 +535,16 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .ib-x{border:0;background:none;color:#fff;opacity:.7;font-size:22px;line-height:1;padding:4px 6px}
 .iosteps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;color:var(--ink2)}
 @media (max-width:760px){.instbar{bottom:calc(76px + env(safe-area-inset-bottom,0px))}}
+/* help */
+.faq{display:flex;flex-direction:column;gap:8px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--surface);padding:0 14px}
+.faq summary{cursor:pointer;padding:12px 0;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:10px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--tq);font-size:20px;line-height:1}
+.faq details[open] summary::after{content:"–"}
+.faq details p{margin:0 0 12px;color:var(--ink2);font-size:14px}
+.btn.tgbtn{background:#229ED9;border-color:#229ED9;color:#fff;text-decoration:none;padding:12px;gap:10px}
+.btn.tgbtn svg{width:20px;height:20px}
 @keyframes sheet{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.modal{animation:none!important}}
 </style>
@@ -548,6 +558,7 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
     <nav class="hnav">
       <button class="hl" id="thBtn" aria-label="Kun / tun"></button>
       <div class="lang" role="group" aria-label="Til / Язык"><button data-lang="ru" aria-pressed="true">RU</button><button data-lang="uz" aria-pressed="false">UZ</button></div>
+      <button class="hl hide-m" id="hHelp"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17h.01"/></svg><span class="t" data-i="help"></span></button>
       <button class="hl hide-m" id="hPrice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span class="t" data-i="tariffs"></span></button>
       <button class="hl hide-m" id="hChats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span class="t" data-i="chats"></span><span class="cnt" id="chatCnt" hidden></span></button>
       <button class="hl hide-m" id="hFav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg><span class="t" data-i="fav"></span><span class="cnt" id="favCnt" hidden></span></button>
@@ -618,7 +629,7 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
   </div>
 </main>
 
-<footer><div class="ikat" aria-hidden="true"></div><div class="wrap fgrid"><span>© 2026 Topaman.uz · <span data-i="foot"></span> · <button class="linkbtn" id="footRules" data-i="rules"></button></span><span data-i="demo"></span></div></footer>
+<footer><div class="ikat" aria-hidden="true"></div><div class="wrap fgrid"><span>© 2026 Topaman.uz · <span data-i="foot"></span> · <button class="linkbtn" id="footRules" data-i="rules"></button> · <button class="linkbtn" id="footHelp" data-i="help"></button></span><span data-i="demo"></span></div></footer>
 
 <nav class="bnav" aria-label="Меню">
   <button id="bHome" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v10h-6v-6H9v6H3z"/></svg><span data-i="home"></span></button>
@@ -682,6 +693,17 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  <h4>Фото</h4><ul><li>только настоящие фото товара, без чужих картинок</li><li>хороший свет, без сильного размытия</li><li>без номеров телефонов и ссылок на фото</li></ul>
  <h4>Объявление</h4><ul><li>один товар — одно объявление</li><li>реальная цена в сумах, без «цена 1 сум»</li><li>правильная категория и город</li><li>контакты не пишите в заголовке</li></ul>
  <div class="rbox"><h4>Жалобы</h4><p style="margin:0">На любое объявление можно пожаловаться. После 3 жалоб от разных людей оно скрывается автоматически. За повторные нарушения аккаунт блокируется.</p></div>`,
+ help:'Помощь',helpT:'Помощь и поддержка',helpS:'Ответы на частые вопросы. Не нашли ответ — напишите нам.',
+ faq:[['Как подать объявление?','Нажмите «Подать», войдите через Google или Telegram, заполните заголовок, цену, телефон и добавьте фото. Объявление проверяется автоматически за несколько секунд.'],
+      ['Почему моё объявление не опубликовали?','Автопроверка показывает причину прямо в форме: запрещённый товар, предоплата на карту, мат, контакты в заголовке, тёмное фото или слишком низкая цена. Исправьте и нажмите «Опубликовать» ещё раз.'],
+      ['Как поднять объявление в ТОП?','В форме выберите ТОП, VIP или «Срочно». До конца акции каждый месяц бесплатно 1 VIP, 3 ТОП и 3 «Срочно». Поднять объявление в ленте можно бесплатно 1 раз в день в «Профиле».'],
+      ['Как изменить, продлить или удалить объявление?','Откройте «Профиль» → «Мои объявления»: там кнопки «Изменить», «Поднять», «Снять». Через 30 дней объявление скрывается, продлить его можно бесплатно одной кнопкой.'],
+      ['Меня пытаются обмануть. Что делать?','Не переводите предоплату незнакомым. Нажмите «Пожаловаться» на объявлении — после 3 жалоб оно скрывается автоматически — и напишите нам в поддержку.']],
+ noAnswer:'Не нашли ответ?',tgSupport:'Написать в Telegram',orForm:'или отправьте сообщение здесь',
+ supTopic:'Тема',supTopics:['Вопрос по объявлению','Ошибка на сайте','Оплата и тарифы','Жалоба на пользователя','Предложение','Другое'],
+ supMsg:'Сообщение',supMsgPh:'Опишите вопрос. Если это про объявление, напишите его название.',supContact:'Как с вами связаться',supSend:'Отправить в поддержку',
+ supErr:'Напишите сообщение хотя бы из 10 символов и укажите телефон или Telegram.',supDone:'Сообщение отправлено в поддержку',
+ supDemo:'Демо: сообщения пока не доставляются. После подключения сервера они будут приходить в Telegram-бот @Topaman_skd_bot.',
  login:'Войти',loginT:'Вход в Topaman',loginS:'Один аккаунт для объявлений, чатов и избранного',gBtn:'Войти через Google',tgBtn:'Войти через Telegram',
  or:'или',terms:'Входя, вы соглашаетесь с правилами сайта',demoNote:'Демо-режим: вход пока имитируется. Настоящий подключим через Firebase (Google) и Telegram-бота.',
  chooseAcc:'Выберите аккаунт Google',otherAcc:'Использовать другой аккаунт',tgAsk:'Topaman.uz просит войти через ваш аккаунт Telegram. Имя и фото профиля будут видны на сайте.',
@@ -729,6 +751,17 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  <h4>Suratlar</h4><ul><li>faqat tovarning haqiqiy surati</li><li>yaxshi yorug‘lik, xira bo‘lmasin</li><li>suratda telefon raqami va havolalar bo‘lmasin</li></ul>
  <h4>E’lon</h4><ul><li>bitta tovar — bitta e’lon</li><li>so‘mda haqiqiy narx</li><li>to‘g‘ri toifa va shahar</li><li>kontaktlarni sarlavhaga yozmang</li></ul>
  <div class="rbox"><h4>Shikoyatlar</h4><p style="margin:0">Har qanday e’lon ustidan shikoyat qilish mumkin. Turli odamlardan 3 ta shikoyatdan keyin u avtomatik yashiriladi. Takroriy qoidabuzarlik uchun akkaunt bloklanadi.</p></div>`,
+ help:'Yordam',helpT:'Yordam va qo‘llab-quvvatlash',helpS:'Ko‘p beriladigan savollarga javoblar. Javob topmasangiz — bizga yozing.',
+ faq:[['E’lonni qanday joylash mumkin?','«E’lon» tugmasini bosing, Google yoki Telegram orqali kiring, sarlavha, narx, telefon kiriting va surat qo‘shing. E’lon bir necha soniyada avtomatik tekshiriladi.'],
+      ['Nega e’lonim joylanmadi?','Avtotekshiruv sababni formaning o‘zida ko‘rsatadi: taqiqlangan tovar, kartaga oldindan to‘lov, so‘kinish, sarlavhadagi kontaktlar, qorong‘i surat yoki juda past narx. Tuzating va yana «Joylash»ni bosing.'],
+      ['E’lonni TOPga qanday ko‘tarish mumkin?','Formada TOP, VIP yoki «Shoshilinch»ni tanlang. Aksiya davomida har oy 1 VIP, 3 TOP va 3 «Shoshilinch» bepul. «Profil»da kuniga 1 marta bepul ko‘tarish mumkin.'],
+      ['E’lonni qanday tahrirlash, uzaytirish yoki olib tashlash mumkin?','«Profil» → «Mening e’lonlarim»: «Tahrirlash», «Ko‘tarish», «Olib tashlash» tugmalari. 30 kundan keyin e’lon yashiriladi, uni bitta tugma bilan bepul uzaytirish mumkin.'],
+      ['Meni aldashga urinishyapti. Nima qilay?','Notanishlarga oldindan pul o‘tkazmang. E’londa «Shikoyat qilish»ni bosing — 3 ta shikoyatdan keyin u avtomatik yashiriladi — va bizga yozing.']],
+ noAnswer:'Javob topmadingizmi?',tgSupport:'Telegramda yozish',orForm:'yoki shu yerda xabar yuboring',
+ supTopic:'Mavzu',supTopics:['E’lon bo‘yicha savol','Saytdagi xato','To‘lov va tariflar','Foydalanuvchi ustidan shikoyat','Taklif','Boshqa'],
+ supMsg:'Xabar',supMsgPh:'Savolingizni yozing. E’lon haqida bo‘lsa, uning nomini yozing.',supContact:'Siz bilan qanday bog‘lanamiz',supSend:'Yordamga yuborish',
+ supErr:'Kamida 10 belgidan iborat xabar yozing va telefon yoki Telegramni ko‘rsating.',supDone:'Xabar yordam xizmatiga yuborildi',
+ supDemo:'Demo: xabarlar hozircha yetkazilmaydi. Server ulangandan keyin ular @Topaman_skd_bot Telegram-botiga keladi.',
  login:'Kirish',loginT:'Topaman’ga kirish',loginS:'E’lonlar, chatlar va saralanganlar uchun bitta akkaunt',gBtn:'Google orqali kirish',tgBtn:'Telegram orqali kirish',
  or:'yoki',terms:'Kirish orqali sayt qoidalariga rozilik bildirasiz',demoNote:'Demo rejim: kirish hozircha taqlid qilinadi. Haqiqiysini Firebase (Google) va Telegram-bot orqali ulaymiz.',
  chooseAcc:'Google akkauntini tanlang',otherAcc:'Boshqa akkauntdan foydalanish',tgAsk:'Topaman.uz Telegram akkauntingiz orqali kirishni so‘rayapti. Ism va profil surati saytda ko‘rinadi.',
@@ -1246,6 +1279,7 @@ function openCab(){
   const viaIcon=user.method==='google'?GLOGO:`<span style="display:inline-grid;place-items:center;width:14px;height:14px;border-radius:50%;background:#229ED9">${TGLOGO}</span>`;
   openModal(`<div class="cab"><h3 class="mh">${t('profileT')}</h3>
     <div class="prof"><span class="ava">${esc(user.name[0])}</span><div class="pi2"><b>${esc(user.name)}</b><small>${esc(user.email||user.tg||'')}</small><br><span class="via">${viaIcon}${t('via')} ${user.method==='google'?'Google':'Telegram'}</span></div><button class="btn ghost" id="logoutBtn">${t('logout')}</button></div>
+    <div><button class="btn" id="cabHelp">${t('help')}</button></div>
     <div class="f2"><label class="fl">${t('pName')}<input id="pNameIn" value="${esc(user.name)}"></label><label class="fl">${t('pPhone')}<input id="pPhoneIn" inputmode="tel" placeholder="+998 90 123 45 67" value="${esc(user.phone||'')}"></label></div>
     <div><button class="btn" id="pSave">${t('save')}</button></div>
     <div class="divider"></div>
@@ -1255,6 +1289,7 @@ function openCab(){
   </div>`);
   const cp=$('#cabPost');if(cp)cp.onclick=()=>requireLogin(openForm,'needPost');
   $('#logoutBtn').onclick=logout;
+  $('#cabHelp').onclick=()=>openHelp();
   $('#pSave').onclick=()=>{const n=$('#pNameIn').value.trim();if(n)user.name=n;user.phone=$('#pPhoneIn').value.trim();store.set('tp_user',user);updateAuthUI();toast(t('saved'));openCab()};
 }
 
@@ -1266,6 +1301,36 @@ function cabStatus(a){
   if(b.urg)out.push(t('tLeft').replace('{t}',lang==='uz'?'Shoshilinch':'Срочно').replace('{n}',daysLeft(b.urgUntil||Date.now())));
   out.push(t('activeLeft').replace('{n}',daysLeft((a.created||a.ts)+LIFE*DAY)));
   return `<span class="stat">${out.join(' · ')}</span>`;
+}
+
+/* ---------- help & support ----------
+   FAQ + a support message form. Production: the form posts to a small server function that forwards
+   the text to the support Telegram bot (bot token stays on the server, never in this page). */
+const SUPPORT_BOT='Topaman_skd_bot';
+function openHelp(){
+  const contact=user?(user.phone||user.tg||user.email||''):'';
+  openModal(`<div class="cab help">
+    <h3 class="mh">${t('helpT')}</h3><p style="margin:0;color:var(--ink2)">${t('helpS')}</p>
+    <div class="faq">${t('faq').map(([q,a])=>`<details><summary>${q}</summary><p>${a}</p></details>`).join('')}</div>
+    <div class="divider"></div>
+    <b style="font-size:17px">${t('noAnswer')}</b>
+    <a class="btn tgbtn" href="https://t.me/${SUPPORT_BOT}?start=help" target="_blank" rel="noopener">${TGLOGO}${t('tgSupport')}</a>
+    <span style="color:var(--ink3);font-size:13px;text-align:center">${t('orForm')}</span>
+    <form id="supForm" class="form" style="padding:0" novalidate>
+      <label class="fl">${t('supTopic')}<select id="supTopic">${t('supTopics').map(x=>`<option>${x}</option>`).join('')}</select></label>
+      <label class="fl">${t('supMsg')}<textarea id="supMsg" placeholder="${t('supMsgPh')}"></textarea></label>
+      <label class="fl">${t('supContact')}<input id="supContact" placeholder="+998 90 123 45 67 / @telegram" value="${esc(contact)}"></label>
+      <div class="err" id="supErr"></div>
+      <button class="btn primary" style="padding:12px">${t('supSend')}</button>
+      <p class="agree">${t('supDemo')}</p>
+    </form>
+  </div>`);
+  $('#supForm').onsubmit=e=>{e.preventDefault();
+    const msg=$('#supMsg').value.trim(),c=$('#supContact').value.trim();
+    if(msg.length<10||c.length<5){$('#supErr').textContent=t('supErr');return}
+    const q=store.get('tp_support',[]);q.push({topic:$('#supTopic').value,msg,contact:c,at:Date.now(),page:location.href});store.set('tp_support',q);
+    closeModal();toast('✓ '+t('supDone'));
+  };
 }
 
 /* ---------- pricing ---------- */
@@ -1299,6 +1364,7 @@ const postGated=()=>requireLogin(openForm,'needPost');$('#postBtn').onclick=post
 $('#hChats').onclick=openChats;$('#bChats').onclick=openChats;
 $('#hCab').onclick=openCab;$('#bCab').onclick=openCab;
 $('#footRules').onclick=()=>openRules();
+$('#footHelp').onclick=()=>openHelp();$('#hHelp').onclick=()=>openHelp();
 $('#hPrice').onclick=openPricing;$('#launchBtn').onclick=openPricing;$('#bizBtn').onclick=openPricing;
 $('#home').onclick=goHome;$('#bHome').onclick=goHome;
 $('#recent').onclick=e=>{const b=e.target.closest('.rc');if(b)openAd(b.dataset.id)};
