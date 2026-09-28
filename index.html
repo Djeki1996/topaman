@@ -332,6 +332,39 @@ footer .ikat{margin-bottom:20px}
 .thumb svg.uzi{width:46%;height:46%}
 .rc .thumb svg.uzi{width:70%;height:70%}
 .cabrow .thumb svg.uzi{width:66%;height:66%}
+
+/* auth */
+.modal.narrow{max-width:460px}
+.auth{padding:30px 26px 24px;display:flex;flex-direction:column;gap:12px;text-align:center;align-items:stretch}
+.auth .amark{width:58px;height:66px;margin:0 auto 4px;background:var(--tq);display:grid;place-items:center;padding-top:8px;-webkit-mask:var(--arch) center/100% 100%;mask:var(--arch) center/100% 100%}
+.auth .amark svg{width:28px;height:28px;color:var(--gold)}
+.auth h3{font-family:var(--display);font-size:25px;margin:0}
+.auth p{margin:0;color:var(--ink2)}
+.authbtn{display:flex;align-items:center;justify-content:center;gap:12px;width:100%;padding:13px 16px;border-radius:12px;font-weight:600;font-size:15.5px;border:1px solid var(--line);background:var(--surface);color:var(--ink)}
+.authbtn:hover{border-color:var(--ink3)}
+.authbtn svg{width:22px;height:22px;flex-shrink:0}
+.authbtn.tg{background:#229ED9;border-color:#229ED9;color:#fff}
+.authbtn.tg:hover{filter:brightness(1.06)}
+.auth .or{display:flex;align-items:center;gap:10px;color:var(--ink3);font-size:12.5px}
+.auth .or::before,.auth .or::after{content:"";flex:1;height:1px;background:var(--line)}
+.auth .note{font-size:12.5px;color:var(--ink3)}
+.auth .demo{font-size:12.5px;background:var(--saffron-soft);border-radius:10px;padding:8px 10px;color:var(--ink2)}
+.acc{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.acc:hover{border-color:var(--tq)}
+.acc .ava{border-radius:50%;-webkit-mask:none;mask:none;padding:0;width:40px;height:40px}
+.acc small{display:block;color:var(--ink3)}
+.tgcard{border:1px solid var(--line);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:10px;align-items:center;background:var(--surface2)}
+.tgcard .tgl{width:52px;height:52px;border-radius:50%;background:#229ED9;display:grid;place-items:center}
+.tgcard .tgl svg{width:28px;height:28px}
+.prof{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.prof .ava{width:58px;height:66px;font-size:22px}
+.prof .pi2{flex:1;min-width:160px}
+.prof .pi2 b{font-size:18px;display:block}
+.prof .pi2 small{color:var(--ink3)}
+.via{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;border-radius:6px;padding:2px 8px;background:var(--surface2);color:var(--ink2);margin-top:4px}
+.via svg{width:14px;height:14px}
+.hl .uava{width:26px;height:26px;border-radius:50%;background:var(--gold);color:#2B1D05;display:grid;place-items:center;font-weight:700;font-size:13px}
+.divider{height:1px;background:var(--line);margin-block:4px}
 </style>
 </head>
 <body>
@@ -345,7 +378,7 @@ footer .ikat{margin-bottom:20px}
       <button class="hl hide-m" id="hPrice"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12l-8 8-9-9V3h8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg><span class="t" data-i="tariffs"></span></button>
       <button class="hl hide-m" id="hChats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span class="t" data-i="chats"></span><span class="cnt" id="chatCnt" hidden></span></button>
       <button class="hl hide-m" id="hFav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg><span class="t" data-i="fav"></span><span class="cnt" id="favCnt" hidden></span></button>
-      <button class="hl hide-m" id="hCab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="t" data-i="myads"></span></button>
+      <button class="hl" id="hCab"></button>
       <button class="btn primary hide-m" id="postBtn">+ <span data-i="post"></span></button>
     </nav>
   </div>
@@ -418,7 +451,7 @@ footer .ikat{margin-bottom:20px}
   <button id="bFav"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg><span data-i="fav"></span><span class="cnt" id="favCnt2" hidden></span></button>
   <button id="bPost" class="plus"><span class="pi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M12 5v14M5 12h14"/></svg></span><span data-i="postShort"></span></button>
   <button id="bChats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg><span data-i="chats"></span><span class="cnt" id="chatCnt2" hidden></span></button>
-  <button id="bCab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span data-i="profile"></span></button>
+  <button id="bCab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span id="bCabL"></span></button>
 </nav>
 
 <div class="ov" id="ov" hidden><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
@@ -455,7 +488,12 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  removed:'Объявление снято',
  prT:'Тарифы Topaman',prSub:'Базовое объявление всегда бесплатно. Платить нужно только за продвижение и за бизнес-функции.',
  gPriv:'Частным лицам',gJob:'Работодателям',gBiz:'Магазинам и компаниям',rec:'Популярно',perMonth:'в месяц',
- choose:'Выбрать'},
+ choose:'Выбрать',
+ login:'Войти',loginT:'Вход в Topaman',loginS:'Один аккаунт для объявлений, чатов и избранного',gBtn:'Войти через Google',tgBtn:'Войти через Telegram',
+ or:'или',terms:'Входя, вы соглашаетесь с правилами сайта',demoNote:'Демо-режим: вход пока имитируется. Настоящий подключим через Firebase (Google) и Telegram-бота.',
+ chooseAcc:'Выберите аккаунт Google',otherAcc:'Использовать другой аккаунт',tgAsk:'Topaman.uz просит войти через ваш аккаунт Telegram. Имя и фото профиля будут видны на сайте.',
+ confirm:'Подтвердить',cancel:'Отмена',back:'Назад',welcome:'Добро пожаловать',profileT:'Профиль',pName:'Имя на сайте',pPhone:'Телефон для связи',save:'Сохранить',saved:'Профиль сохранён',
+ logout:'Выйти',loggedOut:'Вы вышли из аккаунта',via:'Вход через',needPost:'Войдите, чтобы подать объявление',needChat:'Войдите, чтобы написать продавцу'},
 uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlarim',post:'E’lon berish',postShort:'E’lon',home:'Bosh sahifa',profile:'Profil',
  heroTitle:['<mark>Butun bozor</mark> — cho‘ntagingizda','Sen izla — men <mark>topaman</mark>','Keraksizini sot, <mark>keraklisini top!</mark>'],searchPh:'iPhone, payvandchi, divan, kvartira…',find:'Topish',allUz:'Butun O‘zbekiston',popular:'Ko‘p qidiriladi:',
  stAds:'e’lon',stJobs:'vakansiya',stCv:'rezyume',stReg:'viloyat',
@@ -484,7 +522,12 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  removed:'E’lon olib tashlandi',
  prT:'Topaman tariflari',prSub:'Oddiy e’lon doim bepul. Faqat reklama va biznes funksiyalari uchun to‘lanadi.',
  gPriv:'Jismoniy shaxslar',gJob:'Ish beruvchilar',gBiz:'Do‘kon va kompaniyalar',rec:'Ommabop',perMonth:'oyiga',
- choose:'Tanlash'}
+ choose:'Tanlash',
+ login:'Kirish',loginT:'Topaman’ga kirish',loginS:'E’lonlar, chatlar va saralanganlar uchun bitta akkaunt',gBtn:'Google orqali kirish',tgBtn:'Telegram orqali kirish',
+ or:'yoki',terms:'Kirish orqali sayt qoidalariga rozilik bildirasiz',demoNote:'Demo rejim: kirish hozircha taqlid qilinadi. Haqiqiysini Firebase (Google) va Telegram-bot orqali ulaymiz.',
+ chooseAcc:'Google akkauntini tanlang',otherAcc:'Boshqa akkauntdan foydalanish',tgAsk:'Topaman.uz Telegram akkauntingiz orqali kirishni so‘rayapti. Ism va profil surati saytda ko‘rinadi.',
+ confirm:'Tasdiqlash',cancel:'Bekor qilish',back:'Orqaga',welcome:'Xush kelibsiz',profileT:'Profil',pName:'Saytdagi ism',pPhone:'Aloqa uchun telefon',save:'Saqlash',saved:'Profil saqlandi',
+ logout:'Chiqish',loggedOut:'Akkauntdan chiqdingiz',via:'Kirish usuli',needPost:'E’lon berish uchun kiring',needChat:'Sotuvchiga yozish uchun kiring'}
 };
 let lang='ru';try{lang=localStorage.getItem('tp_lang')||'ru'}catch(e){}
 const t=k=>TX[lang][k]??TX.ru[k]??k;
@@ -714,7 +757,7 @@ function openAd(id){
     </div>
     <div class="chat" id="chat" hidden></div>`);
   $('#showTel').onclick=e=>{e.currentTarget.textContent=tel+' ('+t('test')+')'};
-  $('#chatBtn').onclick=()=>openChatIn(a);
+  $('#chatBtn').onclick=()=>user?openChatIn(a):openLogin(()=>{openAd(a.id);openChatIn(a)},'needChat');
   const p=$('#promoBtn');if(p)p.onclick=()=>toast(t('paidNote'));
   if(chats[a.id])openChatIn(a,true);
 }
@@ -751,7 +794,7 @@ function openForm(){
     <div class="f2"><label class="fl" id="catWrap">${t('fCat')}<select id="fCat"></select></label><label class="fl">${t('city')}<select id="fCity">${CITIES.map(c=>`<option value="${c[0]}">${lang==='uz'?c[1]:c[0]}</option>`).join('')}</select></label></div>
     <div class="f2" id="priceRow"></div>
     <label class="fl">${t('fDesc')}<textarea id="fDesc" placeholder="${t('fDescPh')}"></textarea></label>
-    <div class="f2"><label class="fl">${t('fName')}<input id="fName"></label><label class="fl">${t('fPhoto')}<input id="fImg" type="file" accept="image/*"></label></div>
+    <div class="f2"><label class="fl">${t('fName')}<input id="fName" value="${esc(user?user.name:'')}"></label><label class="fl">${t('fPhoto')}<input id="fImg" type="file" accept="image/*"></label></div>
     <div><div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px">${t('promoH')}</div><div class="tariffs">${PRICES.priv.map((x,i)=>tariffCard(x,i===0)).join('')}</div></div>
     <div class="err" id="fErr"></div>
     <button class="btn primary" style="padding:12px">${t('publish')}</button>
@@ -783,16 +826,81 @@ function submitAd(e){
   toast(tr==='free'?t('published'):t('published')+'. '+t('paidNote'));
 }
 
+/* ---------- auth ----------
+   Demo: sign-in is simulated and kept in this browser.
+   Production: signInGoogle -> Firebase Auth GoogleAuthProvider (signInWithPopup);
+               signInTelegram -> Telegram Login Widget (bot via @BotFather, /setdomain topaman.uz),
+               its hash verified server-side (Cloud Function) and exchanged for a Firebase custom token. */
+const GLOGO='<svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C36.9 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
+const TGLOGO='<svg viewBox="0 0 24 24" fill="#fff"><path d="M9.8 15.4l-.4 5.3c.6 0 .8-.2 1.1-.5l2.6-2.5 5.4 4c1 .6 1.7.3 2-.9l3.6-17c.3-1.5-.6-2.1-1.6-1.7L1.4 9.9C0 10.5 0 11.3 1.2 11.7l5.4 1.7L19 5.6c.6-.4 1.1-.2.7.2z"/></svg>';
+let user=store.get('tp_user',null);
+function requireLogin(next,msgKey){if(user)return next();openLogin(next,msgKey)}
+function openLogin(next,msgKey){
+  openModal(`<div class="auth" id="auth">
+    <div class="amark">${svg('user')}</div>
+    <h3>${t('loginT')}</h3>
+    <p>${msgKey?`<b>${t(msgKey)}.</b> `:''}${t('loginS')}</p>
+    <button class="authbtn" id="gBtn">${GLOGO}${t('gBtn')}</button>
+    <div class="or">${t('or')}</div>
+    <button class="authbtn tg" id="tgBtn">${TGLOGO}${t('tgBtn')}</button>
+    <div class="note">${t('terms')}</div>
+    <div class="demo">${t('demoNote')}</div>
+  </div>`);
+  $('#modal').classList.add('narrow');
+  $('#gBtn').onclick=()=>stepGoogle(next);
+  $('#tgBtn').onclick=()=>stepTelegram(next);
+}
+function stepGoogle(next){
+  const acc={name:'Test Foydalanuvchi',email:'test.user@gmail.com'};
+  $('#auth').innerHTML=`<div style="width:34px;height:34px;margin:0 auto">${GLOGO}</div><h3 style="font-size:20px">${t('chooseAcc')}</h3>
+    <button class="acc" id="acc1"><span class="ava">T</span><span><b>${acc.name}</b><small>${acc.email}</small></span></button>
+    <button class="acc" id="acc2"><span class="ava" style="background:var(--surface2);color:var(--ink2)">+</span><span>${t('otherAcc')}</span></button>
+    <button class="btn ghost" id="authBack">${t('back')}</button>
+    <div class="demo">${t('demoNote')}</div>`;
+  const go=()=>finishLogin({name:acc.name,email:acc.email,method:'google'},next);
+  $('#acc1').onclick=go;$('#acc2').onclick=go;$('#authBack').onclick=()=>openLogin(next);
+}
+function stepTelegram(next){
+  $('#auth').innerHTML=`<div class="tgcard"><div class="tgl">${TGLOGO}</div><b>Telegram</b><p style="font-size:14px">${t('tgAsk')}</p>
+    <div class="acc" style="background:var(--surface)"><span class="ava">T</span><span><b>Test User</b><small>@test_user</small></span></div></div>
+    <button class="authbtn tg" id="tgOk">${t('confirm')}</button>
+    <button class="btn ghost" id="authBack">${t('cancel')}</button>
+    <div class="demo">${t('demoNote')}</div>`;
+  $('#tgOk').onclick=()=>finishLogin({name:'Test User',tg:'@test_user',method:'telegram'},next);
+  $('#authBack').onclick=()=>openLogin(next);
+}
+function finishLogin(u,next){
+  user={...u,phone:'',since:Date.now()};store.set('tp_user',user);
+  updateAuthUI();closeModal();toast(t('welcome')+', '+user.name+'!');
+  if(next)next();
+}
+function logout(){user=null;try{localStorage.removeItem('tp_user')}catch(e){}updateAuthUI();closeModal();toast(t('loggedOut'))}
+function updateAuthUI(){
+  $('#hCab').innerHTML=user
+    ?`<span class="uava">${esc(user.name[0])}</span><span class="t">${esc(user.name.split(' ')[0])}</span>`
+    :`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg><span class="t">${t('login')}</span>`;
+  $('#bCabL').textContent=user?t('profile'):t('login');
+}
+
 /* ---------- cabinet ---------- */
 function openCab(){
+  if(!user)return openLogin(openCab);
   const mine=userAds;
   const views=mine.reduce((s,a)=>s+(a.views||0),0);
   const msgs=Object.keys(chats).length;
-  openModal(`<div class="cab"><h3 class="mh">${t('cabT')}</h3>
+  const viaIcon=user.method==='google'?GLOGO:`<span style="display:inline-grid;place-items:center;width:14px;height:14px;border-radius:50%;background:#229ED9">${TGLOGO}</span>`;
+  openModal(`<div class="cab"><h3 class="mh">${t('profileT')}</h3>
+    <div class="prof"><span class="ava">${esc(user.name[0])}</span><div class="pi2"><b>${esc(user.name)}</b><small>${esc(user.email||user.tg||'')}</small><br><span class="via">${viaIcon}${t('via')} ${user.method==='google'?'Google':'Telegram'}</span></div><button class="btn ghost" id="logoutBtn">${t('logout')}</button></div>
+    <div class="f2"><label class="fl">${t('pName')}<input id="pNameIn" value="${esc(user.name)}"></label><label class="fl">${t('pPhone')}<input id="pPhoneIn" inputmode="tel" placeholder="+998 90 123 45 67" value="${esc(user.phone||'')}"></label></div>
+    <div><button class="btn" id="pSave">${t('save')}</button></div>
+    <div class="divider"></div>
+    <h3 class="mh" style="font-size:20px">${t('cabT')}</h3>
     <div class="kpis"><div class="kpi"><b class="num">${mine.length}</b><span>${t('kAds')}</span></div><div class="kpi"><b class="num">${views}</b><span>${t('kViews')}</span></div><div class="kpi"><b class="num">${msgs}</b><span>${t('kMsgs')}</span></div></div>
     ${mine.length?mine.map(a=>`<div class="cabrow">${thumb(a)}<div class="ci2"><b>${esc(a.title)}</b><span>${priceHTML(a).replace(/<[^>]+>/g,' ')} · ${esc(cityName(a.city))} · ${ago(a.ts)}</span></div><div class="ca"><button class="btn" data-up="${a.id}">${t('up')} · ${fmt(PRICES.up.p)}</button><button class="btn ghost" data-del="${a.id}">${t('del')}</button></div></div>`).join(''):`<p style="color:var(--ink3);margin:0">${t('cabEmpty')}</p><div><button class="btn primary" id="cabPost">+ ${t('post')}</button></div>`}
   </div>`);
-  const cp=$('#cabPost');if(cp)cp.onclick=openForm;
+  const cp=$('#cabPost');if(cp)cp.onclick=()=>requireLogin(openForm,'needPost');
+  $('#logoutBtn').onclick=logout;
+  $('#pSave').onclick=()=>{const n=$('#pNameIn').value.trim();if(n)user.name=n;user.phone=$('#pPhoneIn').value.trim();store.set('tp_user',user);updateAuthUI();toast(t('saved'));openCab()};
 }
 
 /* ---------- pricing ---------- */
@@ -813,7 +921,7 @@ function syncTabs(){$$('.tab').forEach(x=>x.setAttribute('aria-pressed',x.datase
 function goHome(){state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12};$('#q').value='';$('#city').value='';$('#sort').value='new';syncTabs();render();scrollTo(0,0)}
 function toggleFav(){state.onlyFav=!state.onlyFav;state.limit=12;syncTabs();render();scrollTo({top:$('#grid').offsetTop-160})}
 
-$$('.lang button').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;try{localStorage.setItem('tp_lang',lang)}catch(e){}applyI18n();render()});
+$$('.lang button').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;try{localStorage.setItem('tp_lang',lang)}catch(e){}applyI18n();updateAuthUI();render()});
 $$('.tab').forEach(x=>x.onclick=()=>{state.kind=x.dataset.kind;state.cat=null;state.onlyFav=false;state.limit=12;syncTabs();render()});
 $('#cats').onclick=e=>{const b=e.target.closest('.cat');if(!b)return;state.cat=state.cat===b.dataset.cat?null:b.dataset.cat;state.limit=12;render()};
 $('#q').oninput=e=>{state.q=e.target.value;state.limit=12;render()};
@@ -822,7 +930,7 @@ $('#pop').onclick=e=>{const b=e.target.closest('[data-pop]');if(!b)return;$('#q'
 $('#city').onchange=e=>{state.city=e.target.value;render()};
 $('#sort').onchange=e=>{state.sort=e.target.value;render()};
 $('#hFav').onclick=toggleFav;$('#bFav').onclick=toggleFav;
-$('#postBtn').onclick=openForm;$('#bPost').onclick=openForm;
+const postGated=()=>requireLogin(openForm,'needPost');$('#postBtn').onclick=postGated;$('#bPost').onclick=postGated;
 $('#hChats').onclick=openChats;$('#bChats').onclick=openChats;
 $('#hCab').onclick=openCab;$('#bCab').onclick=openCab;
 $('#hPrice').onclick=openPricing;$('#launchBtn').onclick=openPricing;$('#bizBtn').onclick=openPricing;
@@ -850,7 +958,7 @@ function lagan(){
   return `<svg viewBox="0 0 200 200"><circle cx="100" cy="100" r="96" fill="#0A4F57" stroke="#D6A13A" stroke-width="3"/><circle cx="100" cy="100" r="84" fill="none" stroke="#fff" stroke-width="1.5" stroke-dasharray="4 5"/><g fill="#D6A13A">${dots}</g><g fill="#12808A" stroke="#fff" stroke-width="2">${petals}</g><circle cx="100" cy="100" r="22" fill="#B4532A" stroke="#D6A13A" stroke-width="3"/><path d="M100 84l5 11 11 5-11 5-5 11-5-11-11-5 11-5z" fill="#fff"/></svg>`;
 }
 $$('.lagan').forEach(e=>e.innerHTML=lagan());
-applyI18n();render();
+applyI18n();updateAuthUI();render();
 </script>
 </body>
 </html>
