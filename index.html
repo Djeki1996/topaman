@@ -3,6 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A4F57">
+<meta name="description" content="Butun bozor — cho‘ntagingizda. Объявления, вакансии и мастера Узбекистана.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Topaman">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Topaman.uz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -516,6 +525,16 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .stat.bad{color:var(--red)}
 .pc2.soon{opacity:.62}
 .soonTag{align-self:flex-start;font-size:11px;font-weight:700;background:var(--ink3);color:var(--surface);border-radius:6px;padding:2px 7px;text-transform:uppercase;letter-spacing:.05em}
+/* install-as-app bar */
+.instbar{position:fixed;left:12px;right:12px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:45;max-width:560px;margin:0 auto;display:flex;align-items:center;gap:10px;background:var(--tq-deep);color:#fff;border:1px solid rgba(214,161,58,.6);border-radius:16px;padding:10px 10px 10px 12px;box-shadow:0 12px 30px rgba(0,0,0,.3)}
+.ib-ic{width:42px;height:42px;border-radius:11px;flex-shrink:0;background:var(--tq) center/cover no-repeat}
+.ib-tx{flex:1;min-width:0;display:flex;flex-direction:column}
+.ib-tx b{font-size:14px;line-height:1.2}
+.ib-tx small{font-size:12px;opacity:.8;line-height:1.25}
+.instbar .btn{padding:8px 12px;font-size:13.5px}
+.ib-x{border:0;background:none;color:#fff;opacity:.7;font-size:22px;line-height:1;padding:4px 6px}
+.iosteps{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px;color:var(--ink2)}
+@media (max-width:760px){.instbar{bottom:calc(76px + env(safe-area-inset-bottom,0px))}}
 @keyframes sheet{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.modal{animation:none!important}}
 </style>
@@ -609,6 +628,12 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
   <button id="bCab"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span id="bCabL"></span></button>
 </nav>
 
+<div class="instbar" id="instBar" hidden>
+  <span class="ib-ic" aria-hidden="true"></span>
+  <span class="ib-tx"><b data-i="instT"></b><small data-i="instS"></small></span>
+  <button class="btn gold" id="instBtn"></button>
+  <button class="ib-x" id="instX" aria-label="×">×</button>
+</div>
 <div class="ov" id="ov" hidden><div class="modal" id="modal" role="dialog" aria-modal="true"></div></div>
 <div class="toast" id="toast" hidden></div>
 
@@ -634,7 +659,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  chatWith:'Чат',msgPh:'Сообщение…',send:'Отправить',autoHi:'Здравствуйте! Да, объявление актуально.',autoRe:'Хорошо, давайте созвонимся. (автоответ демо)',
  q1:'Ещё актуально?',q2:'Какая последняя цена?',q3:'Где можно посмотреть?',q4:'Когда можно выйти на работу?',
  newAd:'Новое объявление',kSell:'Продаю вещь',kJob:'Ищу работника',kCv:'Ищу работу',fTitle:'Заголовок',fCat:'Категория',fPrice:'Цена, сум',fS1:'Зарплата от, сум',fS2:'до, сум',
- fDesc:'Описание',fDescPh:'Состояние, размеры, условия работы…',fName:'Ваше имя',leftN:'осталось {n} из {m}',soon:'Скоро',promoLimits:'В акцию бесплатно каждый месяц: 1 VIP, 3 ТОП, 3 «Срочно», поднятие 1 раз в день, вакансии без ограничений.',tLeft:'{t} ещё {n} дн.',activeLeft:'Активно ещё {n} дн.',expiredT:'Срок 30 дней истёк, объявление скрыто',renew:'Продлить бесплатно',renewed:'Объявление продлено на 30 дней',upOnce:'Бесплатно поднимать можно 1 раз в день',upped:'Объявление поднято наверх ленты',jobFee:'Вакансия (вторая и далее в месяц)',tariffL:'Продвижение',payWith:'Способ оплаты',toPay:'К оплате',freePromo:'бесплатно по акции запуска',goPay:'Переход к оплате',demoPay:'Демо: оплата пока имитируется, настоящую подключим после договора с Payme и Click',paidOk:'Оплата прошла',payAccept:'Принимаем оплату',call:'Позвонить',fPhone:'Телефон для связи',errPhone:'Укажите правильный номер телефона, например +998 90 123 45 67. Без номера объявление не публикуется.',editAd:'Изменить объявление',edit:'Изменить',savedAd:'Изменения сохранены и проверены',addPhoto:'Добавить фото',fPhoto:'Фото',promoH:'Продвижение',publish:'Опубликовать',
+ fDesc:'Описание',fDescPh:'Состояние, размеры, условия работы…',fName:'Ваше имя',instT:'Установите приложение Topaman',instS:'Иконка на главном экране, открывается как обычное приложение',instB:'Установить',instDone:'Приложение установлено',iosT:'Как установить на iPhone',ios1:'Нажмите кнопку «Поделиться» внизу Safari',ios2:'Прокрутите и выберите «На экран „Домой“»',ios3:'Нажмите «Добавить» — иконка Topaman появится на экране',instHow:'Как установить',leftN:'осталось {n} из {m}',soon:'Скоро',promoLimits:'В акцию бесплатно каждый месяц: 1 VIP, 3 ТОП, 3 «Срочно», поднятие 1 раз в день, вакансии без ограничений.',tLeft:'{t} ещё {n} дн.',activeLeft:'Активно ещё {n} дн.',expiredT:'Срок 30 дней истёк, объявление скрыто',renew:'Продлить бесплатно',renewed:'Объявление продлено на 30 дней',upOnce:'Бесплатно поднимать можно 1 раз в день',upped:'Объявление поднято наверх ленты',jobFee:'Вакансия (вторая и далее в месяц)',tariffL:'Продвижение',payWith:'Способ оплаты',toPay:'К оплате',freePromo:'бесплатно по акции запуска',goPay:'Переход к оплате',demoPay:'Демо: оплата пока имитируется, настоящую подключим после договора с Payme и Click',paidOk:'Оплата прошла',payAccept:'Принимаем оплату',call:'Позвонить',fPhone:'Телефон для связи',errPhone:'Укажите правильный номер телефона, например +998 90 123 45 67. Без номера объявление не публикуется.',editAd:'Изменить объявление',edit:'Изменить',savedAd:'Изменения сохранены и проверены',addPhoto:'Добавить фото',fPhoto:'Фото',promoH:'Продвижение',publish:'Опубликовать',
  errTitle:'Заголовок слишком короткий: напишите хотя бы 5 символов.',errName:'Укажите имя, чтобы вам могли ответить.',
  published:'Объявление опубликовано',paidNote:'В рабочей версии здесь будет оплата через Payme или Click',
  noFav:'Вы ещё ничего не добавили в избранное.',notFound:'Ничего не найдено. Попробуйте другой запрос или город.',showMore:'Показать ещё',
@@ -681,7 +706,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  chatWith:'Chat',msgPh:'Xabar…',send:'Yuborish',autoHi:'Assalomu alaykum! Ha, e’lon dolzarb.',autoRe:'Yaxshi, qo‘ng‘iroqlashamiz. (demo avtojavob)',
  q1:'Hali dolzarbmi?',q2:'Oxirgi narxi qancha?',q3:'Qayerda ko‘rsa bo‘ladi?',q4:'Qachon ishga chiqsa bo‘ladi?',
  newAd:'Yangi e’lon',kSell:'Narsa sotaman',kJob:'Ishchi qidiraman',kCv:'Ish qidiraman',fTitle:'Sarlavha',fCat:'Toifa',fPrice:'Narx, so‘m',fS1:'Maosh, dan',fS2:'gacha',
- fDesc:'Tavsif',fDescPh:'Holati, o‘lchami, ish sharoitlari…',fName:'Ismingiz',leftN:'{m} tadan {n} ta qoldi',soon:'Tez orada',promoLimits:'Aksiyada har oy bepul: 1 VIP, 3 TOP, 3 «Shoshilinch», kuniga 1 marta ko‘tarish, vakansiyalar cheklovsiz.',tLeft:'{t} yana {n} kun',activeLeft:'Yana {n} kun faol',expiredT:'30 kunlik muddat tugadi, e’lon yashirildi',renew:'Bepul uzaytirish',renewed:'E’lon 30 kunga uzaytirildi',upOnce:'Bepul ko‘tarish kuniga 1 marta',upped:'E’lon lenta tepasiga ko‘tarildi',jobFee:'Vakansiya (oyiga ikkinchi va keyingilari)',tariffL:'Reklama',payWith:'To‘lov usuli',toPay:'To‘lanadi',freePromo:'ishga tushirish aksiyasi bo‘yicha bepul',goPay:'To‘lovga o‘tilmoqda',demoPay:'Demo: to‘lov hozircha taqlid qilinadi, haqiqiysini Payme va Click bilan shartnomadan keyin ulaymiz',paidOk:'To‘lov o‘tdi',payAccept:'To‘lov qabul qilamiz',call:'Qo‘ng‘iroq qilish',fPhone:'Aloqa telefoni',errPhone:'To‘g‘ri telefon raqamini kiriting, masalan +998 90 123 45 67. Raqamsiz e’lon joylanmaydi.',editAd:'E’lonni tahrirlash',edit:'Tahrirlash',savedAd:'O‘zgarishlar saqlandi va tekshirildi',addPhoto:'Surat qo‘shish',fPhoto:'Surat',promoH:'Reklama',publish:'Joylash',
+ fDesc:'Tavsif',fDescPh:'Holati, o‘lchami, ish sharoitlari…',fName:'Ismingiz',instT:'Topaman ilovasini o‘rnating',instS:'Bosh ekranda belgi, oddiy ilova kabi ochiladi',instB:'O‘rnatish',instDone:'Ilova o‘rnatildi',iosT:'iPhone’ga qanday o‘rnatiladi',ios1:'Safari pastidagi «Ulashish» tugmasini bosing',ios2:'Pastga suring va «Bosh ekranga» ni tanlang',ios3:'«Qo‘shish» ni bosing — Topaman belgisi ekranda paydo bo‘ladi',instHow:'Qanday o‘rnatiladi',leftN:'{m} tadan {n} ta qoldi',soon:'Tez orada',promoLimits:'Aksiyada har oy bepul: 1 VIP, 3 TOP, 3 «Shoshilinch», kuniga 1 marta ko‘tarish, vakansiyalar cheklovsiz.',tLeft:'{t} yana {n} kun',activeLeft:'Yana {n} kun faol',expiredT:'30 kunlik muddat tugadi, e’lon yashirildi',renew:'Bepul uzaytirish',renewed:'E’lon 30 kunga uzaytirildi',upOnce:'Bepul ko‘tarish kuniga 1 marta',upped:'E’lon lenta tepasiga ko‘tarildi',jobFee:'Vakansiya (oyiga ikkinchi va keyingilari)',tariffL:'Reklama',payWith:'To‘lov usuli',toPay:'To‘lanadi',freePromo:'ishga tushirish aksiyasi bo‘yicha bepul',goPay:'To‘lovga o‘tilmoqda',demoPay:'Demo: to‘lov hozircha taqlid qilinadi, haqiqiysini Payme va Click bilan shartnomadan keyin ulaymiz',paidOk:'To‘lov o‘tdi',payAccept:'To‘lov qabul qilamiz',call:'Qo‘ng‘iroq qilish',fPhone:'Aloqa telefoni',errPhone:'To‘g‘ri telefon raqamini kiriting, masalan +998 90 123 45 67. Raqamsiz e’lon joylanmaydi.',editAd:'E’lonni tahrirlash',edit:'Tahrirlash',savedAd:'O‘zgarishlar saqlandi va tekshirildi',addPhoto:'Surat qo‘shish',fPhoto:'Surat',promoH:'Reklama',publish:'Joylash',
  errTitle:'Sarlavha juda qisqa: kamida 5 ta belgi yozing.',errName:'Sizga javob berishlari uchun ismingizni yozing.',
  published:'E’lon joylandi',paidNote:'Ishchi versiyada bu yerda Payme yoki Click orqali to‘lov bo‘ladi',
  noFav:'Hali hech narsa saralanmagan.',notFound:'Hech narsa topilmadi. Boshqa so‘z yoki shaharni sinab ko‘ring.',showMore:'Yana ko‘rsatish',
@@ -856,6 +881,7 @@ function applyI18n(){
   $$('[data-i]').forEach(e=>e.innerHTML=t(e.dataset.i));
   $$('[data-ip]').forEach(e=>e.placeholder=t(e.dataset.ip));
   setHeroTitle();
+  const ib=$('#instBtn');if(ib&&typeof installEvt!=='undefined')ib.textContent=installEvt?t('instB'):t('instHow');
   $('#launchS').textContent=tD('launchS');$('.launch').hidden=!promoOn();
   const hr=new Date().getHours();
   $('#greet').textContent='Assalomu alaykum! '+(hr<11?'Xayrli tong':hr<18?'Xayrli kun':'Xayrli kech');
@@ -1316,6 +1342,32 @@ function applyTheme(){
 }
 $('#thBtn').onclick=()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';try{localStorage.setItem('tp_theme',JSON.stringify({mode:next,until:Date.now()+12*3600e3}))}catch(e){}applyTheme()};
 applyTheme();setInterval(applyTheme,5*60e3);
+
+/* ---------- install as an app (PWA) ----------
+   Android/desktop Chrome: real install prompt. iPhone Safari: short "Share -> Add to Home Screen" guide.
+   Hidden when already installed; "×" hides it for 7 days. Inside the Claude artifact this stays inert. */
+let installEvt=null;
+const isStandalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent)&&!/crios|fxios/i.test(navigator.userAgent);
+function instSnoozed(){try{return +localStorage.getItem('tp_inst_snooze')>Date.now()}catch(e){return false}}
+function showInstall(){
+  if(isStandalone()||instSnoozed())return;
+  $('.ib-ic').style.backgroundImage='url(icons/icon-192.png)';
+  $('#instBtn').textContent=installEvt?t('instB'):t('instHow');
+  $('#instBar').hidden=false;
+}
+if('serviceWorker' in navigator&&/^https?:$/.test(location.protocol)&&!/claude|anthropic/.test(location.hostname)){
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;showInstall()});
+window.addEventListener('appinstalled',()=>{$('#instBar').hidden=true;toast(t('instDone'))});
+if(isIOS&&!isStandalone())setTimeout(showInstall,4000);
+$('#instBtn').onclick=async()=>{
+  if(installEvt){installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;$('#instBar').hidden=true;return}
+  openModal(`<div class="cab"><h3 class="mh">${t('iosT')}</h3><ol class="iosteps"><li>${t('ios1')}</li><li>${t('ios2')}</li><li>${t('ios3')}</li></ol></div>`);
+  $('#modal').classList.add('narrow');
+};
+$('#instX').onclick=()=>{$('#instBar').hidden=true;try{localStorage.setItem('tp_inst_snooze',Date.now()+7*864e5)}catch(e){}};
 applyI18n();updateAuthUI();render();
 </script>
 </body>
