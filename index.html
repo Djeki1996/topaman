@@ -1491,7 +1491,7 @@ function updateAuthUI(){
 /* ---------- Firebase: real accounts, ads, photos, favourites, reports ----------
    Firestore (europe-west3). Security rules live in topaman-firebase/firestore.rules.
    Photos are stored as compressed JPEG in ads/{id}/photos/{i} (a Storage bucket can replace this later). */
-const FB_CFG={apiKey:'AIzaSyBqc73J5wwT81SQDwRzv60xV0dL04lLP5Q',authDomain:'topaman-48bcf.firebaseapp.com',projectId:'topaman-48bcf',storageBucket:'topaman-48bcf.firebasestorage.app',messagingSenderId:'560207363619',appId:'1:560207363619:web:76d408f327206aaa71fb96'};
+const FB_CFG={apiKey:'AIzaSyBqc73J5wwT81SQDwRzv60xV0dL04lLP5Q',authDomain:(location.hostname==='topaman.uz'?'topaman.uz':'topaman-48bcf.firebaseapp.com'),projectId:'topaman-48bcf',storageBucket:'topaman-48bcf.firebasestorage.app',messagingSenderId:'560207363619',appId:'1:560207363619:web:76d408f327206aaa71fb96'};
 const FBV='12.19.0',FBU=`https://www.gstatic.com/firebasejs/${FBV}/`;
 const fbReady=(async()=>{
   const [ap,A,F]=await Promise.all([import(FBU+'firebase-app.js'),import(FBU+'firebase-auth.js'),import(FBU+'firebase-firestore.js')]);
@@ -1505,6 +1505,7 @@ let adsUnsub=null,myUnsub=null;
 fbReady.then(f=>{
   const {F,db}=f;
   adsUnsub=F.onSnapshot(F.query(F.collection(db,'ads'),F.orderBy('ts','desc'),F.limit(300)),snap=>{cloudAds=snap.docs.map(toAd);render()},err=>console.warn('ads',err));
+  f.A.getRedirectResult(f.auth).then(r=>{if(r&&r.user)toast(t('welcome')+', '+(r.user.displayName||'')+'!')}).catch(e=>{console.warn('redirect',e);toast(t('loginErr')+' ('+(e.code||'')+')')});
   f.A.onAuthStateChanged(f.auth,async u=>{
     if(myUnsub){myUnsub();myUnsub=null}
     if(!u){user=null;myAds=[];updateAuthUI();render();return}
@@ -1525,8 +1526,11 @@ async function googleLogin(next){
   afterLogin=next||(()=>{});
   try{
     const f=await fbReady,p=new f.A.GoogleAuthProvider();p.setCustomParameters({prompt:'select_account'});
+    /* phones and the installed app: full-page redirect (popups are unreliable there); computers: popup */
+    const mobile=matchMedia('(pointer:coarse)').matches||isStandalone();
+    if(mobile){await f.A.signInWithRedirect(f.auth,p);return}
     try{await f.A.signInWithPopup(f.auth,p)}
-    catch(e){if(/popup-blocked|operation-not-supported/.test(e.code||''))await f.A.signInWithRedirect(f.auth,p);else throw e}
+    catch(e){if(/popup-blocked|operation-not-supported|web-storage/.test(e.code||''))await f.A.signInWithRedirect(f.auth,p);else throw e}
   }catch(e){afterLogin=null;if(!/popup-closed|cancelled-popup/.test(e.code||'')){const el=$('#authErr');if(el)el.textContent=t('loginErr')+' ('+(e.code||'')+')'}}
 }
 function saveProfile(patch){fbReady.then(f=>{if(!user)return;f.F.setDoc(f.F.doc(f.db,'users',user.uid),{...patch,updated:Date.now()},{merge:true})}).catch(()=>{})}
