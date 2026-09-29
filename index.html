@@ -597,6 +597,18 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .sc b{font-size:13px;font-weight:500;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .sc small{font-size:12px;color:var(--ink3)}
 @media (max-width:760px){.sim{grid-template-columns:repeat(2,1fr)}.simwrap{margin:4px 10px 0}}
+/* multi-photo form + gallery */
+.phs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:6px}
+.phs .ph{position:relative;aspect-ratio:1;border-radius:10px;background:center/cover no-repeat var(--surface2);border:1px solid var(--line)}
+.phs .ph b{position:absolute;left:6px;top:6px;background:var(--gold);color:#1b1206;font-size:11px;border-radius:6px;padding:1px 6px}
+.phs .ph button{position:absolute;right:4px;top:4px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#fff;font-size:17px;line-height:1;cursor:pointer}
+.phs .upl{min-height:0;aspect-ratio:1;flex-direction:column;gap:4px;font-size:12.5px;text-align:center}
+.phh{color:var(--ink3);font-weight:400;font-size:12.5px}
+.thumb.gal{padding:0;overflow:hidden}
+.gtrack{display:flex;width:100%;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.gtrack::-webkit-scrollbar{display:none}
+.gtrack img{flex:0 0 100%;width:100%;height:100%;object-fit:contain;scroll-snap-align:center;background:#000}
+.gcount{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.6);color:#fff;border-radius:9px;padding:3px 9px;font-size:13px}
 @keyframes sheet{from{transform:translateY(40px);opacity:.6}to{transform:none;opacity:1}}
 @media (prefers-reduced-motion:reduce){.modal{animation:none!important}}
 </style>
@@ -715,7 +727,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  launchT:'Акция запуска',launchS:'Первые 3 месяца бесплатно: вакансии, поднятие 1 раз в день и каждый месяц 1 VIP, 3 ТОП и 3 «Срочно». До {d}.',launchB:'Смотреть тарифы',free:'Бесплатно',freeUntil:'Бесплатно до {d}',promoBtnFree:'Поднять в ТОП бесплатно',upFree:'Объявление поднято в ТОП бесплатно',topFree:'ТОП включён бесплатно по акции запуска',onlineNow:'сейчас на сайте',
  regions:'Объявления по регионам',tAll:'Все',tSell:'Продажа вещей',tJob:'Вакансии',tCv:'Ищу работу',recent:'Вы недавно смотрели',
  lAll:'Свежие объявления',lSell:'Продажа вещей',lJob:'Вакансии',lCv:'Резюме: ищу работу',lFav:'Избранное',pcs:'шт.',
- sNew:'Сначала новые',similar:'Похожие объявления',sNear:'Ближе ко мне',nearMe:'Рядом со мной',anyDist:'Любое расстояние',km:'км',m:'м',mapBtn:'Карта',listBtn:'Скрыть карту',geoAsk:'Определяем ваше место…',geoFail:'Не удалось определить место — считаем от центра: {c}. Разрешите геолокацию в браузере.',fromYou:'от вас',place:'Где находится',myPlace:'Моё место',placeHint:'Передвиньте метку на карте. Другим показываем только район (~300 м), не точный адрес.',route:'Маршрут',approx:'Примерное место',mapNone:'В этом радиусе объявлений нет — увеличьте радиус',mln:'млн',ths:'тыс',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
+ sNew:'Сначала новые',tgSoon:'Вход через Telegram появится совсем скоро. Пока войдите через Google.',loginErr:'Не удалось войти. Попробуйте ещё раз.',netErr:'Нет связи с сервером. Проверьте интернет и попробуйте снова.',saving:'Сохраняем…',maxPh:'Можно до 6 фото',phHint:'Первое фото — главное. До 6 фото.',needLoginFav:'Войдите, чтобы избранное сохранялось на всех устройствах',similar:'Похожие объявления',sNear:'Ближе ко мне',nearMe:'Рядом со мной',anyDist:'Любое расстояние',km:'км',m:'м',mapBtn:'Карта',listBtn:'Скрыть карту',geoAsk:'Определяем ваше место…',geoFail:'Не удалось определить место — считаем от центра: {c}. Разрешите геолокацию в браузере.',fromYou:'от вас',place:'Где находится',myPlace:'Моё место',placeHint:'Передвиньте метку на карте. Другим показываем только район (~300 м), не точный адрес.',route:'Маршрут',approx:'Примерное место',mapNone:'В этом радиусе объявлений нет — увеличьте радиус',mln:'млн',ths:'тыс',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
  howT:'Как это работает',how1:'Сфотографируйте вещь или опишите вакансию',how2:'Опубликуйте за 1 минуту, бесплатно',how3:'Покупатели и кандидаты напишут в чат',
  bizT:'Для магазинов и работодателей',bizS:'Страница магазина с логотипом, пакеты вакансий, доступ к базе резюме и статистика просмотров.',bizB:'Тарифы для бизнеса',
  foot:'площадка объявлений Узбекистана',demo:'Демо-версия: все объявления и телефоны тестовые',
@@ -773,7 +785,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  launchT:'Ishga tushirish aksiyasi',launchS:'Dastlabki 3 oy bepul: vakansiyalar, kuniga 1 marta ko‘tarish va har oy 1 VIP, 3 TOP va 3 «Shoshilinch». {d} gacha.',launchB:'Tariflarni ko‘rish',free:'Bepul',freeUntil:'{d} gacha bepul',promoBtnFree:'TOPga bepul ko‘tarish',upFree:'E’lon TOPga bepul ko‘tarildi',topFree:'TOP ishga tushirish aksiyasi bo‘yicha bepul yoqildi',onlineNow:'hozir saytda',
  regions:'Viloyatlar bo‘yicha e’lonlar',tAll:'Hammasi',tSell:'Narsalar savdosi',tJob:'Vakansiyalar',tCv:'Ish qidiraman',recent:'Siz yaqinda ko‘rgansiz',
  lAll:'Yangi e’lonlar',lSell:'Narsalar savdosi',lJob:'Vakansiyalar',lCv:'Rezyumelar: ish qidiraman',lFav:'Saralanganlar',pcs:'ta',
- sNew:'Avval yangilari',similar:'O‘xshash e’lonlar',sNear:'Menga yaqinroq',nearMe:'Yonimda',anyDist:'Istalgan masofa',km:'km',m:'m',mapBtn:'Xarita',listBtn:'Xaritani yopish',geoAsk:'Joylashuvingiz aniqlanmoqda…',geoFail:'Joyni aniqlab bo‘lmadi — markazdan hisoblaymiz: {c}. Brauzerda geolokatsiyaga ruxsat bering.',fromYou:'sizdan',place:'Qayerda joylashgan',myPlace:'Mening joyim',placeHint:'Belgini xaritada suring. Boshqalarga faqat hudud (~300 m) ko‘rsatiladi, aniq manzil emas.',route:'Yo‘nalish',approx:'Taxminiy joy',mapNone:'Bu radiusda e’lon yo‘q — radiusni kattalashtiring',mln:'mln',ths:'ming',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
+ sNew:'Avval yangilari',tgSoon:'Telegram orqali kirish tez orada qo‘shiladi. Hozircha Google orqali kiring.',loginErr:'Kirib bo‘lmadi. Qayta urinib ko‘ring.',netErr:'Server bilan aloqa yo‘q. Internetni tekshirib, qayta urinib ko‘ring.',saving:'Saqlanmoqda…',maxPh:'6 tagacha surat mumkin',phHint:'Birinchi surat — asosiy. 6 tagacha.',needLoginFav:'Saralanganlar barcha qurilmalarda saqlanishi uchun kiring',similar:'O‘xshash e’lonlar',sNear:'Menga yaqinroq',nearMe:'Yonimda',anyDist:'Istalgan masofa',km:'km',m:'m',mapBtn:'Xarita',listBtn:'Xaritani yopish',geoAsk:'Joylashuvingiz aniqlanmoqda…',geoFail:'Joyni aniqlab bo‘lmadi — markazdan hisoblaymiz: {c}. Brauzerda geolokatsiyaga ruxsat bering.',fromYou:'sizdan',place:'Qayerda joylashgan',myPlace:'Mening joyim',placeHint:'Belgini xaritada suring. Boshqalarga faqat hudud (~300 m) ko‘rsatiladi, aniq manzil emas.',route:'Yo‘nalish',approx:'Taxminiy joy',mapNone:'Bu radiusda e’lon yo‘q — radiusni kattalashtiring',mln:'mln',ths:'ming',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
  howT:'Qanday ishlaydi',how1:'Narsani suratga oling yoki vakansiyani yozing',how2:'1 daqiqada bepul joylang',how3:'Xaridorlar va nomzodlar chatga yozadi',
  bizT:'Do‘konlar va ish beruvchilar uchun',bizS:'Logotipli do‘kon sahifasi, vakansiya paketlari, rezyume bazasi va ko‘rishlar statistikasi.',bizB:'Biznes tariflari',
  foot:'O‘zbekiston e’lonlar maydoni',demo:'Demo versiya: barcha e’lonlar va telefonlar sinov uchun',
@@ -926,16 +938,20 @@ const SEED=[
 /* ---------- state ---------- */
 const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
-let userAds=store.get('tp_ads',[]);
-let favs=new Set(store.get('tp_favs',[]));
+let cloudAds=[];   /* all live ads from Firestore */
+let myAds=[];      /* my ads, incl. expired ones (for the cabinet) */
+const SHOW_DEMO=true;   /* demo ads stay visible until launch */
+let favs=new Set(store.get('tp_favs',[]).map(String));
 let recent=store.get('tp_recent',[]);
 let chats=store.get('tp_chats',{});
 let state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12,me:null,near:false,radius:10,map:false};
 
 /* own ads: paid options end after their days, the ad itself is hidden after 30 days until renewed */
 function live(a){const n=Date.now(),b={...a};if(b.topUntil&&b.topUntil<n)b.top=null;if(b.urgUntil&&b.urgUntil<n)b.urg=0;return b}
-const expired=a=>!!a.mine&&(a.created||a.ts)+LIFE*DAY<Date.now();
-const all=()=>[...userAds.filter(a=>!expired(a)).map(live),...SEED.map(a=>({...a,ts:now-a.ago}))].filter(a=>!isHidden(a));
+const expired=a=>!!a.uid&&(a.created||a.ts)+LIFE*DAY<Date.now();
+const markMine=a=>({...a,mine:!!(user&&a.uid===user.uid)});
+const all=()=>[...cloudAds.filter(a=>!expired(a)).map(live).map(markMine),...(SHOW_DEMO?SEED.map(a=>({...a,ts:now-a.ago})):[])].filter(a=>!isHidden(a));
+const myAd=id=>myAds.find(x=>x.id==id);
 const byId=id=>all().find(x=>x.id==id);
 const catOf=id=>CATS.find(c=>c.id===id);
 const cname=c=>c[lang];
@@ -950,9 +966,9 @@ const norm=s=>String(s||'').toLowerCase().replace(/[‘’ʻʼ`´]/g,"'").replac
 const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 function thumb(a){
   const c=catOf(a.cat);
-  const inner=a.img?`<img src="${a.img}" alt="">`:svg(c.icon);
+  const src=a.thumb||a.img;const inner=src?`<img src="${src}" alt="">`:svg(c.icon);
   const bg=`radial-gradient(circle at 50% 70%,hsl(${c.hue} 45% 90%),hsl(${c.hue} 38% 76%))`;
-  const pc=a.photos?`<span class="pc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/></svg>${a.photos}</span>`:'';
+  const nph=a.nPhotos||a.photos;const pc=nph>1||a.photos?`<span class="pc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/></svg>${nph}</span>`:'';
   return `<div class="thumb" style="background:${bg};color:hsl(${c.hue} 50% 26%)">${inner}${pc}</div>`;
 }
 function badges(a,stat){
@@ -996,7 +1012,7 @@ function renderCats(){
 function card(a){
   return `<div class="card${a.top==='vip'?' vip':''}" data-id="${a.id}" role="button" tabindex="0">
     ${thumb(a)}${badges(a)}
-    <button class="fav${favs.has(a.id)?' on':''}" data-fav="${a.id}" aria-label="${t('fav')}">${heart}</button>
+    <button class="fav${favs.has(String(a.id))?' on':''}" data-fav="${a.id}" aria-label="${t('fav')}">${heart}</button>
     <div class="cbody">
       <div class="cprice${a.kind!=='sell'?' sal':''}">${priceHTML(a)}</div>
       <div class="ctitle">${esc(a.title)}</div>
@@ -1079,7 +1095,7 @@ function render(){
   $('#stJobs').textContent=list.filter(a=>a.kind==='job').length;
   $('#stCv').textContent=list.filter(a=>a.kind==='cv').length;
   const q=norm(state.q);
-  let r=list.filter(a=>state.onlyFav?favs.has(a.id):(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(a.id))&&(!(state.near&&state.radius&&state.me)||distOf(a)<=state.radius)&&(!q||norm(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz+' '+cityName(a.city)).includes(q)));
+  let r=list.filter(a=>state.onlyFav?favs.has(String(a.id)):(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(String(a.id)))&&(!(state.near&&state.radius&&state.me)||distOf(a)<=state.radius)&&(!q||norm(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz+' '+cityName(a.city)).includes(q)));
   const rank=a=>a.top==='vip'?2:a.top==='top'?1:0;
   r.sort((x,y)=>state.sort==='near'&&state.me?distOf(x)-distOf(y):state.sort==='cheap'?(priceVal(x)||1e15)-(priceVal(y)||1e15):state.sort==='exp'?priceVal(y)-priceVal(x):state.sort==='pop'?(y.views||0)-(x.views||0):(rank(y)-rank(x))||(y.ts-x.ts));
   if(state.sort==='new'){
@@ -1176,20 +1192,23 @@ function openAd(id){
     link.className='btn call';link.id='showTel';link.href='tel:+'+num.replace(/\D/g,'');
     link.innerHTML=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><span><small>${t('call')}</small>${esc(num)}${a.phone?'':' ('+t('test')+')'}</span>`;
     b.replaceWith(link)};
-  $('#chatBtn').onclick=()=>a.mine?openForm(userAds.find(x=>x.id==a.id)):user?openChatIn(a):openLogin(()=>{openAd(a.id);openChatIn(a)},'needChat');
-  const p=$('#promoBtn');if(p)p.onclick=()=>{if(!isFree('top'))return toast(t('paidNote'));const m=userAds.find(x=>x.id==a.id);if(m){m.top='top';m.topUntil=Date.now()+DUR.top*DAY;m.ts=Date.now();addUse('top');store.set('tp_ads',userAds)}toast(t('upFree'));closeModal()};
+  $('#chatBtn').onclick=()=>a.mine?openForm(myAd(a.id)):user?openChatIn(a):openLogin(()=>{openAd(a.id);openChatIn(a)},'needChat');
+  const p=$('#promoBtn');if(p)p.onclick=async()=>{if(!isFree('top'))return toast(t('paidNote'));const m=myAd(a.id);if(!m)return;try{await adUpdate(m,{top:'top',topUntil:Date.now()+DUR.top*DAY,ts:Date.now()});addUse('top');toast(t('upFree'));closeModal()}catch(e){toast(t('netErr'))}};
+  if(a.uid){countView(a);if(a.nPhotos)loadGallery(a)}
   const rb=$('#repBtn');if(rb)rb.onclick=()=>openReport(a);
   if(chats[a.id])openChatIn(a,true);
 }
 /* complaints: 3 reports from different people hide the ad automatically */
 var reports=store.get('tp_reports',{}), myReports=new Set(store.get('tp_myreports',[]));
 var HIDE_AT=3;
-function isHidden(a){return !!reports&&(reports[a.id]||0)>=HIDE_AT}
+function isHidden(a){return a.uid?(a.reports||0)>=HIDE_AT:(!!reports&&(reports[a.id]||0)>=HIDE_AT)}
 function openReport(a){
   if(myReports.has(a.id))return toast(t('repAlready'));
   openModal(`<div class="cab"><h3 class="mh">${t('repT')}</h3><p style="margin:0;color:var(--ink2)">${esc(a.title)}</p><div class="reasons">${t('repR').map((r,i)=>`<button data-rr="${i}">${r}</button>`).join('')}</div></div>`);
   $('#modal').classList.add('narrow');
-  $('.reasons').onclick=e=>{if(!e.target.closest('[data-rr]'))return;reports[a.id]=(reports[a.id]||0)+1;myReports.add(a.id);store.set('tp_reports',reports);store.set('tp_myreports',[...myReports]);closeModal();toast(t('repDone'))};
+  $('.reasons').onclick=async e=>{const b=e.target.closest('[data-rr]');if(!b)return;
+    if(a.uid){if(!user){openLogin(()=>openReport(a),'needChat');return}try{await cloudReport(a,+b.dataset.rr)}catch(err){toast(t('netErr'));return}myReports.add(a.id);store.set('tp_myreports',[...myReports]);closeModal();toast(t('repDone'));return}
+    reports[a.id]=(reports[a.id]||0)+1;myReports.add(a.id);store.set('tp_reports',reports);store.set('tp_myreports',[...myReports]);closeModal();toast(t('repDone'))};
 }
 function openRules(){openModal(`<div class="rules"><h3 class="mh">${t('rulesT')}</h3>${t('rulesHTML')}</div>`)}
 function openChatIn(a,silent){
@@ -1242,7 +1261,7 @@ const usesLeft=k=>(LIMITS[k]||0)-uses.filter(u=>u.k===k&&u.at>Date.now()-30*DAY)
 const isFree=k=>{const x=PRICES.priv.find(p=>p.id===k);return !x||!x.p||(promoOn()&&usesLeft(k)>0)};
 function addUse(k){uses.push({k,at:Date.now()});store.set('tp_uses',uses)}
 /* 2nd and later vacancy in 30 days is paid after the promo */
-const jobFeeDue=(kind,editId)=>kind==='job'&&!editId&&!promoOn()&&userAds.filter(a=>a.kind==='job'&&(a.created||a.ts)>Date.now()-30*DAY).length>=1?PRICES.job[0].p:0;
+const jobFeeDue=(kind,editId)=>kind==='job'&&!editId&&!promoOn()&&myAds.filter(a=>a.kind==='job'&&(a.created||a.ts)>Date.now()-30*DAY).length>=1?PRICES.job[0].p:0;
 /* payment block under the tariffs: shown only for paid options */
 function updatePay(){
   const box=$('#payBox');if(!box)return;
@@ -1261,7 +1280,7 @@ function updatePay(){
 function tariffCard(x,sel){const n=x[lang];return `<button type="button" class="tar" data-t="${x.id}" aria-pressed="${sel}"><b>${n[0]}</b><span>${n[1]}</span><strong>${!x.p?`<span class="freeTag">${t('free')}</span>`:isFree(x.id)?`<s class="old num">${fmt(x.p)}</s><span class="freeTag">${t('free')}</span><small class="leftn">${t('leftN').replace('{n}',usesLeft(x.id)).replace('{m}',LIMITS[x.id])}</small>`:`${fmt(x.p)} ${t('sum')}`}</strong></button>`}
 function openForm(edit){
   edit=edit&&edit.id?edit:null;
-  draft={kind:edit?edit.kind:'sell',tariff:edit?(edit.top||(edit.urg?'urg':'free')):'free',img:edit?edit.img||null:null,editId:edit?edit.id:null};
+  draft={kind:edit?edit.kind:'sell',tariff:edit?(edit.top||(edit.urg?'urg':'free')):'free',imgs:[],photosChanged:false,editId:edit?edit.id:null,oldN:edit?edit.nPhotos||0:0};
   openModal(`<form class="form" id="adForm" novalidate>
     <h3>${edit?t('editAd'):t('newAd')}</h3>
     <div class="seg" role="group"><button type="button" data-k="sell" aria-pressed="true">${t('kSell')}</button><button type="button" data-k="job" aria-pressed="false">${t('kJob')}</button><button type="button" data-k="cv" aria-pressed="false">${t('kCv')}</button></div>
@@ -1269,7 +1288,8 @@ function openForm(edit){
     <div class="f2"><label class="fl" id="catWrap">${t('fCat')}<select id="fCat"></select></label><label class="fl">${t('city')}<select id="fCity">${CITIES.map(c=>`<option value="${c[0]}">${lang==='uz'?c[1]:c[0]}</option>`).join('')}</select></label></div>
     <div class="f2" id="priceRow"></div>
     <label class="fl">${t('fDesc')}<textarea id="fDesc" placeholder="${t('fDescPh')}"></textarea></label>
-    <div class="f2"><label class="fl">${t('fName')}<input id="fName" value="${esc(user?user.name:'')}"></label><label class="fl">${t('fPhoto')}<span class="upl" id="upl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>${t('addPhoto')}</span><input id="fImg" type="file" accept="image/*" hidden></span></label></div>
+    <div class="fl">${t('fPhoto')}<div class="phs" id="phList"></div><small class="phh">${t('phHint')}</small></div>
+    <label class="fl">${t('fName')}<input id="fName" value="${esc(user?user.name:'')}"></label>
     <div class="placebox"><div class="row"><span>${t('place')}</span><button type="button" class="tbtn" id="myPlace"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/><circle cx="12" cy="12" r="7"/></svg>${t('myPlace')}</button></div><div class="minimap" id="formMap"></div><small>${t('placeHint')}</small></div>
     <label class="fl">${t('fPhone')} *<input id="fPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+998 90 123 45 67" value="${esc(edit?edit.phone||'':(user&&user.phone)||'')}"></label>
     <div><div style="font-size:13px;font-weight:600;color:var(--ink2);margin-bottom:6px">${t('promoH')}</div><div class="tariffs">${PRICES.priv.map(x=>tariffCard(x,x.id===draft.tariff)).join('')}</div></div>
@@ -1286,7 +1306,6 @@ function openForm(edit){
     $('#fTitle').value=edit.title;$('#fDesc').value=edit.desc||'';$('#fName').value=edit.seller;$('#fCity').value=edit.city;
     if(edit.kind==='sell'){$('#fCat').value=edit.cat;$('#fPrice').value=edit.price||''}
     else if(edit.salary){$('#fS1').value=edit.salary[0];$('#fS2').value=edit.salary[1]}
-    if(edit.img){const u=$('#upl');u.style.backgroundImage=`url(${edit.img})`;u.classList.add('has')}
   }
   $$('.seg button').forEach(b=>b.onclick=()=>{draft.kind=b.dataset.k;$$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));syncForm()});
   $$('.tar').forEach(b=>b.onclick=()=>{draft.tariff=b.dataset.t;$$('.tar').forEach(x=>x.setAttribute('aria-pressed',x===b));updatePay()});
@@ -1306,9 +1325,31 @@ function openForm(edit){
       if(state.me&&state.meReal)go();else{state.me=null;locate(()=>{if(state.meReal)go()})}};
     setTimeout(()=>m.invalidateSize(),250);
   }).catch(()=>{});
-  $('#fImg').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>shrink(r.result);r.readAsDataURL(f)};
+  renderPhs();if(edit&&edit.nPhotos)fetchPhotos(edit.id).then(ph=>{if(!draft.photosChanged&&draft.editId===edit.id){draft.imgs=ph.map(d=>({data:d,stats:null}));renderPhs()}}).catch(()=>{});
   $('#adForm').onsubmit=submitAd;
   $('#agreeRules').onclick=()=>{const r=$('#formRules');r.hidden=!r.hidden;if(!r.hidden)r.innerHTML=t('rulesHTML')};
+}
+/* photos: each is resized in the phone before upload (max 1200 px, JPEG), the first one also becomes a small thumbnail */
+function loadImg(file){return new Promise((ok,no)=>{const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>ok(im);im.onerror=no;im.src=r.result};r.onerror=no;r.readAsDataURL(file)})}
+function toJpeg(im,max,q){const s=Math.min(1,max/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=Math.round(im.width*s);c.height=Math.round(im.height*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);return c}
+function imgStats(im,c){try{const d=c.getContext('2d').getImageData(0,0,c.width,c.height).data;let sum=0;for(let i=0;i<d.length;i+=16)sum+=(d[i]*.3+d[i+1]*.59+d[i+2]*.11);return {w:im.width,h:im.height,bright:sum/(d.length/16)}}catch(e){return null}}
+async function addPhotos(files){
+  for(const f of [...files]){
+    if(draft.imgs.length>=6){toast(t('maxPh'));break}
+    try{const im=await loadImg(f);let c=toJpeg(im,1200,.72),q=.72,data=c.toDataURL('image/jpeg',q);
+      while(data.length>600000&&q>.45){q-=.08;data=c.toDataURL('image/jpeg',q)}
+      if(data.length>600000){c=toJpeg(im,900,.6);data=c.toDataURL('image/jpeg',.6)}
+      draft.imgs.push({data,stats:imgStats(im,c)});draft.photosChanged=true}catch(e){}
+  }
+  renderPhs();
+}
+function thumbOf(dataUrl){return new Promise(ok=>{const im=new Image();im.onload=()=>ok(toJpeg(im,360,.7).toDataURL('image/jpeg',.7));im.onerror=()=>ok(null);im.src=dataUrl})}
+function renderPhs(){
+  const el=$('#phList');if(!el)return;
+  el.innerHTML=draft.imgs.map((p,i)=>`<span class="ph" style="background-image:url(${p.data})">${i===0?`<b>1</b>`:''}<button type="button" data-rm="${i}" aria-label="×">×</button></span>`).join('')
+    +(draft.imgs.length<6?`<label class="upl" id="upl"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg><span>${t('addPhoto')}</span><input id="fImg" type="file" accept="image/*" multiple hidden></label>`:'');
+  const inp=$('#fImg');if(inp)inp.onchange=e=>addPhotos(e.target.files);
+  el.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>{draft.imgs.splice(+b.dataset.rm,1);draft.photosChanged=true;renderPhs()});
 }
 function shrink(src){const im=new Image();im.onload=()=>{const s=Math.min(1,640/Math.max(im.width,im.height));const c=document.createElement('canvas');c.width=im.width*s;c.height=im.height*s;const g=c.getContext('2d');g.drawImage(im,0,0,c.width,c.height);let sum=0;try{const d=g.getImageData(0,0,c.width,c.height).data;for(let i=0;i<d.length;i+=16)sum+=(d[i]*.3+d[i+1]*.59+d[i+2]*.11);draft.imgStats={w:im.width,h:im.height,bright:sum/(d.length/16)}}catch(e){draft.imgStats=null}draft.img=c.toDataURL('image/jpeg',.75);const u=document.getElementById('upl');if(u){u.style.backgroundImage=`url(${draft.img})`;u.classList.add('has')}};im.src=src}
 function syncForm(){
@@ -1352,9 +1393,9 @@ function submitAd(e){
   const phone=normPhone($('#fPhone').value);
   if(!phone){$('#fErr').textContent=t('errPhone');$('#fPhone').focus();return}
   $('#fPhone').value=phone;
-  if(user&&!user.phone){user.phone=phone;store.set('tp_user',user)}
+  if(user&&!user.phone){user.phone=phone;saveProfile({phone})}
   const k=draft.kind,tr=draft.tariff;
-  const ad={id:draft.editId||Date.now(),kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),img:draft.img,top:(tr==='top'||tr==='vip')?tr:null,urg:tr==='urg'?1:0,views:0,photos:draft.img?1:0,facts:{},mine:1,phone,created:Date.now(),loc:draft.loc||cityLL($('#fCity').value)};
+  const ad={kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),top:(tr==='top'||tr==='vip')?tr:null,urg:tr==='urg'?1:0,facts:{},phone,created:Date.now(),loc:draft.loc||cityLL($('#fCity').value)};
   if(ad.top)ad.topUntil=Date.now()+DUR[ad.top]*DAY;
   if(ad.urg)ad.urgUntil=Date.now()+DUR.urg*DAY;
   if(k==='sell')ad.price=num('#fPrice');else{const a=num('#fS1'),b=num('#fS2');if(a)ad.salary=[a,Math.max(a,b)]}
@@ -1363,10 +1404,11 @@ function submitAd(e){
   box.innerHTML=`<b>${t('checking')}</b><div class="chk"><span>${t('chkText')}</span><span>${t('chkPhoto')}</span><span>${t('chkPrice')}</span></div>`;
   setTimeout(()=>{
     btn.disabled=false;draft.busy=false;
-    const bad=moderate(ad,draft.img?draft.imgStats:null);
+    const st=draft.photosChanged?draft.imgs.map(p=>p.stats).filter(Boolean):[];
+    const bad=moderate(ad,st.length?{bright:Math.min(...st.map(x=>x.bright)),w:Math.min(...st.map(x=>x.w)),h:Math.min(...st.map(x=>x.h))}:null);
     if(bad.length){box.className='modbox bad';box.innerHTML=`<b>${t('rejected')}</b><ul>${bad.map(k=>`<li>${t(k)}</li>`).join('')}</ul><span style="color:var(--ink2)">${t('fixHint')}</span>`;return}
     const tp=PRICES.priv.find(p=>p.id===tr);
-    const old=draft.editId?live(userAds.find(x=>x.id===draft.editId)||{}):{};
+    const old=draft.editId?live(myAd(draft.editId)||{}):{};
     const sameTariff=!!draft.editId&&((tr==='urg'&&old.urg)||(tr!=='urg'&&tr!=='free'&&old.top===tr));
     const tariffDue=tp&&tp.p&&!sameTariff&&!isFree(tr)?tp.p:0, due=tariffDue+jobFeeDue(k,draft.editId);
     const usedFree=tp&&tp.p&&!sameTariff&&isFree(tr);
@@ -1377,13 +1419,15 @@ function submitAd(e){
       setTimeout(()=>{draft.paid=true;draft.busy=false;btn.disabled=false;toast(t('paidOk'));$('#adForm').requestSubmit()},1800);
       return;
     }
-    if(draft.editId){const i=userAds.findIndex(x=>x.id===draft.editId);if(i>-1){const o=userAds[i];ad.views=o.views;ad.ts=o.ts;ad.created=o.created||o.ts;ad.lastUp=o.lastUp;if(!draft.img)ad.img=o.img;if(sameTariff){ad.topUntil=o.topUntil;ad.urgUntil=o.urgUntil}userAds[i]=ad}}
-    else userAds.unshift(ad);
-    if(usedFree)addUse(tr);
-    store.set('tp_ads',userAds);
-    if(draft.editId){closeModal();toast('✓ '+t('savedAd'));return}
-    state={...state,kind:'all',cat:null,q:'',onlyFav:false};$('#q').value='';syncTabs();closeModal();scrollTo({top:$('#grid').offsetTop-120});
-    toast('✓ '+t('approved')+(tr==='free'?'':'. '+(usedFree?t('topFree'):draft.paid?t('paidOk'):'')));
+    if(draft.editId){const o=myAd(draft.editId)||{};ad.ts=o.ts||ad.ts;ad.created=o.created||o.ts||ad.created;ad.lastUp=o.lastUp||null;if(sameTariff){ad.topUntil=o.topUntil||null;ad.urgUntil=o.urgUntil||null}}
+    btn.disabled=true;draft.busy=true;box.className='modbox run';box.innerHTML=`<b>${t('saving')}</b>`;
+    saveAd(ad,draft).then(()=>{
+      draft.busy=false;btn.disabled=false;
+      if(usedFree)addUse(tr);
+      if(draft.editId){closeModal();toast('✓ '+t('savedAd'));return}
+      state={...state,kind:'all',cat:null,q:'',onlyFav:false};$('#q').value='';syncTabs();closeModal();scrollTo({top:$('#grid').offsetTop-120});
+      toast('✓ '+t('approved')+(tr==='free'?'':'. '+(usedFree?t('topFree'):draft.paid?t('paidOk'):'')));
+    }).catch(err=>{console.warn(err);draft.busy=false;btn.disabled=false;box.className='modbox bad';box.innerHTML=`<b>${t('netErr')}</b>`});
   },1400);
 }
 
@@ -1394,7 +1438,8 @@ function submitAd(e){
                its hash verified server-side (Cloud Function) and exchanged for a Firebase custom token. */
 const GLOGO='<svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C36.9 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
 const TGLOGO='<svg viewBox="0 0 24 24" fill="#fff"><path d="M9.8 15.4l-.4 5.3c.6 0 .8-.2 1.1-.5l2.6-2.5 5.4 4c1 .6 1.7.3 2-.9l3.6-17c.3-1.5-.6-2.1-1.6-1.7L1.4 9.9C0 10.5 0 11.3 1.2 11.7l5.4 1.7L19 5.6c.6-.4 1.1-.2.7.2z"/></svg>';
-let user=store.get('tp_user',null);
+let user=null;   /* set by Firebase Auth (onAuthStateChanged) */
+let afterLogin=null;
 function requireLogin(next,msgKey){if(user)return next();openLogin(next,msgKey)}
 function openLogin(next,msgKey){
   openModal(`<div class="auth" id="auth">
@@ -1405,11 +1450,11 @@ function openLogin(next,msgKey){
     <div class="or">${t('or')}</div>
     <button class="authbtn tg" id="tgBtn">${TGLOGO}${t('tgBtn')}</button>
     <div class="note">${t('terms')}</div>
-    <div class="demo">${t('demoNote')}</div>
+    <div class="err" id="authErr"></div>
   </div>`);
   $('#modal').classList.add('narrow');
-  $('#gBtn').onclick=()=>stepGoogle(next);
-  $('#tgBtn').onclick=()=>stepTelegram(next);
+  $('#gBtn').onclick=()=>googleLogin(next);
+  $('#tgBtn').onclick=()=>{$('#authErr').textContent=t('tgSoon')};
 }
 function stepGoogle(next){
   const acc={name:'Test Foydalanuvchi',email:'test.user@gmail.com'};
@@ -1435,7 +1480,7 @@ function finishLogin(u,next){
   updateAuthUI();closeModal();toast(t('welcome')+', '+user.name+'!');
   if(next)next();
 }
-function logout(){user=null;try{localStorage.removeItem('tp_user')}catch(e){}updateAuthUI();closeModal();toast(t('loggedOut'))}
+function logout(){fbReady.then(f=>f.A.signOut(f.auth)).catch(()=>{});closeModal();toast(t('loggedOut'))}
 function updateAuthUI(){
   $('#hCab').innerHTML=user
     ?`<span class="uava">${esc(user.name[0])}</span><span class="t">${esc(user.name.split(' ')[0])}</span>`
@@ -1443,10 +1488,86 @@ function updateAuthUI(){
   $('#bCabL').textContent=user?t('profile'):t('login');
 }
 
+/* ---------- Firebase: real accounts, ads, photos, favourites, reports ----------
+   Firestore (europe-west3). Security rules live in topaman-firebase/firestore.rules.
+   Photos are stored as compressed JPEG in ads/{id}/photos/{i} (a Storage bucket can replace this later). */
+const FB_CFG={apiKey:'AIzaSyBqc73J5wwT81SQDwRzv60xV0dL04lLP5Q',authDomain:'topaman-48bcf.firebaseapp.com',projectId:'topaman-48bcf',storageBucket:'topaman-48bcf.firebasestorage.app',messagingSenderId:'560207363619',appId:'1:560207363619:web:76d408f327206aaa71fb96'};
+const FBV='12.19.0',FBU=`https://www.gstatic.com/firebasejs/${FBV}/`;
+const fbReady=(async()=>{
+  const [ap,A,F]=await Promise.all([import(FBU+'firebase-app.js'),import(FBU+'firebase-auth.js'),import(FBU+'firebase-firestore.js')]);
+  const app=ap.initializeApp(FB_CFG);
+  let db;try{db=F.initializeFirestore(app,{localCache:F.persistentLocalCache({tabManager:F.persistentMultipleTabManager()})})}catch(e){db=F.getFirestore(app)}
+  const auth=A.getAuth(app);
+  return {app,A,F,db,auth};
+})();
+const toAd=d=>{const x=d.data();return {...x,id:d.id,loc:x.loc||null}};
+let adsUnsub=null,myUnsub=null;
+fbReady.then(f=>{
+  const {F,db}=f;
+  adsUnsub=F.onSnapshot(F.query(F.collection(db,'ads'),F.orderBy('ts','desc'),F.limit(300)),snap=>{cloudAds=snap.docs.map(toAd);render()},err=>console.warn('ads',err));
+  f.A.onAuthStateChanged(f.auth,async u=>{
+    if(myUnsub){myUnsub();myUnsub=null}
+    if(!u){user=null;myAds=[];updateAuthUI();render();return}
+    user={uid:u.uid,name:u.displayName||'Topaman',email:u.email||'',photo:u.photoURL||'',method:'google',phone:'',since:Date.now()};
+    try{
+      const ref=F.doc(db,'users',u.uid),snap=await F.getDoc(ref);
+      if(snap.exists()){const d=snap.data();Object.assign(user,{name:d.name||user.name,phone:d.phone||'',since:d.since||user.since});
+        const cloudFavs=(d.favs||[]).map(String);const merged=new Set([...cloudFavs,...favs]);favs=merged;if(merged.size!==cloudFavs.length)saveFavs();}
+      else{await F.setDoc(ref,{name:user.name,email:user.email,photo:user.photo,method:'google',phone:'',since:Date.now(),favs:[...favs]})}
+    }catch(e){console.warn('profile',e)}
+    myUnsub=F.onSnapshot(F.query(F.collection(db,'ads'),F.where('uid','==',u.uid)),s=>{myAds=s.docs.map(toAd).map(a=>({...a,mine:true})).sort((x,y)=>y.ts-x.ts);render()},err=>console.warn('my',err));
+    updateAuthUI();render();
+    if(afterLogin){const n=afterLogin;afterLogin=null;closeModal();toast(t('welcome')+', '+user.name+'!');n()}
+  });
+}).catch(e=>console.warn('firebase',e));
+
+async function googleLogin(next){
+  afterLogin=next||(()=>{});
+  try{
+    const f=await fbReady,p=new f.A.GoogleAuthProvider();p.setCustomParameters({prompt:'select_account'});
+    try{await f.A.signInWithPopup(f.auth,p)}
+    catch(e){if(/popup-blocked|operation-not-supported/.test(e.code||''))await f.A.signInWithRedirect(f.auth,p);else throw e}
+  }catch(e){afterLogin=null;if(!/popup-closed|cancelled-popup/.test(e.code||'')){const el=$('#authErr');if(el)el.textContent=t('loginErr')+' ('+(e.code||'')+')'}}
+}
+function saveProfile(patch){fbReady.then(f=>{if(!user)return;f.F.setDoc(f.F.doc(f.db,'users',user.uid),{...patch,updated:Date.now()},{merge:true})}).catch(()=>{})}
+function saveFavs(){store.set('tp_favs',[...favs]);if(user)saveProfile({favs:[...favs].slice(0,500)})}
+
+/* create or edit an ad (with photos) in one batch */
+async function saveAd(ad,dr){
+  const f=await fbReady,{F,db}=f;
+  if(!user)throw new Error('no user');
+  const ref=dr.editId?F.doc(db,'ads',String(dr.editId)):F.doc(F.collection(db,'ads'));
+  const old=dr.editId?myAd(dr.editId):null;
+  const doc={...ad,uid:user.uid,status:'active',views:old?old.views||0:0,reports:old?old.reports||0:0,
+    price:ad.price||0,salary:ad.salary||null,top:ad.top||null,topUntil:ad.topUntil||null,urg:ad.urg||0,urgUntil:ad.urgUntil||null,lastUp:ad.lastUp||null};
+  const b=F.writeBatch(db);
+  if(dr.photosChanged||!old){
+    doc.nPhotos=dr.imgs.length;doc.thumb=dr.imgs.length?await thumbOf(dr.imgs[0].data):null;
+    dr.imgs.forEach((p,i)=>b.set(F.doc(db,'ads',ref.id,'photos',String(i)),{data:p.data,i}));
+    for(let i=dr.imgs.length;i<(dr.oldN||0);i++)b.delete(F.doc(db,'ads',ref.id,'photos',String(i)));
+  }else{doc.nPhotos=old.nPhotos||0;doc.thumb=old.thumb||null}
+  b.set(ref,doc);
+  await b.commit();
+  return ref.id;
+}
+async function adUpdate(a,patch){const f=await fbReady;const {id,mine,...rest}=a;await f.F.setDoc(f.F.doc(f.db,'ads',String(id)),{...rest,...patch})}
+async function adDelete(a){const f=await fbReady,{F,db}=f,b=F.writeBatch(db);for(let i=0;i<(a.nPhotos||0);i++)b.delete(F.doc(db,'ads',a.id,'photos',String(i)));b.delete(F.doc(db,'ads',a.id));await b.commit()}
+const viewed=new Set();
+function countView(a){if(a.mine||viewed.has(a.id))return;viewed.add(a.id);fbReady.then(f=>f.F.updateDoc(f.F.doc(f.db,'ads',a.id),{views:f.F.increment(1)})).catch(()=>{})}
+async function cloudReport(a,r){const f=await fbReady,{F,db}=f,b=F.writeBatch(db);b.set(F.doc(db,'ads',a.id,'reports',user.uid),{r,at:Date.now()});b.update(F.doc(db,'ads',a.id),{reports:F.increment(1)});await b.commit()}
+async function fetchPhotos(id){const f=await fbReady,{F,db}=f;const s=await F.getDocs(F.query(F.collection(db,'ads',String(id),'photos'),F.orderBy('i')));return s.docs.map(d=>d.data().data)}
+function loadGallery(a){
+  fetchPhotos(a.id).then(ph=>{const th=$('.dv > .thumb');if(!th||!ph.length)return;
+    th.classList.add('gal');th.innerHTML=`<div class="gtrack">${ph.map(src=>`<img src="${src}" alt="">`).join('')}</div>${ph.length>1?`<span class="gcount">1 / ${ph.length}</span>`:''}`;
+    const tr=th.querySelector('.gtrack'),c=th.querySelector('.gcount');
+    if(c)tr.onscroll=()=>{c.textContent=(Math.round(tr.scrollLeft/tr.clientWidth)+1)+' / '+ph.length};
+  }).catch(()=>{});
+}
+
 /* ---------- cabinet ---------- */
 function openCab(){
   if(!user)return openLogin(openCab);
-  const mine=userAds;
+  const mine=myAds;
   const views=mine.reduce((s,a)=>s+(a.views||0),0);
   const msgs=Object.keys(chats).length;
   const viaIcon=user.method==='google'?GLOGO:`<span style="display:inline-grid;place-items:center;width:14px;height:14px;border-radius:50%;background:#229ED9">${TGLOGO}</span>`;
@@ -1463,7 +1584,7 @@ function openCab(){
   const cp=$('#cabPost');if(cp)cp.onclick=()=>requireLogin(openForm,'needPost');
   $('#logoutBtn').onclick=logout;
   $('#cabHelp').onclick=()=>openHelp();
-  $('#pSave').onclick=()=>{const n=$('#pNameIn').value.trim();if(n)user.name=n;user.phone=$('#pPhoneIn').value.trim();store.set('tp_user',user);updateAuthUI();toast(t('saved'));openCab()};
+  $('#pSave').onclick=()=>{const n=$('#pNameIn').value.trim();if(n)user.name=n;const ph=normPhone($('#pPhoneIn').value);user.phone=ph||'';saveProfile({name:user.name,phone:user.phone});updateAuthUI();toast(t('saved'));openCab()};
 }
 
 const upFree=a=>promoOn()&&(!a.lastUp||a.lastUp<Date.now()-DAY);
@@ -1526,7 +1647,7 @@ function openPricing(){
 
 /* ---------- events ---------- */
 function syncTabs(){$$('.tab').forEach(x=>x.setAttribute('aria-pressed',x.dataset.kind===state.kind&&!state.onlyFav))}
-function goHome(){state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12};$('#q').value='';$('#city').value='';$('#sort').value='new';syncTabs();render();scrollTo(0,0)}
+function goHome(){state={...state,kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12,near:false,map:false};$('#q').value='';$('#city').value='';$('#sort').value='new';syncTabs();render();scrollTo(0,0)}
 function toggleFav(){state.onlyFav=!state.onlyFav;state.cat=null;state.kind='all';state.limit=12;syncTabs();render();scrollTo({top:$('#grid').offsetTop-160})}
 
 $$('.lang button').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;try{localStorage.setItem('tp_lang',lang)}catch(e){}applyI18n();updateAuthUI();render()});
@@ -1555,17 +1676,17 @@ $('#recent').onclick=e=>{const b=e.target.closest('.rc');if(b)openAd(b.dataset.i
 $('#grid').onclick=e=>{
   if(e.target.closest('#moreBtn')){state.limit+=12;render();return}
   const f=e.target.closest('[data-fav]');
-  if(f){e.stopPropagation();const id=+f.dataset.fav;favs.has(id)?favs.delete(id):favs.add(id);store.set('tp_favs',[...favs]);render();return}
+  if(f){e.stopPropagation();const id=String(f.dataset.fav);favs.has(id)?favs.delete(id):favs.add(id);saveFavs();render();return}
   const c=e.target.closest('.card');if(c)openAd(c.dataset.id);
 };
 $('#grid').onkeydown=e=>{if(e.key==='Enter'&&e.target.classList.contains('card'))openAd(e.target.dataset.id)};
 $('#ov').onclick=e=>{
   if(e.target.id==='ov'||e.target.closest('.mclose')){closeModal();return}
-  const ed=e.target.closest('[data-edit]');if(ed){openForm(userAds.find(x=>x.id==ed.dataset.edit));return}
+  const ed=e.target.closest('[data-edit]');if(ed){openForm(myAd(ed.dataset.edit));return}
   const o=e.target.closest('[data-open]');if(o){openAd(o.dataset.open);return}
-  const rn=e.target.closest('[data-renew]');if(rn){const m=userAds.find(x=>x.id==rn.dataset.renew);if(m){m.created=Date.now();m.ts=Date.now();store.set('tp_ads',userAds)}toast(t('renewed'));openCab();return}
-  const u=e.target.closest('[data-up]');if(u){const m=userAds.find(x=>x.id==u.dataset.up);if(!m)return;if(!upFree(m)){toast(promoOn()?t('upOnce'):t('paidNote'));return}m.ts=Date.now();m.lastUp=Date.now();store.set('tp_ads',userAds);toast(t('upped'));openCab();return}
-  const d=e.target.closest('[data-del]');if(d){userAds=userAds.filter(a=>a.id!=d.dataset.del);store.set('tp_ads',userAds);toast(t('removed'));openCab();return}
+  const rn=e.target.closest('[data-renew]');if(rn){const m=myAd(rn.dataset.renew);if(m)adUpdate(m,{created:Date.now(),ts:Date.now()}).then(()=>{toast(t('renewed'));openCab()}).catch(()=>toast(t('netErr')));return}
+  const u=e.target.closest('[data-up]');if(u){const m=myAd(u.dataset.up);if(!m)return;if(!upFree(m)){toast(promoOn()?t('upOnce'):t('paidNote'));return}adUpdate(m,{ts:Date.now(),lastUp:Date.now()}).then(()=>{toast(t('upped'));openCab()}).catch(()=>toast(t('netErr')));return}
+  const d=e.target.closest('[data-del]');if(d){const m=myAd(d.dataset.del);if(m)adDelete(m).then(()=>{toast(t('removed'));openCab()}).catch(()=>toast(t('netErr')));return}
 };
 window.addEventListener('popstate',()=>{if(!$('#ov').hidden)closeModal(true)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#ov').hidden)closeModal()});
