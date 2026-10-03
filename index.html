@@ -358,6 +358,8 @@ footer .ikat{margin-bottom:20px}
 .auth .or{display:flex;align-items:center;gap:10px;color:var(--ink3);font-size:12.5px}
 .auth .or::before,.auth .or::after{content:"";flex:1;height:1px;background:var(--line)}
 .auth .note{font-size:12.5px;color:var(--ink3)}
+.pushbtn{width:100%;margin-top:8px;font-size:13.5px}
+.pushhint{font-size:12.5px;color:var(--ink3);margin:8px 0 0;line-height:1.4}
 .auth .demo{font-size:12.5px;background:var(--saffron-soft);border-radius:10px;padding:8px 10px;color:var(--ink2)}
 .acc{display:flex;align-items:center;gap:12px;text-align:left;width:100%;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
 .acc:hover{border-color:var(--tq)}
@@ -661,7 +663,6 @@ button.seller:hover{border-color:var(--tq)}
         <button class="btn" data-i="find"></button>
       </form>
       <div class="pop" id="pop"></div>
-      <div class="online" aria-live="off"><span class="dot"></span><b id="onl">0</b><span data-i="onlineNow"></span></div>
     </div></div>
     <div class="stats"><div><b class="num" id="stTotal">0</b><span data-i="stAds"></span></div><div><b class="num" id="stJobs">0</b><span data-i="stJobs"></span></div><div><b class="num" id="stCv">0</b><span data-i="stCv"></span></div><div><b>14</b><span data-i="stReg"></span></div></div>
     <div class="ikat" aria-hidden="true"></div>
@@ -716,7 +717,7 @@ button.seller:hover{border-color:var(--tq)}
   </div>
 </main>
 
-<footer><div class="ikat" aria-hidden="true"></div><div class="wrap fgrid"><span>© 2026 Topaman.uz · <span data-i="foot"></span> · <button class="linkbtn" id="footRules" data-i="rules"></button> · <button class="linkbtn" id="footHelp" data-i="help"></button></span><span data-i="demo"></span></div></footer>
+<footer><div class="ikat" aria-hidden="true"></div><div class="wrap fgrid"><span>© 2026 Topaman.uz · <span data-i="foot"></span> · <button class="linkbtn" id="footRules" data-i="rules"></button> · <button class="linkbtn" id="footHelp" data-i="help"></button></span></div></footer>
 
 <nav class="bnav" aria-label="Меню">
   <button id="bHome" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v10h-6v-6H9v6H3z"/></svg><span data-i="home"></span></button>
@@ -744,7 +745,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  launchT:'Акция запуска',launchS:'Первые 3 месяца бесплатно: вакансии, поднятие 1 раз в день и каждый месяц 1 VIP, 3 ТОП и 3 «Срочно». До {d}.',launchB:'Смотреть тарифы',free:'Бесплатно',freeUntil:'Бесплатно до {d}',promoBtnFree:'Поднять в ТОП бесплатно',upFree:'Объявление поднято в ТОП бесплатно',topFree:'ТОП включён бесплатно по акции запуска',onlineNow:'сейчас на сайте',
  regions:'Объявления по регионам',tAll:'Все',tSell:'Продажа вещей',tJob:'Вакансии',tCv:'Ищу работу',recent:'Вы недавно смотрели',
  lAll:'Свежие объявления',lSell:'Продажа вещей',lJob:'Вакансии',lCv:'Резюме: ищу работу',lFav:'Избранное',pcs:'шт.',
- sNew:'Сначала новые',limDay:'Лимит: не больше 10 новых объявлений в день. Попробуйте завтра.',limWait:'Подождите 30 секунд перед следующим объявлением.',ownerL:'Основатель · Владелец',bannedT:'Ваш аккаунт заблокирован за нарушение правил. Напишите в поддержку, если это ошибка.',hiddenL:'Скрыто модератором',adminL:'Админ-панель',newMsg:'Новое сообщение',aboutAd:'По объявлению',chatFirst:'Напишите первое сообщение — продавец увидит его в «Чатах».',needChats:'Войдите, чтобы видеть свои чаты',youL:'Вы',soldL:'Продано',closedL:'Закрыто',markSold:'Продано',markClosed:'Закрыть',unsold:'Вернуть в продажу',soldDone:'Отмечено как продано',backDone:'Объявление снова в продаже',selling:'Продаёт',soldTab:'Продано',sinceT:'На Topaman с',noItems:'Пока пусто',allAds:'Все объявления',soldBanner:'Этот товар уже продан',closedBanner:'Объявление закрыто',tgSoon:'Вход через Telegram появится совсем скоро. Пока войдите через Google.',loginErr:'Не удалось войти. Попробуйте ещё раз.',netErr:'Нет связи с сервером. Проверьте интернет и попробуйте снова.',saving:'Сохраняем…',maxPh:'Можно до 6 фото',phHint:'Первое фото — главное. До 6 фото.',needLoginFav:'Войдите, чтобы избранное сохранялось на всех устройствах',similar:'Похожие объявления',sNear:'Ближе ко мне',nearMe:'Рядом со мной',anyDist:'Любое расстояние',km:'км',m:'м',mapBtn:'Карта',listBtn:'Скрыть карту',geoAsk:'Определяем ваше место…',geoFail:'Не удалось определить место — считаем от центра: {c}. Разрешите геолокацию в браузере.',fromYou:'от вас',place:'Где находится',myPlace:'Моё место',placeHint:'Передвиньте метку на карте. Другим показываем только район (~300 м), не точный адрес.',route:'Маршрут',approx:'Примерное место',mapNone:'В этом радиусе объявлений нет — увеличьте радиус',mln:'млн',ths:'тыс',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
+ sNew:'Сначала новые',limDay:'Лимит: не больше 10 новых объявлений в день. Попробуйте завтра.',limWait:'Подождите 30 секунд перед следующим объявлением.',ownerL:'Основатель · Владелец',bannedT:'Ваш аккаунт заблокирован за нарушение правил. Напишите в поддержку, если это ошибка.',hiddenL:'Скрыто модератором',adminL:'Админ-панель',newMsg:'Новое сообщение',pushOn:'Включить уведомления о сообщениях',pushDone:'Уведомления включены',pushOff:'Уведомления о сообщениях включены',pushDenied:'Уведомления запрещены в настройках браузера. Разрешите их для topaman.uz',pushIos:'На iPhone уведомления работают в приложении: «Поделиться» → «На экран Домой»',aboutAd:'По объявлению',chatFirst:'Напишите первое сообщение — продавец увидит его в «Чатах».',needChats:'Войдите, чтобы видеть свои чаты',youL:'Вы',soldL:'Продано',closedL:'Закрыто',markSold:'Продано',markClosed:'Закрыть',unsold:'Вернуть в продажу',soldDone:'Отмечено как продано',backDone:'Объявление снова в продаже',selling:'Продаёт',soldTab:'Продано',sinceT:'На Topaman с',noItems:'Пока пусто',allAds:'Все объявления',soldBanner:'Этот товар уже продан',closedBanner:'Объявление закрыто',tgSoon:'Вход через Telegram появится совсем скоро. Пока войдите через Google.',loginErr:'Не удалось войти. Попробуйте ещё раз.',netErr:'Нет связи с сервером. Проверьте интернет и попробуйте снова.',saving:'Сохраняем…',maxPh:'Можно до 6 фото',phHint:'Первое фото — главное. До 6 фото.',needLoginFav:'Войдите, чтобы избранное сохранялось на всех устройствах',similar:'Похожие объявления',sNear:'Ближе ко мне',nearMe:'Рядом со мной',anyDist:'Любое расстояние',km:'км',m:'м',mapBtn:'Карта',listBtn:'Скрыть карту',geoAsk:'Определяем ваше место…',geoFail:'Не удалось определить место — считаем от центра: {c}. Разрешите геолокацию в браузере.',fromYou:'от вас',place:'Где находится',myPlace:'Моё место',placeHint:'Передвиньте метку на карте. Другим показываем только район (~300 м), не точный адрес.',route:'Маршрут',approx:'Примерное место',mapNone:'В этом радиусе объявлений нет — увеличьте радиус',mln:'млн',ths:'тыс',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
  howT:'Как это работает',how1:'Сфотографируйте вещь или опишите вакансию',how2:'Опубликуйте за 1 минуту, бесплатно',how3:'Покупатели и кандидаты напишут в чат',
  bizT:'Для магазинов и работодателей',bizS:'Страница магазина с логотипом, пакеты вакансий, доступ к базе резюме и статистика просмотров.',bizB:'Тарифы для бизнеса',
  foot:'площадка объявлений Узбекистана',demo:'Демо-версия: все объявления и телефоны тестовые',
@@ -802,7 +803,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  launchT:'Ishga tushirish aksiyasi',launchS:'Dastlabki 3 oy bepul: vakansiyalar, kuniga 1 marta ko‘tarish va har oy 1 VIP, 3 TOP va 3 «Shoshilinch». {d} gacha.',launchB:'Tariflarni ko‘rish',free:'Bepul',freeUntil:'{d} gacha bepul',promoBtnFree:'TOPga bepul ko‘tarish',upFree:'E’lon TOPga bepul ko‘tarildi',topFree:'TOP ishga tushirish aksiyasi bo‘yicha bepul yoqildi',onlineNow:'hozir saytda',
  regions:'Viloyatlar bo‘yicha e’lonlar',tAll:'Hammasi',tSell:'Narsalar savdosi',tJob:'Vakansiyalar',tCv:'Ish qidiraman',recent:'Siz yaqinda ko‘rgansiz',
  lAll:'Yangi e’lonlar',lSell:'Narsalar savdosi',lJob:'Vakansiyalar',lCv:'Rezyumelar: ish qidiraman',lFav:'Saralanganlar',pcs:'ta',
- sNew:'Avval yangilari',limDay:'Cheklov: kuniga 10 tadan ortiq yangi e’lon mumkin emas. Ertaga urinib ko‘ring.',limWait:'Keyingi e’londan oldin 30 soniya kuting.',ownerL:'Asoschi · Egasi',bannedT:'Akkauntingiz qoidabuzarlik uchun bloklangan. Xato bo‘lsa, yordamga yozing.',hiddenL:'Moderator tomonidan yashirilgan',adminL:'Admin panel',newMsg:'Yangi xabar',aboutAd:'E’lon bo‘yicha',chatFirst:'Birinchi xabarni yozing — sotuvchi uni «Chatlar»da ko‘radi.',needChats:'Chatlaringizni ko‘rish uchun kiring',youL:'Siz',soldL:'Sotildi',closedL:'Yopildi',markSold:'Sotildi',markClosed:'Yopish',unsold:'Sotuvga qaytarish',soldDone:'Sotildi deb belgilandi',backDone:'E’lon yana sotuvda',selling:'Sotmoqda',soldTab:'Sotilgan',sinceT:'Topaman’da',noItems:'Hozircha bo‘sh',allAds:'Barcha e’lonlari',soldBanner:'Bu tovar allaqachon sotilgan',closedBanner:'E’lon yopilgan',tgSoon:'Telegram orqali kirish tez orada qo‘shiladi. Hozircha Google orqali kiring.',loginErr:'Kirib bo‘lmadi. Qayta urinib ko‘ring.',netErr:'Server bilan aloqa yo‘q. Internetni tekshirib, qayta urinib ko‘ring.',saving:'Saqlanmoqda…',maxPh:'6 tagacha surat mumkin',phHint:'Birinchi surat — asosiy. 6 tagacha.',needLoginFav:'Saralanganlar barcha qurilmalarda saqlanishi uchun kiring',similar:'O‘xshash e’lonlar',sNear:'Menga yaqinroq',nearMe:'Yonimda',anyDist:'Istalgan masofa',km:'km',m:'m',mapBtn:'Xarita',listBtn:'Xaritani yopish',geoAsk:'Joylashuvingiz aniqlanmoqda…',geoFail:'Joyni aniqlab bo‘lmadi — markazdan hisoblaymiz: {c}. Brauzerda geolokatsiyaga ruxsat bering.',fromYou:'sizdan',place:'Qayerda joylashgan',myPlace:'Mening joyim',placeHint:'Belgini xaritada suring. Boshqalarga faqat hudud (~300 m) ko‘rsatiladi, aniq manzil emas.',route:'Yo‘nalish',approx:'Taxminiy joy',mapNone:'Bu radiusda e’lon yo‘q — radiusni kattalashtiring',mln:'mln',ths:'ming',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
+ sNew:'Avval yangilari',limDay:'Cheklov: kuniga 10 tadan ortiq yangi e’lon mumkin emas. Ertaga urinib ko‘ring.',limWait:'Keyingi e’londan oldin 30 soniya kuting.',ownerL:'Asoschi · Egasi',bannedT:'Akkauntingiz qoidabuzarlik uchun bloklangan. Xato bo‘lsa, yordamga yozing.',hiddenL:'Moderator tomonidan yashirilgan',adminL:'Admin panel',newMsg:'Yangi xabar',pushOn:'Xabarlar haqida bildirishnomani yoqish',pushDone:'Bildirishnomalar yoqildi',pushOff:'Xabarlar haqida bildirishnomalar yoqilgan',pushDenied:'Brauzer sozlamalarida bildirishnomalar taqiqlangan. topaman.uz uchun ruxsat bering',pushIos:'iPhone’da bildirishnomalar ilovada ishlaydi: «Ulashish» → «Bosh ekranga»',aboutAd:'E’lon bo‘yicha',chatFirst:'Birinchi xabarni yozing — sotuvchi uni «Chatlar»da ko‘radi.',needChats:'Chatlaringizni ko‘rish uchun kiring',youL:'Siz',soldL:'Sotildi',closedL:'Yopildi',markSold:'Sotildi',markClosed:'Yopish',unsold:'Sotuvga qaytarish',soldDone:'Sotildi deb belgilandi',backDone:'E’lon yana sotuvda',selling:'Sotmoqda',soldTab:'Sotilgan',sinceT:'Topaman’da',noItems:'Hozircha bo‘sh',allAds:'Barcha e’lonlari',soldBanner:'Bu tovar allaqachon sotilgan',closedBanner:'E’lon yopilgan',tgSoon:'Telegram orqali kirish tez orada qo‘shiladi. Hozircha Google orqali kiring.',loginErr:'Kirib bo‘lmadi. Qayta urinib ko‘ring.',netErr:'Server bilan aloqa yo‘q. Internetni tekshirib, qayta urinib ko‘ring.',saving:'Saqlanmoqda…',maxPh:'6 tagacha surat mumkin',phHint:'Birinchi surat — asosiy. 6 tagacha.',needLoginFav:'Saralanganlar barcha qurilmalarda saqlanishi uchun kiring',similar:'O‘xshash e’lonlar',sNear:'Menga yaqinroq',nearMe:'Yonimda',anyDist:'Istalgan masofa',km:'km',m:'m',mapBtn:'Xarita',listBtn:'Xaritani yopish',geoAsk:'Joylashuvingiz aniqlanmoqda…',geoFail:'Joyni aniqlab bo‘lmadi — markazdan hisoblaymiz: {c}. Brauzerda geolokatsiyaga ruxsat bering.',fromYou:'sizdan',place:'Qayerda joylashgan',myPlace:'Mening joyim',placeHint:'Belgini xaritada suring. Boshqalarga faqat hudud (~300 m) ko‘rsatiladi, aniq manzil emas.',route:'Yo‘nalish',approx:'Taxminiy joy',mapNone:'Bu radiusda e’lon yo‘q — radiusni kattalashtiring',mln:'mln',ths:'ming',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
  howT:'Qanday ishlaydi',how1:'Narsani suratga oling yoki vakansiyani yozing',how2:'1 daqiqada bepul joylang',how3:'Xaridorlar va nomzodlar chatga yozadi',
  bizT:'Do‘konlar va ish beruvchilar uchun',bizS:'Logotipli do‘kon sahifasi, vakansiya paketlari, rezyume bazasi va ko‘rishlar statistikasi.',bizB:'Biznes tariflari',
  foot:'O‘zbekiston e’lonlar maydoni',demo:'Demo versiya: barcha e’lonlar va telefonlar sinov uchun',
@@ -957,7 +958,7 @@ const $=s=>document.querySelector(s), $$=s=>document.querySelectorAll(s);
 const store={get(k,d){try{return JSON.parse(localStorage.getItem(k))??d}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
 let cloudAds=[];   /* all live ads from Firestore */
 let myAds=[];      /* my ads, incl. expired ones (for the cabinet) */
-const SHOW_DEMO=true;   /* demo ads stay visible until launch */
+const SHOW_DEMO=false;   /* demo ads (SEED) are hidden since launch; true shows them again */
 let favs=new Set(store.get('tp_favs',[]).map(String));
 let recent=store.get('tp_recent',[]);
 let chats=store.get('tp_chats',{});
@@ -1281,10 +1282,8 @@ function openChats(){
   chatListOpen=true;
   const real=myChats.map(c=>{const other=c.buyerUid===user.uid?c.sellerName:c.buyerName,ad=byId(c.adId),n=unreadOf(c);
     return `<button class="cabrow chrow" data-chat="${c.id}" style="background:var(--surface);text-align:left">${ad?thumb(ad):`<div class="thumb"></div>`}<div class="ci2"><b>${esc(other||'—')}</b><span>${esc(c.adTitle||'')}</span><br><span>${c.last?(c.last.from===user.uid?t('youL')+': ':'')+esc(c.last.t):''}</span></div>${n?`<span class="unr">${n}</span>`:''}</button>`}).join('');
-  if(real||!Object.keys(chats).length){openModal(`<div class="cab"><h3 class="mh">${t('chats')}</h3>${real||`<p style="color:var(--ink3);margin:0">${t('noChats')}</p>`}</div>`);
-    $$('#modal [data-chat]').forEach(b=>b.onclick=()=>openChatWin(myChats.find(c=>c.id===b.dataset.chat)));return}
-  const ids=Object.keys(chats).filter(id=>byId(id));
-  openModal(`<div class="cab"><h3 class="mh">${t('chats')}</h3>${ids.length?ids.map(id=>{const a=byId(id),last=chats[id][chats[id].length-1];return `<button class="cabrow" data-open="${id}" style="background:var(--surface);text-align:left">${thumb(a)}<div class="ci2"><b>${esc(a.seller)}</b><span>${esc(a.title)}</span><br><span>${esc(last.t)}</span></div></button>`}).join(''):`<p style="color:var(--ink3);margin:0">${t('noChats')}</p>`}</div>`);
+  openModal(`<div class="cab"><h3 class="mh">${t('chats')}</h3>${real||`<p style="color:var(--ink3);margin:0">${t('noChats')}</p>`}${pushBtnHTML()}</div>`);
+  $$('#modal [data-chat]').forEach(b=>b.onclick=()=>openChatWin(myChats.find(c=>c.id===b.dataset.chat)));
 }
 
 /* ---------- launch promo: all paid services free for 3 months ----------
@@ -1297,14 +1296,6 @@ const fmtDate=d=>lang==='uz'?`${d.getDate()}-${UZM[d.getMonth()]} ${d.getFullYea
 const tD=k=>t(k).replace('{d}',fmtDate(promoEnd));
 /* price label: crossed-out price + "Бесплатно" while promo runs */
 const priceTag=(p,unit)=>!p?`<span class="freeTag">${t('free')}</span>`:promoOn()?`<s class="old num">${fmt(p)}</s><span class="freeTag">${t('free')}</span>`:`${fmt(p)} ${t('sum')}${unit||''}`;
-
-/* ---------- online counter ----------
-   DEMO: number is simulated (more people in the evening). In production show the real count
-   from Firebase presence, or hide the pill while real traffic is small. */
-function onlineBase(){const h=new Date().getHours();const curve=[.25,.15,.1,.08,.08,.12,.25,.45,.6,.7,.75,.8,.85,.8,.78,.8,.85,.9,.95,1,1,.9,.7,.45];return Math.round(1400*curve[h])}
-let onl=onlineBase();
-function tickOnline(){onl=Math.max(40,onl+Math.round((onlineBase()-onl)*.2+(Math.random()*24-12)));const e=$('#onl');if(e)e.textContent=fmt(onl)}
-tickOnline();setInterval(tickOnline,4000);
 
 /* ---------- post form ---------- */
 let draft={};
@@ -1488,8 +1479,7 @@ function submitAd(e){
 }
 
 /* ---------- auth ----------
-   Demo: sign-in is simulated and kept in this browser.
-   Production: signInGoogle -> Firebase Auth GoogleAuthProvider (signInWithPopup);
+   Google -> Firebase Auth GoogleAuthProvider (popup on computers, redirect on phones);
                signInTelegram -> Telegram Login Widget (bot via @BotFather, /setdomain topaman.uz),
                its hash verified server-side (Cloud Function) and exchanged for a Firebase custom token. */
 const GLOGO='<svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C36.9 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
@@ -1512,31 +1502,7 @@ function openLogin(next,msgKey){
   $('#gBtn').onclick=()=>googleLogin(next);
   $('#tgBtn').onclick=()=>{$('#authErr').textContent=t('tgSoon')};
 }
-function stepGoogle(next){
-  const acc={name:'Test Foydalanuvchi',email:'test.user@gmail.com'};
-  $('#auth').innerHTML=`<div style="width:34px;height:34px;margin:0 auto">${GLOGO}</div><h3 style="font-size:20px">${t('chooseAcc')}</h3>
-    <button class="acc" id="acc1"><span class="ava">T</span><span><b>${acc.name}</b><small>${acc.email}</small></span></button>
-    <button class="acc" id="acc2"><span class="ava" style="background:var(--surface2);color:var(--ink2)">+</span><span>${t('otherAcc')}</span></button>
-    <button class="btn ghost" id="authBack">${t('back')}</button>
-    <div class="demo">${t('demoNote')}</div>`;
-  const go=()=>finishLogin({name:acc.name,email:acc.email,method:'google'},next);
-  $('#acc1').onclick=go;$('#acc2').onclick=go;$('#authBack').onclick=()=>openLogin(next);
-}
-function stepTelegram(next){
-  $('#auth').innerHTML=`<div class="tgcard"><div class="tgl">${TGLOGO}</div><b>Telegram</b><p style="font-size:14px">${t('tgAsk')}</p>
-    <div class="acc" style="background:var(--surface)"><span class="ava">T</span><span><b>Test User</b><small>@test_user</small></span></div></div>
-    <button class="authbtn tg" id="tgOk">${t('confirm')}</button>
-    <button class="btn ghost" id="authBack">${t('cancel')}</button>
-    <div class="demo">${t('demoNote')}</div>`;
-  $('#tgOk').onclick=()=>finishLogin({name:'Test User',tg:'@test_user',method:'telegram'},next);
-  $('#authBack').onclick=()=>openLogin(next);
-}
-function finishLogin(u,next){
-  user={...u,phone:'',since:Date.now()};store.set('tp_user',user);
-  updateAuthUI();closeModal();toast(t('welcome')+', '+user.name+'!');
-  if(next)next();
-}
-function logout(){fbReady.then(f=>f.A.signOut(f.auth)).catch(()=>{});closeModal();toast(t('loggedOut'))}
+function logout(){pushUnsubscribe().finally(()=>fbReady.then(f=>f.A.signOut(f.auth))).catch(()=>{});closeModal();toast(t('loggedOut'))}
 function updateAuthUI(){
   $('#hCab').innerHTML=user
     ?`<span class="uava">${esc(user.name[0])}</span><span class="t">${esc(user.name.split(' ')[0])}</span>`
@@ -1578,7 +1544,7 @@ fbReady.then(f=>{
       else{await F.setDoc(ref,{name:user.name,email:user.email,photo:user.photo,method:'google',phone:'',since:Date.now(),favs:[...favs]})}
     }catch(e){console.warn('profile',e)}
     myUnsub=F.onSnapshot(F.query(F.collection(db,'ads'),F.where('uid','==',u.uid)),s=>{myAds=s.docs.map(toAd).map(a=>({...a,mine:true})).sort((x,y)=>y.ts-x.ts);render()},err=>console.warn('my',err));
-    watchChats(u.uid);
+    watchChats(u.uid);pushSubscribe(false).catch(()=>{});
     updateAuthUI();render();
     if(afterLogin){const n=afterLogin;afterLogin=null;closeModal();toast(t('welcome')+', '+user.name+'!');n()}
   });
@@ -1651,7 +1617,7 @@ function watchChats(uid){
       myChats=snap.docs.map(d=>({...d.data(),id:d.id})).sort((x,y)=>(y.updated||0)-(x.updated||0));
       const after=myChats.reduce((s,c)=>s+unreadOf(c),0);
       if(!first&&after>before&&!liveUnsub)toast('💬 '+t('newMsg'));
-      first=false;render();
+      first=false;render();openDeepChat();
       if(chatListOpen&&!$('#ov').hidden&&$('#modal .chrow,#modal .cab'))openChats();
     },e=>console.warn('chats',e))}).catch(()=>{});
 }
@@ -1661,7 +1627,7 @@ function chatBody(box,cid,info){
   const qs=info.qs||[];
   box.innerHTML=`<b>${info.head}</b><div class="msgs" id="msgs"><p class="chint">${t('chatFirst')}</p></div>
     ${qs.length?`<div class="qr">${qs.map(k=>`<button type="button" data-qr="${esc(t(k))}">${t(k)}</button>`).join('')}</div>`:''}
-    <form class="chatrow" id="chatForm"><input id="chatIn" placeholder="${t('msgPh')}" autocomplete="off" maxlength="1000"><button class="btn primary">${t('send')}</button></form>`;
+    <form class="chatrow" id="chatForm"><input id="chatIn" placeholder="${t('msgPh')}" autocomplete="off" maxlength="1000"><button class="btn primary">${t('send')}</button></form>${pushBtnHTML()}`;
   if(liveUnsub){liveUnsub();liveUnsub=null}
   let live=false;
   const startLive=()=>{if(live)return;live=true;fbReady.then(f=>{const {F,db}=f;
@@ -1678,7 +1644,7 @@ function chatBody(box,cid,info){
       if(!exists&&info.create)b.set(ref,{...info.create,last:{t:v,from:user.uid},updated:now2,unread:{[info.create.sellerUid]:1,[user.uid]:0}});
       else b.update(ref,{last:{t:v,from:user.uid},updated:now2,['unread.'+info.other]:F.increment(1)});
       b.set(F.doc(F.collection(db,'chats',cid,'msgs')),{from:user.uid,text:v,at:now2});
-      await b.commit();startLive();
+      await b.commit();startLive();pushNotify(cid);
     }catch(e){console.warn(e);toast(t('netErr'))}};
   const qr=box.querySelector('.qr');if(qr)qr.onclick=e=>{const b=e.target.closest('[data-qr]');if(b)send(b.dataset.qr)};
   $('#chatForm').onsubmit=e=>{e.preventDefault();send($('#chatIn').value)};
@@ -1700,6 +1666,46 @@ function openChatWin(c){
   setTimeout(()=>{const i=$('#chatIn');if(i)i.focus()},50);
 }
 
+/* ---------- push notifications about new chat messages ----------
+   The browser subscribes with our VAPID key; the subscription is kept by the bot worker (Cloudflare KV,
+   topaman-bot/push.js). After a message is sent the page asks the worker to notify the other person. */
+const PUSH_API='https://topaman-bot.topaman-bot.workers.dev/push/';
+const VAPID_PUB='BHtiPN6W3jEP5_lvTm7ZQBcIOyhu8LWHMUpgQLkFI3VFgacqHSPYcrJU1_aOgyTXPl2fAVnXU9b_hH0cTyBC5f4';
+const pushOk=()=>'serviceWorker' in navigator&&'PushManager' in window&&'Notification' in window&&!!navigator.serviceWorker.controller;
+const pushOn=()=>pushOk()&&Notification.permission==='granted';
+const b64u=s=>Uint8Array.from(atob(s.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0));
+async function idTok(){const f=await fbReady;return f.auth.currentUser?f.auth.currentUser.getIdToken():null}
+const pushPost=async(path,body)=>{const tok=await idTok();if(!tok)return false;
+  const r=await fetch(PUSH_API+path,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({idToken:tok,...body}),keepalive:true});return r.ok};
+/* ask=true: the person pressed the button (permission prompt allowed); false: quietly refresh an existing subscription */
+async function pushSubscribe(ask){
+  if(!pushOk()||!user)return false;
+  if(Notification.permission!=='granted'){if(!ask||Notification.permission==='denied')return false;if(await Notification.requestPermission()!=='granted')return false}
+  const reg=await navigator.serviceWorker.ready;
+  let sub=await reg.pushManager.getSubscription();
+  if(!sub)sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:b64u(VAPID_PUB)});
+  const key=user.uid+'|'+sub.endpoint;
+  if(!ask&&store.get('tp_push','')===key)return true;
+  const ok=await pushPost('reg',{sub:sub.toJSON()});if(ok)store.set('tp_push',key);return ok;
+}
+async function pushUnsubscribe(){try{const reg=await navigator.serviceWorker.ready,sub=await reg.pushManager.getSubscription();
+  if(sub)await pushPost('unreg',{endpoint:sub.endpoint});store.set('tp_push','')}catch(e){}}
+function pushNotify(cid){pushPost('send',{chat:cid}).catch(()=>{})}
+/* the "turn on notifications" button shown in chats and the profile */
+function pushBtnHTML(){
+  if(pushOn())return '';
+  if(!pushOk())return isIOS&&!isStandalone()?`<p class="pushhint">🔔 ${t('pushIos')}</p>`:'';
+  if(Notification.permission==='denied')return `<p class="pushhint">🔕 ${t('pushDenied')}</p>`;
+  return `<button type="button" class="btn ghost pushbtn" data-push>🔔 ${t('pushOn')}</button>`;
+}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-push]');if(!b)return;b.disabled=true;
+  pushSubscribe(true).then(ok=>{if(ok){toast('🔔 '+t('pushDone'));$$('[data-push]').forEach(x=>x.remove())}else{b.disabled=false;if(Notification.permission==='denied')toast(t('pushDenied'))}}).catch(()=>{b.disabled=false;toast(t('netErr'))})});
+/* a tapped notification opens the chat: ?chat=ID in a new window, or a message to an already open tab */
+let deepChat=null;try{deepChat=new URLSearchParams(location.search).get('chat')}catch(e){}
+function openDeepChat(){if(!deepChat||!user)return;const c=myChats.find(x=>x.id===deepChat);if(!c)return;deepChat=null;
+  try{history.replaceState(null,'',location.pathname)}catch(e){}openChatWin(c)}
+if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('message',e=>{if(e.data&&e.data.chat){deepChat=String(e.data.chat);openDeepChat()}});
+
 /* presence: each open tab pings every 3 min -> admin sees how many people are on the site right now */
 const ADMINS=['djeki.niyazov96@gmail.com'];
 const isAdminUser=()=>!!(user&&ADMINS.includes(user.email));
@@ -1720,6 +1726,7 @@ function openCab(){
   openModal(`<div class="cab"><h3 class="mh">${t('profileT')}</h3>
     <div class="prof"><span class="ava">${esc(user.name[0])}</span><div class="pi2"><b>${esc(user.name)}</b><small>${esc(user.email||user.tg||'')}</small><br><span class="via">${viaIcon}${t('via')} ${user.method==='google'?'Google':'Telegram'}</span></div><button class="btn ghost" id="logoutBtn">${t('logout')}</button></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="cabHelp">${t('help')}</button>${isAdminUser()?`<a class="btn gold" href="admin/" style="text-decoration:none">⚙ ${t('adminL')}</a>`:''}</div>
+    ${pushOn()?`<p class="pushhint">🔔 ${t('pushOff')}</p>`:pushBtnHTML()}
     <div class="f2"><label class="fl">${t('pName')}<input id="pNameIn" value="${esc(user.name)}"></label><label class="fl">${t('pPhone')}<input id="pPhoneIn" inputmode="tel" placeholder="+998 90 123 45 67" value="${esc(user.phone||'')}"></label></div>
     <div><button class="btn" id="pSave">${t('save')}</button></div>
     <div class="divider"></div>
