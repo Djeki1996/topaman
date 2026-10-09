@@ -10,7 +10,7 @@
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Topaman">
+<meta name="apple-mobile-web-app-title" content="Topaman.uz">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <title>Topaman.uz</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -608,7 +608,20 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .thumb.gal{padding:0;overflow:hidden}
 .gtrack{display:flex;width:100%;height:100%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
 .gtrack::-webkit-scrollbar{display:none}
-.gtrack img{flex:0 0 100%;width:100%;height:100%;object-fit:contain;scroll-snap-align:center;background:#000}
+.gtrack img{flex:0 0 100%;width:100%;height:100%;object-fit:contain;scroll-snap-align:center;scroll-snap-stop:always;background:#000;cursor:zoom-in}
+.gnav{position:absolute;top:50%;transform:translateY(-50%);z-index:2;width:42px;height:42px;border-radius:50%;border:0;background:rgba(0,0,0,.5);color:#fff;font-size:26px;line-height:1;cursor:pointer;display:grid;place-items:center}
+.gnav.p{left:10px}.gnav.n{right:10px}.gnav:disabled{opacity:.25;cursor:default}
+@media (pointer:coarse){.gnav{display:none}}
+/* full-screen photo viewer: swipe one photo at a time, tap = zoom, ✕ / Back / Esc = close */
+.lb{position:fixed;inset:0;z-index:200;background:#000;overscroll-behavior:contain}
+.lb .gtrack{height:100%}
+.lb .slide{flex:0 0 100%;width:100%;height:100%;overflow:hidden;scroll-snap-align:center;scroll-snap-stop:always;display:flex}
+.lb .slide img{flex:none;width:100%;height:100%;object-fit:contain;margin:auto;scroll-snap-align:none;cursor:zoom-in}
+.lb .gtrack.zoomed{overflow:hidden}
+.lb .slide.zoom{overflow:auto}.lb .slide.zoom img{width:250%;height:250%;max-width:none;cursor:zoom-out}
+.lb .gcount{top:calc(16px + env(safe-area-inset-top,0px));left:14px;right:auto;bottom:auto}
+.lb .gnav{background:rgba(255,255,255,.18);width:48px;height:48px}
+.lbx{position:absolute;top:calc(10px + env(safe-area-inset-top,0px));right:12px;z-index:2;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;font-size:22px;cursor:pointer}
 .gcount{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.6);color:#fff;border-radius:9px;padding:3px 9px;font-size:13px}
 /* sold + seller profile */
 button.seller{width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer}
@@ -1633,9 +1646,39 @@ async function fetchPhotos(id){const f=await fbReady,{F,db}=f;const s=await F.ge
 function loadGallery(a){
   fetchPhotos(a.id).then(ph=>{const th=$('.dv > .thumb');if(!th||!ph.length)return;
     th.classList.add('gal');th.innerHTML=`<div class="gtrack">${ph.map(src=>`<img src="${src}" alt="">`).join('')}</div>${ph.length>1?`<span class="gcount">1 / ${ph.length}</span>`:''}`;
-    const tr=th.querySelector('.gtrack'),c=th.querySelector('.gcount');
-    if(c)tr.onscroll=()=>{c.textContent=(Math.round(tr.scrollLeft/tr.clientWidth)+1)+' / '+ph.length};
+    galNav(th,ph.length);
+    th.querySelector('.gtrack').addEventListener('click',e=>{if(e.target.tagName==='IMG')openLightbox(ph,[...e.target.parentNode.children].indexOf(e.target))});
   }).catch(()=>{});
+}
+/* arrows + counter for a .gtrack inside box; one photo per swipe (scroll-snap-stop) */
+function galNav(box,n,start){
+  const tr=box.querySelector('.gtrack'),c=box.querySelector('.gcount');
+  const cur=()=>Math.round(tr.scrollLeft/tr.clientWidth);
+  const go=i=>tr.scrollTo({left:Math.max(0,Math.min(n-1,i))*tr.clientWidth,behavior:'smooth'});
+  if(n>1){box.insertAdjacentHTML('beforeend','<button class="gnav p" aria-label="prev">‹</button><button class="gnav n" aria-label="next">›</button>');
+    box.querySelector('.gnav.p').onclick=e=>{e.stopPropagation();go(cur()-1)};box.querySelector('.gnav.n').onclick=e=>{e.stopPropagation();go(cur()+1)}}
+  const upd=()=>{const i=cur();if(c)c.textContent=(i+1)+' / '+n;const p=box.querySelector('.gnav.p'),x=box.querySelector('.gnav.n');if(p){p.disabled=i<=0;x.disabled=i>=n-1}};
+  tr.addEventListener('scroll',upd,{passive:true});
+  if(start){tr.style.scrollBehavior='auto';tr.scrollLeft=start*tr.clientWidth}
+  upd();return {go,cur};
+}
+let lbClose=null;
+function openLightbox(ph,start){
+  if(lbClose)return;
+  const lb=document.createElement('div');lb.className='lb';
+  lb.innerHTML=`<div class="gtrack">${ph.map(src=>`<div class="slide"><img src="${src}" alt=""></div>`).join('')}</div>${ph.length>1?`<span class="gcount"></span>`:''}<button class="lbx" aria-label="close">✕</button>`;
+  document.body.appendChild(lb);const prevOv=document.body.style.overflow;document.body.style.overflow='hidden';
+  const tr=lb.querySelector('.gtrack'),nav=galNav(lb,ph.length,start);
+  /* tap = zoom 2.5x at the tapped point, tap again = back */
+  tr.addEventListener('click',e=>{if(e.target.tagName!=='IMG')return;const sl=e.target.parentNode,z=!sl.classList.contains('zoom');
+    const r=sl.getBoundingClientRect(),fx=(e.clientX-r.left)/r.width,fy=(e.clientY-r.top)/r.height;
+    sl.classList.toggle('zoom',z);tr.classList.toggle('zoomed',z);
+    if(z){sl.scrollLeft=fx*sl.scrollWidth-r.width/2;sl.scrollTop=fy*sl.scrollHeight-r.height/2}});
+  const key=e=>{if(e.key==='Escape'){e.stopImmediatePropagation();history.back()}else if(e.key==='ArrowRight')nav.go(nav.cur()+1);else if(e.key==='ArrowLeft')nav.go(nav.cur()-1)};
+  document.addEventListener('keydown',key,true);
+  lbClose=()=>{document.removeEventListener('keydown',key,true);lb.remove();document.body.style.overflow=prevOv;lbClose=null};
+  try{history.pushState({tpModal:1,tpLb:1},'')}catch(e){}
+  lb.querySelector('.lbx').onclick=()=>history.back();
 }
 
 /* ---------- real chats (Firestore) ----------
@@ -1882,7 +1925,7 @@ $('#ov').onclick=e=>{
   const us=e.target.closest('[data-unsold]');if(us){const m=myAd(us.dataset.unsold);if(m)adUpdate(m,{status:'active',soldAt:null,ts:Date.now()}).then(()=>{toast('✓ '+t('backDone'));openCab()}).catch(()=>toast(t('netErr')));return}
   const d=e.target.closest('[data-del]');if(d){const m=myAd(d.dataset.del);if(m)adDelete(m).then(()=>{toast(t('removed'));openCab()}).catch(()=>toast(t('netErr')));return}
 };
-window.addEventListener('popstate',()=>{if(!$('#ov').hidden)closeModal(true)});
+window.addEventListener('popstate',()=>{if(lbClose){lbClose();return}if(!$('#ov').hidden)closeModal(true)});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#ov').hidden)closeModal()});
 $('#regions').onclick=e=>{const b=e.target.closest('.reg');if(!b)return;state.city=state.city===b.dataset.city?'':b.dataset.city;$('#city').value=state.city;state.limit=12;render();scrollTo({top:$('#grid').offsetTop-160,behavior:'smooth'})};
 function lagan(){
