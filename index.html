@@ -160,6 +160,7 @@ header .btn.primary{background:var(--gold);border-color:var(--gold);color:#2B1D0
 .bdg.job{background:var(--green);color:#fff}
 .bdg.cv{background:var(--cobalt);color:#fff}
 .bdg.new{background:var(--tq);color:#fff}
+.vtd{color:#1d8a4a;font-weight:700}
 /* live strip under the stats: real numbers only, small ones are hidden */
 .live{display:flex;flex-wrap:wrap;justify-content:center;gap:6px 18px;margin:8px 14px 0;font-size:13px;color:var(--ink3)}
 .live b{color:var(--ink);font-weight:700}
@@ -769,7 +770,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  bizT:'Для магазинов и работодателей',bizS:'Страница магазина с логотипом, пакеты вакансий, доступ к базе резюме и статистика просмотров.',bizB:'Тарифы для бизнеса',
  foot:'площадка объявлений Узбекистана',demo:'Демо-версия: все объявления и телефоны тестовые',
  sum:'сум',nego:'Договорная',salNego:'По договорённости',justNow:'только что',minAgo:'мин назад',hAgo:'ч назад',yest:'вчера',dAgo:'дн назад',
- views:'просмотров',city:'Город',section:'Раздел',published:'Опубликовано',
+ views:'просмотров',vToday:'сегодня',showsL:'показов в ленте',city:'Город',section:'Раздел',published:'Опубликовано',
  seller:'Продавец',employer:'Работодатель',applicant:'Соискатель',onSince:'на Topaman с 2025 года',verified:'Проверен',
  showTel:'Показать телефон',test:'тест',write:'Написать продавцу',apply:'Откликнуться',invite:'Пригласить на работу',
  promoTxt:'Больше звонков: <b>ТОП на 7 дней</b> даёт примерно в 5 раз больше просмотров.',promoBtn:'Поднять за 25 000 сум',
@@ -827,7 +828,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  bizT:'Do‘konlar va ish beruvchilar uchun',bizS:'Logotipli do‘kon sahifasi, vakansiya paketlari, rezyume bazasi va ko‘rishlar statistikasi.',bizB:'Biznes tariflari',
  foot:'O‘zbekiston e’lonlar maydoni',demo:'Demo versiya: barcha e’lonlar va telefonlar sinov uchun',
  sum:'so‘m',nego:'Kelishiladi',salNego:'Kelishiladi',justNow:'hozirgina',minAgo:'daqiqa oldin',hAgo:'soat oldin',yest:'kecha',dAgo:'kun oldin',
- views:'ko‘rish',city:'Shahar',section:'Bo‘lim',published:'Joylandi',
+ views:'ko‘rish',vToday:'bugun',showsL:'lentada ko‘rsatildi',city:'Shahar',section:'Bo‘lim',published:'Joylandi',
  seller:'Sotuvchi',employer:'Ish beruvchi',applicant:'Nomzod',onSince:'2025-yildan Topaman’da',verified:'Tasdiqlangan',
  showTel:'Telefonni ko‘rsatish',test:'sinov',write:'Sotuvchiga yozish',apply:'Javob berish',invite:'Ishga taklif qilish',
  promoTxt:'Ko‘proq qo‘ng‘iroq: <b>7 kunlik TOP</b> taxminan 5 barobar ko‘p ko‘rish beradi.',promoBtn:'25 000 so‘mga ko‘tarish',
@@ -1056,7 +1057,7 @@ function card(a){
       <div class="cprice${a.kind!=='sell'?' sal':''}">${priceHTML(a)}</div>
       <div class="ctitle">${esc(a.title)}</div>
       ${a.ver?`<span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg>${t('verified')}</span>`:''}
-      <div class="cmeta"><span>${state.me?`<b class="dist">${fmtDist(distOf(a))}</b> · `:''}${esc(cityName(a.city))} · ${ago(a.ts)}</span><span class="num"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> ${a.views||0}</span></div>
+      <div class="cmeta"><span>${state.me?`<b class="dist">${fmtDist(distOf(a))}</b> · `:''}${esc(cityName(a.city))} · ${ago(a.ts)}</span><span class="num"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> ${a.views||0}${vToday(a)?` <b class="vtd">+${vToday(a)}</b>`:''}</span></div>
     </div>
   </div>`;
 }
@@ -1151,6 +1152,7 @@ function render(){
   syncTools();drawBigMap(r);
   const shown=r.slice(0,state.limit);
   $('#grid').innerHTML=r.length?shown.map(card).join('')+(r.length>state.limit?`<div class="more" style="grid-column:1/-1"><button class="btn" id="moreBtn">${t('showMore')} (${r.length-state.limit})</button></div>`:''):`<div class="empty">${state.onlyFav?t('noFav'):t('notFound')}</div>`;
+  watchShown();
   const n=favs.size;[$('#favCnt'),$('#favCnt2')].forEach(e=>{e.hidden=!n;e.textContent=n});
   const cn=unreadTotal();[$('#chatCnt'),$('#chatCnt2')].forEach(e=>{e.hidden=!cn;e.textContent=cn});
   const rec=recent.map(byId).filter(Boolean);
@@ -1236,7 +1238,7 @@ function openAd(id){
         ${a.status==='sold'?`<div class="soldban">${a.kind==='sell'?t('soldBanner'):t('closedBanner')}</div>`:''}
         <h3>${esc(a.title)}</h3>
         <div class="dprice${a.kind!=='sell'?' sal':''}">${priceHTML(a)}</div>
-        <dl class="facts"><dt>${t('city')}</dt><dd>${esc(cityName(a.city))}</dd><dt>${t('section')}</dt><dd>${cname(catOf(a.cat))}</dd>${facts}<dt>${t('published')}</dt><dd>${ago(a.ts)} · ${a.views||0} ${t('views')}</dd></dl>
+        <dl class="facts"><dt>${t('city')}</dt><dd>${esc(cityName(a.city))}</dd><dt>${t('section')}</dt><dd>${cname(catOf(a.cat))}</dd>${facts}<dt>${t('published')}</dt><dd>${ago(a.ts)} · ${a.views||0} ${t('views')}${vToday(a)?` <b class="vtd">+${vToday(a)} ${t('vToday')}</b>`:''}${a.shows?` · ${a.shows} ${t('showsL')}`:''}</dd></dl>
         <div class="desc">${esc(a.desc)}</div>
         <button class="seller" id="sellerBtn"><div class="ava">${esc(a.seller[0])}</div><div><b>${esc(a.seller)}</b> ${a.ver?`<span class="ver">✓ ${t('verified')}</span>`:''}<small>${a.uid?`${who} · ${t('sinceT')} ${monthYear(a.created||a.ts)}`:`<span class="stars">${'★'.repeat(Math.round(rate))}</span> ${rate.toFixed(1)} · ${who} · ${t('onSince')}`}</small>${a.uid?'<span class="onl" id="sellerOnl"></span>':''}<span class="sall">${t('allAds')} →</span></div></button>
         <div class="actions">
@@ -1638,7 +1640,8 @@ async function saveAd(ad,dr){
     dr.imgs.forEach((p,i)=>b.set(F.doc(db,'ads',ref.id,'photos',String(i)),{data:p.data,i}));
     for(let i=dr.imgs.length;i<(dr.oldN||0);i++)b.delete(F.doc(db,'ads',ref.id,'photos',String(i)));
   }else{doc.nPhotos=old.nPhotos||0;doc.thumb=old.thumb||null}
-  b.set(ref,doc);
+  /* views/shows counters are left as they are on the server (other people change them meanwhile) */
+  if(old){delete doc.views;delete doc.reports;b.set(ref,doc,{mergeFields:Object.keys(doc)})}else{doc.shows=0;b.set(ref,doc)}
   if(!old){  /* anti-spam counter checked by the server rules: max 10 new ads a day, 30 s apart */
     const us=await F.getDoc(F.doc(db,'users',user.uid)),u=us.exists()?us.data():{},day=Math.floor(Date.now()/864e5);
     b.set(F.doc(db,'users',user.uid),{lastAdAt:F.serverTimestamp(),adDay:day,adCount:u.adDay===day?(u.adCount||0)+1:1},{merge:true});
@@ -1651,7 +1654,22 @@ async function saveAd(ad,dr){
 async function adUpdate(a,patch){const f=await fbReady;const {id,mine,...rest}=a;await f.F.setDoc(f.F.doc(f.db,'ads',String(id)),{...rest,...patch})}
 async function adDelete(a){const f=await fbReady,{F,db}=f,b=F.writeBatch(db);for(let i=0;i<(a.nPhotos||0);i++)b.delete(F.doc(db,'ads',a.id,'photos',String(i)));b.delete(F.doc(db,'ads',a.id));await b.commit()}
 const viewed=new Set();
-function countView(a){if(a.mine||viewed.has(a.id))return;viewed.add(a.id);fbReady.then(f=>f.F.updateDoc(f.F.doc(f.db,'ads',a.id),{views:f.F.increment(1)})).catch(()=>{})}
+const tday=()=>Math.floor((Date.now()+5*36e5)/864e5);   /* day number in Tashkent, same as tday() in the rules */
+const vToday=a=>a.vd===tday()?a.vday||0:0;
+function countView(a){if(a.mine||viewed.has(a.id))return;viewed.add(a.id);const d=tday(),same=a.vd===d;
+  fbReady.then(f=>f.F.updateDoc(f.F.doc(f.db,'ads',a.id),{views:f.F.increment(1),vd:d,vday:same?f.F.increment(1):1})).catch(()=>{})}
+/* impressions: a card that was really on screen (half visible for 1 s) counts once a day per device; sent in batches */
+let shownDay={d:0,ids:[]};try{shownDay=JSON.parse(localStorage.getItem('tp_shown'))||shownDay}catch(e){}
+const shownQ=new Set(),shownT=new Map();
+const shownIO='IntersectionObserver' in window?new IntersectionObserver(es=>es.forEach(e=>{const id=e.target.dataset.id;
+  if(e.isIntersecting){if(!shownT.has(id))shownT.set(id,setTimeout(()=>{shownT.delete(id);markShown(id)},1000))}
+  else if(shownT.has(id)){clearTimeout(shownT.get(id));shownT.delete(id)}}),{threshold:.5}):null;
+function markShown(id){const a=byId(id);if(!a||!a.uid||a.mine||(user&&a.uid===user.uid))return;
+  if(shownDay.d!==tday())shownDay={d:tday(),ids:[]};if(shownDay.ids.includes(id))return;
+  shownDay.ids.push(id);try{localStorage.setItem('tp_shown',JSON.stringify(shownDay))}catch(e){}shownQ.add(id)}
+setInterval(()=>{if(!shownQ.size)return;const ids=[...shownQ];shownQ.clear();
+  fbReady.then(f=>Promise.all(ids.map(id=>f.F.updateDoc(f.F.doc(f.db,'ads',id),{shows:f.F.increment(1)}).catch(()=>{}))))},8000);
+function watchShown(){if(!shownIO)return;shownIO.disconnect();document.querySelectorAll('#grid .card[data-id]').forEach(c=>shownIO.observe(c))}
 async function cloudReport(a,r){const f=await fbReady,{F,db}=f,b=F.writeBatch(db);b.set(F.doc(db,'ads',a.id,'reports',user.uid),{r,at:Date.now()});b.update(F.doc(db,'ads',a.id),{reports:F.increment(1)});await b.commit()}
 async function fetchPhotos(id){const f=await fbReady,{F,db}=f;const s=await F.getDocs(F.query(F.collection(db,'ads',String(id),'photos'),F.orderBy('i')));return s.docs.map(d=>d.data().data)}
 function loadGallery(a){
