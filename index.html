@@ -1179,7 +1179,9 @@ function openModal(html,wide){
   if($('#ov').hidden){try{const hs=history.state;if(hs&&hs.tpModal===0)history.replaceState({tpModal:1},'');else if(!(hs&&hs.tpModal))history.pushState({tpModal:1},'')}catch(e){}}const m=$('#modal');m.className='modal'+(wide?' wide':'');m.innerHTML='<button class="mclose" aria-label="×">×</button>'+html;$('#ov').hidden=false;$('#ov').scrollTop=0;document.body.style.overflow='hidden'}
 function closeModal(fromPop){
   stopChatLive();
-  if(!fromPop){try{if(history.state&&history.state.tpModal)history.replaceState({tpModal:0},'')}catch(e){}}$('#ov').hidden=true;document.body.style.overflow='';render()}
+  if(!fromPop){try{if(history.state&&history.state.tpModal)history.replaceState({tpModal:0},'')}catch(e){}}
+  try{if(/[?&]ad=/.test(location.search))history.replaceState(history.state,'',location.pathname)}catch(e){}
+  $('#ov').hidden=true;document.body.style.overflow='';render()}
 
 /* ---------- ad detail ---------- */
 /* similar ads: same category first, then same city / nearby, close price, shared title words */
@@ -1279,6 +1281,8 @@ function openAd(id){
   if(a.uid){countView(a);if(a.nPhotos)loadGallery(a);showSeen(a.uid,'#sellerOnl')}
   $('#sellerBtn').onclick=()=>openSeller(a);
   if(a.status==='sold'&&!a.mine){const ac=$('#modal .actions');if(ac)ac.hidden=true}
+  /* keep the open ad in the address (?ad=ID): coming back from Telegram/WhatsApp or after a reload reopens it */
+  if(a.uid){try{history.replaceState(history.state,'',location.pathname+'?ad='+encodeURIComponent(a.id))}catch(e){}}
   const rb=$('#repBtn');if(rb)rb.onclick=()=>openReport(a);
   const sb=$('#shareBtn');if(sb)sb.onclick=()=>shareAd(a);
   if(a.uid){if(user&&!a.mine&&myChats.some(c=>c.id===a.id+'_'+user.uid))openChatIn(a,true)}else if(chats[a.id])openChatIn(a,true);
