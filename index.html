@@ -1479,8 +1479,8 @@ function submitAd(e){
 
 /* ---------- auth ----------
    Google -> Firebase Auth GoogleAuthProvider (popup on computers, redirect on phones);
-               signInTelegram -> Telegram Login Widget (bot via @BotFather, /setdomain topaman.uz),
-               its hash verified server-side (Cloud Function) and exchanged for a Firebase custom token. */
+               Telegram -> oauth.telegram.org (popup on computers, redirect on phones; bot domain set via /setdomain topaman.uz),
+               the signed data is checked by the bot Worker (/auth/tg) and exchanged for a Firebase custom token (uid "tg:<id>"). */
 const GLOGO='<svg viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-7.9l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C36.9 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
 const TGLOGO='<svg viewBox="0 0 24 24" fill="#fff"><path d="M9.8 15.4l-.4 5.3c.6 0 .8-.2 1.1-.5l2.6-2.5 5.4 4c1 .6 1.7.3 2-.9l3.6-17c.3-1.5-.6-2.1-1.6-1.7L1.4 9.9C0 10.5 0 11.3 1.2 11.7l5.4 1.7L19 5.6c.6-.4 1.1-.2.7.2z"/></svg>';
 let user=null;   /* set by Firebase Auth (onAuthStateChanged) */
@@ -1499,7 +1499,7 @@ function openLogin(next,msgKey){
   </div>`);
   $('#modal').classList.add('narrow');
   $('#gBtn').onclick=()=>googleLogin(next);
-  $('#tgBtn').onclick=()=>{$('#authErr').textContent=t('tgSoon')};
+  $('#tgBtn').onclick=()=>tgLogin(next);
 }
 function logout(){pushUnsubscribe().finally(()=>fbReady.then(f=>f.A.signOut(f.auth))).catch(()=>{});closeModal();toast(t('loggedOut'))}
 function updateAuthUI(){
@@ -1535,12 +1535,14 @@ fbReady.then(f=>{
   f.A.onAuthStateChanged(f.auth,async u=>{
     if(myUnsub){myUnsub();myUnsub=null}
     if(!u){user=null;myAds=[];watchChats(null);updateAuthUI();render();return}
-    user={uid:u.uid,name:u.displayName||'Topaman',email:u.email||'',photo:u.photoURL||'',method:'google',phone:'',since:Date.now()};
+    const viaTg=u.uid.startsWith('tg:'),tp=viaTg?tgPending||{}:{};
+    user={uid:u.uid,name:u.displayName||tp.name||'Topaman',email:u.email||'',tg:tp.tg||'',photo:u.photoURL||tp.photo||'',method:viaTg?'telegram':'google',phone:'',since:Date.now()};
     try{
       const ref=F.doc(db,'users',u.uid),snap=await F.getDoc(ref);
-      if(snap.exists()){const d=snap.data();Object.assign(user,{name:d.name||user.name,phone:d.phone||'',since:d.since||user.since,banned:!!d.banned});
+      if(snap.exists()){const d=snap.data();Object.assign(user,{name:d.name||user.name,tg:user.tg||d.tg||'',phone:d.phone||'',since:d.since||user.since,banned:!!d.banned});
+        if(viaTg&&tp.tg&&tp.tg!==d.tg)F.setDoc(ref,{tg:tp.tg,updated:Date.now()},{merge:true}).catch(()=>{});
         const cloudFavs=(d.favs||[]).map(String);const merged=new Set([...cloudFavs,...favs]);favs=merged;if(merged.size!==cloudFavs.length)saveFavs();}
-      else{await F.setDoc(ref,{name:user.name,email:user.email,photo:user.photo,method:'google',phone:'',since:Date.now(),favs:[...favs]})}
+      else{await F.setDoc(ref,{name:user.name,email:user.email,tg:user.tg,photo:user.photo,method:user.method,phone:'',since:Date.now(),favs:[...favs]})}
     }catch(e){console.warn('profile',e)}
     myUnsub=F.onSnapshot(F.query(F.collection(db,'ads'),F.where('uid','==',u.uid)),s=>{myAds=s.docs.map(toAd).map(a=>({...a,mine:true})).sort((x,y)=>y.ts-x.ts);render()},err=>console.warn('my',err));
     watchChats(u.uid);pushSubscribe(false).catch(()=>{});
@@ -1560,6 +1562,41 @@ async function googleLogin(next){
     catch(e){if(/popup-blocked|operation-not-supported|web-storage/.test(e.code||''))await f.A.signInWithRedirect(f.auth,p);else throw e}
   }catch(e){afterLogin=null;if(!/popup-closed|cancelled-popup/.test(e.code||'')){const el=$('#authErr');if(el)el.textContent=t('loginErr')+' ('+(e.code||'')+')'}}
 }
+/* Telegram sign-in: get signed data from Telegram, the bot Worker checks it and returns a Firebase custom token */
+const TG_AUTH='https://topaman-bot.topaman-bot.workers.dev/auth/';
+let tgPending=null,tgBotId=0;
+async function tgLogin(next){
+  afterLogin=next||(()=>{});const el=$('#authErr');if(el)el.textContent='';
+  try{
+    if(!tgBotId)tgBotId=(await fetch(TG_AUTH+'tg-bot').then(r=>r.json())).botId;
+    if(!tgBotId)throw new Error('bot');
+    const mobile=matchMedia('(pointer:coarse)').matches||isStandalone();
+    if(mobile){location.href=`https://oauth.telegram.org/auth?bot_id=${tgBotId}&origin=${encodeURIComponent(location.origin)}&request_access=write&lang=${lang}&return_to=${encodeURIComponent(location.origin+location.pathname+'?tglogin=1')}`;return}
+    const w=open(`https://oauth.telegram.org/auth?bot_id=${tgBotId}&origin=${encodeURIComponent(location.origin)}&embed=1&request_access=write&lang=${lang}`,'telegram_oauth','width=550,height=470,left='+Math.max(0,(screen.width-550)/2)+',top='+Math.max(0,(screen.height-470)/2));
+    if(!w){location.href=`https://oauth.telegram.org/auth?bot_id=${tgBotId}&origin=${encodeURIComponent(location.origin)}&request_access=write&lang=${lang}&return_to=${encodeURIComponent(location.origin+location.pathname+'?tglogin=1')}`;return}
+    const onMsg=e=>{if(e.origin!=='https://oauth.telegram.org')return;let d;try{d=typeof e.data==='string'?JSON.parse(e.data):e.data}catch(x){return}
+      if(d&&d.event==='auth_result'){removeEventListener('message',onMsg);clearInterval(poll);if(d.result)tgFinish(d.result);else afterLogin=null}};
+    addEventListener('message',onMsg);
+    const poll=setInterval(()=>{if(w.closed){clearInterval(poll);setTimeout(()=>removeEventListener('message',onMsg),1500)}},500);
+  }catch(e){afterLogin=null;console.warn('tg',e);const el=$('#authErr');if(el)el.textContent=t('loginErr')}
+}
+async function tgFinish(data){
+  try{
+    const r=await fetch(TG_AUTH+'tg',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)}).then(r=>r.json());
+    if(!r.ok)throw new Error(r.error||'auth');
+    tgPending={name:r.name,photo:r.photo,tg:r.tg};
+    const f=await fbReady,cred=await f.A.signInWithCustomToken(f.auth,r.token);
+    if(!cred.user.displayName)f.A.updateProfile(cred.user,{displayName:r.name,photoURL:r.photo||null}).catch(()=>{});
+    if(!afterLogin)toast(t('welcome')+', '+r.name+'!');
+  }catch(e){afterLogin=null;console.warn('tg',e);const el=$('#authErr');if(el)el.textContent=t('loginErr');else toast(t('loginErr'))}
+}
+/* back from oauth.telegram.org on phones: data comes in #tgAuthResult=<base64 json> (or as ?id=..&hash=..) */
+(()=>{let d=null;try{
+  const m=location.hash.match(/tgAuthResult=([^&]+)/);
+  if(m){let b=m[1].replace(/-/g,'+').replace(/_/g,'/');b+='='.repeat((4-b.length%4)%4);d=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(b),c=>c.charCodeAt(0))))}
+  else{const q=new URLSearchParams(location.search);if(q.get('tglogin')&&q.get('hash')){d={};for(const [k,v] of q)if(k!=='tglogin')d[k]=v}}
+  if(new URLSearchParams(location.search).has('tglogin')||m)history.replaceState(null,'',location.pathname)}catch(e){}
+  if(d&&d.hash)tgFinish(d)})();
 function saveProfile(patch){fbReady.then(f=>{if(!user)return;f.F.setDoc(f.F.doc(f.db,'users',user.uid),{...patch,updated:Date.now()},{merge:true})}).catch(()=>{})}
 function saveFavs(){store.set('tp_favs',[...favs]);if(user)saveProfile({favs:[...favs].slice(0,500)})}
 
