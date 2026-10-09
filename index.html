@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0A4F57">
 <meta name="description" content="Butun bozor — cho‘ntagingizda. Объявления, вакансии и мастера Узбекистана.">
-<meta name="robots" content="noindex, nofollow"><!-- DEMO: remove at launch -->
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -1288,7 +1287,7 @@ function openChats(){
 
 /* ---------- launch promo: all paid services free for 3 months ----------
    Set PROMO.start to the real launch day. After PROMO.months the normal prices apply automatically. */
-const PROMO={start:'2026-10-01',months:3};
+const PROMO={start:'2026-10-09',months:3};
 const promoEnd=(()=>{const d=new Date(PROMO.start+'T00:00:00');d.setMonth(d.getMonth()+PROMO.months);return d})();
 const promoOn=()=>Date.now()<promoEnd.getTime();
 const UZM=['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentabr','oktabr','noyabr','dekabr'];

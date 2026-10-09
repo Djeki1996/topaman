@@ -145,7 +145,7 @@ const ico={
 /* prices (same as the site) — used for income and "free during promo" value */
 const PRICE={vip:39000,top:19000,urg:9000,up:5000,job:29000};
 const PNAME={vip:'VIP · 14 дней',top:'ТОП · 7 дней',urg:'Срочно · 3 дня',up:'Поднять',job:'Вакансия'};
-const PROMO_END=new Date('2027-01-01').getTime();
+const PROMO_END=new Date('2027-01-09').getTime();
 const svg=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${ico[k]}</svg>`;
 const TABS=[['home','Обзор'],['money','Доход'],['flag','Жалобы'],['list','Объявления'],['users','Люди'],['help','Поддержка']];
 let payments=[];   /* payments/{id}: written only by the server after Payme/Click confirm (amount, service, adId, uid, method, at, status) */
