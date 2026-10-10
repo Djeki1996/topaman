@@ -425,6 +425,11 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .jtags button{cursor:pointer}.jtags button[aria-pressed=true]{background:var(--tq);border-color:var(--tq);color:#fff}.jtags.ro{margin:0 0 4px}.jtags.ro span{background:var(--surface2);border-color:transparent}
 .pfil{display:flex;align-items:center;gap:6px;margin:0 0 10px;font-size:13.5px;color:var(--ink2);font-weight:600}
 .pfil input{width:120px;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);padding:0 10px;font:inherit;font-size:14px}
+.tbtn.ssbtn{border-color:var(--tq);color:var(--tq);font-weight:700}
+.ssrow{display:flex;align-items:center;gap:8px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;margin:0 0 8px;background:var(--surface)}
+.ssrow .sso{flex:1;min-width:0;text-align:left;border:0;background:none;font:inherit;color:var(--ink);cursor:pointer;padding:0}
+.ssrow .sso b{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ssn{display:inline-block;margin-top:2px;background:var(--gold);color:#2B1D05;border-radius:99px;padding:1px 8px;font-size:12px;font-weight:800}
 .pclr{width:32px;height:32px;border-radius:50%;border:0;background:var(--surface2);color:var(--ink);font-size:18px;cursor:pointer}
 .jfil{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 12px;padding:2px 16px 4px;align-items:center}.jfil::-webkit-scrollbar{display:none}
 .jfil b{flex:none;font-size:13px;color:var(--ink2);margin-right:2px}
@@ -736,6 +741,7 @@ button.seller:hover{border-color:var(--tq)}
     <div class="tools">
       <button class="tbtn" id="nearBtn" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span data-i="nearMe"></span></button>
       <button class="tbtn" id="mapBtn" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2zM9 4v14M15 6v14"/></svg><span id="mapLbl"></span></button>
+      <button class="tbtn ssbtn" id="ssBtn" hidden><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span data-i="ssBtn"></span></button>
       <select id="radius" aria-label="km" hidden></select>
       <select id="sort" aria-label="Сортировка"></select>
     </div>
@@ -793,6 +799,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  launchT:'Акция запуска',launchS:'Первые 3 месяца бесплатно: вакансии, поднятие 1 раз в день и каждый месяц 1 VIP, 3 ТОП и 3 «Срочно». До {d}.',launchB:'Смотреть тарифы',free:'Бесплатно',freeUntil:'Бесплатно до {d}',promoBtnFree:'Поднять в ТОП бесплатно',upFree:'Объявление поднято в ТОП бесплатно',topFree:'ТОП включён бесплатно по акции запуска',onlineNow:'сейчас на сайте',
  regions:'Объявления по регионам',tAll:'Все',tSell:'Продажа вещей',tJob:'Вакансии',tCv:'Ищу работу',recent:'Вы недавно смотрели',
  lAll:'Свежие объявления',lSell:'Продажа вещей',lJob:'Вакансии',lCv:'Резюме: ищу работу',lFav:'Избранное',pcs:'шт.',
+ ssBtn:'Сохранить поиск',ssSaved:'Поиск сохранён. Сообщим, когда появится новое объявление',ssNeed:'Чтобы сохранить поиск и получать уведомления, войдите',ssMine:'Мои сохранённые поиски',ssNone:'Пока нет. Выберите категорию, город или цену и нажмите «🔔 Сохранить поиск» — мы сообщим о новых объявлениях.',ssNew:'новых',ssMax:'Можно сохранить до 10 поисков',ssPush:'Включите уведомления, чтобы узнавать о новых объявлениях сразу',ssOff:'Удалить',ssAllAds:'Все объявления',ssEmpty:'Сообщим, как только появится подходящее объявление',
  sNew:'Сначала новые',limDay:'Лимит: не больше 10 новых объявлений в день. Попробуйте завтра.',limWait:'Подождите 30 секунд перед следующим объявлением.',ownerL:'Основатель · Владелец',bannedT:'Ваш аккаунт заблокирован за нарушение правил. Напишите в поддержку, если это ошибка.',hiddenL:'Скрыто модератором',adminL:'Админ-панель',newMsg:'Новое сообщение',pushOn:'Включить уведомления о сообщениях',pushDone:'Уведомления включены',pushOff:'Уведомления о сообщениях включены',pushDenied:'Уведомления запрещены в настройках браузера. Разрешите их для topaman.uz',pushIos:'На iPhone уведомления работают в приложении: «Поделиться» → «На экран Домой»',aboutAd:'По объявлению',chatFirst:'Напишите первое сообщение — продавец увидит его в «Чатах».',needChats:'Войдите, чтобы видеть свои чаты',youL:'Вы',soldL:'Продано',closedL:'Закрыто',markSold:'Продано',markClosed:'Закрыть',unsold:'Вернуть в продажу',soldDone:'Отмечено как продано',backDone:'Объявление снова в продаже',selling:'Продаёт',soldTab:'Продано',sinceT:'На Topaman с',noItems:'Пока пусто',allAds:'Все объявления',soldBanner:'Этот товар уже продан',closedBanner:'Объявление закрыто',tgSoon:'Вход через Telegram появится совсем скоро. Пока войдите через Google.',loginErr:'Не удалось войти. Попробуйте ещё раз.',netErr:'Нет связи с сервером. Проверьте интернет и попробуйте снова.',saving:'Сохраняем…',maxPh:'Можно до 6 фото',phHint:'Первое фото — главное. До 6 фото.',needLoginFav:'Войдите, чтобы избранное сохранялось на всех устройствах',similar:'Похожие объявления',liveNow:'Сейчас на сайте',liveToday:'Сегодня были',liveAdded:'Сегодня добавлено',liveAddedU:'объявл.',newL:'Новое',onNow:'в сети',seenToday:'в сети сегодня в',seenYest:'в сети вчера',seenDays:'в сети {n} дн. назад',seenLong:'давно не заходил(а)',sNear:'Ближе ко мне',nearMe:'Рядом со мной',anyDist:'Любое расстояние',km:'км',m:'м',mapBtn:'Карта',listBtn:'Скрыть карту',geoAsk:'Определяем ваше место…',geoFail:'Не удалось определить место — считаем от центра: {c}. Разрешите геолокацию в браузере.',fromYou:'от вас',place:'Где находится',myPlace:'Моё место',placeHint:'Передвиньте метку на карте. Другим показываем только район (~300 м), не точный адрес.',route:'Маршрут',approx:'Примерное место',mapNone:'В этом радиусе объявлений нет — увеличьте радиус',mln:'млн',ths:'тыс',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
  howT:'Как это работает',how1:'Сфотографируйте вещь или опишите вакансию',how2:'Опубликуйте за 1 минуту, бесплатно',how3:'Покупатели и кандидаты напишут в чат',
  bizT:'Для магазинов и работодателей',bizS:'Страница магазина с логотипом, пакеты вакансий, доступ к базе резюме и статистика просмотров.',bizB:'Тарифы для бизнеса',
@@ -851,6 +858,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  launchT:'Ishga tushirish aksiyasi',launchS:'Dastlabki 3 oy bepul: vakansiyalar, kuniga 1 marta ko‘tarish va har oy 1 VIP, 3 TOP va 3 «Shoshilinch». {d} gacha.',launchB:'Tariflarni ko‘rish',free:'Bepul',freeUntil:'{d} gacha bepul',promoBtnFree:'TOPga bepul ko‘tarish',upFree:'E’lon TOPga bepul ko‘tarildi',topFree:'TOP ishga tushirish aksiyasi bo‘yicha bepul yoqildi',onlineNow:'hozir saytda',
  regions:'Viloyatlar bo‘yicha e’lonlar',tAll:'Hammasi',tSell:'Narsalar savdosi',tJob:'Vakansiyalar',tCv:'Ish qidiraman',recent:'Siz yaqinda ko‘rgansiz',
  lAll:'Yangi e’lonlar',lSell:'Narsalar savdosi',lJob:'Vakansiyalar',lCv:'Rezyumelar: ish qidiraman',lFav:'Saralanganlar',pcs:'ta',
+ ssBtn:'Qidiruvni saqlash',ssSaved:'Qidiruv saqlandi. Yangi e’lon chiqsa, xabar beramiz',ssNeed:'Qidiruvni saqlash va xabar olish uchun kiring',ssMine:'Saqlangan qidiruvlarim',ssNone:'Hozircha yo‘q. Toifa, shahar yoki narxni tanlab «🔔 Qidiruvni saqlash» tugmasini bosing — yangi e’lonlar haqida xabar beramiz.',ssNew:'yangi',ssMax:'10 tagacha qidiruv saqlash mumkin',ssPush:'Yangi e’lonlarni darhol bilish uchun bildirishnomalarni yoqing',ssOff:'O‘chirish',ssAllAds:'Barcha e’lonlar',ssEmpty:'Mos e’lon chiqishi bilan xabar beramiz',
  sNew:'Avval yangilari',limDay:'Cheklov: kuniga 10 tadan ortiq yangi e’lon mumkin emas. Ertaga urinib ko‘ring.',limWait:'Keyingi e’londan oldin 30 soniya kuting.',ownerL:'Asoschi · Egasi',bannedT:'Akkauntingiz qoidabuzarlik uchun bloklangan. Xato bo‘lsa, yordamga yozing.',hiddenL:'Moderator tomonidan yashirilgan',adminL:'Admin panel',newMsg:'Yangi xabar',pushOn:'Xabarlar haqida bildirishnomani yoqish',pushDone:'Bildirishnomalar yoqildi',pushOff:'Xabarlar haqida bildirishnomalar yoqilgan',pushDenied:'Brauzer sozlamalarida bildirishnomalar taqiqlangan. topaman.uz uchun ruxsat bering',pushIos:'iPhone’da bildirishnomalar ilovada ishlaydi: «Ulashish» → «Bosh ekranga»',aboutAd:'E’lon bo‘yicha',chatFirst:'Birinchi xabarni yozing — sotuvchi uni «Chatlar»da ko‘radi.',needChats:'Chatlaringizni ko‘rish uchun kiring',youL:'Siz',soldL:'Sotildi',closedL:'Yopildi',markSold:'Sotildi',markClosed:'Yopish',unsold:'Sotuvga qaytarish',soldDone:'Sotildi deb belgilandi',backDone:'E’lon yana sotuvda',selling:'Sotmoqda',soldTab:'Sotilgan',sinceT:'Topaman’da',noItems:'Hozircha bo‘sh',allAds:'Barcha e’lonlari',soldBanner:'Bu tovar allaqachon sotilgan',closedBanner:'E’lon yopilgan',tgSoon:'Telegram orqali kirish tez orada qo‘shiladi. Hozircha Google orqali kiring.',loginErr:'Kirib bo‘lmadi. Qayta urinib ko‘ring.',netErr:'Server bilan aloqa yo‘q. Internetni tekshirib, qayta urinib ko‘ring.',saving:'Saqlanmoqda…',maxPh:'6 tagacha surat mumkin',phHint:'Birinchi surat — asosiy. 6 tagacha.',needLoginFav:'Saralanganlar barcha qurilmalarda saqlanishi uchun kiring',similar:'O‘xshash e’lonlar',liveNow:'Hozir saytda',liveToday:'Bugun kirganlar',liveAdded:'Bugun qo‘shildi',liveAddedU:'e’lon',newL:'Yangi',onNow:'onlayn',seenToday:'bugun tarmoqda edi,',seenYest:'kecha tarmoqda edi',seenDays:'{n} kun oldin tarmoqda edi',seenLong:'ancha vaqtdan beri kirmagan',sNear:'Menga yaqinroq',nearMe:'Yonimda',anyDist:'Istalgan masofa',km:'km',m:'m',mapBtn:'Xarita',listBtn:'Xaritani yopish',geoAsk:'Joylashuvingiz aniqlanmoqda…',geoFail:'Joyni aniqlab bo‘lmadi — markazdan hisoblaymiz: {c}. Brauzerda geolokatsiyaga ruxsat bering.',fromYou:'sizdan',place:'Qayerda joylashgan',myPlace:'Mening joyim',placeHint:'Belgini xaritada suring. Boshqalarga faqat hudud (~300 m) ko‘rsatiladi, aniq manzil emas.',route:'Yo‘nalish',approx:'Taxminiy joy',mapNone:'Bu radiusda e’lon yo‘q — radiusni kattalashtiring',mln:'mln',ths:'ming',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
  howT:'Qanday ishlaydi',how1:'Narsani suratga oling yoki vakansiyani yozing',how2:'1 daqiqada bepul joylang',how3:'Xaridorlar va nomzodlar chatga yozadi',
  bizT:'Do‘konlar va ish beruvchilar uchun',bizS:'Logotipli do‘kon sahifasi, vakansiya paketlari, rezyume bazasi va ko‘rishlar statistikasi.',bizB:'Biznes tariflari',
@@ -1130,6 +1138,7 @@ function syncTools(){
   $('#mapBtn').setAttribute('aria-pressed',!!state.map);
   $('#mapLbl').textContent=state.map?t('listBtn'):t('mapBtn');
   $('#mapWrap').hidden=!state.map;
+  $('#ssBtn').hidden=!hasFilter();
 }
 /* Leaflet is loaded only when a map is first needed */
 let leafletP=null;
@@ -1189,7 +1198,7 @@ function render(){
   $('#listTitle').innerHTML=`${esc(title)}<small class="num">${r.length} ${t('pcs')}</small>`;
   syncTools();drawBigMap(r);
   const shown=r.slice(0,state.limit);
-  $('#grid').innerHTML=r.length?shown.map(card).join('')+(r.length>state.limit?`<div class="more" style="grid-column:1/-1"><button class="btn" id="moreBtn">${t('showMore')} (${r.length-state.limit})</button></div>`:''):`<div class="empty">${state.onlyFav?t('noFav'):t('notFound')}</div>`;
+  $('#grid').innerHTML=r.length?shown.map(card).join('')+(r.length>state.limit?`<div class="more" style="grid-column:1/-1"><button class="btn" id="moreBtn">${t('showMore')} (${r.length-state.limit})</button></div>`:''):`<div class="empty">${state.onlyFav?t('noFav'):t('notFound')}${hasFilter()?`<br><button class="btn primary" data-sssave style="margin-top:12px">🔔 ${t('ssBtn')}</button><br><small>${t('ssEmpty')}</small>`:''}</div>`;
   watchShown();
   const n=favs.size;[$('#favCnt'),$('#favCnt2')].forEach(e=>{e.hidden=!n;e.textContent=n});
   const cn=unreadTotal();[$('#chatCnt'),$('#chatCnt2')].forEach(e=>{e.hidden=!cn;e.textContent=cn});
@@ -1557,8 +1566,9 @@ function submitAd(e){
     }
     if(draft.editId){const o=myAd(draft.editId)||{};ad.ts=o.ts||ad.ts;ad.created=o.created||o.ts||ad.created;ad.lastUp=o.lastUp||null;if(sameTariff){ad.topUntil=o.topUntil||null;ad.urgUntil=o.urgUntil||null}}
     btn.disabled=true;draft.busy=true;box.className='modbox run';box.innerHTML=`<b>${t('saving')}</b>`;
-    saveAd(ad,draft).then(()=>{
+    saveAd(ad,draft).then(id=>{
       draft.busy=false;btn.disabled=false;
+      if(!draft.editId&&id)pushPost('ad',{ad:id}).catch(()=>{});
       if(usedFree)addUse(tr);
       if(draft.editId){closeModal();toast('✓ '+t('savedAd'));return}
       state={...state,kind:'all',cat:null,q:'',onlyFav:false};$('#q').value='';syncTabs();closeModal();scrollTo({top:$('#grid').offsetTop-120});
@@ -1616,7 +1626,8 @@ let adsUnsub=null,myUnsub=null;
 /* link topaman.uz/?ad=ID opens that ad (used by the admin panel and for sharing) */
 let deepDone=false;
 function openDeepLink(){if(deepDone)return;deepDone=true;let id;try{id=new URLSearchParams(location.search).get('ad')}catch(e){}
-  if(!id)return;const go=a=>{if(a)openAd(a.id)};const a=byId(id);if(a)return go(a);
+  if(id)openAdId(id)}
+function openAdId(id){const go=a=>{if(a)openAd(a.id)};const a=byId(id);if(a)return go(a);
   fbReady.then(f=>f.F.getDoc(f.F.doc(f.db,'ads',id))).then(d=>{if(d.exists()){extraAds=[toAd(d)];go(byId(id))}}).catch(()=>{})}
 fbReady.then(f=>{
   const {F,db}=f;
@@ -1880,7 +1891,57 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-push]');if
 let deepChat=null;try{deepChat=new URLSearchParams(location.search).get('chat')}catch(e){}
 function openDeepChat(){if(!deepChat||!user)return;const c=myChats.find(x=>x.id===deepChat);if(!c)return;deepChat=null;
   try{history.replaceState(null,'',location.pathname)}catch(e){}openChatWin(c)}
-if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('message',e=>{if(e.data&&e.data.chat){deepChat=String(e.data.chat);openDeepChat()}});
+if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('message',e=>{if(e.data&&e.data.chat){deepChat=String(e.data.chat);openDeepChat()}else if(e.data&&e.data.ad)openAdId(String(e.data.ad))});
+
+/* ---------- saved searches ----------
+   "🔔 Сохранить поиск" keeps the current filters on the bot worker (topaman-bot/push.js, private KV).
+   When someone publishes a matching ad, the worker sends a notification. In the profile each search
+   shows how many new ads appeared since it was last opened (counted here from the loaded ads). */
+let mySS=store.get('tp_ss',[]);
+const hasFilter=()=>!state.onlyFav&&!!(state.q.trim()||state.cat||state.city||state.kind!=='all'||state.pmin||state.pmax||state.jt.length||state.prof);
+const ssOf=()=>({kind:state.kind,cat:state.cat,city:state.city,q:state.q.trim(),pmin:state.pmin,pmax:state.pmax,jt:state.jt,prof:state.prof,lang});
+function ssMatch(s,a){
+  if(s.kind!=='all'&&s.kind!==a.kind||s.cat&&s.cat!==a.cat||s.city&&s.city!==a.city)return false;
+  if((s.jt||[]).length&&!(a.jt&&s.jt.every(c=>a.jt.includes(c))))return false;
+  const pr=s.prof&&PROFS.find(p=>p[0]===s.prof);if(pr&&!pr[4].test(a.title+' '+(a.desc||'')))return false;
+  if(s.pmin&&!(priceVal(a)>=s.pmin)||s.pmax&&!(priceVal(a)>0&&priceVal(a)<=s.pmax))return false;
+  return !s.q||norm(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz+' '+cityName(a.city)).includes(norm(s.q));
+}
+function ssLabel(s){
+  const titles={all:'ssAllAds',sell:'lSell',job:'lJob',cv:'lCv'},pr=s.prof&&PROFS.find(p=>p[0]===s.prof);
+  const parts=[s.q?'«'+s.q+'»':'',pr?pr[1]+' '+(lang==='uz'?pr[3]:pr[2]):'',s.cat?cname(catOf(s.cat)):(s.kind!=='all'||!s.q)?t(titles[s.kind]):'',s.city?cityName(s.city):'',
+    s.pmin||s.pmax?(s.pmin?fmt(s.pmin):'0')+' – '+(s.pmax?fmt(s.pmax):'∞')+' '+t('sum'):'',...(s.jt||[]).map(jtName)].filter(Boolean);
+  return parts.join(' · ');
+}
+const ssSeen=id=>store.get('tp_ss_seen',{})[id]||0;
+const ssNewCnt=s=>{const since=Math.max(ssSeen(s.id),s.at||0);return all().filter(a=>a.uid&&a.uid!==(user&&user.uid)&&(a.created||a.ts)>since&&ssMatch(s,a)).length};
+function ssListHTML(){
+  if(!mySS.length)return `<p style="color:var(--ink3);margin:0 0 6px;font-size:14px">${t('ssNone')}</p>`;
+  return mySS.map(s=>{const n=ssNewCnt(s);return `<div class="ssrow"><button class="sso" data-ss="${esc(s.id)}"><b>${esc(ssLabel(s))}</b>${n?`<span class="ssn num">+${n} ${t('ssNew')}</span>`:''}</button><button class="btn ghost" data-ssdel="${esc(s.id)}" aria-label="${t('ssOff')}">✕</button></div>`}).join('')+(pushOn()?'':`<p class="pushhint" style="margin-top:4px">🔔 ${t('ssPush')}</p>`);
+}
+async function ssPost(body){const tok=await idTok();if(!tok)throw new Error('no user');
+  const r=await fetch(PUSH_API+'ss',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({idToken:tok,...body})});return r.json()}
+async function loadSS(){if(!user)return;try{const j=await ssPost({op:'list'});if(j.ok){mySS=j.list;store.set('tp_ss',mySS)}}catch(e){}}
+function saveSearch(){
+  if(!hasFilter())return;
+  const b=$('#ssBtn');b.disabled=true;
+  pushSubscribe(true).catch(()=>false).then(()=>ssPost({op:'add',s:ssOf()})).then(j=>{
+    b.disabled=false;
+    if(!j.ok){toast(j.error==='max'?t('ssMax'):t('netErr'));return}
+    mySS=j.list;store.set('tp_ss',mySS);const se=store.get('tp_ss_seen',{});se[mySS[0].id]=Date.now();store.set('tp_ss_seen',se);
+    toast('🔔 '+t('ssSaved'));
+  }).catch(()=>{b.disabled=false;toast(t('netErr'))});
+}
+$('#ssBtn').onclick=()=>requireLogin(saveSearch,'ssNeed');
+document.addEventListener('click',e=>{
+  if(e.target.closest('[data-sssave]'))return requireLogin(saveSearch,'ssNeed');
+  const o=e.target.closest('[data-ss]'),d=e.target.closest('[data-ssdel]');
+  if(o){const s=mySS.find(x=>x.id===o.dataset.ss);if(!s)return;const se=store.get('tp_ss_seen',{});se[s.id]=Date.now();store.set('tp_ss_seen',se);
+    state={...state,kind:s.kind,cat:s.cat||null,q:s.q||'',city:s.city||'',pmin:s.pmin||0,pmax:s.pmax||0,jt:[...(s.jt||[])],prof:s.prof||null,onlyFav:false,limit:12,sort:'new'};
+    $('#q').value=state.q;$('#city').value=state.city;$('#sort').value='new';$('#pMin').value=state.pmin?fmt(state.pmin):'';$('#pMax').value=state.pmax?fmt(state.pmax):'';$('#pClr').hidden=!(state.pmin||state.pmax);
+    syncTabs();closeModal();scrollTo({top:$('#grid').offsetTop-160});return}
+  if(d){d.disabled=true;ssPost({op:'del',id:d.dataset.ssdel}).then(j=>{if(j.ok){mySS=j.list;store.set('tp_ss',mySS)}const b=$('#ssBox');if(b)b.innerHTML=ssListHTML()}).catch(()=>{d.disabled=false;toast(t('netErr'))})}
+});
 
 /* presence: each open tab pings every 3 min -> admin sees how many people are on the site right now */
 const ADMINS=['djeki.niyazov96@gmail.com'];
@@ -1951,6 +2012,7 @@ function openCab(){
     <div class="prof"><span class="ava">${esc(user.name[0])}</span><div class="pi2"><b>${esc(user.name)}</b><small>${esc(user.email||user.tg||'')}</small><br><span class="via">${viaIcon}${t('via')} ${user.method==='google'?'Google':'Telegram'}</span></div><button class="btn ghost" id="logoutBtn">${t('logout')}</button></div>
     <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" id="cabHelp">${t('help')}</button>${isAdminUser()?`<a class="btn gold" href="admin/" style="text-decoration:none">⚙ ${t('adminL')}</a>`:''}</div>
     ${pushOn()?`<p class="pushhint">🔔 ${t('pushOff')}</p>`:pushBtnHTML()}
+    <h3 class="mh" style="font-size:18px;margin-top:6px">🔔 ${t('ssMine')}</h3><div id="ssBox">${ssListHTML()}</div>
     <div class="f2"><label class="fl">${t('pName')}<input id="pNameIn" value="${esc(user.name)}"></label><label class="fl">${t('pPhone')}<input id="pPhoneIn" inputmode="tel" placeholder="+998 90 123 45 67" value="${esc(user.phone||'')}"></label></div>
     <div><button class="btn" id="pSave">${t('save')}</button></div>
     <div class="divider"></div>
@@ -1961,6 +2023,7 @@ function openCab(){
   </div>`);
   const cp=$('#cabPost');if(cp)cp.onclick=()=>requireLogin(openForm,'needPost');
   $('#logoutBtn').onclick=logout;$('#delAccBtn').onclick=askDeleteAccount;
+  loadSS().then(()=>{const b=$('#ssBox');if(b)b.innerHTML=ssListHTML()});
   $('#cabHelp').onclick=()=>openHelp();
   $('#pSave').onclick=()=>{const n=$('#pNameIn').value.trim();if(n)user.name=n;const ph=normPhone($('#pPhoneIn').value);user.phone=ph||'';saveProfile({name:user.name,phone:user.phone});updateAuthUI();toast(t('saved'));openCab()};
 }
