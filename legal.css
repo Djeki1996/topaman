@@ -17,3 +17,10 @@ li{margin:4px 0}
 a{color:var(--tq)}
 .also{margin-top:26px;padding-top:14px;border-top:1px solid var(--line);color:var(--ink2)}
 @media (max-width:520px){article{padding:16px 16px 22px}h1{font-size:24px}}
+table{width:100%;border-collapse:collapse;margin:8px 0 6px;font-size:15px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--ink2);font-size:13px}
+td:last-child{white-space:nowrap;font-weight:700}
+.req{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:10px 14px}
+.req p{margin:3px 0}
+@media (max-width:520px){table{font-size:14px}th,td{padding:7px 6px}}
