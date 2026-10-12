@@ -14,6 +14,9 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="google-site-verification" content="tHbI06S0vZNP1rWcEu39zYBYiqdJp64izt3zGvWvhDw">
+<link rel="canonical" href="https://topaman.uz/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Topaman","alternateName":["Topaman.uz","Топаман"],"url":"https://topaman.uz/"}</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
@@ -210,6 +213,7 @@ footer{margin-top:44px;padding-block:22px 90px;color:var(--ink3);font-size:13px;
 footer::before{content:"";display:block;height:12px;background:var(--girih) center/24px 24px repeat-x,var(--tq-deep);margin-bottom:20px}
 .freq{display:inline-block;margin-top:6px;color:var(--ink3)}
 .freq a{color:inherit}
+.fcats{display:flex;flex-wrap:wrap;gap:6px 16px;margin-bottom:14px;font-size:13.5px}.fcats a{color:var(--ink2);text-decoration:none}.fcats a:hover{color:var(--tq);text-decoration:underline}
 .fgrid{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 
 /* bottom nav */
@@ -790,7 +794,7 @@ button.seller:hover{border-color:var(--tq)}
   </div>
 </main>
 
-<footer><div class="ikat" aria-hidden="true"></div><div class="wrap fgrid"><span>© 2026 Topaman.uz · <span data-i="foot"></span> · <button class="linkbtn" id="footRules" data-i="rules"></button> · <a class="linkbtn" href="privacy/" data-i="privacy"></a> · <a class="linkbtn" href="oferta/" data-i="oferta"></a> · <button class="linkbtn" id="footHelp" data-i="help"></button><br><small class="freq">ООО «AERO ELITE» · ИНН 312783095 · Самарканд, ул. Мирзо Улугбека, 24 · <a href="mailto:topaman.uz@gmail.com">topaman.uz@gmail.com</a> · <a href="https://t.me/Topaman_skd_bot">@Topaman_skd_bot</a></small></span></div></footer>
+<footer><div class="ikat" aria-hidden="true"></div><nav class="wrap fcats" id="fcats" aria-label="Разделы"></nav><div class="wrap fgrid"><span>© 2026 Topaman.uz · <span data-i="foot"></span> · <button class="linkbtn" id="footRules" data-i="rules"></button> · <a class="linkbtn" href="privacy/" data-i="privacy"></a> · <a class="linkbtn" href="oferta/" data-i="oferta"></a> · <button class="linkbtn" id="footHelp" data-i="help"></button><br><small class="freq">ООО «AERO ELITE» · ИНН 312783095 · Самарканд, ул. Мирзо Улугбека, 24 · <a href="mailto:topaman.uz@gmail.com">topaman.uz@gmail.com</a> · <a href="https://t.me/Topaman_skd_bot">@Topaman_skd_bot</a></small></span></div></footer>
 
 <nav class="bnav" aria-label="Меню">
   <button id="bHome" class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 11l9-7 9 7v10h-6v-6H9v6H3z"/></svg><span data-i="home"></span></button>
@@ -966,6 +970,9 @@ const CATS=[
   {id:'job',ru:'Вакансии',uz:'Vakansiyalar',icon:'brief',kind:'job',hue:160},
   {id:'cv',ru:'Резюме',uz:'Rezyume',icon:'user',kind:'cv',hue:228}
 ];
+/* every category has its own address for Google: topaman.uz/transport/ etc. (pages made by topdim/build_cats.py) */
+const SLUG={elec:'elektronika',auto:'transport',real:'nedvizhimost',house:'dom-i-sad',fashion:'odezhda',kids:'detskiy-mir',animals:'zhivotnye',build:'stroyka',serv:'uslugi',craft:'remesla',job:'rabota',cv:'rezyume'};
+const CAT_BY_SLUG=Object.fromEntries(Object.entries(SLUG).map(([k,v])=>[v,k]));
 const CITIES=[['Ташкент','Toshkent'],['Самарканд','Samarqand'],['Бухара','Buxoro'],['Андижан','Andijon'],['Наманган','Namangan'],['Фергана','Farg‘ona'],['Карши','Qarshi'],['Нукус','Nukus'],['Навои','Navoiy'],['Джизак','Jizzax'],['Термез','Termiz'],['Ургенч','Urganch'],['Гулистан','Guliston'],['Коканд','Qo‘qon']];
 const cityName=c=>{const x=CITIES.find(p=>p[0]===c);return x?(lang==='uz'?x[1]:x[0]):c};
 const POP={ru:['iPhone','Cobalt','квартира','ляган','сюзане','сварщик'],uz:['iPhone','Cobalt','kvartira','lagan','so‘zana','payvandchi']};
@@ -1040,6 +1047,7 @@ let favs=new Set(store.get('tp_favs',[]).map(String));
 let recent=store.get('tp_recent',[]);
 let chats=store.get('tp_chats',{});
 let state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12,me:null,near:false,radius:10,map:false,jt:[],prof:null,pmin:0,pmax:0};
+{const m=/^\/([a-z-]+)\/?$/.exec(location.pathname),c=m&&CAT_BY_SLUG[m[1]];if(c){state.cat=c;if(c==='job'||c==='cv')state.kind=c}}
 
 /* own ads: paid options end after their days, the ad itself is hidden after 30 days until renewed */
 function live(a){const n=Date.now(),b={...a};if(b.topUntil&&b.topUntil<n)b.top=null;if(b.urgUntil&&b.urgUntil<n)b.urg=0;return b}
@@ -1088,7 +1096,7 @@ const heart='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-w
 /* ---------- render ---------- */
 function applyI18n(){
   document.documentElement.lang=lang;
-  $$('[data-i]').forEach(e=>e.innerHTML=t(e.dataset.i));
+  $$('[data-i]').forEach(e=>e.innerHTML=t(e.dataset.i));renderFootCats();
   $$('[data-ip]').forEach(e=>e.placeholder=t(e.dataset.ip));
   setHeroTitle();
   const ib=$('#instBtn');if(ib&&typeof installEvt!=='undefined')ib.textContent=installEvt?t('instB'):t('instHow');
@@ -1107,6 +1115,9 @@ function applyI18n(){
 /* hero slogan rotates every 4 hours through 3 variants */
 function setHeroTitle(){const v=t('heroTitle');$('#heroTitle').innerHTML=v[Math.floor(Date.now()/(4*3600e3))%v.length]}
 setInterval(setHeroTitle,10*60e3);
+function renderFootCats(){const el=$('#fcats');if(el)el.innerHTML=CATS.map(c=>`<a href="/${SLUG[c.id]}/" data-fcat="${c.id}">${cname(c)}</a>`).join('')}
+document.addEventListener('click',e=>{const a=e.target.closest('[data-fcat]');if(!a||e.ctrlKey||e.metaKey||e.shiftKey)return;e.preventDefault();
+  const c=a.dataset.fcat;state={...state,cat:c,kind:c==='job'||c==='cv'?c:'all',onlyFav:false,limit:12};syncTabs();render();scrollTo({top:$('#grid').offsetTop-160})});
 function renderCats(){
   const list=all();
   const cats=CATS.filter(c=>state.kind==='all'||c.kind===state.kind);
@@ -1229,7 +1240,14 @@ function render(){
   $('#bHome').classList.toggle('on',!state.onlyFav);$('#bFav').classList.toggle('on',state.onlyFav);
   const rcnt={};list.forEach(a=>rcnt[a.city]=(rcnt[a.city]||0)+1);
   $('#regions').innerHTML=CITIES.map(c=>`<button class="reg" data-city="${c[0]}" aria-pressed="${state.city===c[0]}"><span>${lang==='uz'?c[1]:c[0]}</span><small class="num">${rcnt[c[0]]||0}</small></button>`).join('');
-  renderCats();
+  renderCats();syncPath();
+}
+function syncPath(){
+  if(!syncPath.done){syncPath.done=1;syncTabs()}
+  const cur=location.pathname,known=cur==='/'||!!CAT_BY_SLUG[cur.replace(/\//g,'')];if(!known)return;
+  const want=state.cat&&!state.onlyFav&&SLUG[state.cat]?'/'+SLUG[state.cat]+'/':'/';
+  if(cur!==want)try{history.replaceState(history.state,'',want+location.search+location.hash)}catch(e){}
+  const c=state.cat&&catOf(state.cat);document.title=c&&!state.onlyFav?cname(c)+' — Topaman.uz':'Topaman.uz';
 }
 
 /* ---------- modal helpers ---------- */

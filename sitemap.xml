@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://topaman.uz/</loc><lastmod>2026-10-09</lastmod><changefreq>daily</changefreq><priority>1.0</priority></url>
-  <url><loc>https://topaman.uz/rules/</loc><lastmod>2026-10-09</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
-  <url><loc>https://topaman.uz/privacy/</loc><lastmod>2026-10-09</lastmod><changefreq>monthly</changefreq><priority>0.4</priority></url>
+  <url><loc>https://topaman.uz/</loc></url>
+  <url><loc>https://topaman.uz/elektronika/</loc></url>
+  <url><loc>https://topaman.uz/transport/</loc></url>
+  <url><loc>https://topaman.uz/nedvizhimost/</loc></url>
+  <url><loc>https://topaman.uz/dom-i-sad/</loc></url>
+  <url><loc>https://topaman.uz/odezhda/</loc></url>
+  <url><loc>https://topaman.uz/detskiy-mir/</loc></url>
+  <url><loc>https://topaman.uz/zhivotnye/</loc></url>
+  <url><loc>https://topaman.uz/stroyka/</loc></url>
+  <url><loc>https://topaman.uz/uslugi/</loc></url>
+  <url><loc>https://topaman.uz/remesla/</loc></url>
+  <url><loc>https://topaman.uz/rabota/</loc></url>
+  <url><loc>https://topaman.uz/rezyume/</loc></url>
+  <url><loc>https://topaman.uz/rules/</loc></url>
+  <url><loc>https://topaman.uz/privacy/</loc></url>
   <url><loc>https://topaman.uz/oferta/</loc></url>
 </urlset>
