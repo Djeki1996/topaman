@@ -1248,7 +1248,7 @@ function syncPath(){
   const cur=location.pathname,known=cur==='/'||!!CAT_BY_SLUG[cur.replace(/\//g,'')];if(!known)return;
   const want=state.cat&&!state.onlyFav&&SLUG[state.cat]?'/'+SLUG[state.cat]+'/':'/';
   if(cur!==want)try{history.replaceState(history.state,'',want+location.search+location.hash)}catch(e){}
-  const c=state.cat&&catOf(state.cat);document.title=c&&!state.onlyFav?cname(c)+' — Topaman.uz':'Topaman.uz — бесплатные объявления в Узбекистане';
+  const c=state.cat&&catOf(state.cat);document.title=c&&!state.onlyFav?cname(c)+' — Topaman.uz':'Topaman.uz — объявления в Узбекистане: купить, продать, найти работу';
 }
 
 /* ---------- modal helpers ---------- */

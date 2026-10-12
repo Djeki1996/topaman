@@ -5,12 +5,12 @@
 <base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0A4F57">
-<meta name="description" content="Одежда, обувь и аксессуары, новые и б/у, в Узбекистане. Kiyim-kechak va poyabzal e’lonlari — bepul.">
+<meta name="description" content="Одежда, обувь и аксессуары, новые и б/у, в Узбекистане. Kiyim-kechak va poyabzal e’lonlari.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Topaman.uz">
 <meta property="og:url" content="https://topaman.uz/odezhda/">
 <meta property="og:title" content="Одежда и обувь — Topaman.uz">
-<meta property="og:description" content="Одежда, обувь и аксессуары, новые и б/у, в Узбекистане. Kiyim-kechak va poyabzal e’lonlari — bepul.">
+<meta property="og:description" content="Одежда, обувь и аксессуары, новые и б/у, в Узбекистане. Kiyim-kechak va poyabzal e’lonlari.">
 <meta property="og:image" content="https://topaman.uz/icons/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
@@ -1248,7 +1248,7 @@ function syncPath(){
   const cur=location.pathname,known=cur==='/'||!!CAT_BY_SLUG[cur.replace(/\//g,'')];if(!known)return;
   const want=state.cat&&!state.onlyFav&&SLUG[state.cat]?'/'+SLUG[state.cat]+'/':'/';
   if(cur!==want)try{history.replaceState(history.state,'',want+location.search+location.hash)}catch(e){}
-  const c=state.cat&&catOf(state.cat);document.title=c&&!state.onlyFav?cname(c)+' — Topaman.uz':'Topaman.uz — бесплатные объявления в Узбекистане';
+  const c=state.cat&&catOf(state.cat);document.title=c&&!state.onlyFav?cname(c)+' — Topaman.uz':'Topaman.uz — объявления в Узбекистане: купить, продать, найти работу';
 }
 
 /* ---------- modal helpers ---------- */
