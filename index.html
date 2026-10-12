@@ -441,7 +441,11 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .jfil{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 12px;padding:2px 16px 4px;align-items:center}.jfil::-webkit-scrollbar{display:none}
 .jfil b{flex:none;font-size:13px;color:var(--ink2);margin-right:2px}
 .jfil button{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:18px;height:36px;padding:0 13px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap}
-.jfil button.jtb{border-style:dashed}.jfil button[aria-pressed=true]{background:var(--tq);border-color:var(--tq);color:#fff;border-style:solid}
+.jfil button.jtb{border-style:dashed}.jfil button[aria-pressed=true]{background:var(--tq-soft);border-color:var(--tq);color:var(--tq);border-style:solid}
+.jfil button[aria-pressed=true]::before{content:'✓ ';font-weight:800}
+/* phones: one scrolling row that fades at the right edge; wide screens: chips wrap, nothing is cut */
+@media (max-width:760px){.jfil{-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent);padding-right:40px}}
+@media (min-width:761px){.jfil{flex-wrap:wrap;overflow:visible;margin-inline:0;padding-inline:0}}
 @media (max-width:520px){.pfil input{width:0;flex:1}}
 .shr{display:flex;gap:8px;margin:2px 0 4px;flex-wrap:wrap}
 .shb{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 14px;border-radius:19px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-size:14px;font-weight:600;cursor:pointer;text-decoration:none}
