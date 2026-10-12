@@ -276,6 +276,7 @@ footer::before{content:"";display:block;height:12px;background:var(--girih) cent
 label.fl{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600;color:var(--ink2)}
 label.fl input,label.fl select,label.fl textarea{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;font-weight:400;color:var(--ink)}
 label.fl textarea{min-height:90px;resize:vertical}
+textarea.fin{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:10px 12px;color:var(--ink);resize:vertical;box-sizing:border-box;margin:0 0 8px}
 .tariffs{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 .tar{border:1.5px solid var(--line);border-radius:12px;padding:11px;text-align:left;background:var(--surface);display:flex;flex-direction:column;gap:2px}
 .tar b{font-size:14px}
@@ -670,6 +671,14 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 /* sold + seller profile */
 button.seller{width:100%;text-align:left;font:inherit;color:inherit;cursor:pointer}
 button.seller:hover{border-color:var(--tq)}
+.srate{display:block;color:var(--ink2);font-size:13px;margin-top:2px}
+.rv{border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:0 0 10px;background:var(--surface)}
+.rvh{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.rvh small{margin-left:auto;color:var(--ink3);font-size:12.5px}
+.rv p{margin:6px 0 0;white-space:pre-wrap;overflow-wrap:anywhere}.rva{display:block;color:var(--ink3);font-size:12.5px;margin-top:6px}
+.rvr{margin-top:8px;padding:8px 10px;border-left:3px solid var(--tq);background:var(--tq-soft);border-radius:6px;font-size:14px}.rvr p{margin:2px 0 0}
+.rvsum{display:flex;align-items:center;gap:10px;margin:0 0 12px;font-size:15px}.rvsum b.big{font-size:30px;font-family:var(--display);color:var(--ink)}
+.rvstars{display:flex;gap:4px;margin:6px 0 12px}.rvstars button{border:0;background:none;color:var(--line);cursor:pointer;padding:0 2px;font-size:42px;line-height:1}.rvstars button.on{color:var(--gold)}
+.rvbtn{margin:0 0 10px;width:100%}.rvacts{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .seller .sall{display:block;color:var(--tq);font-size:13px;font-weight:600;margin-top:2px}
 .soldban{background:var(--red);color:#fff;font-weight:700;border-radius:10px;padding:8px 12px;margin-bottom:8px;text-align:center}
 .btn.sold{border-color:var(--green);color:var(--green)}
@@ -806,6 +815,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  regions:'Объявления по регионам',tAll:'Все',tSell:'Продажа вещей',tJob:'Вакансии',tCv:'Ищу работу',recent:'Вы недавно смотрели',
  lAll:'Свежие объявления',lSell:'Продажа вещей',lJob:'Вакансии',lCv:'Резюме: ищу работу',lFav:'Избранное',pcs:'шт.',
  ssBtn:'Сохранить поиск',ssSaved:'Поиск сохранён. Сообщим, когда появится новое объявление',ssNeed:'Чтобы сохранить поиск и получать уведомления, войдите',ssMine:'Мои сохранённые поиски',ssNone:'Пока нет. Выберите категорию, город или цену и нажмите «🔔 Сохранить поиск» — мы сообщим о новых объявлениях.',ssNew:'новых',ssMax:'Можно сохранить до 10 поисков',ssPush:'Включите уведомления, чтобы узнавать о новых объявлениях сразу',ssOff:'Удалить',ssAllAds:'Все объявления',ssEmpty:'Сообщим, как только появится подходящее объявление',
+ rvT:'Отзывы',rvBtn:'⭐ Оценить продавца',rvEditBtn:'⭐ Изменить мой отзыв',rvHead:'Ваш отзыв о продавце',rvPh:'Как прошла сделка? Что понравилось, что нет (необязательно)',rvSend:'Опубликовать отзыв',rvDone:'Спасибо! Отзыв опубликован',rvNeedStars:'Поставьте оценку: от 1 до 5 звёзд',rvNone:'Пока нет отзывов',rvRule:'Отзыв можно оставить только после переписки с продавцом. Пишите честно: оскорбления и ложь удаляются.',rvWait:'Отзыв можно оставить, когда продавец ответит вам в чате',rvAbout:'Объявление',rvReply:'Ответить на отзыв',rvReplyPh:'Ваш ответ покупателю',rvSellerAns:'Ответ продавца',rvDel:'Удалить мой отзыв',rvDeleted:'Отзыв удалён',rvN1:'отзыв',rvN2:'отзыва',rvN5:'отзывов',rvNo:'пока без отзывов',
  sNew:'Сначала новые',limDay:'Лимит: не больше 10 новых объявлений в день. Попробуйте завтра.',limWait:'Подождите 30 секунд перед следующим объявлением.',ownerL:'Основатель · Владелец',bannedT:'Ваш аккаунт заблокирован за нарушение правил. Напишите в поддержку, если это ошибка.',hiddenL:'Скрыто модератором',adminL:'Админ-панель',newMsg:'Новое сообщение',pushOn:'Включить уведомления о сообщениях',pushDone:'Уведомления включены',pushOff:'Уведомления о сообщениях включены',pushDenied:'Уведомления запрещены в настройках браузера. Разрешите их для topaman.uz',pushIos:'На iPhone уведомления работают в приложении: «Поделиться» → «На экран Домой»',aboutAd:'По объявлению',chatFirst:'Напишите первое сообщение — продавец увидит его в «Чатах».',needChats:'Войдите, чтобы видеть свои чаты',youL:'Вы',soldL:'Продано',closedL:'Закрыто',markSold:'Продано',markClosed:'Закрыть',unsold:'Вернуть в продажу',soldDone:'Отмечено как продано',backDone:'Объявление снова в продаже',selling:'Продаёт',soldTab:'Продано',sinceT:'На Topaman с',noItems:'Пока пусто',allAds:'Все объявления',soldBanner:'Этот товар уже продан',closedBanner:'Объявление закрыто',tgSoon:'Вход через Telegram появится совсем скоро. Пока войдите через Google.',loginErr:'Не удалось войти. Попробуйте ещё раз.',netErr:'Нет связи с сервером. Проверьте интернет и попробуйте снова.',saving:'Сохраняем…',maxPh:'Можно до 6 фото',phHint:'Первое фото — главное. До 6 фото.',needLoginFav:'Войдите, чтобы избранное сохранялось на всех устройствах',similar:'Похожие объявления',liveNow:'Сейчас на сайте',liveToday:'Сегодня были',liveAdded:'Сегодня добавлено',liveAddedU:'объявл.',newL:'Новое',onNow:'в сети',seenToday:'в сети сегодня в',seenYest:'в сети вчера',seenDays:'в сети {n} дн. назад',seenLong:'давно не заходил(а)',sNear:'Ближе ко мне',nearMe:'Рядом со мной',anyDist:'Любое расстояние',km:'км',m:'м',mapBtn:'Карта',listBtn:'Скрыть карту',geoAsk:'Определяем ваше место…',geoFail:'Не удалось определить место — считаем от центра: {c}. Разрешите геолокацию в браузере.',fromYou:'от вас',place:'Где находится',myPlace:'Моё место',placeHint:'Передвиньте метку на карте. Другим показываем только район (~300 м), не точный адрес.',route:'Маршрут',approx:'Примерное место',mapNone:'В этом радиусе объявлений нет — увеличьте радиус',mln:'млн',ths:'тыс',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
  howT:'Как это работает',how1:'Сфотографируйте вещь или опишите вакансию',how2:'Опубликуйте за 1 минуту, бесплатно',how3:'Покупатели и кандидаты напишут в чат',
  bizT:'Для магазинов и работодателей',bizS:'Страница магазина с логотипом, пакеты вакансий, доступ к базе резюме и статистика просмотров.',bizB:'Тарифы для бизнеса',
@@ -865,6 +875,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  regions:'Viloyatlar bo‘yicha e’lonlar',tAll:'Hammasi',tSell:'Narsalar savdosi',tJob:'Vakansiyalar',tCv:'Ish qidiraman',recent:'Siz yaqinda ko‘rgansiz',
  lAll:'Yangi e’lonlar',lSell:'Narsalar savdosi',lJob:'Vakansiyalar',lCv:'Rezyumelar: ish qidiraman',lFav:'Saralanganlar',pcs:'ta',
  ssBtn:'Qidiruvni saqlash',ssSaved:'Qidiruv saqlandi. Yangi e’lon chiqsa, xabar beramiz',ssNeed:'Qidiruvni saqlash va xabar olish uchun kiring',ssMine:'Saqlangan qidiruvlarim',ssNone:'Hozircha yo‘q. Toifa, shahar yoki narxni tanlab «🔔 Qidiruvni saqlash» tugmasini bosing — yangi e’lonlar haqida xabar beramiz.',ssNew:'yangi',ssMax:'10 tagacha qidiruv saqlash mumkin',ssPush:'Yangi e’lonlarni darhol bilish uchun bildirishnomalarni yoqing',ssOff:'O‘chirish',ssAllAds:'Barcha e’lonlar',ssEmpty:'Mos e’lon chiqishi bilan xabar beramiz',
+ rvT:'Sharhlar',rvBtn:'⭐ Sotuvchini baholash',rvEditBtn:'⭐ Sharhimni o‘zgartirish',rvHead:'Sotuvchi haqida sharhingiz',rvPh:'Bitim qanday o‘tdi? Nima yoqdi, nima yoqmadi (ixtiyoriy)',rvSend:'Sharhni joylash',rvDone:'Rahmat! Sharh joylandi',rvNeedStars:'Baho qo‘ying: 1 dan 5 gacha yulduz',rvNone:'Hozircha sharhlar yo‘q',rvRule:'Sharhni faqat sotuvchi bilan yozishgandan keyin qoldirish mumkin. Halol yozing: haqorat va yolg‘on o‘chiriladi.',rvWait:'Sotuvchi chatda javob berganidan keyin sharh qoldirish mumkin',rvAbout:'E’lon',rvReply:'Sharhga javob berish',rvReplyPh:'Xaridorga javobingiz',rvSellerAns:'Sotuvchi javobi',rvDel:'Sharhimni o‘chirish',rvDeleted:'Sharh o‘chirildi',rvN1:'ta sharh',rvN2:'ta sharh',rvN5:'ta sharh',rvNo:'hozircha sharhlarsiz',
  sNew:'Avval yangilari',limDay:'Cheklov: kuniga 10 tadan ortiq yangi e’lon mumkin emas. Ertaga urinib ko‘ring.',limWait:'Keyingi e’londan oldin 30 soniya kuting.',ownerL:'Asoschi · Egasi',bannedT:'Akkauntingiz qoidabuzarlik uchun bloklangan. Xato bo‘lsa, yordamga yozing.',hiddenL:'Moderator tomonidan yashirilgan',adminL:'Admin panel',newMsg:'Yangi xabar',pushOn:'Xabarlar haqida bildirishnomani yoqish',pushDone:'Bildirishnomalar yoqildi',pushOff:'Xabarlar haqida bildirishnomalar yoqilgan',pushDenied:'Brauzer sozlamalarida bildirishnomalar taqiqlangan. topaman.uz uchun ruxsat bering',pushIos:'iPhone’da bildirishnomalar ilovada ishlaydi: «Ulashish» → «Bosh ekranga»',aboutAd:'E’lon bo‘yicha',chatFirst:'Birinchi xabarni yozing — sotuvchi uni «Chatlar»da ko‘radi.',needChats:'Chatlaringizni ko‘rish uchun kiring',youL:'Siz',soldL:'Sotildi',closedL:'Yopildi',markSold:'Sotildi',markClosed:'Yopish',unsold:'Sotuvga qaytarish',soldDone:'Sotildi deb belgilandi',backDone:'E’lon yana sotuvda',selling:'Sotmoqda',soldTab:'Sotilgan',sinceT:'Topaman’da',noItems:'Hozircha bo‘sh',allAds:'Barcha e’lonlari',soldBanner:'Bu tovar allaqachon sotilgan',closedBanner:'E’lon yopilgan',tgSoon:'Telegram orqali kirish tez orada qo‘shiladi. Hozircha Google orqali kiring.',loginErr:'Kirib bo‘lmadi. Qayta urinib ko‘ring.',netErr:'Server bilan aloqa yo‘q. Internetni tekshirib, qayta urinib ko‘ring.',saving:'Saqlanmoqda…',maxPh:'6 tagacha surat mumkin',phHint:'Birinchi surat — asosiy. 6 tagacha.',needLoginFav:'Saralanganlar barcha qurilmalarda saqlanishi uchun kiring',similar:'O‘xshash e’lonlar',liveNow:'Hozir saytda',liveToday:'Bugun kirganlar',liveAdded:'Bugun qo‘shildi',liveAddedU:'e’lon',newL:'Yangi',onNow:'onlayn',seenToday:'bugun tarmoqda edi,',seenYest:'kecha tarmoqda edi',seenDays:'{n} kun oldin tarmoqda edi',seenLong:'ancha vaqtdan beri kirmagan',sNear:'Menga yaqinroq',nearMe:'Yonimda',anyDist:'Istalgan masofa',km:'km',m:'m',mapBtn:'Xarita',listBtn:'Xaritani yopish',geoAsk:'Joylashuvingiz aniqlanmoqda…',geoFail:'Joyni aniqlab bo‘lmadi — markazdan hisoblaymiz: {c}. Brauzerda geolokatsiyaga ruxsat bering.',fromYou:'sizdan',place:'Qayerda joylashgan',myPlace:'Mening joyim',placeHint:'Belgini xaritada suring. Boshqalarga faqat hudud (~300 m) ko‘rsatiladi, aniq manzil emas.',route:'Yo‘nalish',approx:'Taxminiy joy',mapNone:'Bu radiusda e’lon yo‘q — radiusni kattalashtiring',mln:'mln',ths:'ming',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
  howT:'Qanday ishlaydi',how1:'Narsani suratga oling yoki vakansiyani yozing',how2:'1 daqiqada bepul joylang',how3:'Xaridorlar va nomzodlar chatga yozadi',
  bizT:'Do‘konlar va ish beruvchilar uchun',bizS:'Logotipli do‘kon sahifasi, vakansiya paketlari, rezyume bazasi va ko‘rishlar statistikasi.',bizB:'Biznes tariflari',
@@ -1252,26 +1263,30 @@ function routeLinks(a){
 function monthYear(ts){const d=new Date(ts),m=d.getMonth(),y=d.getFullYear();
   return lang==='uz'?`${y}-yil ${['yanvar','fevral','mart','aprel','may','iyun','iyul','avgust','sentyabr','oktyabr','noyabr','dekabr'][m]}dan`:`${['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'][m]} ${y}`}
 function miniCard(b){return `<button class="sc${b.status==='sold'?' issold':''}" data-id="${b.id}">${thumb(b)}${b.status==='sold'?`<span class="soldtag">${b.kind==='sell'?t('soldL'):t('closedL')}</span>`:''}<span class="sp${b.kind!=='sell'?' sal':''}">${b.kind==='sell'?(b.price?fmt(b.price)+' '+t('sum'):t('nego')):shortPrice(b)}</span><b>${esc(b.title)}</b><small>${esc(cityName(b.city))} · ${ago(b.ts)}</small></button>`}
-async function openSeller(a){
-  let list;
+async function openSeller(a,startTab){
+  let list,revs=[];
   if(a.uid){
-    try{const f=await fbReady,{F,db}=f;const sn=await F.getDocs(F.query(F.collection(db,'ads'),F.where('uid','==',a.uid)));list=sn.docs.map(toAd).filter(x=>x.status==='sold'||!expired(x))}
+    try{const f=await fbReady,{F,db}=f;const [sn,rl]=await Promise.all([F.getDocs(F.query(F.collection(db,'ads'),F.where('uid','==',a.uid))),loadReviews(a.uid,true).catch(()=>[])]);
+      list=sn.docs.map(toAd).filter(x=>x.status==='sold'||!expired(x));revs=rl}
     catch(e){toast(t('netErr'));return}
     extraAds=list;
   }else list=SEED.filter(x=>x.seller===a.seller).map(x=>({...x,ts:now-x.ago}));
   list.sort((x,y)=>y.ts-x.ts);
   const act=list.filter(x=>x.status!=='sold'),sold=list.filter(x=>x.status==='sold');
   const since=Math.min(...list.map(x=>x.created||x.ts),a.created||a.ts);
-  let tab='act';
+  let tab=startTab||'act';
   openModal(`<div class="cab sprof">
-    <div class="prof"><span class="ava">${esc(a.seller[0])}</span><div class="pi2"><b>${esc(a.seller)}</b> ${a.ver?`<span class="ver">✓ ${t('verified')}</span>`:''}<small>${t('sinceT')} ${monthYear(since)}</small></div></div>
+    <div class="prof"><span class="ava">${esc(a.seller[0])}</span><div class="pi2"><b>${esc(a.seller)}</b> ${a.ver?`<span class="ver">✓ ${t('verified')}</span>`:''}<small>${t('sinceT')} ${monthYear(since)}</small>${a.uid?`<small>${rvShort(revs)}</small>`:''}</div></div>
     <div class="kpis"><div class="kpi"><b class="num">${act.length}</b><span>${t('selling')}</span></div><div class="kpi"><b class="num">${sold.length}</b><span>${t('soldTab')}</span></div><div class="kpi"><b class="num">${list.reduce((s,x)=>s+(x.views||0),0)}</b><span>${t('kViews')}</span></div></div>
-    <div class="seg" id="spTabs"><button type="button" data-t="act" aria-pressed="true">${t('selling')} · ${act.length}</button><button type="button" data-t="sold" aria-pressed="false">${t('soldTab')} · ${sold.length}</button></div>
-    <div class="sim" id="spList"></div>
+    <div class="seg" id="spTabs"><button type="button" data-t="act" aria-pressed="true">${t('selling')} · ${act.length}</button><button type="button" data-t="sold" aria-pressed="false">${t('soldTab')} · ${sold.length}</button>${a.uid?`<button type="button" data-t="rv" aria-pressed="false">${t('rvT')} · ${revs.length}</button>`:''}</div>
+    <div class="sim" id="spList"></div><div id="spRv" hidden></div>
   </div>`,true);
-  const draw=()=>{const arr=tab==='act'?act:sold;$('#spList').innerHTML=arr.length?arr.map(miniCard).join(''):`<p style="color:var(--ink3);margin:0;grid-column:1/-1">${t('noItems')}</p>`;
+  const draw=()=>{$$('#spTabs button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.t===tab));
+    $('#spList').hidden=tab==='rv';$('#spRv').hidden=tab!=='rv';
+    if(tab==='rv'){$('#spRv').innerHTML=rvListHTML(revs,a.uid);return}
+    const arr=tab==='act'?act:sold;$('#spList').innerHTML=arr.length?arr.map(miniCard).join(''):`<p style="color:var(--ink3);margin:0;grid-column:1/-1">${t('noItems')}</p>`;
     $$('#spList .sc').forEach(b=>b.onclick=()=>{openAd(b.dataset.id);$('#ov').scrollTop=0})};
-  $$('#spTabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;$$('#spTabs button').forEach(x=>x.setAttribute('aria-pressed',x===b));draw()});
+  $$('#spTabs button').forEach(b=>b.onclick=()=>{tab=b.dataset.t;draw()});
   draw();
 }
 function simHTML(a){
@@ -1298,7 +1313,7 @@ function openAd(id){
         ${a.jt&&a.jt.length?`<div class="jtags ro">${a.jt.map(c=>`<span>${jtName(c)}</span>`).join('')}</div>`:''}
         <dl class="facts"><dt>${t('city')}</dt><dd>${esc(cityName(a.city))}</dd><dt>${t('section')}</dt><dd>${cname(catOf(a.cat))}</dd>${facts}<dt>${t('published')}</dt><dd>${ago(a.ts)} · ${a.views||0} ${t('views')}${vToday(a)?` <b class="vtd">+${vToday(a)} ${t('vToday')}</b>`:''}${a.shows?` · ${a.shows} ${t('showsL')}`:''}</dd></dl>
         <div class="desc">${esc(a.desc)}</div>
-        <button class="seller" id="sellerBtn"><div class="ava">${esc(a.seller[0])}</div><div><b>${esc(a.seller)}</b> ${a.ver?`<span class="ver">✓ ${t('verified')}</span>`:''}<small>${a.uid?`${who} · ${t('sinceT')} ${monthYear(a.created||a.ts)}`:`<span class="stars">${'★'.repeat(Math.round(rate))}</span> ${rate.toFixed(1)} · ${who} · ${t('onSince')}`}</small>${a.uid?'<span class="onl" id="sellerOnl"></span>':''}<span class="sall">${t('allAds')} →</span></div></button>
+        <button class="seller" id="sellerBtn"><div class="ava">${esc(a.seller[0])}</div><div><b>${esc(a.seller)}</b> ${a.ver?`<span class="ver">✓ ${t('verified')}</span>`:''}<small>${a.uid?`${who} · ${t('sinceT')} ${monthYear(a.created||a.ts)}`:`<span class="stars">${'★'.repeat(Math.round(rate))}</span> ${rate.toFixed(1)} · ${who} · ${t('onSince')}`}</small>${a.uid?'<span class="srate" id="sellerRate"></span><span class="onl" id="sellerOnl"></span>':''}<span class="sall">${t('allAds')} →</span></div></button>
         <div class="actions">
           <button class="btn" id="showTel">${t('showTel')}</button>
           <button class="btn primary" id="chatBtn">${cLbl}</button>
@@ -1326,6 +1341,7 @@ function openAd(id){
   const p=$('#promoBtn');if(p)p.onclick=async()=>{if(!isFree('top'))return toast(t('paidNote'));const m=myAd(a.id);if(!m)return;try{await adUpdate(m,{top:'top',topUntil:Date.now()+DUR.top*DAY,ts:Date.now()});addUse('top');toast(t('upFree'));closeModal()}catch(e){toast(t('netErr'))}};
   if(a.uid){countView(a);if(a.nPhotos)loadGallery(a);showSeen(a.uid,'#sellerOnl')}
   $('#sellerBtn').onclick=()=>openSeller(a);
+  if(a.uid)loadReviews(a.uid).then(l=>{const el=$('#sellerRate');if(el)el.innerHTML=rvShort(l)}).catch(()=>{});
   if(a.status==='sold'&&!a.mine){const ac=$('#modal .actions');if(ac)ac.hidden=true}
   /* keep the open ad in the address (?ad=ID): coming back from Telegram/WhatsApp or after a reload reopens it */
   if(a.uid){try{history.replaceState(history.state,'',location.pathname+'?ad='+encodeURIComponent(a.id))}catch(e){}}
@@ -1815,6 +1831,7 @@ function msgHTML(m){return `<div class="msg${m.from===user.uid?' me':''}">${esc(
 function chatBody(box,cid,info){
   const qs=info.qs||[];
   box.innerHTML=`<b>${info.head}</b>${info.other?'<span class="onl" id="chatOnl"></span>':''}<div class="msgs" id="msgs"><p class="chint">${t('chatFirst')}</p></div>
+    ${info.rv?`<button type="button" class="btn ghost rvbtn" id="rvBtn">${t(rvMine(info.rv.seller)?'rvEditBtn':'rvBtn')}</button>`:''}
     ${qs.length?`<div class="qr">${qs.map(k=>`<button type="button" data-qr="${esc(t(k))}">${t(k)}</button>`).join('')}</div>`:''}
     <form class="chatrow" id="chatForm"><input id="chatIn" placeholder="${t('msgPh')}" autocomplete="off" maxlength="1000"><button class="btn primary">${t('send')}</button></form>${pushBtnHTML()}`;
   if(liveUnsub){liveUnsub();liveUnsub=null}
@@ -1824,6 +1841,8 @@ function chatBody(box,cid,info){
       const el=$('#msgs');if(!el)return;const list=snap.docs.map(d=>d.data());
       if(list.length)el.innerHTML=list.map(msgHTML).join('');el.scrollTop=el.scrollHeight;
       const c=myChats.find(x=>x.id===cid);if(c&&unreadOf(c))F.updateDoc(F.doc(db,'chats',cid),{['unread.'+user.uid]:0}).catch(()=>{});
+      /* the seller has answered in this chat -> the buyer may leave a review (checked by the rules) */
+      if(c&&!c.sr&&info.seller===user.uid&&list.some(m=>m.from===user.uid))F.updateDoc(F.doc(db,'chats',cid),{sr:true}).catch(()=>{});
     },e=>{console.warn('msgs',e);live=false});
   })};
   if(myChats.some(c=>c.id===cid)||!info.create)startLive();
@@ -1831,17 +1850,19 @@ function chatBody(box,cid,info){
     try{const f=await fbReady,{F,db}=f,b=F.writeBatch(db),ref=F.doc(db,'chats',cid),now2=Date.now();
       const exists=myChats.some(c=>c.id===cid);
       if(!exists&&info.create)b.set(ref,{...info.create,last:{t:v,from:user.uid},updated:now2,unread:{[info.create.sellerUid]:1,[user.uid]:0}});
-      else b.update(ref,{last:{t:v,from:user.uid},updated:now2,['unread.'+info.other]:F.increment(1)});
+      else b.update(ref,{last:{t:v,from:user.uid},updated:now2,['unread.'+info.other]:F.increment(1),...(info.seller===user.uid?{sr:true}:{})});
       b.set(F.doc(F.collection(db,'chats',cid,'msgs')),{from:user.uid,text:v,at:now2});
       await b.commit();startLive();pushNotify(cid);
     }catch(e){console.warn(e);toast(t('netErr'))}};
   const qr=box.querySelector('.qr');if(qr)qr.onclick=e=>{const b=e.target.closest('[data-qr]');if(b)send(b.dataset.qr)};
   $('#chatForm').onsubmit=e=>{e.preventDefault();send($('#chatIn').value)};
+  const rb=$('#rvBtn');if(rb)rb.onclick=()=>{const c=myChats.find(x=>x.id===cid);if(!c||!c.sr)return toast(t('rvWait'));openReview(info.rv)};
 }
 function openRealChat(a,silent){
   const box=$('#chat');if(!box)return;box.hidden=false;
   const cid=a.id+'_'+user.uid;
   chatBody(box,cid,{head:`${t('chatWith')}: ${esc(a.seller)}`,qs:a.kind==='sell'?['q1','q2','q3']:['q1','q4'],other:a.uid,
+    seller:a.uid,rv:{seller:a.uid,sellerName:a.seller,chat:cid,adTitle:a.title},
     create:{adId:a.id,adTitle:a.title,sellerUid:a.uid,buyerUid:user.uid,sellerName:a.seller,buyerName:user.name,members:[a.uid,user.uid]}});
   if(!silent)setTimeout(()=>{const i=$('#chatIn');if(i)i.focus()},50);
   /* vacancy -> ready "I want this job" text, CV -> ready invitation; the person can edit it before sending */
@@ -1854,7 +1875,8 @@ function openChatWin(c){
   openModal(`<div class="cab chatwin"><button class="chad" id="chAd">${t('aboutAd')}: <b>${esc(c.adTitle||'')}</b> →</button><div class="chat" id="chat" style="border:0;padding:0"></div></div>`);
   $('#modal').classList.add('narrow');
   $('#chAd').onclick=()=>{if(byId(c.adId))openAd(c.adId);else toast(t('notFound'))};
-  chatBody($('#chat'),c.id,{head:esc(other||''),other:otherUid});
+  chatBody($('#chat'),c.id,{head:esc(other||''),other:otherUid,seller:c.sellerUid,
+    rv:c.buyerUid===user.uid?{seller:c.sellerUid,sellerName:c.sellerName,chat:c.id,adTitle:c.adTitle||''}:null});
   showSeen(otherUid,'#chatOnl');
   setTimeout(()=>{const i=$('#chatIn');if(i)i.focus()},50);
 }
@@ -1898,6 +1920,66 @@ let deepChat=null;try{deepChat=new URLSearchParams(location.search).get('chat')}
 function openDeepChat(){if(!deepChat||!user)return;const c=myChats.find(x=>x.id===deepChat);if(!c)return;deepChat=null;
   try{history.replaceState(null,'',location.pathname)}catch(e){}openChatWin(c)}
 if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('message',e=>{if(e.data&&e.data.chat){deepChat=String(e.data.chat);openDeepChat()}else if(e.data&&e.data.ad)openAdId(String(e.data.ad))});
+
+/* ---------- seller reviews ----------
+   reviews/{sellerUid_authorUid}: one review per buyer per seller, 1-5 stars + optional text.
+   The rules allow it only from the buyer of a chat where the seller has answered (chat.sr),
+   so nobody can review a stranger. The seller may answer each review once (reply). */
+const rvCache={};
+let myRv=store.get('tp_rv',{});            /* sellers I reviewed (to show "change my review") */
+const rvMine=uid=>!!myRv[uid];
+const rvMs=x=>x&&x.toMillis?x.toMillis():Number(x)||0;
+async function loadReviews(uid,fresh){
+  if(rvCache[uid]&&!fresh)return rvCache[uid];
+  const f=await fbReady,{F,db}=f;
+  const sn=await F.getDocs(F.query(F.collection(db,'reviews'),F.where('seller','==',uid),F.limit(200)));
+  return rvCache[uid]=sn.docs.map(d=>({...d.data(),id:d.id})).sort((x,y)=>rvMs(y.at)-rvMs(x.at));
+}
+const rvAvg=l=>l.length?l.reduce((s,r)=>s+(r.stars||0),0)/l.length:0;
+const rvWord=n=>{const m10=n%10,m100=n%100;return t(m10===1&&m100!==11?'rvN1':m10>=2&&m10<=4&&(m100<10||m100>=20)?'rvN2':'rvN5')};
+const starsHTML=n=>`<span class="stars" aria-label="${n}/5">${'★'.repeat(Math.round(n))}${'☆'.repeat(5-Math.round(n))}</span>`;
+const rvShort=l=>l.length?`<span class="stars">★</span> <b>${rvAvg(l).toFixed(1).replace('.',',')}</b> · ${l.length} ${rvWord(l.length)}`:`<span style="color:var(--ink3)">☆ ${t('rvNo')}</span>`;
+function rvListHTML(l,sellerUid){
+  if(!l.length)return `<p style="color:var(--ink3);margin:0">${t('rvNone')}</p><p style="color:var(--ink3);font-size:13px">${t('rvRule')}</p>`;
+  const me=user&&user.uid;
+  return `<div class="rvsum"><b class="big num">${rvAvg(l).toFixed(1).replace('.',',')}</b><div>${starsHTML(rvAvg(l))}<br><small style="color:var(--ink3)">${l.length} ${rvWord(l.length)}</small></div></div>`+
+    l.map(r=>`<div class="rv"><div class="rvh"><b>${esc(r.name||'')}</b>${starsHTML(r.stars||0)}<small>${r.at?fmtDate(new Date(rvMs(r.at))):''}</small></div>`+
+      `${r.text?`<p>${esc(r.text)}</p>`:''}${r.adTitle?`<small class="rva">${t('rvAbout')}: ${esc(r.adTitle)}</small>`:''}`+
+      `${r.reply?`<div class="rvr"><b>${t('rvSellerAns')}</b><p>${esc(r.reply)}</p></div>`:''}`+
+      `${me&&me===sellerUid&&!r.reply?`<div class="rvacts"><button type="button" class="btn ghost" data-rvreply="${esc(r.id)}">${t('rvReply')}</button></div>`:''}</div>`).join('')+
+    `<p style="color:var(--ink3);font-size:13px">${t('rvRule')}</p>`;
+}
+async function openReview(rv){
+  const f=await fbReady,{F,db}=f,ref=F.doc(db,'reviews',rv.seller+'_'+user.uid);
+  let old=null;try{const d=await F.getDoc(ref);if(d.exists())old=d.data()}catch(e){}
+  let stars=old?old.stars:0;
+  openModal(`<div class="cab"><h3 class="mh">${t('rvHead')}</h3><p style="margin:0 0 4px"><b>${esc(rv.sellerName||'')}</b>${rv.adTitle?` · <span style="color:var(--ink3)">${esc(rv.adTitle)}</span>`:''}</p>
+    <div class="rvstars" id="rvStars">${[1,2,3,4,5].map(n=>`<button type="button" data-n="${n}" aria-label="${n}">★</button>`).join('')}</div>
+    <textarea id="rvText" class="fin" rows="4" maxlength="500" placeholder="${t('rvPh')}" style="width:100%">${esc(old&&old.text||'')}</textarea>
+    <p class="ferr" id="rvErr" style="color:var(--terra);min-height:1em;margin:6px 0"></p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn primary" id="rvSave">${t('rvSend')}</button>${old?`<button class="btn ghost" id="rvDel">${t('rvDel')}</button>`:''}</div>
+    <p style="color:var(--ink3);font-size:13px">${t('rvRule')}</p></div>`);
+  const paint=()=>$$('#rvStars button').forEach(b=>b.classList.toggle('on',+b.dataset.n<=stars));paint();
+  $('#rvStars').onclick=e=>{const b=e.target.closest('[data-n]');if(b){stars=+b.dataset.n;paint();$('#rvErr').textContent=''}};
+  $('#rvSave').onclick=async()=>{
+    if(!stars){$('#rvErr').textContent=t('rvNeedStars');return}
+    const btn=$('#rvSave');btn.disabled=true;
+    try{await F.setDoc(ref,{seller:rv.seller,author:user.uid,name:String(user.name||'').slice(0,60)||'—',stars,text:$('#rvText').value.trim().slice(0,500),chat:rv.chat,adTitle:String(rv.adTitle||'').slice(0,120),at:F.serverTimestamp()});
+      myRv[rv.seller]=1;store.set('tp_rv',myRv);delete rvCache[rv.seller];closeModal();toast('⭐ '+t('rvDone'))}
+    catch(e){console.warn('review',e);btn.disabled=false;$('#rvErr').textContent=e&&e.code==='permission-denied'?t('rvWait'):t('netErr')}
+  };
+  const del=$('#rvDel');if(del)del.onclick=async()=>{del.disabled=true;try{await F.deleteDoc(ref);delete myRv[rv.seller];store.set('tp_rv',myRv);delete rvCache[rv.seller];closeModal();toast(t('rvDeleted'))}catch(e){del.disabled=false;toast(t('netErr'))}};
+}
+/* the seller answers a review (once) */
+document.addEventListener('click',e=>{const b=e.target.closest('[data-rvreply]');if(!b||!user)return;
+  const id=b.dataset.rvreply,box=b.parentElement;
+  box.innerHTML=`<textarea class="fin" rows="3" maxlength="500" placeholder="${t('rvReplyPh')}" style="width:100%"></textarea><button type="button" class="btn primary">${t('send')}</button>`;
+  const ta=box.querySelector('textarea'),sb=box.querySelector('button');ta.focus();
+  sb.onclick=async()=>{const v=ta.value.trim().slice(0,500);if(!v)return;sb.disabled=true;
+    try{const f=await fbReady;await f.F.updateDoc(f.F.doc(f.db,'reviews',id),{reply:v,replyAt:f.F.serverTimestamp()});
+      delete rvCache[user.uid];box.outerHTML=`<div class="rvr"><b>${t('rvSellerAns')}</b><p>${esc(v)}</p></div>`}
+    catch(err){console.warn(err);sb.disabled=false;toast(t('netErr'))}};
+});
 
 /* ---------- saved searches ----------
    "🔔 Сохранить поиск" keeps the current filters on the bot worker (topaman-bot/push.js, private KV).
@@ -1999,6 +2081,8 @@ async function deleteAccount(){
     for(const c of chs.docs){const ms=await F.getDocs(F.collection(db,'chats',c.id,'msgs'));let b=F.writeBatch(db),n=0;
       for(const m of ms.docs){b.delete(m.ref);if(++n===450){await b.commit();b=F.writeBatch(db);n=0}}b.delete(c.ref);await b.commit()}
     await F.deleteDoc(F.doc(db,'seen',uid)).catch(()=>{});
+    const rvs=await F.getDocs(F.query(F.collection(db,'reviews'),F.where('author','==',uid))).catch(()=>null);
+    if(rvs)for(const r of rvs.docs)await F.deleteDoc(r.ref).catch(()=>{});
     await fetch(PUSH_API+'purge',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({idToken:tok})}).catch(()=>{});
     await F.deleteDoc(F.doc(db,'users',uid));
     await A.deleteUser(u);
