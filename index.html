@@ -446,6 +446,22 @@ s.old{color:var(--ink3);font-weight:500;font-size:.85em;margin-right:4px}
 .ssn{display:inline-block;margin-top:2px;background:var(--gold);color:#2B1D05;border-radius:99px;padding:1px 8px;font-size:12px;font-weight:800}
 .pclr{width:32px;height:32px;border-radius:50%;border:0;background:var(--surface2);color:var(--ink);font-size:18px;cursor:pointer}
 .jfil{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -16px 12px;padding:2px 16px 4px;align-items:center}.jfil::-webkit-scrollbar{display:none}
+.cspec{font-size:12.5px;color:var(--ink2);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.spbox{border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0;background:var(--surface)}.spbox h4{margin:0 0 10px;font-size:16px}
+.spgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(138px,1fr));gap:12px 10px}
+.spi{display:flex;gap:8px;align-items:center;min-width:0}.spi>div{min-width:0;overflow-wrap:anywhere}.spic{flex:none;width:34px;height:34px;border-radius:50%;background:var(--tq-soft);display:grid;place-items:center;font-size:16px}
+.spi small{display:block;color:var(--ink3);font-size:12px;line-height:1.25}.spi b{font-size:14px;font-weight:600;line-height:1.3}
+.comm{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:6px}.cm{display:flex;justify-content:space-between;align-items:center;gap:8px;background:var(--surface2);border-radius:10px;padding:7px 8px;font-size:13px}
+.cm b{border-radius:8px;padding:2px 10px;font-size:12.5px}.cm b.yes{background:#1F8A5B;color:#fff}.cm b.no{background:var(--line);color:var(--ink2)}
+.sph{color:var(--ink3);font-size:13px;margin:-4px 0 10px}.honest{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.honest>div{border-radius:12px;padding:10px 14px}.honest ul{margin:6px 0 0;padding-left:18px}.honest li{margin:3px 0;font-size:14px}
+.hp{background:rgba(31,138,91,.12);color:#1A6E4A}.hc{background:rgba(196,60,60,.11);color:#A33434}.hd{background:var(--tq-soft);color:var(--tq)}
+:root[data-theme=dark] .hp{color:#7FD6A9}:root[data-theme=dark] .hc{color:#F0A0A0}
+.spform{border:1px dashed var(--tq);border-radius:12px;padding:10px 12px}.spform summary{cursor:pointer;font-weight:700;color:var(--tq);font-size:14px}
+.spf{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:4px 10px;margin-top:10px}.spf label.fl{min-width:0}.spf select,.spf input{width:100%;min-width:0}
+.commf{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.commf button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:16px;padding:6px 11px;font:inherit;font-size:13px;cursor:pointer}
+.commf button.yes{background:#1F8A5B;border-color:#1F8A5B;color:#fff}.commf button.no{background:var(--surface2);color:var(--ink3);text-decoration:line-through}
+.sfsep{flex:none;width:1px;height:22px;background:var(--line);margin:0 4px}
 .jfil b{flex:none;font-size:13px;color:var(--ink2);margin-right:2px}
 .jfil button{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:18px;height:36px;padding:0 13px;font:inherit;font-size:13.5px;font-weight:600;cursor:pointer;white-space:nowrap}
 .jfil button.jtb{border-style:dashed}.jfil button[aria-pressed=true]{background:var(--tq-soft);border-color:var(--tq);color:var(--tq);border-style:solid}
@@ -774,6 +790,7 @@ button.seller:hover{border-color:var(--tq)}
   </div>
   <div class="pfil" id="pfil"><span data-i="priceL"></span><input id="pMin" inputmode="numeric" autocomplete="off"><span>–</span><input id="pMax" inputmode="numeric" autocomplete="off"><button type="button" class="pclr" id="pClr" hidden aria-label="×">×</button></div>
   <div class="jfil" id="jfil" hidden></div>
+  <div class="jfil sfil" id="sfil" hidden></div>
   <div class="mapwrap" id="mapWrap" hidden><div id="bigMap"></div><div class="mapnote" id="mapNote" hidden></div></div>
   <div class="grid" id="grid"></div>
 
@@ -827,6 +844,7 @@ ru:{tariffs:'Тарифы',chats:'Чаты',fav:'Избранное',myads:'Мо
  lAll:'Свежие объявления',lSell:'Продажа вещей',lJob:'Вакансии',lCv:'Резюме: ищу работу',lFav:'Избранное',pcs:'шт.',
  ssBtn:'Сохранить поиск',ssSaved:'Поиск сохранён. Сообщим, когда появится новое объявление',ssNeed:'Чтобы сохранить поиск и получать уведомления, войдите',ssMine:'Мои сохранённые поиски',ssNone:'Пока нет. Выберите категорию, город или цену и нажмите «🔔 Сохранить поиск» — мы сообщим о новых объявлениях.',ssNew:'новых',ssMax:'Можно сохранить до 10 поисков',ssPush:'Включите уведомления, чтобы узнавать о новых объявлениях сразу',ssOff:'Удалить',ssAllAds:'Все объявления',ssEmpty:'Сообщим, как только появится подходящее объявление',
  rvT:'Отзывы',rvBtn:'⭐ Оценить продавца',rvEditBtn:'⭐ Изменить мой отзыв',rvHead:'Ваш отзыв о продавце',rvPh:'Как прошла сделка? Что понравилось, что нет (необязательно)',rvSend:'Опубликовать отзыв',rvDone:'Спасибо! Отзыв опубликован',rvNeedStars:'Поставьте оценку: от 1 до 5 звёзд',rvNone:'Пока нет отзывов',rvRule:'Отзыв можно оставить только после переписки с продавцом. Пишите честно: оскорбления и ложь удаляются.',rvWait:'Отзыв можно оставить, когда продавец ответит вам в чате',rvAbout:'Объявление',rvReply:'Ответить на отзыв',rvReplyPh:'Ваш ответ покупателю',rvSellerAns:'Ответ продавца',rvDel:'Удалить мой отзыв',rvDeleted:'Отзыв удалён',rvN1:'отзыв',rvN2:'отзыва',rvN5:'отзывов',rvNo:'пока без отзывов',
+ spReal:'Об объекте',spAuto:'Об автомобиле',spMore:'Подробнее об объекте (необязательно — но так звонят чаще)',spMoreAuto:'Подробнее об авто (необязательно — но так звонят чаще)',spComm:'Коммуникации',spCommH:'Нажмите: один раз — «Есть», второй — «Нет». Показывайте и то, чего нет, — меньше пустых просмотров.',spYes:'Есть',spNo:'Нет',spHonestR:'Честно об объекте',spHonestA:'Честно об авто',spHonestH:'Достоинства, недостатки и вложения заполняет сам продавец.',spPros:'Достоинства',spCons:'Недостатки',spDone:'Что уже сделано и вложено',spLines:'каждый пункт с новой строки',spFloorOf:'из',spChoose:'—',perMonth:'/ мес',perDay:'/ сутки',spAny:'Все',
  sNew:'Сначала новые',limDay:'Лимит: не больше 10 новых объявлений в день. Попробуйте завтра.',limWait:'Подождите 30 секунд перед следующим объявлением.',ownerL:'Основатель · Владелец',bannedT:'Ваш аккаунт заблокирован за нарушение правил. Напишите в поддержку, если это ошибка.',hiddenL:'Скрыто модератором',adminL:'Админ-панель',newMsg:'Новое сообщение',pushOn:'Включить уведомления о сообщениях',pushDone:'Уведомления включены',pushOff:'Уведомления о сообщениях включены',pushDenied:'Уведомления запрещены в настройках браузера. Разрешите их для topaman.uz',pushIos:'На iPhone уведомления работают в приложении: «Поделиться» → «На экран Домой»',aboutAd:'По объявлению',chatFirst:'Напишите первое сообщение — продавец увидит его в «Чатах».',needChats:'Войдите, чтобы видеть свои чаты',youL:'Вы',soldL:'Продано',closedL:'Закрыто',markSold:'Продано',markClosed:'Закрыть',unsold:'Вернуть в продажу',soldDone:'Отмечено как продано',backDone:'Объявление снова в продаже',selling:'Продаёт',soldTab:'Продано',sinceT:'На Topaman с',noItems:'Пока пусто',allAds:'Все объявления',soldBanner:'Этот товар уже продан',closedBanner:'Объявление закрыто',tgSoon:'Вход через Telegram появится совсем скоро. Пока войдите через Google.',loginErr:'Не удалось войти. Попробуйте ещё раз.',netErr:'Нет связи с сервером. Проверьте интернет и попробуйте снова.',saving:'Сохраняем…',maxPh:'Можно до 6 фото',phHint:'Первое фото — главное. До 6 фото.',needLoginFav:'Войдите, чтобы избранное сохранялось на всех устройствах',similar:'Похожие объявления',liveNow:'Сейчас на сайте',liveToday:'Сегодня были',liveAdded:'Сегодня добавлено',liveAddedU:'объявл.',newL:'Новое',onNow:'в сети',seenToday:'в сети сегодня в',seenYest:'в сети вчера',seenDays:'в сети {n} дн. назад',seenLong:'давно не заходил(а)',sNear:'Ближе ко мне',nearMe:'Рядом со мной',anyDist:'Любое расстояние',km:'км',m:'м',mapBtn:'Карта',listBtn:'Скрыть карту',geoAsk:'Определяем ваше место…',geoFail:'Не удалось определить место — считаем от центра: {c}. Разрешите геолокацию в браузере.',fromYou:'от вас',place:'Где находится',myPlace:'Моё место',placeHint:'Передвиньте метку на карте. Другим показываем только район (~300 м), не точный адрес.',route:'Маршрут',approx:'Примерное место',mapNone:'В этом радиусе объявлений нет — увеличьте радиус',mln:'млн',ths:'тыс',sCheap:'Сначала дешевле',sExp:'Сначала дороже',sPop:'Популярные',
  howT:'Как это работает',how1:'Сфотографируйте вещь или опишите вакансию',how2:'Опубликуйте за 1 минуту, бесплатно',how3:'Покупатели и кандидаты напишут в чат',
  bizT:'Для магазинов и работодателей',bizS:'Страница магазина с логотипом, пакеты вакансий, доступ к базе резюме и статистика просмотров.',bizB:'Тарифы для бизнеса',
@@ -887,6 +905,7 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  lAll:'Yangi e’lonlar',lSell:'Narsalar savdosi',lJob:'Vakansiyalar',lCv:'Rezyumelar: ish qidiraman',lFav:'Saralanganlar',pcs:'ta',
  ssBtn:'Qidiruvni saqlash',ssSaved:'Qidiruv saqlandi. Yangi e’lon chiqsa, xabar beramiz',ssNeed:'Qidiruvni saqlash va xabar olish uchun kiring',ssMine:'Saqlangan qidiruvlarim',ssNone:'Hozircha yo‘q. Toifa, shahar yoki narxni tanlab «🔔 Qidiruvni saqlash» tugmasini bosing — yangi e’lonlar haqida xabar beramiz.',ssNew:'yangi',ssMax:'10 tagacha qidiruv saqlash mumkin',ssPush:'Yangi e’lonlarni darhol bilish uchun bildirishnomalarni yoqing',ssOff:'O‘chirish',ssAllAds:'Barcha e’lonlar',ssEmpty:'Mos e’lon chiqishi bilan xabar beramiz',
  rvT:'Sharhlar',rvBtn:'⭐ Sotuvchini baholash',rvEditBtn:'⭐ Sharhimni o‘zgartirish',rvHead:'Sotuvchi haqida sharhingiz',rvPh:'Bitim qanday o‘tdi? Nima yoqdi, nima yoqmadi (ixtiyoriy)',rvSend:'Sharhni joylash',rvDone:'Rahmat! Sharh joylandi',rvNeedStars:'Baho qo‘ying: 1 dan 5 gacha yulduz',rvNone:'Hozircha sharhlar yo‘q',rvRule:'Sharhni faqat sotuvchi bilan yozishgandan keyin qoldirish mumkin. Halol yozing: haqorat va yolg‘on o‘chiriladi.',rvWait:'Sotuvchi chatda javob berganidan keyin sharh qoldirish mumkin',rvAbout:'E’lon',rvReply:'Sharhga javob berish',rvReplyPh:'Xaridorga javobingiz',rvSellerAns:'Sotuvchi javobi',rvDel:'Sharhimni o‘chirish',rvDeleted:'Sharh o‘chirildi',rvN1:'ta sharh',rvN2:'ta sharh',rvN5:'ta sharh',rvNo:'hozircha sharhlarsiz',
+ spReal:'Obyekt haqida',spAuto:'Avtomobil haqida',spMore:'Obyekt haqida batafsil (ixtiyoriy — lekin shunda ko‘proq qo‘ng‘iroq qilishadi)',spMoreAuto:'Avto haqida batafsil (ixtiyoriy — lekin shunda ko‘proq qo‘ng‘iroq qilishadi)',spComm:'Kommunikatsiyalar',spCommH:'Bosing: bir marta — «Bor», ikkinchi — «Yo‘q». Yo‘q narsani ham ko‘rsating — bekorga kelishlar kamayadi.',spYes:'Bor',spNo:'Yo‘q',spHonestR:'Obyekt haqida halol',spHonestA:'Avto haqida halol',spHonestH:'Afzallik, kamchilik va sarflanganlarni sotuvchining o‘zi yozadi.',spPros:'Afzalliklari',spCons:'Kamchiliklari',spDone:'Nima qilingan va sarflangan',spLines:'har bir band yangi qatordan',spFloorOf:'/',spChoose:'—',perMonth:'/ oy',perDay:'/ kun',spAny:'Barchasi',
  sNew:'Avval yangilari',limDay:'Cheklov: kuniga 10 tadan ortiq yangi e’lon mumkin emas. Ertaga urinib ko‘ring.',limWait:'Keyingi e’londan oldin 30 soniya kuting.',ownerL:'Asoschi · Egasi',bannedT:'Akkauntingiz qoidabuzarlik uchun bloklangan. Xato bo‘lsa, yordamga yozing.',hiddenL:'Moderator tomonidan yashirilgan',adminL:'Admin panel',newMsg:'Yangi xabar',pushOn:'Xabarlar haqida bildirishnomani yoqish',pushDone:'Bildirishnomalar yoqildi',pushOff:'Xabarlar haqida bildirishnomalar yoqilgan',pushDenied:'Brauzer sozlamalarida bildirishnomalar taqiqlangan. topaman.uz uchun ruxsat bering',pushIos:'iPhone’da bildirishnomalar ilovada ishlaydi: «Ulashish» → «Bosh ekranga»',aboutAd:'E’lon bo‘yicha',chatFirst:'Birinchi xabarni yozing — sotuvchi uni «Chatlar»da ko‘radi.',needChats:'Chatlaringizni ko‘rish uchun kiring',youL:'Siz',soldL:'Sotildi',closedL:'Yopildi',markSold:'Sotildi',markClosed:'Yopish',unsold:'Sotuvga qaytarish',soldDone:'Sotildi deb belgilandi',backDone:'E’lon yana sotuvda',selling:'Sotmoqda',soldTab:'Sotilgan',sinceT:'Topaman’da',noItems:'Hozircha bo‘sh',allAds:'Barcha e’lonlari',soldBanner:'Bu tovar allaqachon sotilgan',closedBanner:'E’lon yopilgan',tgSoon:'Telegram orqali kirish tez orada qo‘shiladi. Hozircha Google orqali kiring.',loginErr:'Kirib bo‘lmadi. Qayta urinib ko‘ring.',netErr:'Server bilan aloqa yo‘q. Internetni tekshirib, qayta urinib ko‘ring.',saving:'Saqlanmoqda…',maxPh:'6 tagacha surat mumkin',phHint:'Birinchi surat — asosiy. 6 tagacha.',needLoginFav:'Saralanganlar barcha qurilmalarda saqlanishi uchun kiring',similar:'O‘xshash e’lonlar',liveNow:'Hozir saytda',liveToday:'Bugun kirganlar',liveAdded:'Bugun qo‘shildi',liveAddedU:'e’lon',newL:'Yangi',onNow:'onlayn',seenToday:'bugun tarmoqda edi,',seenYest:'kecha tarmoqda edi',seenDays:'{n} kun oldin tarmoqda edi',seenLong:'ancha vaqtdan beri kirmagan',sNear:'Menga yaqinroq',nearMe:'Yonimda',anyDist:'Istalgan masofa',km:'km',m:'m',mapBtn:'Xarita',listBtn:'Xaritani yopish',geoAsk:'Joylashuvingiz aniqlanmoqda…',geoFail:'Joyni aniqlab bo‘lmadi — markazdan hisoblaymiz: {c}. Brauzerda geolokatsiyaga ruxsat bering.',fromYou:'sizdan',place:'Qayerda joylashgan',myPlace:'Mening joyim',placeHint:'Belgini xaritada suring. Boshqalarga faqat hudud (~300 m) ko‘rsatiladi, aniq manzil emas.',route:'Yo‘nalish',approx:'Taxminiy joy',mapNone:'Bu radiusda e’lon yo‘q — radiusni kattalashtiring',mln:'mln',ths:'ming',sCheap:'Avval arzonlari',sExp:'Avval qimmatlari',sPop:'Ommabop',
  howT:'Qanday ishlaydi',how1:'Narsani suratga oling yoki vakansiyani yozing',how2:'1 daqiqada bepul joylang',how3:'Xaridorlar va nomzodlar chatga yozadi',
  bizT:'Do‘konlar va ish beruvchilar uchun',bizS:'Logotipli do‘kon sahifasi, vakansiya paketlari, rezyume bazasi va ko‘rishlar statistikasi.',bizB:'Biznes tariflari',
@@ -977,6 +996,48 @@ const CATS=[
 /* every category has its own address for Google: topaman.uz/transport/ etc. (pages made by topdim/build_cats.py) */
 const SLUG={elec:'elektronika',auto:'transport',real:'nedvizhimost',house:'dom-i-sad',fashion:'odezhda',kids:'detskiy-mir',animals:'zhivotnye',build:'stroyka',serv:'uslugi',craft:'remesla',job:'rabota',cv:'rezyume'};
 const CAT_BY_SLUG=Object.fromEntries(Object.entries(SLUG).map(([k,v])=>[v,k]));
+/* ---------- details for real estate and cars ----------
+   Stored in ad.facts: {re|car:{field:value}, comm:{key:1|0}, pros:[], cons:[], done:[]}.
+   field: [key, type, icon, ru, uz, options|unit]; options: [value, ru, uz] */
+const SPEC={
+ real:{box:'re',f:[
+  ['deal','sel','🔑','Тип сделки','Bitim turi',[['sale','Продажа','Sotuv'],['rent','Аренда помесячно','Oylik ijara'],['day','Посуточно','Kunlik ijara']]],
+  ['rooms','num','🛏','Комнат','Xonalar'],
+  ['area','num','📐','Общая площадь','Umumiy maydon','м²'],
+  ['live','num','🛋','Жилая площадь','Yashash maydoni','м²'],
+  ['floor','num','🏢','Этаж','Qavat'],
+  ['floors','num','🏙','Этажей в доме','Uy qavatlari'],
+  ['bath','sel','🛁','Санузел','Sanuzel',[['sep','Раздельный','Alohida'],['comb','Совмещённый','Birga'],['two','2 и больше','2 va undan ko‘p']]],
+  ['repair','sel','🖌','Ремонт','Ta’mir',[['euro','Евроремонт','Yevroremont'],['good','Хороший','Yaxshi'],['mid','Средний','O‘rtacha'],['none','Без ремонта','Ta’mirsiz'],['box','Коробка','Karobka']]],
+  ['balcony','sel','☀️','Балкон / лоджия','Balkon / lodjiya',[['loggia','Лоджия','Lodjiya'],['balc','Балкон','Balkon'],['both','Балкон и лоджия','Balkon va lodjiya'],['no','Нет','Yo‘q']]],
+  ['year','num','📅','Год постройки','Qurilgan yili'],
+  ['wall','sel','🧱','Материал дома','Uy materiali',[['brick','Кирпич','G‘isht'],['panel','Панель','Panel'],['mono','Монолит','Monolit'],['block','Блок','Blok']]],
+  ['district','txt','📍','Район','Tuman'],
+  ['landmark','txt','🧭','Ориентир','Mo‘ljal']]},
+ auto:{box:'car',f:[
+  ['brand','txt','🚗','Марка','Marka'],
+  ['model','txt','🏷','Модель','Model'],
+  ['pos','txt','⭐','Позиция / комплектация','Pozitsiya / komplektatsiya'],
+  ['year','num','📅','Год выпуска','Ishlab chiqarilgan yili'],
+  ['km','num','🛣','Пробег','Yurgan masofasi','км'],
+  ['gear','sel','⚙️','Коробка','Uzatmalar qutisi',[['auto','Автомат','Avtomat'],['manual','Механика','Mexanika'],['robot','Робот / вариатор','Robot / variator']]],
+  ['fuel','sel','⛽','Топливо','Yoqilg‘i',[['petrol','Бензин','Benzin'],['gas','Газ / метан + бензин','Gaz / metan + benzin'],['diesel','Дизель','Dizel'],['hybrid','Гибрид','Gibrid'],['ev','Электро','Elektr']]],
+  ['body','sel','🚙','Кузов','Kuzov',[['sedan','Седан','Sedan'],['hatch','Хэтчбек','Xetchbek'],['suv','Внедорожник / кроссовер','Yo‘ltanlamas / krossover'],['wagon','Универсал','Universal'],['minivan','Минивэн','Miniven'],['pickup','Пикап','Pikap'],['truck','Грузовой','Yuk mashinasi']]],
+  ['color','txt','🎨','Цвет','Rangi'],
+  ['owners','num','👤','Хозяев','Egalari soni'],
+  ['crash','sel','🛡','Состояние кузова','Kuzov holati',[['none','Не битая, не крашеная','Urilmagan, bo‘yalmagan'],['paint','Есть крашеные детали','Bo‘yalgan detallari bor'],['crash','Была в ДТП','YTHda bo‘lgan']]]]}
+};
+const COMM=[['el','⚡','Электричество','Elektr'],['gas','🔥','Газ','Gaz'],['cw','💧','Холодная вода','Sovuq suv'],['hw','♨️','Горячая вода','Issiq suv'],['sew','🚰','Канализация','Kanalizatsiya'],
+  ['heat','🌡','Центральное отопление','Markaziy isitish'],['aheat','🔆','Автономное отопление','Avtonom isitish'],['net','📶','Интернет','Internet'],['ac','❄️','Кондиционер','Konditsioner'],['lift','⬆️','Лифт','Lift']];
+const CAR_BRANDS=['Chevrolet','BYD','Kia','Hyundai','Toyota','Lada','Daewoo','Ravon','Mercedes-Benz','BMW','Lexus','Volkswagen','Nissan','Honda','Chery','Haval','Geely','Tesla','Isuzu'];
+const spL=(f,i)=>lang==='uz'?f[i+1]:f[i];                  /* field label: spL(f,3) */
+const spOpt=(f,v)=>{const o=(f[5]||[]).find(x=>x[0]===v);return o?(lang==='uz'?o[2]:o[1]):''};
+const specOf=a=>SPEC[a&&a.cat]&&a.facts&&a.facts[SPEC[a.cat].box]||null;
+/* "3 комн · 78 м² · 5/9 эт" / "2019 · 45 000 км · Автомат" under the card title */
+function specLine(a){const x=specOf(a);if(!x)return '';const p=[];
+  if(a.cat==='real'){if(x.rooms)p.push(x.rooms+(lang==='uz'?' xona':' комн'));if(x.area)p.push(x.area+' м²');if(x.floor)p.push(x.floor+(x.floors?'/'+x.floors:'')+(lang==='uz'?' qavat':' эт'))}
+  else{if(x.year)p.push(x.year);if(x.km)p.push(fmt(x.km)+(lang==='uz'?' km':' км'));if(x.gear)p.push(spOpt(SPEC.auto.f.find(f=>f[0]==='gear'),x.gear))}
+  return p.join(' · ')}
 const CITIES=[['Ташкент','Toshkent'],['Самарканд','Samarqand'],['Бухара','Buxoro'],['Андижан','Andijon'],['Наманган','Namangan'],['Фергана','Farg‘ona'],['Карши','Qarshi'],['Нукус','Nukus'],['Навои','Navoiy'],['Джизак','Jizzax'],['Термез','Termiz'],['Ургенч','Urganch'],['Гулистан','Guliston'],['Коканд','Qo‘qon']];
 const cityName=c=>{const x=CITIES.find(p=>p[0]===c);return x?(lang==='uz'?x[1]:x[0]):c};
 const POP={ru:['iPhone','Cobalt','квартира','ляган','сюзане','сварщик'],uz:['iPhone','Cobalt','kvartira','lagan','so‘zana','payvandchi']};
@@ -1050,7 +1111,7 @@ const SHOW_DEMO=false;   /* demo ads (SEED) are hidden since launch; true shows 
 let favs=new Set(store.get('tp_favs',[]).map(String));
 let recent=store.get('tp_recent',[]);
 let chats=store.get('tp_chats',{});
-let state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12,me:null,near:false,radius:10,map:false,jt:[],prof:null,pmin:0,pmax:0};
+let state={sf:{},sfCat:null,kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12,me:null,near:false,radius:10,map:false,jt:[],prof:null,pmin:0,pmax:0};
 {const m=/^(?:\/uz)?\/([a-z-]+)\/?$/.exec(location.pathname),c=m&&CAT_BY_SLUG[m[1]];if(c){state.cat=c;if(c==='job'||c==='cv')state.kind=c}}
 
 /* own ads: paid options end after their days, the ad itself is hidden after 30 days until renewed */
@@ -1065,7 +1126,8 @@ const catOf=id=>CATS.find(c=>c.id===id);
 const cname=c=>c[lang];
 const fmt=n=>Math.round(n).toLocaleString('ru-RU').replace(/[  ,]/g,' ');
 function priceHTML(a){
-  if(a.kind==='sell') return a.price?`${fmt(a.price)} ${t('sum')}${a.usd?`<small>≈ ${fmt(a.usd)} $</small>`:''}`:t('nego');
+  if(a.kind==='sell'){const re=a.cat==='real'&&specOf(a),per=re&&re.deal==='rent'?' '+t('perMonth'):re&&re.deal==='day'?' '+t('perDay'):'';
+    return a.price?`${fmt(a.price)} ${t('sum')}${per}${a.usd?`<small>≈ ${fmt(a.usd)} $</small>`:''}`:t('nego')}
   return a.salary?`${fmt(a.salary[0])} – ${fmt(a.salary[1])} ${t('sum')}`:t('salNego');
 }
 const priceVal=a=>a.kind==='sell'?(a.price||0):(a.salary?a.salary[0]:0);
@@ -1134,6 +1196,7 @@ function card(a){
     <div class="cbody">
       <div class="cprice${a.kind!=='sell'?' sal':''}">${priceHTML(a)}</div>
       <div class="ctitle">${esc(a.title)}</div>
+      ${specLine(a)?`<div class="cspec">${esc(specLine(a))}</div>`:''}
       ${a.jt&&a.jt.length?`<div class="jtc">${a.jt.slice(0,2).map(c=>`<span>${jtName(c)}</span>`).join('')}</div>`:''}
       ${a.ver?`<span class="chip"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l4 4 10-10"/></svg>${t('verified')}</span>`:''}
       <div class="cmeta"><span>${state.me?`<b class="dist">${fmtDist(distOf(a))}</b> · `:''}${esc(cityName(a.city))} · ${ago(a.ts)}</span><span class="num"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align:-2px"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg> ${a.views||0}${vToday(a)?` <b class="vtd">+${vToday(a)}</b>`:''}</span></div>
@@ -1220,8 +1283,8 @@ function render(){
   $('#stCv').textContent=list.filter(a=>a.kind==='cv').length;
   liveAdded=list.filter(a=>a.uid&&a.ts>=tashMidnight()).length;showLive();
   const q=norm(state.q);
-  let r=list.filter(a=>state.onlyFav?favs.has(String(a.id)):(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(String(a.id)))&&(!(state.near&&state.radius&&state.me)||distOf(a)<=state.radius)&&(!state.jt.length||(a.jt&&state.jt.every(c=>a.jt.includes(c))))&&(!state.prof||(PROFS.find(p=>p[0]===state.prof)||[0,0,0,0,/./])[4].test(a.title+' '+(a.desc||'')))&&(!state.pmin||priceVal(a)>=state.pmin)&&(!state.pmax||(priceVal(a)>0&&priceVal(a)<=state.pmax))&&(!q||norm(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz+' '+cityName(a.city)).includes(q)));
-  renderJfil();
+  let r=list.filter(a=>state.onlyFav?favs.has(String(a.id)):(state.kind==='all'||a.kind===state.kind)&&(!state.cat||a.cat===state.cat)&&(!state.city||a.city===state.city)&&(!state.onlyFav||favs.has(String(a.id)))&&(!(state.near&&state.radius&&state.me)||distOf(a)<=state.radius)&&(!state.jt.length||(a.jt&&state.jt.every(c=>a.jt.includes(c))))&&(!state.prof||(PROFS.find(p=>p[0]===state.prof)||[0,0,0,0,/./])[4].test(a.title+' '+(a.desc||'')))&&sfOk(a)&&(!state.pmin||priceVal(a)>=state.pmin)&&(!state.pmax||(priceVal(a)>0&&priceVal(a)<=state.pmax))&&(!q||norm(a.title+' '+a.desc+' '+catOf(a.cat).ru+' '+catOf(a.cat).uz+' '+cityName(a.city)).includes(q)));
+  renderJfil();renderSfil();
   const rank=a=>a.top==='vip'?2:a.top==='top'?1:0;
   r.sort((x,y)=>state.sort==='near'&&state.me?distOf(x)-distOf(y):state.sort==='cheap'?(priceVal(x)||1e15)-(priceVal(y)||1e15):state.sort==='exp'?priceVal(y)-priceVal(x):state.sort==='pop'?(y.views||0)-(x.views||0):(rank(y)-rank(x))||(y.ts-x.ts));
   if(state.sort==='new'){
@@ -1322,7 +1385,7 @@ function simHTML(a){
 function openAd(id){
   const a=byId(id);if(!a)return;
   recent=[a.id,...recent.filter(x=>x!=a.id)].slice(0,8);store.set('tp_recent',recent);
-  const facts=Object.entries(a.facts||{}).map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
+  const facts=Object.entries(a.facts||{}).filter(([k,v])=>typeof v==='string').map(([k,v])=>`<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join('');
   const who=a.kind==='job'?t('employer'):a.kind==='cv'?t('applicant'):t('seller');
   const tel='+998 90 000-'+String(a.id%100).padStart(2,'0')+'-'+String((a.id*37)%100).padStart(2,'0');
   const cLbl=a.mine?t('edit'):a.kind==='job'?t('apply'):a.kind==='cv'?t('invite'):t('write');
@@ -1339,6 +1402,7 @@ function openAd(id){
         ${a.jt&&a.jt.length?`<div class="jtags ro">${a.jt.map(c=>`<span>${jtName(c)}</span>`).join('')}</div>`:''}
         <dl class="facts"><dt>${t('city')}</dt><dd>${esc(cityName(a.city))}</dd><dt>${t('section')}</dt><dd>${cname(catOf(a.cat))}</dd>${facts}<dt>${t('published')}</dt><dd>${ago(a.ts)} · ${a.views||0} ${t('views')}${vToday(a)?` <b class="vtd">+${vToday(a)} ${t('vToday')}</b>`:''}${a.shows?` · ${a.shows} ${t('showsL')}`:''}</dd></dl>
         <div class="desc">${esc(a.desc)}</div>
+        ${specHTML(a)}
         <button class="seller" id="sellerBtn"><div class="ava">${esc(a.seller[0])}</div><div><b>${esc(a.seller)}</b> ${a.ver?`<span class="ver">✓ ${t('verified')}</span>`:''}<small>${a.uid?`${who} · ${t('sinceT')} ${monthYear(a.created||a.ts)}`:`<span class="stars">${'★'.repeat(Math.round(rate))}</span> ${rate.toFixed(1)} · ${who} · ${t('onSince')}`}</small>${a.uid?'<span class="srate" id="sellerRate"></span><span class="onl" id="sellerOnl"></span>':''}<span class="sall">${t('allAds')} →</span></div></button>
         <div class="actions">
           <button class="btn" id="showTel">${t('showTel')}</button>
@@ -1468,13 +1532,14 @@ function tariffCard(x,sel){const n=x[lang];return `<button type="button" class="
 function openForm(edit){
   if(user&&user.banned){toast(t('bannedT'));return}
   edit=edit&&edit.id?edit:null;
-  draft={jt:new Set(edit&&edit.jt||[]),kind:edit?edit.kind:'sell',tariff:edit?(edit.top||(edit.urg?'urg':'free')):'free',imgs:[],photosChanged:false,editId:edit?edit.id:null,oldN:edit?edit.nPhotos||0:0};
+  draft={facts:edit&&edit.facts&&typeof edit.facts==='object'?edit.facts:{},comm:null,jt:new Set(edit&&edit.jt||[]),kind:edit?edit.kind:'sell',tariff:edit?(edit.top||(edit.urg?'urg':'free')):'free',imgs:[],photosChanged:false,editId:edit?edit.id:null,oldN:edit?edit.nPhotos||0:0};
   openModal(`<form class="form" id="adForm" novalidate>
     <h3>${edit?t('editAd'):t('newAd')}</h3>
     <div class="seg" role="group"><button type="button" data-k="sell" aria-pressed="true">${t('kSell')}</button><button type="button" data-k="job" aria-pressed="false">${t('kJob')}</button><button type="button" data-k="cv" aria-pressed="false">${t('kCv')}</button></div>
     <label class="fl">${t('fTitle')}<input id="fTitle" maxlength="80"></label>
     <div class="f2"><label class="fl" id="catWrap">${t('fCat')}<select id="fCat"></select></label><label class="fl">${t('city')}<select id="fCity">${CITIES.map(c=>`<option value="${c[0]}">${lang==='uz'?c[1]:c[0]}</option>`).join('')}</select></label></div>
     <div class="f2" id="priceRow"></div>
+    <div id="specBox" hidden></div>
     <div class="fl" id="jtWrap" hidden>${t('jtL')}<div class="jtags" id="jtags"></div></div>
     <label class="fl">${t('fDesc')}<textarea id="fDesc" placeholder="${t('fDescPh')}"></textarea></label>
     <div class="fl">${t('fPhoto')}<div class="phs" id="phList"></div><small class="phh">${t('phHint')}</small></div>
@@ -1493,7 +1558,7 @@ function openForm(edit){
   $$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x.dataset.k===draft.kind));
   if(edit){
     $('#fTitle').value=edit.title;$('#fDesc').value=edit.desc||'';$('#fName').value=edit.seller;$('#fCity').value=edit.city;
-    if(edit.kind==='sell'){$('#fCat').value=edit.cat;$('#fPrice').value=edit.price||''}
+    if(edit.kind==='sell'){$('#fCat').value=edit.cat;$('#fPrice').value=edit.price||'';specForm()}
     else if(edit.salary){$('#fS1').value=edit.salary[0];$('#fS2').value=edit.salary[1]}
   }
   $$('.seg button').forEach(b=>b.onclick=()=>{draft.kind=b.dataset.k;$$('.seg button').forEach(x=>x.setAttribute('aria-pressed',x===b));syncForm()});
@@ -1516,6 +1581,7 @@ function openForm(edit){
   }).catch(()=>{});
   renderPhs();if(edit&&edit.nPhotos)fetchPhotos(edit.id).then(ph=>{if(!draft.photosChanged&&draft.editId===edit.id){draft.imgs=ph.map(d=>({data:d,stats:null}));renderPhs()}}).catch(()=>{});
   $('#adForm').onsubmit=submitAd;
+  $('#fCat').addEventListener('change',specForm);
   $('#agreeRules').onclick=()=>{const r=$('#formRules');r.hidden=!r.hidden;if(!r.hidden)r.innerHTML=t('rulesHTML')};
 }
 /* photos: each is resized in the phone before upload (max 1200 px, JPEG), the first one also becomes a small thumbnail */
@@ -1548,6 +1614,7 @@ function syncForm(){
   setTimeout(updatePay);
   $('#jtWrap').hidden=k==='sell';$('#jtags').innerHTML=JT.map(j=>`<button type="button" data-jt="${j[0]}" aria-pressed="${draft.jt.has(j[0])}">${jtName(j[0])}</button>`).join('');
   $$('#jtags button').forEach(b=>b.onclick=()=>{const c=b.dataset.jt;draft.jt.has(c)?draft.jt.delete(c):draft.jt.add(c);b.setAttribute('aria-pressed',draft.jt.has(c))});
+  setTimeout(specForm);
   $('#priceRow').innerHTML=k==='sell'?`<label class="fl">${t('fPrice')}<input id="fPrice" inputmode="numeric" placeholder="1 500 000"></label><span></span>`:`<label class="fl">${t('fS1')}<input id="fS1" inputmode="numeric" placeholder="4 000 000"></label><label class="fl">${t('fS2')}<input id="fS2" inputmode="numeric" placeholder="6 000 000"></label>`;
 }
 const num=id=>{const e=$(id);return e?parseInt(e.value.replace(/\D/g,''))||0:0};
@@ -1591,7 +1658,7 @@ function submitAd(e){
   const ad={kind:k,cat:k==='sell'?$('#fCat').value:k,title,city:$('#fCity').value,ts:Date.now(),seller:name,desc:$('#fDesc').value.trim(),top:(tr==='top'||tr==='vip')?tr:null,urg:tr==='urg'?1:0,facts:{},phone,created:Date.now(),loc:draft.loc||cityLL($('#fCity').value)};
   if(ad.top)ad.topUntil=Date.now()+DUR[ad.top]*DAY;
   if(ad.urg)ad.urgUntil=Date.now()+DUR.urg*DAY;
-  if(k==='sell')ad.price=num('#fPrice');else{const a=num('#fS1'),b=num('#fS2');if(a)ad.salary=[a,Math.max(a,b)];if(draft.jt.size)ad.jt=[...draft.jt].slice(0,10)}
+  if(k==='sell'){ad.price=num('#fPrice');ad.facts=readSpec(ad.cat)}else{const a=num('#fS1'),b=num('#fS2');if(a)ad.salary=[a,Math.max(a,b)];if(draft.jt.size)ad.jt=[...draft.jt].slice(0,10)}
   const box=$('#modBox'),btn=$('#pubBtn');
   $('#fErr').textContent='';btn.disabled=true;draft.busy=true;box.hidden=false;box.className='modbox run';
   box.innerHTML=`<b>${t('checking')}</b><div class="chk"><span>${t('chkText')}</span><span>${t('chkPhoto')}</span><span>${t('chkPrice')}</span></div>`;
@@ -1947,6 +2014,64 @@ function openDeepChat(){if(!deepChat||!user)return;const c=myChats.find(x=>x.id=
   try{history.replaceState(null,'',location.pathname)}catch(e){}openChatWin(c)}
 if('serviceWorker' in navigator)navigator.serviceWorker.addEventListener('message',e=>{if(e.data&&e.data.chat){deepChat=String(e.data.chat);openDeepChat()}else if(e.data&&e.data.ad)openAdId(String(e.data.ad))});
 
+
+function specHTML(a){
+  const sp=SPEC[a.cat],fx=a.facts||{},x=specOf(a);if(!sp)return '';
+  let out='';
+  if(x){const items=[];
+    sp.f.forEach(f=>{const k=f[0];let v=x[k];if(v==null||v===''||k==='floors')return;
+      if(k==='floor')v=x.floors?`${v} ${t('spFloorOf')} ${x.floors}`:v;
+      else if(f[1]==='sel')v=spOpt(f,v);
+      else if(f[1]==='num')v=(k==='year'?v:fmt(v))+(f[5]?' '+f[5]:'');
+      if(v)items.push(`<div class="spi"><span class="spic">${f[2]}</span><div><small>${spL(f,3)}</small><b>${esc(String(v))}</b></div></div>`)});
+    if(items.length)out+=`<div class="spbox"><h4>${t(a.cat==='real'?'spReal':'spAuto')}</h4><div class="spgrid">${items.join('')}</div></div>`}
+  if(a.cat==='real'&&fx.comm){const cs=COMM.filter(c=>fx.comm[c[0]]===1||fx.comm[c[0]]===0);
+    if(cs.length)out+=`<div class="spbox"><h4>${t('spComm')}</h4><div class="comm">${cs.map(c=>`<div class="cm"><span>${c[1]} ${lang==='uz'?c[3]:c[2]}</span><b class="${fx.comm[c[0]]?'yes':'no'}">${t(fx.comm[c[0]]?'spYes':'spNo')}</b></div>`).join('')}</div></div>`}
+  const L=k=>Array.isArray(fx[k])?fx[k].filter(Boolean):[];
+  if(L('pros').length||L('cons').length||L('done').length)
+    out+=`<div class="spbox"><h4>${t(a.cat==='real'?'spHonestR':'spHonestA')}</h4><p class="sph">${t('spHonestH')}</p><div class="honest">`+
+      [['pros','hp','✓'],['cons','hc','✕'],['done','hd','🔧']].filter(([k])=>L(k).length).map(([k,c,i])=>`<div class="${c}"><b>${i} ${t(k==='pros'?'spPros':k==='cons'?'spCons':'spDone')}</b><ul>${L(k).map(v=>`<li>${esc(v)}</li>`).join('')}</ul></div>`).join('')+`</div></div>`;
+  return out;
+}
+/* the form part: shown for Недвижимость and Транспорт */
+function specForm(){
+  const box=$('#specBox');if(!box)return;const cat=draft.kind==='sell'?$('#fCat').value:'';const sp=SPEC[cat];
+  if(!sp){box.innerHTML='';box.hidden=true;return}
+  const old=draft.facts||{},x=old[sp.box]||{};box.hidden=false;
+  if(!draft.comm)draft.comm={...(old.comm||{})};
+  const field=f=>{const k=f[0],v=x[k]??'',id='sp_'+k;
+    if(f[1]==='sel')return `<label class="fl">${f[2]} ${spL(f,3)}<select id="${id}"><option value="">${t('spChoose')}</option>${f[5].map(o=>`<option value="${o[0]}"${o[0]===v?' selected':''}>${lang==='uz'?o[2]:o[1]}</option>`).join('')}</select></label>`;
+    return `<label class="fl">${f[2]} ${spL(f,3)}${f[1]==='num'&&f[5]?', '+f[5]:''}<input id="${id}"${f[1]==='num'?' inputmode="numeric"':''}${k==='brand'?' list="carBrands"':''} maxlength="${f[1]==='num'?9:40}" value="${esc(String(v))}"></label>`};
+  const ta=(k,lbl)=>`<label class="fl">${t(lbl)} <small style="font-weight:400;color:var(--ink3)">(${t('spLines')})</small><textarea id="sp_${k}" rows="3" maxlength="600">${esc((old[k]||[]).join('\n'))}</textarea></label>`;
+  box.innerHTML=`<details class="spform" ${Object.keys(x).length||draft.specOpen?'open':''}><summary>${t(cat==='real'?'spMore':'spMoreAuto')}</summary>
+    <div class="spf">${sp.f.map(field).join('')}</div>${cat==='auto'?`<datalist id="carBrands">${CAR_BRANDS.map(b=>`<option value="${b}">`).join('')}</datalist>`:''}
+    ${cat==='real'?`<div class="fl">${t('spComm')}<small class="phh" style="display:block;font-weight:400">${t('spCommH')}</small><div class="commf" id="commF"></div></div>`:''}
+    ${ta('pros','spPros')}${ta('cons','spCons')}${ta('done','spDone')}</details>`;
+  const cf=$('#commF');const drawC=()=>{if(cf)cf.innerHTML=COMM.map(c=>{const v=draft.comm[c[0]];return `<button type="button" data-cm="${c[0]}" class="${v===1?'yes':v===0?'no':''}">${c[1]} ${lang==='uz'?c[3]:c[2]}${v===1?' · '+t('spYes'):v===0?' · '+t('spNo'):''}</button>`}).join('')};drawC();
+  if(cf)cf.onclick=e=>{const b=e.target.closest('[data-cm]');if(!b)return;const k=b.dataset.cm,v=draft.comm[k];if(v===1)draft.comm[k]=0;else if(v===0)delete draft.comm[k];else draft.comm[k]=1;drawC()};
+  box.querySelector('details').ontoggle=e=>{draft.specOpen=e.target.open};
+}
+/* read the form part into ad.facts */
+function readSpec(cat){
+  const sp=SPEC[cat];if(!sp)return {};
+  const x={};sp.f.forEach(f=>{const e=$('#sp_'+f[0]);if(!e)return;let v=e.value.trim();if(!v)return;
+    if(f[1]==='num'){v=parseInt(v.replace(/\D/g,''));if(!v)return}else v=v.slice(0,40);x[f[0]]=v});
+  const lines=k=>{const e=$('#sp_'+k);return e?e.value.split('\n').map(v=>v.trim().slice(0,120)).filter(Boolean).slice(0,8):[]};
+  const out={};if(Object.keys(x).length)out[sp.box]=x;
+  if(cat==='real'&&draft.comm&&Object.keys(draft.comm).length)out.comm={...draft.comm};
+  ['pros','cons','done'].forEach(k=>{const l=lines(k);if(l.length)out[k]=l});
+  return out;
+}
+/* filters for Недвижимость / Транспорт */
+const SFIL={real:[['deal',null],['rooms',[['1','1'],['2','2'],['3','3'],['4','4+']]]],auto:[['gear',null],['fuel',null]]};
+function renderSfil(){const el=$('#sfil');if(!el)return;const fs=!state.onlyFav&&SFIL[state.cat];el.hidden=!fs;if(!fs)return;
+  if(state.sfCat!==state.cat){state.sf={};state.sfCat=state.cat}
+  const sp=SPEC[state.cat];
+  el.innerHTML=fs.map(([k,opts])=>{const f=sp.f.find(x=>x[0]===k),os=opts||f[5].map(o=>[o[0],lang==='uz'?o[2]:o[1]]);
+    return `<b>${f[2]} ${spL(f,3)}</b>`+os.map(o=>`<button type="button" data-sk="${k}" data-sv="${o[0]}" aria-pressed="${state.sf[k]===o[0]}">${esc(o[1])}</button>`).join('')}).join('<span class="sfsep"></span>')}
+function sfOk(a){const sf=state.sf||{},ks=Object.keys(sf);if(!ks.length||state.sfCat!==state.cat)return true;const x=specOf(a);if(!x)return false;
+  return ks.every(k=>k==='rooms'?(sf[k]==='4'?(+x.rooms||0)>=4:String(x.rooms)===sf[k]):x[k]===sf[k])}
+
 /* ---------- seller reviews ----------
    reviews/{sellerUid_authorUid}: one review per buyer per seller, 1-5 stars + optional text.
    The rules allow it only from the buyer of a chat where the seller has answered (chat.sr),
@@ -2207,10 +2332,11 @@ function openPricing(){
 
 /* ---------- events ---------- */
 /* filter rows: collections by profession + job conditions (on "all", "vacancies", "CVs"); price from–to */
-function renderJfil(){const el=$('#jfil');if(!el)return;$('#pMin').placeholder=t('priceFrom');$('#pMax').placeholder=t('priceTo');const show=!state.onlyFav&&state.kind!=='sell';el.hidden=!show;if(!show)return;
+function renderJfil(){const el=$('#jfil');if(!el)return;$('#pMin').placeholder=t('priceFrom');$('#pMax').placeholder=t('priceTo');const show=!state.onlyFav&&state.kind!=='sell'&&!(state.cat&&catOf(state.cat).kind==='sell');el.hidden=!show;if(!show)return;
   const jobs=state.kind==='job'||state.kind==='cv';
   el.innerHTML=`<b>${jobs?t('jtAll'):t('colT')}</b>`+PROFS.map(p=>`<button type="button" data-prof="${p[0]}" aria-pressed="${state.prof===p[0]}">${p[1]} ${lang==='uz'?p[3]:p[2]}</button>`).join('')
     +(jobs?JT:JT.filter(j=>['part','remote','noexp'].includes(j[0]))).map(j=>`<button type="button" class="jtb" data-jt="${j[0]}" aria-pressed="${state.jt.includes(j[0])}">${jtName(j[0])}</button>`).join('')}
+$('#sfil').onclick=e=>{const b=e.target.closest('[data-sk]');if(!b)return;const k=b.dataset.sk,v=b.dataset.sv;state.sf={...state.sf,[k]:state.sf[k]===v?undefined:v};if(state.sf[k]===undefined)delete state.sf[k];state.limit=12;render()};
 $('#jfil').onclick=e=>{const b=e.target.closest('button');if(!b)return;
   if(state.kind==='all'){state.kind='job';syncTabs()}
   if(b.dataset.prof)state.prof=state.prof===b.dataset.prof?null:b.dataset.prof;
