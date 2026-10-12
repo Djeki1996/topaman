@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0A4F57">
-<meta name="description" content="Butun bozor — cho‘ntagingizda. Объявления, вакансии и мастера Узбекистана.">
+<meta name="description" content="Бесплатные объявления в Узбекистане: авто, квартиры, работа, электроника и услуги. Bepul e’lonlar — Toshkent, Samarqand va butun O‘zbekiston.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Topaman.uz">
 <meta property="og:url" content="https://topaman.uz/">
@@ -24,7 +24,7 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Topaman.uz">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<title>Topaman.uz</title>
+<title>Topaman.uz — бесплатные объявления в Узбекистане</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Philosopher:wght@400;700&family=Golos+Text:wght@400;500;600;700&display=swap">
@@ -1247,7 +1247,7 @@ function syncPath(){
   const cur=location.pathname,known=cur==='/'||!!CAT_BY_SLUG[cur.replace(/\//g,'')];if(!known)return;
   const want=state.cat&&!state.onlyFav&&SLUG[state.cat]?'/'+SLUG[state.cat]+'/':'/';
   if(cur!==want)try{history.replaceState(history.state,'',want+location.search+location.hash)}catch(e){}
-  const c=state.cat&&catOf(state.cat);document.title=c&&!state.onlyFav?cname(c)+' — Topaman.uz':'Topaman.uz';
+  const c=state.cat&&catOf(state.cat);document.title=c&&!state.onlyFav?cname(c)+' — Topaman.uz':'Topaman.uz — бесплатные объявления в Узбекистане';
 }
 
 /* ---------- modal helpers ---------- */
