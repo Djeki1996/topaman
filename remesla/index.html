@@ -5,18 +5,21 @@
 <base href="/">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#0A4F57">
-<meta name="description" content="Узбекские ремёсла: риштанская керамика, сюзане, чапаны, пчаки. Hunarmandchilik buyumlari — qo‘l mehnati.">
+<meta name="description" content="Узбекские ремёсла: риштанская керамика, сюзане, чапаны, пчаки.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Topaman.uz">
 <meta property="og:url" content="https://topaman.uz/remesla/">
 <meta property="og:title" content="Ремёсла: ляганы, сюзане, ручная работа — Topaman.uz">
-<meta property="og:description" content="Узбекские ремёсла: риштанская керамика, сюзане, чапаны, пчаки. Hunarmandchilik buyumlari — qo‘l mehnati.">
+<meta property="og:description" content="Узбекские ремёсла: риштанская керамика, сюзане, чапаны, пчаки.">
 <meta property="og:image" content="https://topaman.uz/icons/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="google-site-verification" content="tHbI06S0vZNP1rWcEu39zYBYiqdJp64izt3zGvWvhDw">
 <link rel="canonical" href="https://topaman.uz/remesla/">
+<link rel="alternate" hreflang="ru" href="https://topaman.uz/remesla/">
+<link rel="alternate" hreflang="uz" href="https://topaman.uz/uz/remesla/">
+<link rel="alternate" hreflang="x-default" href="https://topaman.uz/remesla/">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Topaman","alternateName":["Topaman.uz","Топаман"],"url":"https://topaman.uz/"}</script>
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
@@ -938,7 +941,8 @@ uz:{tariffs:'Tariflar',chats:'Chatlar',fav:'Saralangan',myads:'Mening e’lonlar
  confirm:'Tasdiqlash',cancel:'Bekor qilish',back:'Orqaga',welcome:'Xush kelibsiz',profileT:'Profil',pName:'Saytdagi ism',pPhone:'Aloqa uchun telefon',save:'Saqlash',saved:'Profil saqlandi',
  logout:'Chiqish',loggedOut:'Akkauntdan chiqdingiz',via:'Kirish usuli',needPost:'E’lon berish uchun kiring',needChat:'Sotuvchiga yozish uchun kiring'}
 };
-let lang='ru';try{lang=localStorage.getItem('tp_lang')||'ru'}catch(e){}
+/* language: /uz/ addresses are Uzbek; otherwise the person's choice; otherwise the phone/browser language */
+let lang='ru';try{lang=/^\/uz(\/|$)/.test(location.pathname)?'uz':localStorage.getItem('tp_lang')||((navigator.languages||[navigator.language]).some(l=>/^uz(-|_|$)/i.test(l||''))?'uz':'ru')}catch(e){}
 const t=k=>TX[lang][k]??TX.ru[k]??k;
 
 /* ---------- data ---------- */
@@ -1048,7 +1052,7 @@ let favs=new Set(store.get('tp_favs',[]).map(String));
 let recent=store.get('tp_recent',[]);
 let chats=store.get('tp_chats',{});
 let state={kind:'all',cat:null,q:'',city:'',sort:'new',onlyFav:false,limit:12,me:null,near:false,radius:10,map:false,jt:[],prof:null,pmin:0,pmax:0};
-{const m=/^\/([a-z-]+)\/?$/.exec(location.pathname),c=m&&CAT_BY_SLUG[m[1]];if(c){state.cat=c;if(c==='job'||c==='cv')state.kind=c}}
+{const m=/^(?:\/uz)?\/([a-z-]+)\/?$/.exec(location.pathname),c=m&&CAT_BY_SLUG[m[1]];if(c){state.cat=c;if(c==='job'||c==='cv')state.kind=c}}
 
 /* own ads: paid options end after their days, the ad itself is hidden after 30 days until renewed */
 function live(a){const n=Date.now(),b={...a};if(b.topUntil&&b.topUntil<n)b.top=null;if(b.urgUntil&&b.urgUntil<n)b.urg=0;return b}
@@ -1116,7 +1120,7 @@ function applyI18n(){
 /* hero slogan rotates every 4 hours through 3 variants */
 function setHeroTitle(){const v=t('heroTitle');$('#heroTitle').innerHTML=v[Math.floor(Date.now()/(4*3600e3))%v.length]}
 setInterval(setHeroTitle,10*60e3);
-function renderFootCats(){const el=$('#fcats');if(el)el.innerHTML=CATS.map(c=>`<a href="/${SLUG[c.id]}/" data-fcat="${c.id}">${cname(c)}</a>`).join('')}
+function renderFootCats(){const el=$('#fcats');if(el)el.innerHTML=CATS.map(c=>`<a href="${lang==='uz'?'/uz':''}/${SLUG[c.id]}/" data-fcat="${c.id}">${cname(c)}</a>`).join('')}
 document.addEventListener('click',e=>{const a=e.target.closest('[data-fcat]');if(!a||e.ctrlKey||e.metaKey||e.shiftKey)return;e.preventDefault();
   const c=a.dataset.fcat;state={...state,cat:c,kind:c==='job'||c==='cv'?c:'all',onlyFav:false,limit:12};syncTabs();render();scrollTo({top:$('#grid').offsetTop-160})});
 function renderCats(){
@@ -1245,10 +1249,10 @@ function render(){
 }
 function syncPath(){
   if(!syncPath.done){syncPath.done=1;syncTabs()}
-  const cur=location.pathname,known=cur==='/'||!!CAT_BY_SLUG[cur.replace(/\//g,'')];if(!known)return;
-  const want=state.cat&&!state.onlyFav&&SLUG[state.cat]?'/'+SLUG[state.cat]+'/':'/';
+  const cur=location.pathname,base=cur.replace(/^\/uz(?=\/|$)/,'')||'/',known=base==='/'||!!CAT_BY_SLUG[base.replace(/\//g,'')];if(!known)return;
+  const want=(lang==='uz'?'/uz':'')+(state.cat&&!state.onlyFav&&SLUG[state.cat]?'/'+SLUG[state.cat]+'/':'/');
   if(cur!==want)try{history.replaceState(history.state,'',want+location.search+location.hash)}catch(e){}
-  const c=state.cat&&catOf(state.cat);document.title=c&&!state.onlyFav?cname(c)+' — Topaman.uz':'Topaman.uz — объявления в Узбекистане: купить, продать, найти работу';
+  const c=state.cat&&catOf(state.cat);document.title=c&&!state.onlyFav?cname(c)+' — Topaman.uz':lang==='uz'?'Topaman.uz — O‘zbekistondagi e’lonlar: sotish, sotib olish, ish topish':'Topaman.uz — объявления в Узбекистане: купить, продать, найти работу';
 }
 
 /* ---------- modal helpers ---------- */
